@@ -1,3 +1,7 @@
 export default function Header() {
-  return <div>Header</div>;
+  return (
+    <header>
+      <h1>Welcome to Our Advent Calender</h1>
+    </header>
+  );
 }
