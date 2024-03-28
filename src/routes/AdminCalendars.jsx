@@ -2,7 +2,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import homeSymbol from "./public/home.png";
+import homeSymbol from "../public/home.png";
 import { NavLink } from "react-bootstrap";
 
 export default function AdminCalendars() {
