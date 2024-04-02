@@ -1,4 +1,4 @@
-import Hatch from "../components/Hatch";
+import EditHatch from "../components/EditHatch";
 import "../calendar.css";
 import { Card } from "react-bootstrap";
 import { Button } from "react-bootstrap";
@@ -13,7 +13,7 @@ function EditCalendar() {
         <div className="calendarSections" style={{ display: "flex" }}>
           <div className="calendar" style={{ border: "1px solid black" }}>
             {Array.from({ length: 31 }).map((_, i) => (
-              <Hatch key={i} number={i + 1} />
+              <EditHatch key={i} number={i + 1} />
             ))}
           </div>
         </div>
