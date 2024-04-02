@@ -1,0 +1,10 @@
+.navMain {
+  background-color: lightgrey;
+  height: 100vh;
+  padding-top: 50px;
+  width: 230px;
+}
+
+span {
+  color: #000;
+}
