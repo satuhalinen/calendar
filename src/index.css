@@ -24,7 +24,7 @@ body {
 .cards {
   display: grid;
   grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 30vh 30vh 30vh;
+  grid-template-rows: 10vh 10vh 10vh 10vh 10vh;
   column-gap: 10px;
   row-gap: 15px;
   justify-items: center;
