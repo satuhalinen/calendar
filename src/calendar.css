@@ -1,0 +1,16 @@
+.calendar {
+  display: grid;
+  grid-template-columns: 13% 13% 13% 13% 13% 13% 13%;
+  grid-template-rows: 20vh 20vh 20vh 20vh 20vh;
+  column-gap: 10px;
+  row-gap: 15px;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  place-items: center;
+  justify-content: center;
+}
+
+.gamification {
+  justify-content: center;
+}
