@@ -1,0 +1,22 @@
+.para,
+.numbers {
+  margin-top: 70px;
+}
+
+.colorTheme-container {
+  padding: 2rem;
+}
+
+.colorTheme-div {
+  margin-left: 20px;
+}
+
+img {
+  width: 150px;
+  height: 150px;
+  margin-top: 5px;
+}
+
+.button {
+  margin-top: 50px;
+}

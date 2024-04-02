@@ -8,7 +8,7 @@ import AdminCalendars from "./routes/AdminCalendars";
 import AdminPanel from "./routes/Adminpanel";
 import Calendar from "./routes/Calendar";
 import Calendars from "./routes/Calendars";
-import CreateCalendar from "./routes/CreateCalendar";
+import CreateCalendar from "./routes/createCalendar/CreateCalendar";
 import EditCalendar from "./routes/EditCalendar";
 import Favorites from "./routes/Favorites";
 import Login from "./routes/Login";
