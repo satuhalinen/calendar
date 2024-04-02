@@ -16,6 +16,7 @@ import Register from "./routes/Register";
 import Profile from "./routes/Profile";
 import Root from "./routes/Root";
 import TermsAndConditions from "./routes/TermsAndConditions";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
