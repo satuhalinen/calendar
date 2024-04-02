@@ -1,0 +1,33 @@
+#main-container {
+  place-items: center center;
+  min-height: 700px;
+}
+
+.button-a-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+#form-container {
+  max-width: 500px;
+  background-color: lightgray;
+  padding: 60px;
+  border-radius: 10px;
+}
+
+h1 {
+  margin-bottom: 40px;
+}
+
+.formGroup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#input-field {
+  width: 80%;
+}

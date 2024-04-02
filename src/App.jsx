@@ -3,7 +3,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import LandingPage from "./routes/LandingPage";
 import About from "./routes/About";
-import AccountSettings from "./routes/AccountSettings";
+import AccountSettings from "./routes/accountSettings/AccountSettings";
 import AdminCalendars from "./routes/AdminCalendars";
 import AdminPanel from "./routes/Adminpanel";
 import Calendar from "./routes/Calendar";
