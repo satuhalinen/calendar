@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import '../PopUp/popUp.css';
+import './popUp/popUp.css';
 
 const PopUp = ({ showInitially, handleClose }) => {
     const [showPopup, setShowPopup] = useState(false);
