@@ -1,4 +1,4 @@
-import Hatch from "../components/Hatch";
+import Hatch from "../components/hatch/Hatch.jsx";
 import "../calendar.css";
 import { Card } from "react-bootstrap";
 import homeSymbol from "../public/home.png";

@@ -2,7 +2,7 @@ import { Card } from "react-bootstrap";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import "../../src/hatch.css";
+import "./hatch.css";
 
 function Hatch({ number }) {
   const [show, setShow] = useState(false);
