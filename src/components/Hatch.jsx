@@ -2,22 +2,33 @@ import { Card } from "react-bootstrap";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import "../../src/hatch.css";
 
 function Hatch({ number }) {
   const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const handleClose = () => {
+    setShow(false);
+    setIsFlipped(false);
+  };
   const handleShow = () => setShow(true);
+
   return (
     <>
       <Card
-        onClick={handleShow}
+        onClick={() => {
+          if (isFlipped) {
+            handleShow();
+          }
+          setIsFlipped(!isFlipped);
+        }}
         style={{
           border: "1px solid black",
           width: "80%",
           height: "80%",
           backgroundColor: "#cbd6d5",
         }}
+        className={`flip-card ${isFlipped ? "flipped" : ""}`}
       >
         <div className="hatch">{number}</div>
       </Card>
