@@ -22,10 +22,10 @@ const LandingPage = () => {
   };
 
   return (
-    <div>
+    <Col>
       <PopUp showInitially={!showPopup} handleClose={handleClosePopup} />
       <ImageCarousel />
-      <div className='versions-wrap'>
+      <Col className='versions-wrap'>
         <h2 className='versionTitle'>Discover our different versions</h2>
         <Row className='versions'>
           <Col md={6}>
@@ -36,7 +36,7 @@ const LandingPage = () => {
                   Version 1 is the first version of our calendar.
                 </Card.Text>
                 {expandedStates.version1 && (
-                  <div className='expandedCard'>
+                  <Col className='expandedCard'>
                     <p>Additional text when expanded.</p>
                     <p>Additional text when expanded.</p>
                     <p>Additional text when expanded.</p>
@@ -44,7 +44,7 @@ const LandingPage = () => {
                     <p>Additional text when expanded.</p>
                     <p>Additional text when expanded.</p>
                     <Button className="readMore" variant="link" onClick={() => handleExpand('version1')}>Read less</Button>
-                  </div>
+                  </Col>
                 )}
                 {!expandedStates.version1 && (
                   <Button className="readMore" variant="link" onClick={() => handleExpand('version1')}>Read more</Button>
@@ -60,7 +60,7 @@ const LandingPage = () => {
                   Version 2 is the second version of our calendar.
                 </Card.Text>
                 {expandedStates.version2 && (
-                  <div className='expandedCard'>
+                  <Col className='expandedCard'>
                     <p>Additional text when expanded.</p>
                     <p>Additional text when expanded.</p>
                     <p>Additional text when expanded.</p>
@@ -68,7 +68,7 @@ const LandingPage = () => {
                     <p>Additional text when expanded.</p>
                     <p>Additional text when expanded.</p>
                     <Button className="readMore" variant="link" onClick={() => handleExpand('version2')}>Read less</Button>
-                  </div>
+                  </Col>
                 )}
                 {!expandedStates.version2 && (
                   <Button className="readMore" variant="link" onClick={() => handleExpand('version2')}>Read more</Button>
@@ -78,8 +78,8 @@ const LandingPage = () => {
           </Col>
         </Row>
         <Link to='/register'><Button className='registerNow'>Register now</Button></Link>
-      </div>
-      <div className='aboutUs'>
+      </Col>
+      <Col className='aboutUs'>
         <Card className='aboutUsCard'>
           <Card.Header className='aboutUsTitle'>About VOCA</Card.Header>
           <Card.Body className='aboutUsBody'>
@@ -102,8 +102,8 @@ const LandingPage = () => {
             </Link>
           </Card.Body>
         </Card>
-      </div>
-    </div>
+      </Col>
+    </Col>
   );
 }
 
