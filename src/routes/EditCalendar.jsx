@@ -2,7 +2,7 @@ import EditHatch from "../components/editHatch/EditHatch";
 import "../calendar.css";
 import { Card } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import SmallHeader from "../components/SmallHeader";
+import SmallHeader from "../components/smallHeader/SmallHeader";
 
 function EditCalendar() {
   return (

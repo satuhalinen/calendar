@@ -1,25 +1,25 @@
-import Hatch from "../components/Hatch";
+import Hatch from "../components/hatch/Hatch.jsx";
 import "../calendar.css";
 import { Card } from "react-bootstrap";
 import homeSymbol from "../public/home.png";
-import SmallHeader from "../components/SmallHeader";
+import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
 
 function Calendar() {
   return (
     <>
       <SmallHeader />
+      <Card.Title style={{ textAlign: "center" }}>Calendar</Card.Title>
       <div className="calendarSections" style={{ display: "flex" }}>
-        <div className="calendar" style={{ border: "1px solid black" }}>
+        <Card className="calendar">
           {Array.from({ length: 31 }).map((_, i) => (
             <Hatch key={i} number={i + 1} />
           ))}
-        </div>
+        </Card>
         <Card
           className="gamification"
           style={{
             display: "grid",
             width: "30%",
-            border: "1px solid black",
             height: "500px",
           }}
         >
