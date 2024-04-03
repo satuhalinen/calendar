@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 function SmallHeader() {
   return (
-    <Navbar bg="light" data-bs-theme="light">
+    <Navbar bg="light" data-bs-theme="light" className="smallHeader">
       <Container>
         <Nav className="me-auto">
           <NavLink style={{ textDecoration: "none" }} to="/calendars">

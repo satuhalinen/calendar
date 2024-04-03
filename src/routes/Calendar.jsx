@@ -2,7 +2,7 @@ import Hatch from "../components/Hatch";
 import "../calendar.css";
 import { Card } from "react-bootstrap";
 import homeSymbol from "../public/home.png";
-import SmallHeader from "../components/SmallHeader";
+import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
 
 function Calendar() {
   return (
