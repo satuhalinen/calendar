@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap');
+
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #FFFAF7;
+    transition: background-color 0.3s ease;
+}
+
+.versions-wrap {
+    text-align: center;
+}
+
+.versionTitle {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin: 2rem;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.054);
+}
+
+.versions {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 3rem 8rem;
+}
+
+.versionCard,
+.aboutUsCard {
+    margin: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.194);
+    background-color: #F4EDE7;
+    height: auto;
+    max-width: auto;
+    transition: box-shadow 0.3s ease;
+}
+
+.aboutUsCard {
+    width: 100%;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.081);
+}
+
+.aboutUs {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 3rem 8rem;
+}
+
+.versionCardTitle,
+.aboutUsTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    background-color: #597773;
+    color: white;
+    margin: 0;
+    padding: 1rem;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.506);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.versionCardBody {
+    padding: 1rem;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.076);
+}
+
+.expandedCard {
+    height: auto;
+    margin-top: 1rem;
+    background-color: #e7ddd7;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.readMore,
+.linkToAbout {
+    color: #597773;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.readMore:hover,
+.linkToAbout:hover {
+    text-decoration: underline;
+    color: rgb(32, 81, 78);
+}
+
+.registerNow {
+    background-color: #ba6c2c;
+    box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+    font-size: 1.1rem;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 1.1rem 2.5rem;
+    margin: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.registerNow:hover {
+    box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237);
+    background-color: #a65919;
+}
+
+@media (max-width: 768px) {
+    .versionTitle {
+        font-size: 1.7rem;
+    }
+
+    .registerNow {
+        font-size: 1.1rem;
+    }
+
+    .versionCardTitle,
+    .aboutUsTitle {
+        font-size: 1.1rem;
+    }
+
+    .versions,
+    .aboutUs {
+        margin: 3rem;
+    }
+}

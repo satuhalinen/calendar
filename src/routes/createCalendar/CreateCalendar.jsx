@@ -75,7 +75,7 @@ export default function CreateCalendar() {
                   </Form>
                   {option.type === "image" ? (
                     <Container>
-                      <img src={option.value} alt={option.label} />
+                      <img className="optionImg" src={option.value} alt={option.label} />
                     </Container>
                   ) : (
                     <Container>
