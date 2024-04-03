@@ -1,0 +1,56 @@
+.navBarAdmin,
+.navBarDefault {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.213);
+    height: 90px;
+}
+
+.navBarAdmin .links,
+.navBarDefault .links {
+    display: flex;
+    align-items: right;
+    justify-content: right;
+}
+
+.navBarAdmin {
+    background-color: #597773;
+}
+
+.navBarDefault {
+    background-color: #F4EDE7;
+}
+
+.navBarAdmin .navLink {
+    padding: 10px;
+    margin: 0.5rem 1rem;
+    font-size: 1rem;
+    color: white;
+}
+
+.navBarDefault .navLink {
+    padding: 10px;
+    margin: 0.5rem 1rem;
+    font-size: 1rem;
+}
+
+.navBarAdmin .navLink.active {
+    color: #e6b997 !important;
+    text-decoration: underline;
+}
+
+.navBarAdmin .navLink:hover {
+    color: #e6b997;
+    text-decoration: underline;
+}
+
+.navBarDefault .navLink {
+    color: black;
+}
+
+.navBarDefault .navLink.active {
+    color: #AD6421 !important;
+    text-decoration: underline;
+}
