@@ -1,5 +1,6 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Image, Row } from "react-bootstrap";
 import './about.css';
+import carousel1 from '../../assets/carousel1.jpeg';
 
 export default function About() {
   return (
@@ -9,17 +10,28 @@ export default function About() {
           <h1 className="aboutTitle">About us</h1>
         </Row>
         <Row>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            vestibulum, nunc nec ultricies ultricies, nunc nunc ultricies ultricies,
-            nunc nunc ultricies ultricies, nunc nunc ultricies ultricies, nunc nunc
-            ultricies ultricies, nunc nunc ultricies ultricies, nunc nunc ultricies
-            ultricies, nunc nunc ultricies ultricies, nunc nunc ultricies ultricies,
-            nunc nunc ultricies ultricies, nunc nunc ultricies ultricies, nunc nunc
-            ultricies ultricies, nunc nunc ultricies ultricies, nunc nunc ultricies
-            ultricies, nunc nunc ultricies ultricies, nunc nunc ultricies ultricies,
-            nunc nunc ultricies ultricies, nunc nunc ultricies ultricies, nunc nunc
-          </p>
+          <Col>
+            <Image
+              src={carousel1}
+              width="auto"
+              height="300"
+              className="d-inline-block align-top"
+              alt="logo"
+            />
+          </Col>
+          <Col>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              vestibulum, nunc nec ultricies ultricies, nunc nunc ultricies ultricies,
+              nunc nunc ultricies ultricies, nunc nunc ultricies ultricies, nunc nunc
+              ultricies ultricies, nunc nunc ultricies ultricies, nunc nunc ultricies
+              ultricies, nunc nunc ultricies ultricies, nunc nunc ultricies ultricies,
+              nunc nunc ultricies ultricies, nunc nunc ultricies ultricies, nunc nunc
+              ultricies ultricies, nunc nunc ultricies ultricies, nunc nunc ultricies
+              ultricies, nunc nunc ultricies ultricies, nunc nunc ultricies ultricies,
+              nunc nunc ultricies ultricies, nunc nunc ultricies ultricies, nunc nunc
+            </p>
+          </Col>
         </Row>
       </Col>
     </Container>
