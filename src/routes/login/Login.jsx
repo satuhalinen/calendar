@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 export default function Login() {
   return (
     <>
-      <h3 className="h3Login">Log in</h3>
       <div className="container">
         <div className="formWrap">
           <form>
+            <h3 className="h3Login">Log in</h3>
             <div className="formGroup">
               <label htmlFor="email">Email:</label>
               <input type="email" name="email" id="email" />
