@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 
 export default function Calendars() {
   return (
-    <div>
+    <div className="maincontent">
       <div>
         <Button
           style={{

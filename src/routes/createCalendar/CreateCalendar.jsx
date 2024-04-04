@@ -32,7 +32,7 @@ export default function CreateCalendar() {
   ];
 
   return (
-    <Row className="main-row">
+    <Row className="maincontent main-row">
       <Col xs={2}>
         <Leftbar />
       </Col>

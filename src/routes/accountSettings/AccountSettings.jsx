@@ -5,7 +5,7 @@ export default function AccountSettings() {
   return (
     <Container
       id="main-container"
-      className="d-flex justify-content-center align-items-center "
+      className="maincontent d-flex justify-content-center align-items-center "
     >
       <Container id="form-container" className="text-center">
         <p className="accsetCAL-h1">Account Settings</p>

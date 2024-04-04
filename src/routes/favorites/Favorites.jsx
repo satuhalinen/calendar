@@ -5,7 +5,7 @@ import homeSymbol from "../../../images/home.png";
 
 export default function Favorites() {
   return (
-    <>
+    <div className="maincontent">
       <h3 className="h3Favorites">Favorites</h3>
       <div className="cards">
         <Card className="card">
@@ -64,6 +64,6 @@ export default function Favorites() {
         </Card>
         <Button variant="primary">Remove all</Button>
       </div>
-    </>
+    </div>
   );
 }

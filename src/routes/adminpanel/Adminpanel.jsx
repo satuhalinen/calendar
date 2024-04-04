@@ -4,7 +4,7 @@ import '../adminpanel/adminpanel.css';
 
 export default function Adminpanel() {
   return (
-    <Row className="dashboard-container">
+    <Row className="maincontent dashboard-container">
       <Col xs={2} className="leftBarCol" >
         <Leftbar />
       </Col>

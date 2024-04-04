@@ -4,7 +4,7 @@ import "./register.css";
 
 export default function Register() {
   return (
-    <>
+    <div className="maincontent">
       <div className="registerContainer">
         <h3 className="h3Register">Register</h3>
         <div className="registerFormWrap">
@@ -33,6 +33,6 @@ export default function Register() {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 }

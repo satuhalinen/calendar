@@ -4,7 +4,7 @@ import homeSymbol from "../../../images/home.png";
 
 export default function Profile() {
   return (
-    <>
+    <div className="maincontent">
       <div className="profileInfo">
         <h3 className="h3Profile">Profile</h3>
         <NavLink style={{ textDecoration: "none" }}>
@@ -42,6 +42,6 @@ export default function Profile() {
         </Card>
         <Link to="/favorites"> See all of your favorites</Link>
       </div>
-    </>
+    </div>
   );
 }

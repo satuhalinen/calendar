@@ -4,7 +4,7 @@ import "./login.css";
 
 export default function Login() {
   return (
-    <>
+    <div className="maincontent">
 
       <div className="loginContainer">
         <div className="loginFormWrap">
@@ -26,6 +26,6 @@ export default function Login() {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 }

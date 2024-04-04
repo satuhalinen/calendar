@@ -10,7 +10,7 @@ import Leftbar from "../../components/leftbar/Leftbar";
 
 export default function AdminCalendars() {
   return (
-    <Row>
+    <Row className="maincontent">
       <Col xs={2} className="leftBarCol" >
         <Leftbar />
       </Col>
