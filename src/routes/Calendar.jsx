@@ -3,10 +3,7 @@ import "../calendar.css";
 import { Card } from "react-bootstrap";
 
 import homeSymbol from "../../images/home.png";
-import SmallHeader from "../components/SmallHeader";
-
-
-
+import SmallHeader from "../components/smallHeader/SmallHeader";
 
 function Calendar() {
   return (
