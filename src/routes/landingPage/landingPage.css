@@ -1,12 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap');
-
-body {
-    font-family: 'Raleway', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background: #FFFAF7;
-    transition: background-color 0.3s ease;
+.landing-container {
+    margin-top: 7.5rem;
 }
 
 .versions-wrap {
