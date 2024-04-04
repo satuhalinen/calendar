@@ -4,14 +4,14 @@ import '../adminpanel/adminpanel.css';
 
 export default function Adminpanel() {
   return (
-    <Row>
-      <Col xs={2}>
+    <Row className="dashboard-container">
+      <Col xs={2} className="leftBarCol" >
         <Leftbar />
       </Col>
-      <Col xs={10}>
+      <Col xs={10} className="dashboardCol">
         <h1 className="dashboardTitle">Dashboard</h1>
         <Row className="dataCards">
-          <Col>
+          <Col className="dataCardCol" xs={12} md={4}>
             <Card className="dataCard">
               <Card.Body className="dataCardBody">
                 <Card.Title>User Data</Card.Title>
@@ -21,7 +21,7 @@ export default function Adminpanel() {
               </Card.Body>
             </Card>
           </Col>
-          <Col>
+          <Col className="dataCardCol" xs={12} md={4}>
             <Card className="dataCard">
               <Card.Body className="dataCardBody">
                 <Card.Title>Sessions</Card.Title>
@@ -31,7 +31,7 @@ export default function Adminpanel() {
               </Card.Body>
             </Card>
           </Col>
-          <Col>
+          <Col className="dataCardCol" xs={12} md={4}>
             <Card className="dataCard">
               <Card.Body className="dataCardBody">
                 <Card.Title>Other Data</Card.Title>
@@ -43,7 +43,7 @@ export default function Adminpanel() {
           </Col>
         </Row>
         <Row className="users">
-          <Col>
+          <Col xs={12}>
             <Card className="usersCard">
               <Card.Header className="usersCardHeader">Users</Card.Header>
               <Table className="usersTable" striped bordered hover responsive>
