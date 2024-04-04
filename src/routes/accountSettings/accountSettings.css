@@ -1,6 +1,7 @@
 #main-container {
   place-items: center center;
   margin-bottom: 1rem;
+  min-height: 65vh;
 }
 
 .button-a-container {

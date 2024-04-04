@@ -10,27 +10,11 @@ body {
   font-family: "Raleway", sans-serif;
   box-sizing: border-box;
   background: #fffaf7;
-  transition: background-color 0.3s ease;
 }
 
 main {
   padding-top: 110px;
   min-height: calc(100vh - 120px);
-}
-
-.adminCalendars {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
-  margin: 10%;
-}
-
-.dropDowns {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
 }
 
 body {
