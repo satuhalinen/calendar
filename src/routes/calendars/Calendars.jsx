@@ -59,7 +59,7 @@ export default function Calendars() {
               <Card.Img variant="top" src={happySymbol} />
             </NavLink>
             <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
+              <Card.Title style={{ color: "black" }}>Calendar 2</Card.Title>
             </Card.Body>
             <Button
               variant="primary"
@@ -78,7 +78,7 @@ export default function Calendars() {
               <Card.Img variant="top" src={happySymbol} />
             </NavLink>
             <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
+              <Card.Title style={{ color: "black" }}>Calendar 3</Card.Title>
             </Card.Body>
             <Button
               variant="primary"
@@ -97,7 +97,7 @@ export default function Calendars() {
               <Card.Img variant="top" src={happySymbol} />
             </NavLink>
             <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
+              <Card.Title style={{ color: "black" }}>Calendar 4</Card.Title>
             </Card.Body>
             <Button
               variant="primary"
@@ -116,7 +116,7 @@ export default function Calendars() {
               <Card.Img variant="top" src={happySymbol} />
             </NavLink>
             <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
+              <Card.Title style={{ color: "black" }}>Calendar 5</Card.Title>
             </Card.Body>
             <Button
               variant="primary"
@@ -135,7 +135,7 @@ export default function Calendars() {
               <Card.Img variant="top" src={happySymbol} />
             </NavLink>
             <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
+              <Card.Title style={{ color: "black" }}>Calendar 6</Card.Title>
             </Card.Body>
             <Button
               variant="primary"
