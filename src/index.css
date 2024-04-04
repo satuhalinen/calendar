@@ -1,16 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   box-sizing: border-box;
-  background: #FFFAF7;
+  background: #fffaf7;
   transition: background-color 0.3s ease;
 }
 
@@ -39,17 +38,4 @@ body {
 
 .root {
   height: 100vh;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 10vh 10vh 10vh 10vh 10vh;
-  column-gap: 10px;
-  row-gap: 15px;
-  justify-items: center;
-  align-items: center;
-  width: 100%;
-  place-items: center;
-  justify-content: center;
 }
