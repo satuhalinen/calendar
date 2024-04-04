@@ -1,8 +1,6 @@
 .flip-card {
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  /*background-image: url("../../assets/carousel1.jpeg");
-  background-size: cover;*/
   background-color: #cbd6d5;
 }
 
