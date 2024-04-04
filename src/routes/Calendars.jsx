@@ -1,21 +1,41 @@
+import { Card } from "react-bootstrap";
+import "./Calendars.css";
+import { Button } from "react-bootstrap";
+
 export default function Calendars() {
   return (
     <div>
       <div>
-        <label>
+        <Button
+          style={{
+            width: "100px",
+            justifySelf: "left",
+            backgroundColor: "#BA6C2C",
+            color: "white",
+            border: "none",
+          }}
+          className="select"
+        >
           Select free or paid
-          <option value="">Select free or paid</option>
-        </label>
+        </Button>
       </div>
       <div>
-        <label>
+        <Button
+          style={{
+            width: "50px",
+            justifySelf: "right",
+            backgroundColor: "#BA6C2C",
+            color: "white",
+            border: "none",
+          }}
+          className="sort"
+        >
           Sort
-          <option value="">Select</option>
-          <option value="name">Name</option>
-          <option value="price">Price</option>
-        </label>
+        </Button>
       </div>
-      <div>
+
+      <Card className="calendars">Calendars</Card>
+      <div className="calendersh2">
         <h2>Calendars</h2>
       </div>
     </div>
