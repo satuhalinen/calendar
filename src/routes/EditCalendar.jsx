@@ -9,7 +9,15 @@ function EditCalendar() {
     <>
       <SmallHeader />
       <div style={{ display: "grid" }} className="editCalendar">
-        <Card.Title style={{ textAlign: "center" }}>Edit Calendar</Card.Title>
+        <Card.Title
+          style={{
+            textAlign: "center",
+            margin: "3% 0% 0% 0%",
+            fontSize: "40px",
+          }}
+        >
+          Edit Calendar
+        </Card.Title>
         <div className="calendarSections" style={{ display: "flex" }}>
           <Card className="calendar" style={{ margin: "2%" }}>
             {Array.from({ length: 31 }).map((_, i) => (
@@ -22,8 +30,9 @@ function EditCalendar() {
             width: "20%",
             justifySelf: "center",
             backgroundColor: "#BA6C2C",
-            color: "black",
+            color: "#FFFAF7",
             border: "none",
+            margin: "0% 0% 2% 0%",
           }}
         >
           Edit calendar
