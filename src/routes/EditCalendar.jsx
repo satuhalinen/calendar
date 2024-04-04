@@ -11,11 +11,11 @@ function EditCalendar() {
       <div style={{ display: "grid" }} className="editCalendar">
         <Card.Title style={{ textAlign: "center" }}>Edit Calendar</Card.Title>
         <div className="calendarSections" style={{ display: "flex" }}>
-          <div className="calendar" style={{ border: "1px solid black" }}>
+          <Card className="calendar" style={{ margin: "2%" }}>
             {Array.from({ length: 31 }).map((_, i) => (
               <EditHatch key={i} number={i + 1} />
             ))}
-          </div>
+          </Card>
         </div>
         <Button
           style={{

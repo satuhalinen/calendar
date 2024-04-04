@@ -1,6 +1,6 @@
 .calendar {
   display: grid;
-  grid-template-columns: 13% 13% 13% 13% 13% 13% 13%;
+  grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
   grid-template-rows: 20vh 20vh 20vh 20vh 20vh;
   column-gap: 10px;
   row-gap: 15px;
