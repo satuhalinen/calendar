@@ -1,29 +1,12 @@
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import homeSymbol from "../../images/home.png";
 import { NavLink } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import homeSymbol from "../../../images/home.png";
 
-export default function AdminCalendars() {
+export default function Favorites() {
   return (
-    <div className="adminCalendars">
-      <div className="dropDowns">
-        <div className="price">
-          <DropdownButton id="dropdown-item-button" title="Select free or paid">
-            <Dropdown.Item as="button">Free</Dropdown.Item>
-            <Dropdown.Item as="button">Paid</Dropdown.Item>
-          </DropdownButton>
-        </div>
-        <div className="topic">
-          <DropdownButton id="dropdown-item-button" title="Choose topic">
-            <Dropdown.Item as="button">Adults</Dropdown.Item>
-            <Dropdown.Item as="button">Animals</Dropdown.Item>
-            <Dropdown.Item as="button">Children and teenagers</Dropdown.Item>
-            <Dropdown.Item as="button">Elderly</Dropdown.Item>
-          </DropdownButton>
-        </div>
-      </div>
+    <>
+      <h3 className="h3Favorites">Favorites</h3>
       <div className="cards">
         <Card className="card">
           <NavLink style={{ textDecoration: "none" }}>
@@ -31,7 +14,7 @@ export default function AdminCalendars() {
           </NavLink>
           <Card.Body>
             <Card.Title>Calendar 1</Card.Title>
-            <Button variant="primary">Modify</Button>
+            <Button variant="primary">Remove</Button>
           </Card.Body>
         </Card>
         <Card className="card">
@@ -40,7 +23,7 @@ export default function AdminCalendars() {
           </NavLink>
           <Card.Body>
             <Card.Title>Calendar 2</Card.Title>
-            <Button variant="primary">Modify</Button>
+            <Button variant="primary">Remove</Button>
           </Card.Body>
         </Card>
         <Card className="card">
@@ -49,7 +32,7 @@ export default function AdminCalendars() {
           </NavLink>
           <Card.Body>
             <Card.Title>Calendar 3</Card.Title>
-            <Button variant="primary">Modify</Button>
+            <Button variant="primary">Remove</Button>
           </Card.Body>
         </Card>
         <Card className="card">
@@ -58,7 +41,7 @@ export default function AdminCalendars() {
           </NavLink>
           <Card.Body>
             <Card.Title>Calendar 4</Card.Title>
-            <Button variant="primary">Modify</Button>
+            <Button variant="primary">Remove</Button>
           </Card.Body>
         </Card>
         <Card className="card">
@@ -67,7 +50,7 @@ export default function AdminCalendars() {
           </NavLink>
           <Card.Body>
             <Card.Title>Calendar 5</Card.Title>
-            <Button variant="primary">Modify</Button>
+            <Button variant="primary">Remove</Button>
           </Card.Body>
         </Card>
         <Card className="card">
@@ -76,10 +59,11 @@ export default function AdminCalendars() {
           </NavLink>
           <Card.Body>
             <Card.Title>Calendar 6</Card.Title>
-            <Button variant="primary">Modify</Button>
+            <Button variant="primary">Remove</Button>
           </Card.Body>
         </Card>
+        <Button variant="primary">Remove all</Button>
       </div>
-    </div>
+    </>
   );
 }
