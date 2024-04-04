@@ -25,8 +25,8 @@ function Hatch({ number }) {
         }}
         style={{
           border: "1px solid black",
-          width: "80%",
-          height: "80%",
+          width: "70%",
+          height: "70%",
         }}
         className={`flip-card ${isFlipped ? "flipped" : ""}`}
       >
