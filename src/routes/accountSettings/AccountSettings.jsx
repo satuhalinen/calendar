@@ -8,7 +8,7 @@ export default function AccountSettings() {
       className="d-flex justify-content-center align-items-center "
     >
       <Container id="form-container" className="text-center">
-        <h1 className="accsetCAL-h1">Account Settings</h1>
+        <p className="accsetCAL-h1">Account Settings</p>
         <Form>
           <Form.Group
             className="mb-3 formGroup-container"

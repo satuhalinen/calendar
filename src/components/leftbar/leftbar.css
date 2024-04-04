@@ -1,20 +1,25 @@
 .navMain {
   background-color: #4b5c59;
   height: 100vh;
-  padding-top: 50px;
-  align-items: center;
-  font-family: "inter";
+  align-items: flex-start;
+  padding-top: 80px;
+  text-align: left;
+  margin-top: -20px;
 }
 
 .crCAL-span {
   color: #fff;
 }
 
-.first {
-  margin-top: 30px;
+.crCAL-span:hover {
+  color: #eab287;
 }
 
-.active-link {
+.crCAL-span.nav-link.active {
   text-decoration: underline;
-  text-decoration-color: blue;
+}
+
+.navMain .nav-link.active .crCAL-span {
+  text-decoration: underline;
+  color: #eab287;
 }

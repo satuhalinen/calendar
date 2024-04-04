@@ -38,7 +38,7 @@ export default function CreateCalendar() {
       </Col>
       <Col xs={10}>
         <Container className="text-center mx-auto">
-          <h1 className="header-crCAL">Create a Calendar</h1>
+          <p className="header-crCAL">Create a Calendar</p>
           <p className="para">Choose free or not</p>
           <Row>
             <Form className="crCAL-form">
@@ -62,7 +62,7 @@ export default function CreateCalendar() {
 
                 <div className="d-flex flex-column  align-items-center">
 
-           
+
                   <Form>
                     <Form.Check
                       inline

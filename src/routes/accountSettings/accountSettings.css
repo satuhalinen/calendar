@@ -1,7 +1,6 @@
 #main-container {
   place-items: center center;
-  min-height: 700px;
-  margin-top: 90px;
+  margin-bottom: 1rem;
 }
 
 .button-a-container {
@@ -17,13 +16,14 @@
   max-width: 513px;
   height: 568px;
   background-color: #f4ede7;
-  padding: 60px;
+  padding: 30px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
 }
 
 .accsetCAL-h1 {
   margin-bottom: 40px;
+  font-size: 32px;
 }
 
 .formGroup-container {
@@ -33,24 +33,36 @@
 }
 
 #input-field {
-  width: 80%;
+  width: 70%;
+  padding: 0.5rem;
+  text-align: center;
 }
 
 .accsetCAL-button {
-  width: 125px;
-  height: 43px;
   background-color: #ba6c2c;
-  font-size: 18px;
+  box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+  font-size: 1rem;
   color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 2.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .accsetCAL-a {
   text-decoration: none;
-  color: #bf3434;
+  color: #932b1d;
+}
+
+.accsetCAL-a:hover {
+  text-decoration: underline;
 }
 
 .accsetCAL-button:hover {
-  background-color: #ba6c2c;
+  box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237);
+  background-color: #a65919;
   color: white;
-  outline: none;
 }

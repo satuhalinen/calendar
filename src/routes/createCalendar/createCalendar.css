@@ -1,7 +1,7 @@
 .para {
-  margin-top: 70px;
+  margin-top: 40px;
   font-family: "Raleway", sans-serif;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .colorTheme-container {
@@ -20,25 +20,23 @@
 }
 
 .crCAL-button {
-  margin-top: 50px;
-  width: 137px;
-  height: 49px;
   background-color: #ba6c2c;
-  font-size: 20px;
-
+  box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+  font-size: 1rem;
   color: white;
-
-
-}
-
-.main-row {
-  margin-top: 90px;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 2.5rem;
+  margin-top: 3rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .header-crCAL {
-  margin-top: 50px;
   font-family: "Raleway";
-  font-size: 40px;
+  font-size: 32px;
 }
 
 .crCAL-form {
@@ -65,14 +63,11 @@
 }
 
 .crCAL-button:hover {
-  background-color: #ba6c2c;
+  box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237);
+  background-color: #a65919;
   color: white;
-  outline: none;
 }
-
-
 
 .crCAL-button {
   color: white;
 }
-
