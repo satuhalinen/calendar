@@ -1,4 +1,4 @@
-import EditHatch from "../components/EditHatch";
+import EditHatch from "../components/editHatch/EditHatch";
 import "../calendar.css";
 import { Card } from "react-bootstrap";
 import { Button } from "react-bootstrap";
@@ -17,7 +17,15 @@ function EditCalendar() {
             ))}
           </div>
         </div>
-        <Button style={{ width: "20%", justifySelf: "center" }}>
+        <Button
+          style={{
+            width: "20%",
+            justifySelf: "center",
+            backgroundColor: "#BA6C2C",
+            color: "black",
+            border: "none",
+          }}
+        >
           Edit calendar
         </Button>
       </div>
