@@ -6,17 +6,23 @@ import './footer.css';
 const Footer = () => {
   const location = useLocation();
 
-  const adminFooterColor = ['/', '/adminpanel', '/admin-calendars', '/create-calendar', '/edit-calendar'];
+  const adminFooterColor = [
+    "/",
+    "/adminpanel",
+    "/admin-calendars",
+    "/create-calendar",
+    "/edit-calendar",
+  ];
   const isAdminRoute = adminFooterColor.includes(location.pathname);
 
   return (
-    <footer className={isAdminRoute ? 'footerAdmin' : 'footerDefault'}>
+    <footer className={isAdminRoute ? "footerAdmin" : "footerDefault"}>
       <Container>
         <Row>
           <Col>
             <Nav className="socialMedia">
               <Nav.Item>
-                <p className='socialMediaTitle'>Social Media Links</p>
+                <p className="socialMediaTitle">Social Media Links</p>
               </Nav.Item>
               <Nav.Item className="socialLinks">
                 <Nav.Link href="https://www.facebook.com/" target="_blank">
@@ -34,13 +40,17 @@ const Footer = () => {
           <Col className="text-center">
             <p className="copyright">Copyright</p>
           </Col>
-          <Col className='termsLinks'>
+          <Col className="termsLinks">
             <Nav className="termsAndContact">
               <Nav.Item>
-                <Nav.Link as={Link} to="/terms-and-conditions">Terms and Conditions</Nav.Link>
+                <Nav.Link as={Link} to="/terms-and-conditions">
+                  Terms and Conditions
+                </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link as={Link} to="/about">Contact</Nav.Link>
+                <Nav.Link as={Link} to="/about">
+                  Contact
+                </Nav.Link>
               </Nav.Item>
             </Nav>
           </Col>
