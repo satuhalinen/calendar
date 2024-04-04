@@ -12,13 +12,9 @@ body {
   background: #fffaf7;
 }
 
-main {
+.mainContent {
   padding-top: 110px;
   min-height: calc(100vh - 120px);
-}
-
-body {
-  margin: 0;
 }
 
 .root {

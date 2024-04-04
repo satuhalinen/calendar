@@ -9,9 +9,10 @@ import "../adminpanel/adminpanel.css";
 
 export default function Calendars() {
   return (
-    <Row>
-      <Col xs={2} className="leftBarCol"></Col>
-      <Col xs={9} className="adminCalendars">
+    <Row className="mainContent">
+      <Col xs={2} className="leftBarCol">
+      </Col>
+      <Col xs={8} className="adminCalendars">
         <div className="dropDowns">
           <div className="price">
             <DropdownButton
@@ -51,7 +52,7 @@ export default function Calendars() {
                 color: "#F4EDE7",
               }}
             >
-              Modify
+              Open
             </Button>
           </Card>
           <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
@@ -70,7 +71,7 @@ export default function Calendars() {
                 color: "#F4EDE7",
               }}
             >
-              Modify
+              Open
             </Button>
           </Card>
           <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
@@ -89,7 +90,7 @@ export default function Calendars() {
                 color: "#F4EDE7",
               }}
             >
-              Modify
+              Open
             </Button>
           </Card>
           <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
@@ -108,7 +109,7 @@ export default function Calendars() {
                 color: "#F4EDE7",
               }}
             >
-              Modify
+              Open
             </Button>
           </Card>
           <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
@@ -127,7 +128,7 @@ export default function Calendars() {
                 color: "#F4EDE7",
               }}
             >
-              Modify
+              Open
             </Button>
           </Card>
           <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
@@ -146,7 +147,7 @@ export default function Calendars() {
                 color: "#F4EDE7",
               }}
             >
-              Modify
+              Open
             </Button>
           </Card>
         </div>

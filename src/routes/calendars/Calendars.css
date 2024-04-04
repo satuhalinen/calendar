@@ -1,3 +1,11 @@
+.calendarsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
 .calendersh2 {
   background-color: white;
   display: grid;

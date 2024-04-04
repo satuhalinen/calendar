@@ -1,47 +1,49 @@
-import Card from "react-bootstrap/Card";
-import { NavLink, Link } from "react-router-dom";
-import homeSymbol from "../../../images/home.png";
+import { Container, Row, Col, Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import "./profile.css";
+import avatar from "../../assets/avatar.png";
 
 export default function Profile() {
   return (
-    <>
-      <div className="profileInfo">
-        <h3 className="h3Profile">Profile</h3>
-        <NavLink style={{ textDecoration: "none" }}>
-          <Card.Img variant="top" src={homeSymbol} />
-        </NavLink>
-        <p>name</p>
-        <p>email</p>
-        <Link to="/account-settings"> account settings</Link>
-      </div>
+    <div className="mainContent">
+      <Container className="profile-container">
+        <Row className="profileInfo">
+          <Col>
+            <h3 className="h3Profile text-center">Profile</h3>
+          </Col>
+        </Row>
+        <Col className="profileContent">
+          <Row>
+            <Col>
+              <Image className="profileImg" src={avatar} />
+            </Col>
+            <Col className="profileText">
+              <p>Name:</p>
+              <p>Email:</p>
+              <Link className="linkToAccount" to="/account-settings">
+                <p className="linkToAccount">Account Settings</p>
+              </Link>
+            </Col>
+          </Row>
+        </Col>
+      </Container>
       <h3 className="h3savedCalendars">Saved calendars</h3>
-      <div className="cards">
-        <Card className="card">
-          <NavLink style={{ textDecoration: "none" }}>
-            <Card.Img variant="top" src={homeSymbol} />
-          </NavLink>
-          <Card.Body>
-            <Card.Title>Calendar 1</Card.Title>
-          </Card.Body>
-        </Card>
-        <Card className="card">
-          <NavLink style={{ textDecoration: "none" }}>
-            <Card.Img variant="top" src={homeSymbol} />
-          </NavLink>
-          <Card.Body>
-            <Card.Title>Calendar 2</Card.Title>
-          </Card.Body>
-        </Card>
-        <Card className="card">
-          <NavLink style={{ textDecoration: "none" }}>
-            <Card.Img variant="top" src={homeSymbol} />
-          </NavLink>
-          <Card.Body>
-            <Card.Title>Calendar 3</Card.Title>
-          </Card.Body>
-        </Card>
-        <Link to="/favorites"> See all of your favorites</Link>
-      </div>
-    </>
+      <Container>
+        <Row className="favoriteCards">
+          <Col className="calendarCard profileCalendar">
+            <p>Calendar 1</p>
+          </Col>
+          <Col className="calendarCard profileCalendar">
+            <p>Calendar 2</p>
+          </Col>
+          <Col className="calendarCard profileCalendar">
+            <p>Calendar 3</p>
+          </Col>
+        </Row>
+        <Row>
+          <Link className="linkToFavorites" to="/favorites">See all of your favorites</Link>
+        </Row>
+      </Container>
+    </div>
   );
 }
