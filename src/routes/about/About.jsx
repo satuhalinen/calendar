@@ -4,7 +4,7 @@ import carousel1 from '../../assets/carousel1.jpeg';
 
 export default function About() {
   return (
-    <Container className="about-container">
+    <Container className="mainContent about-container">
       <Col className="about-wrap">
         <Row>
           <h1 className="aboutTitle">About us</h1>

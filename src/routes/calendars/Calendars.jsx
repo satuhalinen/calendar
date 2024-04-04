@@ -9,9 +9,10 @@ import "../adminpanel/adminpanel.css";
 
 export default function Calendars() {
   return (
-    <Row>
-      <Col xs={2} className="leftBarCol"></Col>
-      <Col xs={9} className="adminCalendars">
+    <Row className="mainContent">
+      <Col xs={2} className="leftBarCol">
+      </Col>
+      <Col xs={8} className="adminCalendars">
         <div className="dropDowns">
           <div className="price">
             <DropdownButton

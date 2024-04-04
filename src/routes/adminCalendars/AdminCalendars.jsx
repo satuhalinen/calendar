@@ -10,11 +10,12 @@ import Leftbar from "../../components/leftbar/Leftbar";
 
 export default function AdminCalendars() {
   return (
-    <Row>
+    <Row className="mainContent">
       <Col xs={2} className="leftBarCol" >
         <Leftbar />
       </Col>
       <Col xs={9} className="adminCalendars">
+        <p className="adminCalendarTitle">Calendars</p>
         <div className="dropDowns">
           <div className="price">
             <DropdownButton

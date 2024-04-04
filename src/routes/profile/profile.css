@@ -43,16 +43,16 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    margin: 1rem;
+    margin: 0 0 1rem;
 }
 
 .profileText {
-    margin: 3rem 2rem;
+    margin: 2rem;
 }
 
 .linkToAccount {
     text-decoration: none !important;
-    color: #ae4c2c;
+    color: #ab7765;
 }
 
 .linkToAccount:hover {
@@ -68,7 +68,7 @@
 
 .profileCalendar {
     color: black;
-    background-color: #cbd6d5 !important;
+    background-color: #b8c3c2 !important;
     height: 30vh;
     margin: 1rem;
 }
@@ -76,7 +76,7 @@
 .linkToFavorites {
     text-align: center;
     text-decoration: none !important;
-    color: #ae4c2c;
+    color: #ab7765;
     margin: 1rem 0 2rem;
 }
 

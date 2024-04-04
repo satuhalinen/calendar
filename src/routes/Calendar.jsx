@@ -8,7 +8,7 @@ function Calendar() {
   return (
     <>
       <SmallHeader />
-      <Card.Title style={{ textAlign: "center", margin: "2% 0% 0% 0%" }}>
+      <Card.Title style={{ textAlign: "center", margin: "2% 0% 0% 0%", fontSize: "32px" }}>
         Calendar
       </Card.Title>
       <div className="calendarSections" style={{ display: "flex" }}>

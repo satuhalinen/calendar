@@ -25,7 +25,7 @@ const LandingPage = () => {
   };
 
   return (
-    <Col className="landing-container">
+    <Col className="mainContent landing-container">
       <PopUp showInitially={!showPopup} handleClose={handleClosePopup} />
       <ImageCarousel />
       <Col className="versions-wrap">

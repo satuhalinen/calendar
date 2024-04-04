@@ -1,0 +1,32 @@
+.userCalendarContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.userCalendars {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.userCalendarTitle {
+    font-size: 32px;
+}
+
+.cards {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 30vh 30vh;
+    column-gap: 10px;
+    row-gap: 15px;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    place-items: center;
+    justify-content: center;
+}

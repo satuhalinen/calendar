@@ -2,7 +2,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import './termsAndConditions.css';
 
 export default function TermsAndConditions() {
-  return (<Container className="terms-container">
+  return (<Container className="mainContent terms-container">
     <Col className="terms-wrap">
       <Row>
         <h1 className="termsTitle">Terms and Conditions</h1>

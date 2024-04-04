@@ -5,7 +5,7 @@ import avatar from "../../assets/avatar.png";
 
 export default function Profile() {
   return (
-    <>
+    <div className="mainContent">
       <Container className="profile-container">
         <Row className="profileInfo">
           <Col>
@@ -44,6 +44,6 @@ export default function Profile() {
           <Link className="linkToFavorites" to="/favorites">See all of your favorites</Link>
         </Row>
       </Container>
-    </>
+    </div>
   );
 }
