@@ -10,7 +10,6 @@ body {
   font-family: "Raleway", sans-serif;
   box-sizing: border-box;
   background: #fffaf7;
-  transition: background-color 0.3s ease;
 }
 
 main {
@@ -22,8 +21,8 @@ main {
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
-  margin: 10%;
+  height: 70vh;
+  margin: 2% 10%;
 }
 
 .dropDowns {

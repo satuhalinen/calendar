@@ -1,4 +1,5 @@
 .cards {
+  margin-top: 1rem;
   display: grid;
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: 30vh 30vh;
@@ -10,9 +11,18 @@
   place-items: center;
   justify-content: center;
 }
-.dataCard {
+
+.calendarCard {
   height: 100%;
   background-color: #eae0d7 !important;
+  font-size: 0.8rem;
+  width: 100%;
+  font-weight: 400;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
+  padding: 20px;
+  transition: all 0.3s ease;
 }
 
 #dropdown-item-button {

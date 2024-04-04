@@ -33,7 +33,7 @@ export default function AdminCalendars() {
         </div>
       </div>
       <div className="cards">
-        <Card className="dataCard d-flex flex-column justify-content-center align-items-center">
+        <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
           <NavLink style={{ textDecoration: "none" }}>
             <Card.Img variant="top" src={happySymbol} />
           </NavLink>
@@ -52,7 +52,7 @@ export default function AdminCalendars() {
             Modify
           </Button>
         </Card>
-        <Card className="dataCard d-flex flex-column justify-content-center align-items-center">
+        <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
           <NavLink style={{ textDecoration: "none" }}>
             <Card.Img variant="top" src={happySymbol} />
           </NavLink>
@@ -71,7 +71,7 @@ export default function AdminCalendars() {
             Modify
           </Button>
         </Card>
-        <Card className="dataCard d-flex flex-column justify-content-center align-items-center">
+        <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
           <NavLink style={{ textDecoration: "none" }}>
             <Card.Img variant="top" src={happySymbol} />
           </NavLink>
@@ -90,7 +90,7 @@ export default function AdminCalendars() {
             Modify
           </Button>
         </Card>
-        <Card className="dataCard d-flex flex-column justify-content-center align-items-center">
+        <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
           <NavLink style={{ textDecoration: "none" }}>
             <Card.Img variant="top" src={happySymbol} />
           </NavLink>
@@ -109,7 +109,7 @@ export default function AdminCalendars() {
             Modify
           </Button>
         </Card>
-        <Card className="dataCard d-flex flex-column justify-content-center align-items-center">
+        <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
           <NavLink style={{ textDecoration: "none" }}>
             <Card.Img variant="top" src={happySymbol} />
           </NavLink>
@@ -128,7 +128,7 @@ export default function AdminCalendars() {
             Modify
           </Button>
         </Card>
-        <Card className="dataCard d-flex flex-column justify-content-center align-items-center">
+        <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
           <NavLink style={{ textDecoration: "none" }}>
             <Card.Img variant="top" src={happySymbol} />
           </NavLink>
