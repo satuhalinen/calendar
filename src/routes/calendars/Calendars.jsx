@@ -52,7 +52,7 @@ export default function Calendars() {
                 color: "#F4EDE7",
               }}
             >
-              Open
+              Use calendar
             </Button>
           </Card>
           <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
@@ -71,7 +71,7 @@ export default function Calendars() {
                 color: "#F4EDE7",
               }}
             >
-              Open
+              Use calendar
             </Button>
           </Card>
           <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
@@ -90,7 +90,7 @@ export default function Calendars() {
                 color: "#F4EDE7",
               }}
             >
-              Open
+              Use calendar
             </Button>
           </Card>
           <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
@@ -109,7 +109,7 @@ export default function Calendars() {
                 color: "#F4EDE7",
               }}
             >
-              Open
+              Use calendar
             </Button>
           </Card>
           <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
@@ -128,7 +128,7 @@ export default function Calendars() {
                 color: "#F4EDE7",
               }}
             >
-              Open
+              Use calendar
             </Button>
           </Card>
           <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
@@ -147,7 +147,7 @@ export default function Calendars() {
                 color: "#F4EDE7",
               }}
             >
-              Open
+              Use calendar
             </Button>
           </Card>
         </div>
