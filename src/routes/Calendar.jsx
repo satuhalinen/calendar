@@ -1,9 +1,8 @@
 import Hatch from "../components/hatch/Hatch.jsx";
 import "../calendar.css";
 import { Card } from "react-bootstrap";
-
-import homeSymbol from "../../images/home.png";
-import SmallHeader from "../components/smallHeader/SmallHeader";
+import happySymbol from "../assets/happy.svg";
+import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
 
 function Calendar() {
   return (
@@ -11,7 +10,7 @@ function Calendar() {
       <SmallHeader />
       <Card.Title style={{ textAlign: "center" }}>Calendar</Card.Title>
       <div className="calendarSections" style={{ display: "flex" }}>
-        <Card className="calendar">
+        <Card className="calendar" style={{ margin: "5%" }}>
           {Array.from({ length: 31 }).map((_, i) => (
             <Hatch key={i} number={i + 1} />
           ))}
@@ -22,13 +21,16 @@ function Calendar() {
             display: "grid",
             width: "30%",
             height: "500px",
+            margin: "5% 5% 5% 0%",
+            justifyItems: "center",
           }}
         >
           <Card.Body>
-            <Card.Title>Gamification</Card.Title>
-            <Card.Title>Score</Card.Title>
+            <Card.Title style={{ margin: "20% 0%" }}>
+              See your score here!
+            </Card.Title>
           </Card.Body>
-          <Card.Img variant="top" src={homeSymbol} />
+          <Card.Img variant="top" src={happySymbol} style={{ width: "20%" }} />
         </Card>
       </div>
     </>
