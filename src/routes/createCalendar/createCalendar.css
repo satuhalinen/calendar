@@ -1,6 +1,7 @@
-.para,
-.numbers {
+.para {
   margin-top: 70px;
+  font-family: "Raleway", sans-serif;
+  font-size: 25px;
 }
 
 .colorTheme-container {
@@ -12,11 +13,66 @@
 }
 
 .optionImg {
-  width: 150px;
-  height: 150px;
+  width: 184px;
+  height: 123px;
   margin-top: 5px;
+  border-radius: 5px;
 }
 
-.button {
+.crCAL-button {
   margin-top: 50px;
+  width: 137px;
+  height: 49px;
+  background-color: #ba6c2c;
+  font-size: 20px;
+
+  color: white;
+
+
 }
+
+.main-row {
+  margin-top: 90px;
+}
+
+.header-crCAL {
+  margin-top: 50px;
+  font-family: "Raleway";
+  font-size: 40px;
+}
+
+.crCAL-form {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-family: "Raleway", sans-serif;
+}
+
+.crCAL-span {
+  margin-left: 20px;
+}
+
+.crCAL-color-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.crCAL-form2 {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+
+.crCAL-button:hover {
+  background-color: #ba6c2c;
+  color: white;
+  outline: none;
+}
+
+
+
+.crCAL-button {
+  color: white;
+}
+
