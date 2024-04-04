@@ -3,10 +3,12 @@ import Footer from "../components/footer/Footer";
 import { Outlet } from "react-router-dom";
 export default function Root() {
   return (
-    <main>
+    <>
       <Header />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
