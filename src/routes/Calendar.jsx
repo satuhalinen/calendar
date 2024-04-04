@@ -1,8 +1,12 @@
 import Hatch from "../components/hatch/Hatch.jsx";
 import "../calendar.css";
 import { Card } from "react-bootstrap";
-import homeSymbol from "../public/home.png";
-import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
+
+import homeSymbol from "../../images/home.png";
+import SmallHeader from "../components/SmallHeader";
+
+
+
 
 function Calendar() {
   return (
