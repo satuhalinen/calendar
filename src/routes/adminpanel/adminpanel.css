@@ -16,11 +16,12 @@
     align-items: center;
     flex-wrap: wrap;
     text-align: center;
-    margin: 0;
+    margin: 1rem 0;
     padding: 15px;
 }
 
 .dataCard {
+    font-size: 0.8rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -34,11 +35,6 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
     padding: 20px;
     transition: all 0.3s ease;
-}
-
-.leftBarCol {
-    padding: 0rem 0rem !important;
-    margin: 0rem 0rem !important;
 }
 
 .dashboardCol {

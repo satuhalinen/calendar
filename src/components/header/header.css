@@ -37,12 +37,12 @@
 }
 
 .navBarAdmin .navLink.active {
-    color: #e6b997 !important;
+    color: #e4aa7e !important;
     text-decoration: underline;
 }
 
 .navBarAdmin .navLink:hover {
-    color: #e6b997;
+    color: #f0b283;
 }
 
 .navBarDefault .navLink:hover {
