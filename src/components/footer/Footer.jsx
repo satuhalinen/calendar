@@ -1,7 +1,7 @@
-/*import { Container, Row, Col, Nav } from 'react-bootstrap';
-import { Link, useLocation } from 'react-router-dom';
-import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa'; // Import icons
-import './footer.css';
+import { Container, Row, Col, Nav } from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
+import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa"; // Import icons
+import "./footer.css";
 
 const Footer = () => {
   const location = useLocation();
@@ -60,4 +60,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;*/
+export default Footer;
