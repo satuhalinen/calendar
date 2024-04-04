@@ -25,7 +25,10 @@
   height: 49px;
   background-color: #ba6c2c;
   font-size: 20px;
+
   color: white;
+
+
 }
 
 .main-row {
@@ -66,3 +69,10 @@
   color: white;
   outline: none;
 }
+
+
+
+.crCAL-button {
+  color: white;
+}
+

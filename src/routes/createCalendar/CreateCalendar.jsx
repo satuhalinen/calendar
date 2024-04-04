@@ -59,7 +59,10 @@ export default function CreateCalendar() {
           <Row className="justify-content-center">
             {colorThemeOptions.map((option, index) => (
               <Col key={`option-${index}`} xs={12} sm={6} md={4} lg={3}>
+
                 <div className="d-flex flex-column  align-items-center">
+
+           
                   <Form>
                     <Form.Check
                       inline
