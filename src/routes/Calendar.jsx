@@ -8,9 +8,11 @@ function Calendar() {
   return (
     <>
       <SmallHeader />
-      <Card.Title style={{ textAlign: "center" }}>Calendar</Card.Title>
+      <Card.Title style={{ textAlign: "center", margin: "2% 0% 0% 0%" }}>
+        Calendar
+      </Card.Title>
       <div className="calendarSections" style={{ display: "flex" }}>
-        <Card className="calendar" style={{ margin: "5%" }}>
+        <Card className="calendar" style={{ margin: "2% 2%" }}>
           {Array.from({ length: 31 }).map((_, i) => (
             <Hatch key={i} number={i + 1} />
           ))}
