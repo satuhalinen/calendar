@@ -1,10 +1,20 @@
 .navMain {
-  background-color: lightgrey;
+  background-color: #4b5c59;
   height: 100vh;
   padding-top: 50px;
-  width: 230px;
+  align-items: center;
+  font-family: "inter";
 }
 
-span {
-  color: #000;
+.crCAL-span {
+  color: #fff;
+}
+
+.first {
+  margin-top: 30px;
+}
+
+.active-link {
+  text-decoration: underline;
+  text-decoration-color: blue;
 }
