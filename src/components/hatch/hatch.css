@@ -1,8 +1,13 @@
 .flip-card {
   transition: transform 0.6s;
   transform-style: preserve-3d;
+  /*background-image: url("../../assets/carousel1.jpeg");
+  background-size: cover;*/
+  background-color: #cbd6d5;
 }
 
 .flipped {
   transform: rotateY(180deg);
+  color: white;
+  background-color: white;
 }

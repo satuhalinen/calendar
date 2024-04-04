@@ -11,34 +11,44 @@ function Hatch({ number }) {
     setShow(false);
     setIsFlipped(false);
   };
+
   const handleShow = () => setShow(true);
 
   return (
     <>
       <Card
         onClick={() => {
-          if (isFlipped) {
+          if (!isFlipped) {
+            setIsFlipped(true);
             handleShow();
           }
-          setIsFlipped(!isFlipped);
         }}
         style={{
           border: "1px solid black",
           width: "80%",
           height: "80%",
-          backgroundColor: "#cbd6d5",
         }}
         className={`flip-card ${isFlipped ? "flipped" : ""}`}
       >
         <div className="hatch">{number}</div>
       </Card>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Hatch X</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: "#FFFAF7" }}>
+          <Modal.Title>{number}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Welcome to hatch X!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+        <Modal.Body style={{ backgroundColor: "#FFFAF7" }}>
+          Welcome to hatch {number} !
+        </Modal.Body>
+        <Modal.Footer style={{ backgroundColor: "#FFFAF7" }}>
+          <Button
+            style={{
+              backgroundColor: "#cbd6d5",
+              border: "none",
+              color: "black",
+            }}
+            variant="secondary"
+            onClick={handleClose}
+          >
             Close
           </Button>
         </Modal.Footer>
