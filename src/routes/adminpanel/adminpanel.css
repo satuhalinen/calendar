@@ -1,9 +1,6 @@
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
-    background-color: #FFFAF7;
+.dashboard-container {
+    margin-top: 7rem;
+    overflow-x: hidden;
 }
 
 .dashboardTitle {
@@ -20,7 +17,8 @@ body {
     align-items: center;
     flex-wrap: wrap;
     text-align: center;
-    margin: 3rem 0rem;
+    margin: 0;
+    padding: 15px;
 }
 
 .dataCard {
@@ -29,7 +27,7 @@ body {
     flex-wrap: wrap;
     align-items: center;
     width: 100%;
-    height: auto;
+    max-height: 25vh;
     font-weight: 400;
     background-color: #ba6c2c;
     color: white;
@@ -39,9 +37,24 @@ body {
     transition: all 0.3s ease;
 }
 
+.leftBarCol {
+    padding: 0rem 0rem !important;
+    margin: 0rem 0rem !important;
+}
+
+.dashboardCol {
+    padding: 0rem 0rem !important;
+    margin: 0rem 0rem !important;
+}
+
 .dataCard:hover {
     transform: scale(1.05);
     cursor: pointer;
+}
+
+.dataCardCol.col {
+    padding: 0rem 0rem !important;
+    margin: 0rem 0rem !important;
 }
 
 .dataCardBody {
@@ -52,6 +65,7 @@ body {
 .usersCard {
     background-color: #F4EDE7;
     border-radius: 5px;
+    width: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.266);
 }
 

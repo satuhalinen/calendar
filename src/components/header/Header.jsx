@@ -13,9 +13,9 @@ export default function Header() {
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const adminHeaderColor = ['/', '/adminpanel', '/admin-calendars', '/create-calendar', '/edit-calendar'];
-  const userHeaderRoutes = ['/', '/login', '/register', '/about'];
-  const authenticatedUserRoutes = ['/profile', '/calendars', '/favorites', '/logout'];
-  const authenticatedAdminRoutes = ['/adminpanel', '/logout'];
+  const userHeaderRoutes = ['/', '/login', '/register', '/about', '/terms-and-conditions'];
+  const authenticatedUserRoutes = ['/profile', '/calendars', '/favorites', '/logout', '/account-settings'];
+  const authenticatedAdminRoutes = ['/adminpanel', '/logout', '/admin-calendars', '/create-calendar'];
 
   const isAdminRoute = adminHeaderColor.includes(location.pathname);
   const isUserRoute = userHeaderRoutes.includes(location.pathname);
@@ -38,6 +38,10 @@ export default function Header() {
 
     preloadImages();
   }, []);
+
+  if (location.pathname === '/calendar' || location.pathname === '/edit-calendar') {
+    return null;
+  }
 
   return (
     <Navbar className={isAdminRoute ? 'navBarAdmin' : 'navBarDefault'} fixed='top'>
