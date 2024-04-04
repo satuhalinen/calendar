@@ -1,7 +1,7 @@
 import Card from "react-bootstrap/Card";
 import { NavLink } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import homeSymbol from "../../public/home.png";
+import homeSymbol from "../../../images/home.png";
 
 export default function Favorites() {
   return (

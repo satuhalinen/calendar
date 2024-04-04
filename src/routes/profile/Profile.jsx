@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card";
 import { NavLink, Link } from "react-router-dom";
-import homeSymbol from "../../public/home.png";
+import homeSymbol from "../../../images/home.png";
 
 export default function Profile() {
   return (
