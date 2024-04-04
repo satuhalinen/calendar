@@ -1,20 +1,13 @@
 .about-container {
-    margin-top: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 1rem;
 }
 
 .about-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    text-align: center;
-    margin: 0;
-    padding: 15px;
+    padding: 20px 60px 40px 60px;
     background-color: #f4ede7;
-    padding: 40px 60px 100px 60px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
 }
