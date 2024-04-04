@@ -2,19 +2,19 @@
     height: 7px;
     width: 40px;
     margin: 0 0.2rem;
-    background-color: white;
+    background-color: white !important;
 }
 
 .carousel .carousel-indicators button:hover {
-    background-color: rgb(196, 122, 72);
+    background-color: rgb(196, 122, 72) !important;
 }
 
 .carousel .carousel-indicators .active {
-    background-color: #ba6c2c;
+    background-color: #ba6c2c !important;
 }
 
 .carousel {
-    margin: 4rem 8rem;
+    margin: 0.5rem 7rem;
     background-color: #F4EDE7;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.214);

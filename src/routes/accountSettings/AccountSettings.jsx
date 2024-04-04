@@ -8,7 +8,7 @@ export default function AccountSettings() {
       className="d-flex justify-content-center align-items-center "
     >
       <Container id="form-container" className="text-center">
-        <h1>Account Settings</h1>
+        <p className="accsetCAL-h1">Account Settings</p>
         <Form>
           <Form.Group
             className="mb-3 formGroup-container"
@@ -36,11 +36,15 @@ export default function AccountSettings() {
             />
           </Form.Group>
           <div className="button-a-container">
-            <Button variant="primary" type="submit" className="mb-3">
+            <Button
+              variant="light"
+              type="submit"
+              className="mb-3 accsetCAL-button"
+            >
               Reset
             </Button>
 
-            <a href="#" className="text-danger">
+            <a href="#" className="text-danger accsetCAL-a">
               Delete Account
             </a>
           </div>

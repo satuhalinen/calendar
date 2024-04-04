@@ -1,22 +1,39 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import smallLogo1 from "../../assets/smallLogo1.png";
+import smallLogo2 from "../../assets/smallLogo2.png";
+import "./smallHeader.css"
+import { Image } from "react-bootstrap";
 
 function SmallHeader() {
+  const location = useLocation();
+  const lightHeaderColor = ['/calendar'];
+  const isUserRoute = lightHeaderColor.includes(location.pathname);
+
   return (
-    <Navbar style={{ backgroundColor: "#f4ede7" }}>
+    <Navbar className={isUserRoute ? "lightHeader" : "darkHeader"}>
       <Container>
+        <Link to={isUserRoute ? "/calendars" : "/admin-calendars"} >
+          <Image
+            src={isUserRoute ? smallLogo2 : smallLogo1}
+            width="auto"
+            height="30"
+            className="d-inline-block align-top"
+            alt="logo"
+          />
+        </Link>
         <Nav className="me-auto">
-          <NavLink
-            style={{ textDecoration: "none", color: "black" }}
-            to="/calendars"
+          <Nav.Link as={NavLink}
+            className="smallHeaderLink"
+            to={isUserRoute ? "/calendars" : "/admin-calendars"}
           >
             Back to Calendars
-          </NavLink>
+          </Nav.Link>
         </Nav>
       </Container>
-    </Navbar>
+    </Navbar >
   );
 }
 

@@ -1,3 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  box-sizing: border-box;
+  background: #FFFAF7;
+  transition: background-color 0.3s ease;
+}
+
+main {
+  padding-top: 110px;
+  min-height: calc(100vh - 120px);
+}
+
 .adminCalendars {
   display: flex;
   align-items: center;
