@@ -30,3 +30,19 @@
   color: #eae0d7 !important;
   border-color: #ba6c2c !important;
 }
+
+.adminCalendars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 70vh;
+  margin: 1rem;
+}
+
+.dropDowns {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}

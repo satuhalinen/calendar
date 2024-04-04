@@ -17,21 +17,6 @@ main {
   min-height: calc(100vh - 120px);
 }
 
-.adminCalendars {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 70vh;
-  margin: 1% 10%;
-}
-
-.dropDowns {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-}
-
 body {
   margin: 0;
 }
