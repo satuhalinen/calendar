@@ -3,8 +3,32 @@ import "../calendar.css";
 import { Card } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import SmallHeader from "../components/smallHeader/SmallHeader";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../auth/firebase";
+import { setAlternatives } from "../store/alternativesSlice";
 
 function EditCalendar() {
+  const dispatch = useDispatch();
+  const fetchAlternatives = async () => {
+    const colRef = collection(db, "topic");
+    const querySnapshot = await getDocs(colRef);
+
+    const data = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    dispatch(setAlternatives(data));
+  };
+
+  useEffect(() => {
+    (async () => {
+      await fetchAlternatives();
+    })();
+  }, []);
+
   return (
     <>
       <SmallHeader />

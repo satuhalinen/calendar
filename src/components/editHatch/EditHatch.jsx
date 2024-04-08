@@ -2,8 +2,13 @@ import { DropdownButton } from "react-bootstrap";
 import { Dropdown } from "react-bootstrap";
 import "./editHatch.css";
 import { Card } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 
 function EditHatch({ number }) {
+  const alternatives = useSelector((state) => state.alternatives);
+  const [selectedTopic, setSelectedTopic] = useState(null);
+
   return (
     <Card
       style={{
@@ -14,32 +19,34 @@ function EditHatch({ number }) {
     >
       <div className="hatch">{number}</div>
       <DropdownButton id="dropdown-item-button" title="Choose a topic">
-        <Dropdown.Item as="button" style={{ backgroundColor: "#F9F5F3" }}>
+        <Dropdown.Item
+          as="button"
+          style={{ backgroundColor: "#F9F5F3" }}
+          onClick={() => setSelectedTopic("adults")}
+        >
           Adults
         </Dropdown.Item>
-        <Dropdown.Item as="button" style={{ backgroundColor: "#F9F5F3" }}>
+        <Dropdown.Item
+          as="button"
+          style={{ backgroundColor: "#F9F5F3" }}
+          onClick={() => setSelectedTopic("animals")}
+        >
           Animals
-        </Dropdown.Item>
-        <Dropdown.Item as="button" style={{ backgroundColor: "#F9F5F3" }}>
-          Children and teenagers
-        </Dropdown.Item>
-        <Dropdown.Item as="button" style={{ backgroundColor: "#F9F5F3" }}>
-          Elderly
         </Dropdown.Item>
       </DropdownButton>
       <DropdownButton id="dropdown-item-button" title="Choose an alternative">
-        <Dropdown.Item as="button" style={{ backgroundColor: "#F9F5F3" }}>
-          Alternative 1
-        </Dropdown.Item>
-        <Dropdown.Item as="button" style={{ backgroundColor: "#F9F5F3" }}>
-          Alternative 2
-        </Dropdown.Item>
-        <Dropdown.Item as="button" style={{ backgroundColor: "#F9F5F3" }}>
-          Alternative 3
-        </Dropdown.Item>
-        <Dropdown.Item as="button" style={{ backgroundColor: "#F9F5F3" }}>
-          Alternative 4
-        </Dropdown.Item>
+        {alternatives
+          .filter((alternative) => alternative.id === selectedTopic)
+          .flatMap((alternative) => alternative.alternatives)
+          .map((alternative, index) => (
+            <Dropdown.Item
+              key={index}
+              as="button"
+              style={{ backgroundColor: "#F9F5F3" }}
+            >
+              {alternative}
+            </Dropdown.Item>
+          ))}
       </DropdownButton>
     </Card>
   );
