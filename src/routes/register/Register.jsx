@@ -1,20 +1,36 @@
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth } from "../../auth/firebase";
+import { auth, db } from "../../auth/firebase";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./register.css";
+import { addDoc, collection } from "firebase/firestore";
 
 export default function Register() {
   const navigate = useNavigate();
   const [createUserWithEmailAndPassword, user] =
     useCreateUserWithEmailAndPassword(auth);
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.createpassword.value;
-    createUserWithEmailAndPassword(email, password);
+
+    try {
+      await createUserWithEmailAndPassword(email, password);
+
+      const currentUser = auth.currentUser;
+
+      await addDoc(collection(db, "users"), {
+        uid: currentUser.uid,
+        fullname: e.target.fullname.value,
+        email: currentUser.email,
+      });
+
+      navigate("/profile");
+    } catch (error) {
+      console.error("Error creating user:", error);
+    }
   };
 
   useEffect(() => {
