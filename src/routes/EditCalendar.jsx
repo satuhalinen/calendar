@@ -40,7 +40,6 @@ function EditCalendar() {
   const calendarContent = useSelector(
     (state) => state.alternatives.savedAlternatives
   );
-  console.log("calendarContent", calendarContent);
 
   return (
     <>

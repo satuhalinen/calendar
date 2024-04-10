@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import "./hatch.css";
+import { useSelector } from "react-redux";
 
 function Hatch({ number }) {
   const [show, setShow] = useState(false);
@@ -13,6 +14,10 @@ function Hatch({ number }) {
   };
 
   const handleShow = () => setShow(true);
+
+  const hatchTextHatch = useSelector(
+    (state) => state.alternatives.calendarText
+  );
 
   return (
     <>
@@ -37,7 +42,10 @@ function Hatch({ number }) {
           <Modal.Title>{number}</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ backgroundColor: "#FFFAF7" }}>
-          Welcome to hatch {number} !
+          {hatchTextHatch.content === undefined ||
+          hatchTextHatch.content[number] === undefined
+            ? "No content available"
+            : hatchTextHatch.content[number]}
         </Modal.Body>
         <Modal.Footer style={{ backgroundColor: "#FFFAF7" }}>
           <Button

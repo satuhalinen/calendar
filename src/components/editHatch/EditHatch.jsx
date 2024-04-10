@@ -17,7 +17,6 @@ function EditHatch({ number }) {
 
   function saveAlternative(number, alternative) {
     dispatch(saveAlternatives({ number, alternative }));
-    console.log("alternative is", alternative, "number is", number);
   }
 
   return (
