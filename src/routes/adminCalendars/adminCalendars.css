@@ -1,0 +1,57 @@
+.adminCalendarTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 32px;
+
+}
+
+.cards {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 30vh 30vh;
+  column-gap: 10px;
+  row-gap: 15px;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  place-items: center;
+  justify-content: center;
+}
+
+.calendarCard {
+  height: 100%;
+  background-color: #eae0d7 !important;
+  font-size: 0.8rem;
+  width: 100%;
+  font-weight: 400;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+#dropdown-item-button {
+  background-color: #ba6c2c !important;
+  color: #eae0d7 !important;
+  border-color: #ba6c2c !important;
+}
+
+.adminCalendars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 70vh;
+  margin: 1rem;
+}
+
+.dropDowns {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}

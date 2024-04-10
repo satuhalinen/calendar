@@ -1,0 +1,39 @@
+.carousel .carousel-indicators button {
+    height: 7px;
+    width: 40px;
+    margin: 0 0.2rem;
+    background-color: white !important;
+}
+
+.carousel .carousel-indicators button:hover {
+    background-color: rgb(196, 122, 72) !important;
+}
+
+.carousel .carousel-indicators .active {
+    background-color: #ba6c2c !important;
+}
+
+.carousel {
+    margin: 0.5rem 7rem;
+    background-color: #F4EDE7;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.214);
+    padding: 1rem;
+}
+
+.carouselText {
+    color: white;
+}
+
+.carouselImg {
+    position: relative;
+    max-height: 75vh;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .carousel {
+        margin: 4rem 3rem;
+    }
+}

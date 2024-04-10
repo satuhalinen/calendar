@@ -1,0 +1,77 @@
+.loginContainer {
+  margin: auto;
+  width: 400px;
+  margin-bottom: 10px;
+}
+
+.loginFormWrap {
+  margin-top: 1rem;
+  background: #f4ede7;
+  padding: 2rem;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.194);
+}
+
+.loginFormGroup {
+  margin: 20px 0;
+}
+
+.loginFormGroup label {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 0.3rem;
+  margin-left: 3.2rem;
+  color: #000000;
+  text-align: left;
+}
+
+.loginFormGroup input {
+  width: 70%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #a7a7a7;
+}
+
+.loginFormGroup input:focus {
+  outline: none;
+}
+
+.loginBtn {
+  width: 30%;
+  background: #ba6c2c;
+  box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+  color: #f9f5f3;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.loginBtn:hover {
+  cursor: pointer;
+  box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237);
+  background-color: #a65919;
+}
+
+.noAccount {
+  font-size: 15px;
+  color: #000000;
+}
+
+.noAccount a {
+  color: #ba6c2c;
+  text-decoration: none;
+}
+
+.noAccount a:hover {
+  text-decoration: underline;
+}
+
+.h3Login {
+  font-size: 30px;
+  color: #000000;
+}

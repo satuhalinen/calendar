@@ -1,35 +1,22 @@
-.adminCalendars {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
-  margin: 10%;
-}
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
 
-.dropDowns {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
+  font-family: "Raleway", sans-serif;
+  box-sizing: border-box;
+  background: #fffaf7;
+}
+
+.mainContent {
+  padding-top: 110px;
+  min-height: calc(100vh - 120px);
 }
 
 .root {
   height: 100vh;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 30vh 30vh 30vh;
-  column-gap: 10px;
-  row-gap: 15px;
-  justify-items: center;
-  align-items: center;
-  width: 100%;
-  place-items: center;
-  justify-content: center;
 }

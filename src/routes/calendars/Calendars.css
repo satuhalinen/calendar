@@ -1,0 +1,51 @@
+.calendarsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.calendersh2 {
+  background-color: white;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  place-items: center;
+  justify-content: center;
+}
+
+.select {
+  background-color: #ba6c2c;
+  color: white;
+  font-size: 14px;
+  width: 120px;
+  display: flex;
+  border-radius: 5px;
+  border: none;
+  justify-content: right;
+  align-items: right;
+}
+
+.sort {
+  background-color: #ba6c2c;
+  color: white;
+  font-size: 14px;
+  width: 50px;
+  display: flex;
+  border-radius: 5px;
+  border: none;
+  justify-content: left;
+  align-items: left;
+}
+
+.calendars {
+  background-color: #eae0d7;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: grid;
+  width: 100px;
+  height: 100px;
+  justify-items: center;
+  align-items: center;
+}
