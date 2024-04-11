@@ -25,6 +25,17 @@
     background-color: #a65919;
 }
 
+.popUpContactLink,
+.popUpLink {
+    color: white;
+    text-decoration: none;
+}
+
+.popUpContactLink:hover {
+    color: #eab287;
+    text-decoration: underline;
+}
+
 .popUpOpen {
     position: fixed;
     left: 0;
