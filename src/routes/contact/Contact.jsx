@@ -12,6 +12,7 @@ const ContactForm = () => {
         subject: '',
         message: ''
     });
+    const [messageSent, setMessageSent] = useState(false);
     console.log("db", db);
     console.log("formData", formData);
 
@@ -43,7 +44,8 @@ const ContactForm = () => {
                 subject: '',
                 message: ''
             });
-            alert('Message sent!');
+            setMessageSent(true);
+            setTimeout(() => setMessageSent(false), 5000);
 
             logEvent(analytics, 'contact_form_submission', {
                 name: formData.name,
@@ -61,6 +63,7 @@ const ContactForm = () => {
             <Container className="contactContainer">
                 <Form className="contactForm" onSubmit={handleSubmit}>
                     <p className="contactTitle">Contact Us</p>
+                    {messageSent && <p className="messageSent">Message sent!</p>}
                     <Form.Group controlId="formName">
                         <Form.Label className='formGroupTitle'>Name</Form.Label>
                         <Form.Control
