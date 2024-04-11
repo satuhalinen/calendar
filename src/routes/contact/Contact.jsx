@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Form, Button, Col, Container } from 'react-bootstrap';
-import { db } from '../../auth/firebase';
+import { db, analytics } from '../../auth/firebase';
 import { setDoc, doc, collection } from 'firebase/firestore';
+import { logEvent } from 'firebase/analytics';
 import './contact.css';
 
 const ContactForm = () => {
@@ -22,12 +23,12 @@ const ContactForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!formData.name || !formData.email || !formData.subject || !formData.message) {
-            alert('All fields are required');
+            alert('Please fill out all fields.');
             return;
         }
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(formData.email)) {
-            alert('Please enter a valid email address');
+            alert('Please enter a valid email address.');
             return;
         }
 
@@ -43,6 +44,12 @@ const ContactForm = () => {
                 message: ''
             });
             alert('Message sent!');
+
+            logEvent(analytics, 'contact_form_submission', {
+                name: formData.name,
+                email: formData.email,
+                subject: formData.subject,
+            });
         } catch (error) {
             console.error('Error submitting form:', error);
             alert('An error occurred. Please try again later.');
