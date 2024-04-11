@@ -18,9 +18,19 @@ const alternativesSlice = createSlice({
     showCalendarText: (state, action) => {
       state.calendarText = action.payload;
     },
+    fetchFromFirebase: (state, action) => {
+      return {
+        ...state,
+        savedAlternatives: action.payload,
+      };
+    },
   },
 });
 
-export const { setAvailableAlternatives, saveAlternatives, showCalendarText } =
-  alternativesSlice.actions;
+export const {
+  setAvailableAlternatives,
+  saveAlternatives,
+  showCalendarText,
+  fetchFromFirebase,
+} = alternativesSlice.actions;
 export default alternativesSlice.reducer;

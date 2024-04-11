@@ -5,14 +5,18 @@ import { Button } from "react-bootstrap";
 import SmallHeader from "../components/smallHeader/SmallHeader";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, getDoc } from "firebase/firestore";
 import { db } from "../auth/firebase";
-import { setAvailableAlternatives } from "../store/alternativesSlice";
+import {
+  fetchFromFirebase,
+  setAvailableAlternatives,
+} from "../store/alternativesSlice";
 import { doc, setDoc } from "firebase/firestore";
 import { useSelector } from "react-redux";
 
 function EditCalendar() {
   const dispatch = useDispatch();
+
   const fetchAlternatives = async () => {
     const colRef = collection(db, "topic");
     const querySnapshot = await getDocs(colRef);
@@ -32,14 +36,33 @@ function EditCalendar() {
   }, []);
 
   const saveHatchText = async () => {
-    await setDoc(doc(db, "calendars", "calendar"), {
-      content: calendarContent,
-    });
+    if (calendarContent !== undefined) {
+      await setDoc(doc(db, "calendars", "calendar"), {
+        content: calendarContent,
+      });
+    }
   };
 
   const calendarContent = useSelector(
     (state) => state.alternatives.savedAlternatives
   );
+
+  const fetchAlternativesFromFirebase = async () => {
+    const docRef = doc(db, "calendars", "calendar");
+    const docSnapshot = await getDoc(docRef);
+    if (docSnapshot.exists()) {
+      const data = docSnapshot.data().content;
+      if (data !== undefined) {
+        dispatch(fetchFromFirebase(data));
+      }
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      await fetchAlternativesFromFirebase();
+    })();
+  }, []);
 
   return (
     <>
