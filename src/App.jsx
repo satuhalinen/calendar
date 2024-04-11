@@ -8,6 +8,7 @@ import AdminCalendars from "./routes/adminCalendars/AdminCalendars";
 import AdminPanel from "./routes/adminpanel/Adminpanel";
 import Calendar from "./routes/Calendar";
 import Calendars from "./routes/calendars/Calendars";
+import Contact from "./routes/contact/Contact";
 import CreateCalendar from "./routes/createCalendar/CreateCalendar";
 import EditCalendar from "./routes/EditCalendar";
 import Favorites from "./routes/favorites/Favorites";
@@ -32,6 +33,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="/account-settings" element={<AccountSettings />} />
               <Route path="/admin-calendars" element={<AdminCalendars />} />
               <Route path="/adminpanel" element={<AdminPanel />} />
