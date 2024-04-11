@@ -3,23 +3,25 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
+import { doc, getDoc } from "firebase/firestore";
 
 const ProtectedRoute = ({ component: Component, adminOnly, ...rest }) => {
     const [user, loading] = useAuthState(auth);
     const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
-        const fetchUserData = async () => {
+        const checkifAdmin = async () => {
             if (user) {
-                const userDoc = await db.collection('users').doc(user.uid).get();
-                if (userDoc.exists) {
+                const userRef = doc(db, 'users', user.uid);
+                const userDoc = await getDoc(userRef);
+                if (userDoc.exists()) {
                     const userData = userDoc.data();
                     setIsAdmin(userData.isAdmin);
                 }
             }
         };
 
-        fetchUserData();
+        checkifAdmin();
     }, [user]);
 
     if (loading) {

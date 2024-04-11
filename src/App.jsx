@@ -20,6 +20,7 @@ import TermsAndConditions from "./routes/termsAndConditions/TermsAndConditions";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import ProtectedRoute from "./auth/ProtectedRoute";
 
 function App() {
   return (
@@ -30,22 +31,19 @@ function App() {
             <Route path="/" element={<Root />}>
               <Route index element={<LandingPage />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/profile" element={<Profile />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/account-settings" element={<AccountSettings />} />
-              <Route path="/admin-calendars" element={<AdminCalendars />} />
-              <Route path="/adminpanel" element={<AdminPanel />} />
-              <Route path="/calendar" element={<Calendar />} />
-              <Route path="/calendars" element={<Calendars />} />
-              <Route path="/create-calendar" element={<CreateCalendar />} />
-              <Route path="/edit-calendar" element={<EditCalendar />} />
-              <Route path="/favorites" element={<Favorites />} />
-              <Route
-                path="/terms-and-conditions"
-                element={<TermsAndConditions />}
-              />
+              <Route path="/login" element={<Login />} />
+              <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+              <Route path="/profile" element={<ProtectedRoute component={Profile} />} />
+              <Route path="/account-settings" element={<ProtectedRoute component={AccountSettings} />} />
+              <Route path="/calendar" element={<ProtectedRoute component={Calendar} />} />
+              <Route path="/calendars" element={<ProtectedRoute component={Calendars} />} />
+              <Route path="/favorites" element={<ProtectedRoute component={Favorites} />} />
+              <Route path="/admin-calendars" element={<ProtectedRoute adminOnly component={AdminCalendars} />} />
+              <Route path="/adminpanel" element={<ProtectedRoute adminOnly component={AdminPanel} />} />
+              <Route path="/create-calendar" element={<ProtectedRoute adminOnly component={CreateCalendar} />} />
+              <Route path="/edit-calendar" element={<ProtectedRoute adminOnly component={EditCalendar} />} />
             </Route>
           </Routes>
         </Router>
