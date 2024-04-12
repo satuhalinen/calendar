@@ -19,6 +19,12 @@
     border: none;
 }
 
+.messageSent {
+    color: #ba6c2c;
+    font-size: 0.9rem;
+    margin: 10px;
+}
+
 .formGroupTitle {
     font-size: 1rem;
     margin: 7px 0 0;

@@ -3,12 +3,33 @@ import "../calendar.css";
 import { Card } from "react-bootstrap";
 import happySymbol from "../assets/happy.svg";
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../auth/firebase";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { showCalendarText } from "../store/alternativesSlice.js";
 
 function Calendar() {
+  const dispatch = useDispatch();
+
+  const fetchContent = async () => {
+    const docRef = doc(db, "calendars", "calendar");
+    const docSnap = await getDoc(docRef);
+    dispatch(showCalendarText(docSnap.data()));
+  };
+
+  useEffect(() => {
+    (async () => {
+      await fetchContent();
+    })();
+  }, []);
+
   return (
     <>
       <SmallHeader />
-      <Card.Title style={{ textAlign: "center", margin: "2% 0% 0% 0%", fontSize: "32px" }}>
+      <Card.Title
+        style={{ textAlign: "center", margin: "2% 0% 0% 0%", fontSize: "32px" }}
+      >
         Calendar
       </Card.Title>
       <div className="calendarSections" style={{ display: "flex" }}>

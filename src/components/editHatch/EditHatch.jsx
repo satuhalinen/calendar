@@ -4,10 +4,20 @@ import "./editHatch.css";
 import { Card } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import { saveAlternatives } from "../../store/alternativesSlice";
+import { useDispatch } from "react-redux";
 
 function EditHatch({ number }) {
-  const alternatives = useSelector((state) => state.alternatives);
+  const alternatives = useSelector(
+    (state) => state.alternatives.availableAlternatives
+  );
+
   const [selectedTopic, setSelectedTopic] = useState(null);
+  const dispatch = useDispatch();
+
+  function saveAlternative(number, alternative) {
+    dispatch(saveAlternatives({ number, alternative }));
+  }
 
   return (
     <Card
@@ -42,6 +52,7 @@ function EditHatch({ number }) {
             <Dropdown.Item
               key={index}
               as="button"
+              onClick={() => saveAlternative(number, alternative)}
               style={{ backgroundColor: "#F9F5F3" }}
             >
               {alternative}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./popUp.css";
+import { Link } from "react-router-dom";
 
 const PopUp = ({ showInitially, handleClose }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -28,7 +29,9 @@ const PopUp = ({ showInitially, handleClose }) => {
     <div className="popUpOpen">
       <div className="popUpContent">
         <h2 className="popUpTitle">Contact us!</h2>
-        <p>Please find our contact information here</p>
+        <Link to="/contact" className="popUpLink">
+          <p className="popUpContactLink">Send us a message</p>
+        </Link>
         <button className="popUpButton" onClick={handleCloseClick}>
           Close
         </button>

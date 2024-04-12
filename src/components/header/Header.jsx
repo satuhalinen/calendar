@@ -7,8 +7,11 @@ import logo2 from '../../assets/logo2.png';
 import { Image } from 'react-bootstrap';
 import '../header/header.css';
 import { useEffect, useState } from 'react';
+import { auth, logout } from "../../auth/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function Header() {
+  const [user] = useAuthState(auth);
   const location = useLocation();
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
@@ -69,13 +72,13 @@ export default function Header() {
               <Nav.Link as={NavLink} to="/profile" className="navLink">Profile</Nav.Link>
               <Nav.Link as={NavLink} to="/calendars" className="navLink">Calendars</Nav.Link>
               <Nav.Link as={NavLink} to="/favorites" className="navLink">Favorites</Nav.Link>
-              <Nav.Link as={NavLink} to="/" className="navLink">Logout</Nav.Link>
+              <Nav.Link as={NavLink} to="/" onClick={logout} className="navLink">Logout</Nav.Link>
             </>
           )}
           {isAuthenticatedAdmin && (
             <>
               <Nav.Link as={NavLink} to="/adminpanel" className="navLink">Home</Nav.Link>
-              <Nav.Link as={NavLink} to="/" className="navLink">Logout</Nav.Link>
+              <Nav.Link as={NavLink} to="/" onClick={logout} className="navLink">Logout</Nav.Link>
             </>
           )}
         </Nav>
