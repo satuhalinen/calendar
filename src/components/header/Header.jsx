@@ -15,10 +15,10 @@ export default function Header() {
   const location = useLocation();
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  const adminHeaderColor = ['/', '/adminpanel', '/admin-calendars', '/create-calendar', '/edit-calendar'];
-  const userHeaderRoutes = ['/', '/login', '/register', '/about', '/terms-and-conditions'];
+  const adminHeaderColor = ['/', '/adminpanel', '/admin-calendars', '/create-calendar', '/edit-calendar', '/user-management', '/customer-messages'];
+  const userHeaderRoutes = ['/', '/login', '/register', '/about', '/terms-and-conditions', '/contact'];
   const authenticatedUserRoutes = ['/profile', '/calendars', '/favorites', '/logout', '/account-settings'];
-  const authenticatedAdminRoutes = ['/adminpanel', '/logout', '/admin-calendars', '/create-calendar'];
+  const authenticatedAdminRoutes = ['/adminpanel', '/logout', '/admin-calendars', '/create-calendar', '/user-management', '/customer-messages'];
 
   const isAdminRoute = adminHeaderColor.includes(location.pathname);
   const isUserRoute = userHeaderRoutes.includes(location.pathname);

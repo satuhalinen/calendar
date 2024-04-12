@@ -6,6 +6,7 @@ import { auth, db, storage } from "../../auth/firebase";
 import { getDocs, query, collection, where } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
+import { BsImage } from "react-icons/bs";
 import "./profile.css";
 import avatar from "../../assets/avatar.png";
 
@@ -84,10 +85,13 @@ export default function Profile() {
         <Col className="profileContent">
           <Row>
             <Col>
-              <Image className="profileImg" src={photoUrl} alt="avatar" />
-              <label className="inputImg">
-                <input disabled={loading} type="file" onChange={handleChange} />
-              </label>
+              <div className="profileImgContainer">
+                <Image className="profileImg" src={photoUrl} alt="avatar" />
+                <label className="inputImg">
+                  <input disabled={loading} type="file" onChange={handleChange} />
+                  <BsImage style={{ fontSize: '12px' }} />
+                </label>
+              </div>
             </Col>
             <Col className="profileText">
               <p>Name: {userData.fullname}</p>

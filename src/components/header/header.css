@@ -6,6 +6,7 @@
     padding: 1rem 1rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.213);
     height: 90px;
+    font-size: 0.9rem;
 }
 
 .navBarAdmin .links,
@@ -26,14 +27,12 @@
 .navBarAdmin .navLink {
     padding: 10px;
     margin: 0.5rem 1rem;
-    font-size: 1rem;
     color: #F4EDE7;
 }
 
 .navBarDefault .navLink {
     padding: 10px;
     margin: 0.5rem 1rem;
-    font-size: 1rem;
 }
 
 .navBarAdmin .navLink.active {

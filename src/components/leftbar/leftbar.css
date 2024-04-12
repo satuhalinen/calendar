@@ -8,6 +8,7 @@
   position: fixed;
   z-index: 0;
   width: 15vw;
+  font-size: 0.9rem;
 }
 
 .crCAL-span {
