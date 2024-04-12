@@ -2,13 +2,21 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const alternativesSlice = createSlice({
   name: "alternatives",
-  initialState: [],
+  initialState: {
+    availableAlternatives: [],
+    savedAlternatives: {},
+  },
   reducers: {
-    setAlternatives: (state, action) => {
-      return action.payload;
+    setAvailableAlternatives: (state, action) => {
+      state.availableAlternatives = action.payload;
+    },
+    saveAlternatives: (state, action) => {
+      state.savedAlternatives[action.payload.number] =
+        action.payload.alternative;
     },
   },
 });
 
-export const { setAlternatives } = alternativesSlice.actions;
+export const { setAvailableAlternatives, saveAlternatives } =
+  alternativesSlice.actions;
 export default alternativesSlice.reducer;

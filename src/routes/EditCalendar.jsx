@@ -7,7 +7,9 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../auth/firebase";
-import { setAlternatives } from "../store/alternativesSlice";
+import { setAvailableAlternatives } from "../store/alternativesSlice";
+import { doc, setDoc } from "firebase/firestore";
+import { useSelector } from "react-redux";
 
 function EditCalendar() {
   const dispatch = useDispatch();
@@ -20,7 +22,7 @@ function EditCalendar() {
       ...doc.data(),
     }));
 
-    dispatch(setAlternatives(data));
+    dispatch(setAvailableAlternatives(data));
   };
 
   useEffect(() => {
@@ -28,6 +30,17 @@ function EditCalendar() {
       await fetchAlternatives();
     })();
   }, []);
+
+  const saveHatchText = async () => {
+    await setDoc(doc(db, "calendars", "calendar"), {
+      content: calendarContent,
+    });
+  };
+
+  const calendarContent = useSelector(
+    (state) => state.alternatives.savedAlternatives
+  );
+  console.log("calendarContent", calendarContent);
 
   return (
     <>
@@ -50,6 +63,7 @@ function EditCalendar() {
           </Card>
         </div>
         <Button
+          onClick={saveHatchText}
           style={{
             width: "20%",
             justifySelf: "center",
