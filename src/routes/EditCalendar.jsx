@@ -11,7 +11,7 @@ import {
   fetchFromFirebase,
   setAvailableAlternatives,
 } from "../store/alternativesSlice";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, addDoc } from "firebase/firestore";
 import { useSelector } from "react-redux";
 
 function EditCalendar() {
@@ -37,7 +37,7 @@ function EditCalendar() {
 
   const saveHatchText = async () => {
     if (calendarContent !== undefined) {
-      await setDoc(doc(db, "calendars", "calendar"), {
+      await addDoc(collection(db, "calendars"), {
         content: calendarContent,
       });
     }
