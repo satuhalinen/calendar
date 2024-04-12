@@ -33,6 +33,24 @@ export default function Leftbar() {
           <span className="crCAL-span">Calendars</span>
         </Nav.Link>
       </Nav.Item>
+      <Nav.Item className="mb-4 d-flex align-items-center">
+        <Nav.Link
+          as={NavLink}
+          to="/user-management"
+          className="d-flex align-items-center linki"
+        >
+          <span className="crCAL-span">User Management</span>
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item className="mb-4 d-flex align-items-center">
+        <Nav.Link
+          as={NavLink}
+          to="/customer-messages"
+          className="d-flex align-items-center linki"
+        >
+          <span className="crCAL-span">Customer Messages</span>
+        </Nav.Link>
+      </Nav.Item>
     </Nav>
   );
 }

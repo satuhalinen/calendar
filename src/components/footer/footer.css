@@ -7,7 +7,7 @@
     padding: 1rem 1rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.213);
     height: 120px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     flex-shrink: 0;
     bottom: 0;
     width: 100%;
@@ -53,7 +53,7 @@
 .footerDefault .copyright,
 .footerDefault .socialMediaTitle {
     color: #F4EDE7;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .socialMediaTitle,

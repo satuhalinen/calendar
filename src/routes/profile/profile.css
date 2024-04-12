@@ -3,11 +3,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
   background-color: #f4ede7;
   border-radius: 10px;
   padding: 10px;
-  max-width: 50vw;
+  max-width: 35vw;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
 }
 
@@ -15,39 +14,46 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .h3Profile {
-  font-size: 32px;
-  margin-bottom: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
   background: none;
   border: none;
 }
 
 .h3savedCalendars {
-  font-size: 24px;
-  margin: 2rem;
+  font-size: 1.2rem;
+  margin: 1.5rem 0 0.7rem;
   text-align: center;
 }
 
 .profileContent {
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+}
+
+.profileImgContainer {
+  position: relative;
 }
 
 .profileImg {
-  width: 200px;
-  height: 200px;
+  width: 170px;
+  height: 170px;
   border-radius: 50%;
-  margin: 0 0 1rem;
+}
+
+.profileImgContainer:hover {
+  opacity: 0.9;
 }
 
 .profileText {
-  margin: 2rem;
+  margin: 2rem 1rem;
+  font-size: 0.8rem;
 }
 
 .linkToAccount {
@@ -56,7 +62,7 @@
 }
 
 .linkToAccount:hover {
-  color: #cb7f65;
+  color: #7d4d3d;
   text-decoration: underline;
 }
 
@@ -70,17 +76,41 @@
   color: black;
   background-color: #b8c3c2 !important;
   height: 30vh;
-  margin: 1rem;
+  margin: 0.5rem;
 }
 
 .linkToFavorites {
   text-align: center;
   text-decoration: none !important;
-  color: #ab7765;
-  margin: 1rem 0 2rem;
+  color: #664135;
+  margin: 0.5rem 0 1rem;
+  font-size: 0.9rem;
 }
 
 .linkToFavorites:hover {
-  color: #cb7f65;
-  text-decoration: underline;
+  color: #ab7765;
+}
+
+.inputImg {
+  position: absolute;
+  top: 2.3rem;
+  right: 2.8rem;
+  transform: translate(50%, -50%);
+  background-color: #495956;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+  padding: 8px;
+  font-size: 0.7rem;
+  transition: background-color 0.3s ease;
+  opacity: 0.7;
+}
+
+.inputImg:hover {
+  background-color: #212625;
+}
+
+input[type=file] {
+  display: none;
 }

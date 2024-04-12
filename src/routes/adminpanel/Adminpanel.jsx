@@ -6,6 +6,7 @@ import Leftbar from "../../components/leftbar/Leftbar.jsx";
 import Chart from "chart.js/auto";
 import '../adminpanel/adminpanel.css';
 import MessageModal from "../../components/messageModal/MessageModal.jsx";
+import { Link } from "react-router-dom";
 
 export default function Adminpanel() {
   const [submissions, setSubmissions] = useState([]);
@@ -160,54 +161,60 @@ export default function Adminpanel() {
         <Row className="users">
           <Col xs={12}>
             <Card className="usersCard">
-              <Card.Header className="usersCardHeader">Users</Card.Header>
-              <Table className="usersTable" striped bordered hover responsive>
-                <thead>
-                  <tr>
-                    <th>User ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>User role</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {users.map((user) => (
-                    <tr key={user.id}>
-                      <td>{user.id}</td>
-                      <td>{user.fullname}</td>
-                      <td>{user.email}</td>
-                      <td>{user.isAdmin ? 'Admin' : 'User'}</td>
+              <Card.Header className="usersCardHeader">Users
+                <Link to="/user-management" className="manageUsersLink">Manage Users</Link></Card.Header>
+              <div className="tableWrapper">
+                <Table className="usersTable" striped bordered hover responsive>
+                  <thead>
+                    <tr>
+                      <th>User ID</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>User role</th>
                     </tr>
-                  ))}
-                </tbody>
-              </Table>
+                  </thead>
+                  <tbody>
+                    {users.map((user) => (
+                      <tr key={user.id}>
+                        <td>{user.id}</td>
+                        <td>{user.fullname}</td>
+                        <td>{user.email}</td>
+                        <td>{user.isAdmin ? 'Admin' : 'User'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </div>
             </Card>
           </Col>
         </Row>
         <Row className="contact-submissions">
           <Col xs={12}>
             <Card className="contactSubmissionsCard">
-              <Card.Header className="contactSubmissionsCardHeader">Customer Messages</Card.Header>
-              <Table className="contactSubmissionsTable" striped bordered hover responsive>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Subject</th>
-                    <th>Message</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {submissions.map((submission) => (
-                    <tr key={submission.id} onClick={() => handleOpenModal(submission)}>
-                      <td>{submission.name}</td>
-                      <td>{submission.email}</td>
-                      <td>{submission.subject}</td>
-                      <td className="contactFormMessage">{submission.message.length > 40 ? submission.message.slice(0, 50) + '...' : submission.message}</td>
+              <Card.Header className="contactSubmissionsCardHeader">Customer Messages
+                <Link to="/customer-messages" className="manageUsersLink">See messages</Link></Card.Header>
+              <div className="tableWrapper">
+                <Table className="contactSubmissionsTable" striped bordered hover responsive>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Subject</th>
+                      <th>Message</th>
                     </tr>
-                  ))}
-                </tbody>
-              </Table>
+                  </thead>
+                  <tbody>
+                    {submissions.map((submission) => (
+                      <tr key={submission.id} onClick={() => handleOpenModal(submission)}>
+                        <td>{submission.name}</td>
+                        <td>{submission.email}</td>
+                        <td>{submission.subject}</td>
+                        <td className="contactFormMessage">{submission.message.length > 40 ? submission.message.slice(0, 50) + '...' : submission.message}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </div>
             </Card>
           </Col>
         </Row>
