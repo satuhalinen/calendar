@@ -6,11 +6,13 @@ import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { addDoc, getDoc, doc, collection } from "firebase/firestore";
 import "./login.css";
 
 export default function Login() {
+  const [error, setError] = useState(null);
+  const [inputError, setInputError] = useState(false);
   const navigate = useNavigate();
   const [signInWithEmailAndPassword, user] =
     useSignInWithEmailAndPassword(auth);
@@ -25,6 +27,8 @@ export default function Login() {
       navigate("/profile");
     } catch (error) {
       console.error("Error signing in with email and password:", error);
+      setError("Incorrect email or password.");
+      setInputError(true);
     }
   };
 
@@ -61,11 +65,25 @@ export default function Login() {
           <h3 className="h3Login">Log in</h3>
           <div className="loginFormGroup">
             <label htmlFor="email">Email:</label>
-            <input type="email" name="email" id="email" />
+            <input
+              className={inputError ? "input-error input-shake" : ""}
+              style={inputError ? { border: "2px solid red" } : {}}
+              type="email"
+              name="email"
+              placeholder="Email"
+              id="email"
+            />
           </div>
           <div className="loginFormGroup">
             <label htmlFor="password">Password:</label>
-            <input type="password" name="password" id="password" />
+            <input
+              className={inputError ? "input-error input-shake" : ""}
+              style={inputError ? { border: "2px solid red" } : {}}
+              type="password"
+              name="password"
+              placeholder="Password"
+              id="password"
+            />
           </div>
           <Button type="submit" className="loginBtn">
             Log in
@@ -104,6 +122,7 @@ export default function Login() {
             <span style={{ display: "none" }}>Sign in with Google</span>
           </div>
         </Button>
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <p className="noAccount">
           Don't have an account? <Link to="/register">Sign up</Link> now.
         </p>
