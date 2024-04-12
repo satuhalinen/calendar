@@ -33,4 +33,5 @@ export const {
   showCalendarText,
   fetchFromFirebase,
 } = alternativesSlice.actions;
+
 export default alternativesSlice.reducer;
