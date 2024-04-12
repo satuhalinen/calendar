@@ -9,7 +9,10 @@
     height: 120px;
     font-size: 0.9rem;
     flex-shrink: 0;
-    z-index: 21;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+    position: relative;
 }
 
 .footerAdmin {
