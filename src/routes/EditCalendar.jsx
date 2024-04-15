@@ -10,13 +10,15 @@ import {
   getDocs,
   getDoc,
   serverTimestamp,
+  doc,
+  addDoc,
 } from "firebase/firestore";
 import { db } from "../auth/firebase";
 import {
   fetchFromFirebase,
   setAvailableAlternatives,
 } from "../store/alternativesSlice";
-import { doc, addDoc } from "firebase/firestore";
+
 import { useSelector } from "react-redux";
 
 function EditCalendar() {

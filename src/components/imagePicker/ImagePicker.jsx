@@ -1,6 +1,9 @@
 import "./imagePicker.css";
+import { setSelectedImage } from "../../store/calendarStylingSlice";
+import { setSelectedColor } from "../../store/calendarStylingSlice";
+import { useDispatch } from "react-redux";
 
-const FontPicker = ({ ImageSelect }) => {
+const ImagePicker = () => {
   const images = [
     " https://images.pexels.com/photos/1451040/pexels-photo-1451040.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     "https://images.pexels.com/photos/10916301/pexels-photo-10916301.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -10,8 +13,11 @@ const FontPicker = ({ ImageSelect }) => {
     "https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   ];
 
+  const dispatch = useDispatch();
+
   const handleImageClick = (imageUrl) => {
-    ImageSelect(imageUrl);
+    dispatch(setSelectedImage(imageUrl));
+    dispatch(setSelectedColor(null));
   };
 
   return (
@@ -24,7 +30,7 @@ const FontPicker = ({ ImageSelect }) => {
           <div style={{ maxHeight: "290px", overflowY: "auto" }}>
             {images.map((imageUrl, index) => (
               <img
-                key={index}
+                key={imageUrl}
                 src={imageUrl}
                 alt={`Background ${index + 1}`}
                 style={{
@@ -35,7 +41,14 @@ const FontPicker = ({ ImageSelect }) => {
                   borderRadius: "10px",
                 }}
                 className="image-hover-effect"
+                role="button"
                 onClick={() => handleImageClick(imageUrl)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleImageClick(imageUrl);
+                  }
+                }}
+                tabIndex={0}
               />
             ))}
           </div>
@@ -45,4 +58,4 @@ const FontPicker = ({ ImageSelect }) => {
   );
 };
 
-export default FontPicker;
+export default ImagePicker;

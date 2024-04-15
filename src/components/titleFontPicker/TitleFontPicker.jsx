@@ -1,12 +1,12 @@
-import "./fontPicker.css";
+import "./titleFontPicker.css";
 import { useDispatch } from "react-redux";
-import { setSelectedFont } from "../../store/calendarStylingSlice";
+import { setSelectedTitleFont } from "../../store/calendarStylingSlice";
 
-const FontPicker = () => {
+const TitleFontPicker = () => {
   const dispatch = useDispatch();
 
   const handleFontSelect = (font) => {
-    dispatch(setSelectedFont(font));
+    dispatch(setSelectedTitleFont(font));
   };
 
   const fontOptions = [
@@ -70,4 +70,4 @@ const FontPicker = () => {
   );
 };
 
-export default FontPicker;
+export default TitleFontPicker;

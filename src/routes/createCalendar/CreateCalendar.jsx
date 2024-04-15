@@ -5,30 +5,27 @@ import Leftbar from "../../components/leftbar/Leftbar";
 import { Button, Form } from "react-bootstrap";
 import "./createCalendar.css";
 import { SketchPicker } from "react-color";
+import TitleFontPicker from "../../components/titleFontPicker/TitleFontPicker";
 import FontPicker from "../../components/fontPicker/FontPicker";
 import ImagePicker from "../../components/imagePicker/ImagePicker";
 import { ArrowDown } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
 import {
   setSelectedColor,
-  setSelectedFont,
   setSelectedHatchColor,
   setSelectedHatchFontColor,
   setSelectedImage,
-  setSelectedTitleFont,
   setSelectedHatchesNumber,
-} from "../../store/calendarStylingSlice";
-import {
   setColorShow,
   setFontShow,
   setTitleFontShow,
   setImageShow,
   setHatchColorShow,
   setHatchFontColorShow,
+  setInputValue,
 } from "../../store/calendarStylingSlice";
-import { setInputValue } from "../../store/calendarStylingSlice";
 
 export default function CreateCalendar() {
   const dispatch = useDispatch();
@@ -51,9 +48,7 @@ export default function CreateCalendar() {
   const selectedHatchFontColor = useSelector(
     (state) => state.calendarStyling.selectedHatchFontColor
   );
-  const selectedHatchesNumber = useSelector(
-    (state) => state.calendarStyling.selectedHatchesNumber
-  );
+
   const colorShow = useSelector((state) => state.calendarStyling.colorShow);
   const fontShow = useSelector((state) => state.calendarStyling.fontShow);
   const titleFontShow = useSelector(
@@ -97,21 +92,8 @@ export default function CreateCalendar() {
     dispatch(setSelectedImage(null));
   };
 
-  const handleTitleFontChange = (font) => {
-    dispatch(setSelectedTitleFont(font));
-  };
-
-  const handleImageChange = (imageUrl) => {
-    dispatch(setSelectedImage(imageUrl));
-    dispatch(setSelectedColor(null));
-  };
-
   const handleHatchColorChange = (color) => {
     dispatch(setSelectedHatchColor(color.hex));
-  };
-
-  const handleFontSelectChange = (font) => {
-    dispatch(setSelectedFont(font));
   };
 
   const handleHatchFontColorChange = (color) => {
@@ -185,6 +167,13 @@ export default function CreateCalendar() {
                       border: "1px solid black",
                     }}
                     onClick={handleBackgroundColorClick}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        handleBackgroundColorClick();
+                      }
+                    }}
                   >
                     <ArrowDown />
                   </div>
@@ -229,6 +218,13 @@ export default function CreateCalendar() {
                       border: "1px solid black",
                     }}
                     onClick={handleTitleFontSelect}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        handleTitleFontSelect();
+                      }
+                    }}
                   >
                     <ArrowDown />
                   </div>
@@ -243,7 +239,7 @@ export default function CreateCalendar() {
                         transform: "translateX(-50%)",
                       }}
                     >
-                      <FontPicker onFontSelect={handleTitleFontChange} />
+                      <TitleFontPicker />
                     </div>
                   )}
                 </div>
@@ -273,6 +269,13 @@ export default function CreateCalendar() {
                       border: "1px solid black",
                     }}
                     onClick={handleImageClick}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        handleImageClick();
+                      }
+                    }}
                   >
                     <ArrowDown />
                   </div>
@@ -287,7 +290,7 @@ export default function CreateCalendar() {
                         transform: "translateX(-50%)",
                       }}
                     >
-                      <ImagePicker ImageSelect={handleImageChange} />
+                      <ImagePicker />
                     </div>
                   )}
                 </div>
@@ -319,6 +322,13 @@ export default function CreateCalendar() {
                       border: "1px solid black",
                     }}
                     onClick={handleHatchColorSelect}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        handleHatchColorSelect();
+                      }
+                    }}
                   >
                     <ArrowDown />
                   </div>
@@ -363,6 +373,13 @@ export default function CreateCalendar() {
                       border: "1px solid black",
                     }}
                     onClick={handleFontSelect}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        handleFontSelect();
+                      }
+                    }}
                   >
                     <ArrowDown />
                   </div>
@@ -377,7 +394,7 @@ export default function CreateCalendar() {
                         transform: "translateX(-50%)",
                       }}
                     >
-                      <FontPicker onFontSelect={handleFontSelectChange} />
+                      <FontPicker />
                     </div>
                   )}
                 </div>
@@ -407,6 +424,13 @@ export default function CreateCalendar() {
                       border: "1px solid black",
                     }}
                     onClick={handleHatchFontColorSelect}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        handleHatchFontColorSelect();
+                      }
+                    }}
                   >
                     <ArrowDown />
                   </div>

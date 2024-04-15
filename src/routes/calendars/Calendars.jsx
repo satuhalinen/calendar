@@ -42,7 +42,6 @@ export default function Calendars() {
             </NavLink>
             <Card.Body className="d-flex flex-column justify-content-center align-items-center">
               <div>
-                {/* <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title> */}
                 <ImageGenerator />
               </div>
             </Card.Body>
