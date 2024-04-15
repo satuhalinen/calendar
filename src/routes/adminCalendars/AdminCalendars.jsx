@@ -7,16 +7,34 @@ import { Col, NavLink, Row } from "react-bootstrap";
 import "../adminCalendars/adminCalendars.css";
 import "../adminpanel/adminpanel.css";
 import Leftbar from "../../components/leftbar/Leftbar";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { db } from "../../auth/firebase";
 
 export default function AdminCalendars() {
+  const [calendars, setCalendars] = useState([]);
+
+  useEffect(() => {
+    const fetchCalendars = async () => {
+      const calendarCollection = collection(db, "calendars");
+      const calendarSnapshot = await getDocs(calendarCollection);
+      setCalendars(
+        calendarSnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
+    };
+
+    fetchCalendars();
+  }, []);
+
   return (
     <Row className="mainContent">
-      <Col xs={2} className="leftBarCol" >
+      <Col xs={2} className="leftBarCol">
         <Leftbar />
       </Col>
       <Col xs={9} className="adminCalendars">
         <p className="adminCalendarTitle">Calendars</p>
         <div className="dropDowns">
+          {" "}
           <div className="price">
             <DropdownButton
               className="adminCalendarsDropDown"
@@ -39,120 +57,32 @@ export default function AdminCalendars() {
           </div>
         </div>
         <div className="cards">
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
+          {calendars.map((calendar) => (
+            <Card
+              key={calendar.id}
+              className="calendarCard d-flex flex-column justify-content-center align-items-center"
             >
-              Modify
-            </Button>
-          </Card>
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Modify
-            </Button>
-          </Card>
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Modify
-            </Button>
-          </Card>
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Modify
-            </Button>
-          </Card>
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Modify
-            </Button>
-          </Card>
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Modify
-            </Button>
-          </Card>
+              <NavLink style={{ textDecoration: "none" }}>
+                <Card.Img variant="top" src={happySymbol} />
+              </NavLink>
+              <Card.Body className="d-flex flex-column justify-content-center align-items-center">
+                <Card.Title style={{ color: "black" }}>
+                  {calendar.id}
+                </Card.Title>
+              </Card.Body>
+              <Button
+                variant="primary"
+                className="mt-auto"
+                style={{
+                  backgroundColor: "#BA6C2C",
+                  border: "none",
+                  color: "#F4EDE7",
+                }}
+              >
+                Modify
+              </Button>
+            </Card>
+          ))}
         </div>
       </Col>
     </Row>
