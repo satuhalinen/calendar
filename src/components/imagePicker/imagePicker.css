@@ -1,0 +1,40 @@
+.font-picker-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 220px;
+  /* height: 307.5px; */
+  margin-bottom: 20px;
+  scroll-behavior: smooth;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+.font-option {
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.font-option:hover {
+  background-color: #c0c0c0;
+}
+
+.selected-font {
+  font-family: inherit;
+  border: 1px solid #ccc;
+  padding: 5px;
+  width: 100px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.font-picker-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

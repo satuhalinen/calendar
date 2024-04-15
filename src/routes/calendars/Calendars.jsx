@@ -6,12 +6,12 @@ import happySymbol from "../../assets/happy.svg";
 import { Col, NavLink, Row } from "react-bootstrap";
 import "../adminCalendars/adminCalendars.css";
 import "../adminpanel/adminpanel.css";
+import ImageGenerator from "../../components/imageGenerator/ImageGenerator";
 
 export default function Calendars() {
   return (
     <Row className="mainContent">
-      <Col xs={2} className="leftBarCol">
-      </Col>
+      <Col xs={2} className="leftBarCol"></Col>
       <Col xs={8} className="adminCalendars">
         <div className="dropDowns">
           <div className="price">
@@ -41,7 +41,10 @@ export default function Calendars() {
               <Card.Img variant="top" src={happySymbol} />
             </NavLink>
             <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
+              <div>
+                {/* <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title> */}
+                <ImageGenerator />
+              </div>
             </Card.Body>
             <Button
               variant="primary"
