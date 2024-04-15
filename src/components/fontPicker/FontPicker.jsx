@@ -1,6 +1,7 @@
 import "./fontPicker.css";
 import { useDispatch } from "react-redux";
 import { setSelectedFont } from "../../store/calendarStylingSlice";
+import { Button } from "react-bootstrap";
 
 const FontPicker = () => {
   const dispatch = useDispatch();
@@ -52,15 +53,17 @@ const FontPicker = () => {
                 key={font}
                 className="font-option"
                 style={{ fontFamily: font, borderRadius: "10px" }}
-                onClick={() => handleFontSelect(font)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    handleFontSelect(font);
-                  }
-                }}
-                tabIndex={0}
               >
-                <a>{font}</a>
+                <Button
+                  onClick={() => handleFontSelect(font)}
+                  style={{
+                    backgroundColor: "transparent",
+                    color: "black",
+                    border: "none",
+                  }}
+                >
+                  {font}
+                </Button>
               </div>
             ))}
           </div>

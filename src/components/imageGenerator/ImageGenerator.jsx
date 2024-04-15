@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import html2canvas from "html2canvas";
 import Calendar from "../../routes/Calendar";
 
 const ImageGenerator = () => {
   const generatedImageRef = useRef(null);
-  const [imageUrl, setImageUrl] = useState(null);
 
   useEffect(() => {
     generateImage();

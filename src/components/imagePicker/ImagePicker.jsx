@@ -2,6 +2,7 @@ import "./imagePicker.css";
 import { setSelectedImage } from "../../store/calendarStylingSlice";
 import { setSelectedColor } from "../../store/calendarStylingSlice";
 import { useDispatch } from "react-redux";
+import { Button } from "react-bootstrap";
 
 const ImagePicker = () => {
   const images = [
@@ -29,27 +30,20 @@ const ImagePicker = () => {
         >
           <div style={{ maxHeight: "290px", overflowY: "auto" }}>
             {images.map((imageUrl, index) => (
-              <img
+              <Button
                 key={imageUrl}
-                src={imageUrl}
-                alt={`Background ${index + 1}`}
                 style={{
+                  backgroundColor: "transparent",
                   width: "200px",
                   height: "150px",
-                  margin: "5px",
-                  cursor: "pointer",
-                  borderRadius: "10px",
+                  padding: "0px",
+                  backgroundImage: `url(${imageUrl})`,
+                  backgroundSize: "cover",
+                  border: "none",
+                  margin: "2px",
                 }}
-                className="image-hover-effect"
-                role="button"
                 onClick={() => handleImageClick(imageUrl)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    handleImageClick(imageUrl);
-                  }
-                }}
-                tabIndex={0}
-              />
+              ></Button>
             ))}
           </div>
         </div>

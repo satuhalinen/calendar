@@ -160,23 +160,23 @@ export default function CreateCalendar() {
                       width: "188px",
                     }}
                   />
-                  <div
+                  <Button
                     style={{
                       width: "30px",
                       height: "30px",
                       border: "1px solid black",
+                      backgroundColor: "transparent",
+                      borderRadius: "0",
                     }}
                     onClick={handleBackgroundColorClick}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter") {
-                        handleBackgroundColorClick();
-                      }
-                    }}
                   >
-                    <ArrowDown />
-                  </div>
+                    <ArrowDown
+                      style={{
+                        color: "black",
+                        marginBottom: "10px",
+                      }}
+                    />
+                  </Button>
 
                   {colorShow && (
                     <div
@@ -211,23 +211,23 @@ export default function CreateCalendar() {
                       width: "188px",
                     }}
                   />
-                  <div
+                  <Button
                     style={{
                       width: "30px",
                       height: "30px",
                       border: "1px solid black",
+                      backgroundColor: "transparent",
+                      borderRadius: "0",
                     }}
                     onClick={handleTitleFontSelect}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter") {
-                        handleTitleFontSelect();
-                      }
-                    }}
                   >
-                    <ArrowDown />
-                  </div>
+                    <ArrowDown
+                      style={{
+                        color: "black",
+                        marginBottom: "10px",
+                      }}
+                    />
+                  </Button>
 
                   {titleFontShow && (
                     <div
@@ -262,23 +262,23 @@ export default function CreateCalendar() {
                       width: "188px",
                     }}
                   />
-                  <div
+                  <Button
                     style={{
                       width: "30px",
                       height: "30px",
                       border: "1px solid black",
+                      backgroundColor: "transparent",
+                      borderRadius: "0",
                     }}
                     onClick={handleImageClick}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter") {
-                        handleImageClick();
-                      }
-                    }}
                   >
-                    <ArrowDown />
-                  </div>
+                    <ArrowDown
+                      style={{
+                        color: "black",
+                        marginBottom: "10px",
+                      }}
+                    />
+                  </Button>
 
                   {imageShow && (
                     <div
@@ -315,23 +315,23 @@ export default function CreateCalendar() {
                       width: "188px",
                     }}
                   />
-                  <div
+                  <Button
                     style={{
                       width: "30px",
                       height: "30px",
                       border: "1px solid black",
+                      backgroundColor: "transparent",
+                      borderRadius: "0",
                     }}
                     onClick={handleHatchColorSelect}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter") {
-                        handleHatchColorSelect();
-                      }
-                    }}
                   >
-                    <ArrowDown />
-                  </div>
+                    <ArrowDown
+                      style={{
+                        color: "black",
+                        marginBottom: "10px",
+                      }}
+                    />
+                  </Button>
 
                   {hatchColorShow && (
                     <div
@@ -366,23 +366,23 @@ export default function CreateCalendar() {
                       width: "188px",
                     }}
                   />
-                  <div
+                  <Button
                     style={{
                       width: "30px",
                       height: "30px",
                       border: "1px solid black",
+                      backgroundColor: "transparent",
+                      borderRadius: "0",
                     }}
                     onClick={handleFontSelect}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter") {
-                        handleFontSelect();
-                      }
-                    }}
                   >
-                    <ArrowDown />
-                  </div>
+                    <ArrowDown
+                      style={{
+                        color: "black",
+                        marginBottom: "10px",
+                      }}
+                    />
+                  </Button>
 
                   {fontShow && (
                     <div
@@ -417,23 +417,23 @@ export default function CreateCalendar() {
                       width: "188px",
                     }}
                   />
-                  <div
+                  <Button
                     style={{
                       width: "30px",
                       height: "30px",
                       border: "1px solid black",
+                      backgroundColor: "transparent",
+                      borderRadius: "0",
                     }}
                     onClick={handleHatchFontColorSelect}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter") {
-                        handleHatchFontColorSelect();
-                      }
-                    }}
                   >
-                    <ArrowDown />
-                  </div>
+                    <ArrowDown
+                      style={{
+                        color: "black",
+                        marginBottom: "10px",
+                      }}
+                    />
+                  </Button>
 
                   {hatchFontColorShow && (
                     <div
