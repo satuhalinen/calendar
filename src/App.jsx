@@ -23,12 +23,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import { ScrollToTop } from 'react-router-scroll-to-top';
 
 function App() {
   return (
     <Provider store={store}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Router>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Root />}>
               <Route index element={<LandingPage />} />

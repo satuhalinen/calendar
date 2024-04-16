@@ -128,6 +128,8 @@ function EditCalendar() {
               backgroundColor: backgroundColor,
               backgroundImage: `url(${selectedImage})`,
               backgroundSize: "cover",
+              boxShadow: "0px 0px 5px 0px #00000059",
+              border: "none",
             }}
           >
             {Array.from({ length: selectedHatchesNumber || 31 }).map((_, i) => (
