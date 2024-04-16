@@ -10,7 +10,7 @@ import {
   getDoc,
   serverTimestamp,
   doc,
-  addDoc,
+  setDoc,
 } from "firebase/firestore";
 import { db } from "../../auth/firebase";
 import {
@@ -71,7 +71,7 @@ function EditCalendar() {
 
   const saveHatchText = async () => {
     if (calendarContent !== undefined) {
-      await addDoc(collection(db, "calendars"), {
+      await setDoc(doc(db, "calendars", "calendar"), {
         content: calendarContent,
         calendarBackgroundColor: backgroundColor,
         calendarHatchColor: hatchColor,
