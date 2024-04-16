@@ -2,10 +2,9 @@ import { DropdownButton } from "react-bootstrap";
 import { Dropdown } from "react-bootstrap";
 import "./editHatch.css";
 import { Card } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { saveAlternatives } from "../../store/alternativesSlice";
-import { useDispatch } from "react-redux";
 
 function EditHatch({ number }) {
   const alternatives = useSelector(
@@ -19,19 +18,33 @@ function EditHatch({ number }) {
     dispatch(saveAlternatives({ number, alternative }));
   }
 
+  // hatch styling
+
+  const backgroundColor = useSelector(
+    (state) => state.calendarStyling.selectedHatchColor
+  );
+
+  const hatchFontColor = useSelector(
+    (state) => state.calendarStyling.selectedHatchFontColor
+  );
+
+  const hatchFont = useSelector((state) => state.calendarStyling.selectedFont);
+
   return (
     <Card
       style={{
         width: "80%",
         height: "80%",
-        backgroundColor: "#F9F5F3",
+        backgroundColor: backgroundColor,
       }}
     >
       <div className="hatch">{number}</div>
       <DropdownButton id="dropdown-item-button" title="Choose a topic">
         <Dropdown.Item
           as="button"
-          style={{ backgroundColor: "#F9F5F3" }}
+          style={{
+            backgroundColor: "#F9F5F3",
+          }}
           onClick={() => setSelectedTopic("adults")}
         >
           Adults
@@ -53,7 +66,11 @@ function EditHatch({ number }) {
               key={index}
               as="button"
               onClick={() => saveAlternative(number, alternative)}
-              style={{ backgroundColor: "#F9F5F3" }}
+              style={{
+                backgroundColor: "#F9F5F3",
+                fontFamily: hatchFont,
+                color: hatchFontColor,
+              }}
             >
               {alternative}
             </Dropdown.Item>

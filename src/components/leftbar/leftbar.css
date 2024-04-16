@@ -8,7 +8,11 @@
   position: fixed;
   z-index: 0;
   width: 15vw;
+<<<<<<< Updated upstream
   font-size: 0.9rem;
+=======
+  margin-bottom: 0;
+>>>>>>> Stashed changes
 }
 
 .crCAL-span {

@@ -19,6 +19,16 @@ function Hatch({ number }) {
     (state) => state.alternatives.calendarText
   );
 
+  const hatchColor = useSelector(
+    (state) => state.calendarStyling.selectedHatchColor
+  );
+
+  const hatchFontColor = useSelector(
+    (state) => state.calendarStyling.selectedHatchFontColor
+  );
+
+  const hatchFont = useSelector((state) => state.calendarStyling.selectedFont);
+
   return (
     <>
       <Card
@@ -32,6 +42,7 @@ function Hatch({ number }) {
           border: "1px solid black",
           width: "70%",
           height: "70%",
+          backgroundColor: hatchColor,
         }}
         className={`flip-card ${isFlipped ? "flipped" : ""}`}
       >
@@ -42,10 +53,12 @@ function Hatch({ number }) {
           <Modal.Title>{number}</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ backgroundColor: "#FFFAF7" }}>
-          {hatchTextHatch.content === undefined ||
-          hatchTextHatch.content[number] === undefined
-            ? "No content available"
-            : hatchTextHatch.content[number]}
+          <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
+            {hatchTextHatch.content === undefined ||
+            hatchTextHatch.content[number] === undefined
+              ? "No content available"
+              : hatchTextHatch.content[number]}
+          </p>
         </Modal.Body>
         <Modal.Footer style={{ backgroundColor: "#FFFAF7" }}>
           <Button
