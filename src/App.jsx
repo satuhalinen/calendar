@@ -36,19 +36,67 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-              <Route path="/profile" element={<ProtectedRoute component={Profile} />} />
-              <Route path="/account-settings" element={<ProtectedRoute component={AccountSettings} />} />
-              <Route path="/calendar" element={<ProtectedRoute component={Calendar} />} />
-              <Route path="/calendars" element={<ProtectedRoute component={Calendars} />} />
-              <Route path="/favorites" element={<ProtectedRoute component={Favorites} />} />
-              <Route path="/admin-calendars" element={<ProtectedRoute adminOnly component={AdminCalendars} />} />
-              <Route path="/adminpanel" element={<ProtectedRoute adminOnly component={AdminPanel} />} />
-              <Route path="/user-management" element={<ProtectedRoute adminOnly component={UserManagement} />} />
-              <Route path="/customer-messages" element={<ProtectedRoute adminOnly component={CustomerMessages} />} />
-              <Route path="/create-calendar" element={<ProtectedRoute adminOnly component={CreateCalendar} />} />
-              <Route path="/edit-calendar" element={<ProtectedRoute adminOnly component={EditCalendar} />} />
+              <Route
+                path="/terms-and-conditions"
+                element={<TermsAndConditions />}
+              />
+              <Route
+                path="/profile"
+                element={<ProtectedRoute component={Profile} />}
+              />
+              <Route
+                path="/account-settings"
+                element={<ProtectedRoute component={AccountSettings} />}
+              />
+              <Route
+                path="/calendar"
+                element={<ProtectedRoute component={Calendar} />}
+              />
+              <Route
+                path="/calendars"
+                element={<ProtectedRoute component={Calendars} />}
+              />
+              <Route
+                path="/favorites"
+                element={<ProtectedRoute component={Favorites} />}
+              />
+              <Route
+                path="/admin-calendars"
+                element={
+                  <ProtectedRoute adminOnly component={AdminCalendars} />
+                }
+              />
+              <Route
+                path="/adminpanel"
+                element={<ProtectedRoute adminOnly component={AdminPanel} />}
+              />
+              <Route
+                path="/user-management"
+                element={
+                  <ProtectedRoute adminOnly component={UserManagement} />
+                }
+              />
+              <Route
+                path="/customer-messages"
+                element={
+                  <ProtectedRoute adminOnly component={CustomerMessages} />
+                }
+              />
+              <Route
+                path="/create-calendar"
+                element={
+                  <ProtectedRoute adminOnly component={CreateCalendar} />
+                }
+              />
+              <Route
+                path="/edit-calendar"
+                element={<ProtectedRoute adminOnly component={EditCalendar} />}
+              />
             </Route>
+            <Route
+              path="/edit-calendar/:id"
+              element={<ProtectedRoute adminOnly component={EditCalendar} />}
+            />
           </Routes>
         </Router>
       </LocalizationProvider>
