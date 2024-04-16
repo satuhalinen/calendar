@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { db } from "../../auth/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, writeBatch, doc } from "firebase/firestore";
 import { Card, Col, Row, Table } from "react-bootstrap";
 import Leftbar from "../../components/leftbar/Leftbar.jsx";
 import Chart from "chart.js/auto";
 import '../adminpanel/adminpanel.css';
 import MessageModal from "../../components/messageModal/MessageModal.jsx";
 import { Link } from "react-router-dom";
+import hatchData from '../../data/hatchData.json';
 
 export default function Adminpanel() {
   const [submissions, setSubmissions] = useState([]);
@@ -19,7 +20,21 @@ export default function Adminpanel() {
   useEffect(() => {
     fetchSubmissions();
     fetchUsers();
+    // addDataToFirebase();
   }, []);
+
+  const addDataToFirebase = async () => {
+    const batch = writeBatch(db);
+
+    hatchData.categories.forEach(category => {
+      const categoryRef = doc(db, 'categories', category.category);
+      batch.set(categoryRef, { content: category.content });
+    });
+
+    await batch.commit();
+    console.log('Data added to Firebase successfully!');
+  };
+
 
   const fetchSubmissions = async () => {
     try {
