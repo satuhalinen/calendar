@@ -12,6 +12,7 @@ import Contact from "./routes/contact/Contact";
 import CreateCalendar from "./routes/createCalendar/CreateCalendar";
 import CustomerMessages from "./routes/customerMessages/CustomerMessages";
 import EditCalendar from "./routes/EditCalendar";
+import ModifyCalendar from "./routes/modifyCalendar/ModifyCalendar";
 import Favorites from "./routes/favorites/Favorites";
 import Login from "./routes/login/Login";
 import Register from "./routes/register/Register";
