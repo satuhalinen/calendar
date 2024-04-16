@@ -19,7 +19,7 @@ import {
 } from "../../store/alternativesSlice";
 import { useParams } from "react-router-dom";
 
-function EditCalendar() {
+function ModifyOldCalendar() {
   const { id } = useParams();
   console.log(id);
   const backgroundColor = useSelector(
@@ -171,4 +171,4 @@ function EditCalendar() {
   );
 }
 
-export default EditCalendar;
+export default ModifyOldCalendar;
