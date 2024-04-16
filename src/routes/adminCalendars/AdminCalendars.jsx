@@ -72,7 +72,7 @@ export default function AdminCalendars() {
               </Card.Body>
 
               <NavLink
-                to={`/edit-calendar/${calendar.id}`}
+                to={`/modify-old-calendar/${calendar.id}`}
                 className="btn btn-primary mt-auto"
                 style={{
                   backgroundColor: "#BA6C2C",

@@ -17,8 +17,11 @@ import {
   fetchFromFirebase,
   setAvailableAlternatives,
 } from "../../store/alternativesSlice";
+import { useParams } from "react-router-dom";
 
 function EditCalendar() {
+  const { id } = useParams();
+  console.log(id);
   const backgroundColor = useSelector(
     (state) => state.calendarStyling.selectedColor
   );
@@ -71,7 +74,7 @@ function EditCalendar() {
 
   const saveHatchText = async () => {
     if (calendarContent !== undefined) {
-      await setDoc(doc(db, "calendars", "calendar"), {
+      await setDoc(doc(db, "calendars", id), {
         content: calendarContent,
         calendarBackgroundColor: backgroundColor,
         calendarHatchColor: hatchColor,
@@ -91,7 +94,7 @@ function EditCalendar() {
   );
 
   const fetchAlternativesFromFirebase = async () => {
-    const docRef = doc(db, "calendars", "calendar");
+    const docRef = doc(db, "calendars", id);
     const docSnapshot = await getDoc(docRef);
     if (docSnapshot.exists()) {
       const data = docSnapshot.data().content;

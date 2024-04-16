@@ -12,7 +12,7 @@ import Contact from "./routes/contact/Contact";
 import CreateCalendar from "./routes/createCalendar/CreateCalendar";
 import CustomerMessages from "./routes/customerMessages/CustomerMessages";
 import EditCalendar from "./routes/EditCalendar";
-import ModifyCalendar from "./routes/modifyCalendar/ModifyCalendar";
+import ModifyOldCalendar from "./routes/modifyOldCalendar/ModifyOldCalendar";
 import Favorites from "./routes/favorites/Favorites";
 import Login from "./routes/login/Login";
 import Register from "./routes/register/Register";
@@ -95,8 +95,16 @@ function App() {
               />
             </Route>
             <Route
-              path="/edit-calendar/:id"
-              element={<ProtectedRoute adminOnly component={EditCalendar} />}
+              path="/modify-old-calendar"
+              element={
+                <ProtectedRoute adminOnly component={ModifyOldCalendar} />
+              }
+            />
+            <Route
+              path="/modify-old-calendar/:id"
+              element={
+                <ProtectedRoute adminOnly component={ModifyOldCalendar} />
+              }
             />
           </Routes>
         </Router>
