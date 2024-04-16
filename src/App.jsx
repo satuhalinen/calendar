@@ -12,6 +12,7 @@ import Contact from "./routes/contact/Contact";
 import CreateCalendar from "./routes/createCalendar/CreateCalendar";
 import CustomerMessages from "./routes/customerMessages/CustomerMessages";
 import EditCalendar from "./routes/EditCalendar";
+import ModifyCalendar from "./routes/modifyCalendar/ModifyCalendar";
 import Favorites from "./routes/favorites/Favorites";
 import Login from "./routes/login/Login";
 import Register from "./routes/register/Register";
@@ -36,18 +37,68 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-              <Route path="/profile" element={<ProtectedRoute component={Profile} />} />
-              <Route path="/account-settings" element={<ProtectedRoute component={AccountSettings} />} />
-              <Route path="/calendar" element={<ProtectedRoute component={Calendar} />} />
-              <Route path="/calendars" element={<ProtectedRoute component={Calendars} />} />
-              <Route path="/favorites" element={<ProtectedRoute component={Favorites} />} />
-              <Route path="/admin-calendars" element={<ProtectedRoute adminOnly component={AdminCalendars} />} />
-              <Route path="/adminpanel" element={<ProtectedRoute adminOnly component={AdminPanel} />} />
-              <Route path="/user-management" element={<ProtectedRoute adminOnly component={UserManagement} />} />
-              <Route path="/customer-messages" element={<ProtectedRoute adminOnly component={CustomerMessages} />} />
-              <Route path="/create-calendar" element={<ProtectedRoute adminOnly component={CreateCalendar} />} />
-              <Route path="/edit-calendar" element={<ProtectedRoute adminOnly component={EditCalendar} />} />
+              <Route
+                path="/terms-and-conditions"
+                element={<TermsAndConditions />}
+              />
+              <Route
+                path="/profile"
+                element={<ProtectedRoute component={Profile} />}
+              />
+              <Route
+                path="/account-settings"
+                element={<ProtectedRoute component={AccountSettings} />}
+              />
+              <Route
+                path="/calendar"
+                element={<ProtectedRoute component={Calendar} />}
+              />
+              <Route
+                path="/calendars"
+                element={<ProtectedRoute component={Calendars} />}
+              />
+              <Route
+                path="/favorites"
+                element={<ProtectedRoute component={Favorites} />}
+              />
+              <Route
+                path="/admin-calendars"
+                element={
+                  <ProtectedRoute adminOnly component={AdminCalendars} />
+                }
+              />
+              <Route
+                path="/adminpanel"
+                element={<ProtectedRoute adminOnly component={AdminPanel} />}
+              />
+              <Route
+                path="/user-management"
+                element={
+                  <ProtectedRoute adminOnly component={UserManagement} />
+                }
+              />
+              <Route
+                path="/customer-messages"
+                element={
+                  <ProtectedRoute adminOnly component={CustomerMessages} />
+                }
+              />
+              <Route
+                path="/create-calendar"
+                element={
+                  <ProtectedRoute adminOnly component={CreateCalendar} />
+                }
+              />
+              <Route
+                path="/edit-calendar"
+                element={<ProtectedRoute adminOnly component={EditCalendar} />}
+              />
+              <Route
+                path="/modify-calendar"
+                element={
+                  <ProtectedRoute adminOnly component={ModifyCalendar} />
+                }
+              />
             </Route>
           </Routes>
         </Router>
