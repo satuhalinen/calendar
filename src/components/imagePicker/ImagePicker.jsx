@@ -1,6 +1,8 @@
 import "./imagePicker.css";
-import { setSelectedImage } from "../../store/calendarStylingSlice";
-import { setSelectedColor } from "../../store/calendarStylingSlice";
+import {
+  setSelectedImage,
+  setSelectedColor,
+} from "../../store/calendarStylingSlice";
 import { useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
 

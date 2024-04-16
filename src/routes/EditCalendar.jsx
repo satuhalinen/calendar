@@ -1,9 +1,8 @@
 import EditHatch from "../components/editHatch/EditHatch";
 import "../calendar.css";
-import { Card } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import SmallHeader from "../components/smallHeader/SmallHeader";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
   collection,
@@ -18,8 +17,6 @@ import {
   fetchFromFirebase,
   setAvailableAlternatives,
 } from "../store/alternativesSlice";
-
-import { useSelector } from "react-redux";
 
 function EditCalendar() {
   const backgroundColor = useSelector(

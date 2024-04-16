@@ -2,10 +2,9 @@ import { DropdownButton } from "react-bootstrap";
 import { Dropdown } from "react-bootstrap";
 import "./editHatch.css";
 import { Card } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { saveAlternatives } from "../../store/alternativesSlice";
-import { useDispatch } from "react-redux";
 
 function EditHatch({ number }) {
   const alternatives = useSelector(
