@@ -17,6 +17,7 @@ import {
   fetchFromFirebase,
   setAvailableAlternatives,
 } from "../store/alternativesSlice";
+import { useNavigate } from "react-router-dom";
 
 function EditCalendar() {
   const backgroundColor = useSelector(
@@ -68,10 +69,10 @@ function EditCalendar() {
       await fetchAlternatives();
     })();
   }, []);
-
+  const navigate = useNavigate();
   const saveHatchText = async () => {
     if (calendarContent !== undefined) {
-      await addDoc(collection(db, "calendars"), {
+      const docRef = await addDoc(collection(db, "calendars"), {
         content: calendarContent,
         calendarBackgroundColor: backgroundColor,
         calendarHatchColor: hatchColor,
@@ -83,6 +84,8 @@ function EditCalendar() {
         calendarTitle: title,
         createdAt: serverTimestamp(),
       });
+      const calendarId = docRef.id;
+      navigate(`/calendar/${calendarId}`);
     }
   };
 
@@ -151,16 +154,14 @@ function EditCalendar() {
 
           <Button
             onClick={saveHatchText}
+            className="btn btn-primary mt-auto"
             style={{
-              width: "20%",
-              justifySelf: "center",
               backgroundColor: "#BA6C2C",
-              color: "#FFFAF7",
               border: "none",
-              margin: "0% 0% 2% 0%",
+              color: "#F4EDE7",
             }}
           >
-            Save calendar
+            Modify
           </Button>
         </div>
       </div>
