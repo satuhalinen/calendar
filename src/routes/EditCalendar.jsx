@@ -17,6 +17,7 @@ import {
   fetchFromFirebase,
   setAvailableAlternatives,
 } from "../store/alternativesSlice";
+import './editCalendar.css';
 
 function EditCalendar() {
   const backgroundColor = useSelector(
@@ -111,30 +112,36 @@ function EditCalendar() {
     <>
       <SmallHeader />
       <div style={{ display: "grid" }} className="editCalendar">
-        <Card.Title
-          style={{
-            textAlign: "center",
-            margin: "3% 0% 0% 0%",
-            fontSize: "40px",
-          }}
-        >
-          <p style={{ fontFamily: titleFont }}>{title}</p>
-        </Card.Title>
-        <div className="calendarSections" style={{ display: "flex" }}>
+        <div className="calendarSections"
+          style={{ display: "flex" }}>
           <Card
-            className="calendar"
             style={{
-              margin: "2%",
-              backgroundColor: backgroundColor,
+              margin: "1.5% 0",
               backgroundImage: `url(${selectedImage})`,
+              backgroundColor: backgroundColor,
               backgroundSize: "cover",
               boxShadow: "0px 0px 5px 0px #00000059",
               border: "none",
             }}
           >
-            {Array.from({ length: selectedHatchesNumber || 31 }).map((_, i) => (
-              <EditHatch key={i} number={i + 1} />
-            ))}
+            <Card.Title
+              style={{
+                textAlign: "center",
+                margin: "3% 0% 0% 0%",
+                fontFamily: titleFont,
+                color: selectedHatchFontColor,
+              }}
+
+            >
+              <p className="editCalendarTitle">{title}</p>
+            </Card.Title>
+            <div
+              className="calendar"
+            >
+              {Array.from({ length: selectedHatchesNumber || 31 }).map((_, i) => (
+                <EditHatch key={i} number={i + 1} />
+              ))}
+            </div>
           </Card>
         </div>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
@@ -165,7 +172,7 @@ function EditCalendar() {
             Save calendar
           </Button>
         </div>
-      </div>
+      </div >
     </>
   );
 }

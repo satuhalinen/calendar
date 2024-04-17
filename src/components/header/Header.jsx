@@ -50,13 +50,15 @@ export default function Header() {
     <Navbar className={isAdminRoute ? 'navBarAdmin' : 'navBarDefault'} fixed='top'>
       <Container>
         {imagesLoaded && (
-          <Image
-            src={isAdminRoute ? logo1 : logo2}
-            width="auto"
-            height="70"
-            className="d-inline-block align-top"
-            alt="logo"
-          />
+          <NavLink to="/">
+            <Image
+              src={isAdminRoute ? logo1 : logo2}
+              width="auto"
+              height="70"
+              className="d-inline-block align-top"
+              alt="logo"
+            />
+          </NavLink>
         )}
         <Nav className="links">
           {isUserRoute && (

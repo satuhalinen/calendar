@@ -2,361 +2,426 @@
     "categories": [
         {
             "category": "Animals",
-            "content": [
-                {
-                    "title": "Volunteer in animal rescue farm",
-                    "description": "Spend your time helping out at a local animal rescue farm, caring for and nurturing animals in need.",
-                    "link": "https://tuulispaa.org/"
-                },
-                {
-                    "title": "Adopt an animal",
-                    "description": "Consider adopting an animal from a shelter or rescue organization to give them a loving home.",
-                    "link": "https://kodittomat.info/"
-                },
-                {
-                    "title": "Care for someone else's animal",
-                    "description": "Offer to pet-sit or provide care for a friend or neighbor's animal while they're away.",
-                    "link": ""
-                },
-                {
-                    "title": "Volunteer for animal shelter",
-                    "description": "Volunteer your time at a local animal shelter like Hesy, where you can help with tasks such as walking dogs and socializing cats.",
-                    "link": "https://www.hesy.fi/"
-                },
-                {
-                    "title": "Donate to an organisation",
-                    "description": "Support animal welfare organizations by making a donation to help provide food, shelter, and medical care for animals in need.",
-                    "link": "https://www.hesy.fi/"
-                },
-                {
-                    "title": "Smile to someone",
-                    "description": "Brighten someone's day, including animals, with a simple smile.",
-                    "link": ""
-                },
-                {
-                    "title": "Massage",
-                    "description": "Provide comfort to animals through gentle massages to promote relaxation.",
-                    "link": ""
-                },
-                {
-                    "title": "Feed birds",
-                    "description": "Set up bird feeders in your backyard to provide nourishment for birds.",
-                    "link": ""
-                },
-                {
-                    "title": "Give someone a hug",
-                    "description": "Offer a warm embrace to a friend or loved one, including animals.",
-                    "link": ""
-                },
-                {
-                    "title": "Volunteer at the fire department",
-                    "description": "Support your local fire department by volunteering your time, including caring for the station's firehouse dog.",
-                    "link": ""
-                },
-                {
-                    "title": "Become a sponsor",
-                    "description": "Consider sponsoring an animal at a sanctuary or rescue organization to help cover the costs of their care.",
-                    "link": "https://rekkurescue.com/tue-toimintaamme/apua-tarvitsevan-elaimen-sponsoriksi/"
-                }
-            ]
-        },
-        {
-            "category": "Elderly",
-            "content": [
-                {
-                    "title": "Be a friend",
-                    "description": "Spend quality time with elderly individuals who may be lonely or isolated to provide meaningful social interaction.",
-                    "link": ""
-                },
-                {
-                    "title": "Teach a language",
-                    "description": "Share your language skills with the elderly by offering language lessons or conversation practice to stimulate their minds.",
-                    "link": ""
-                },
-                {
-                    "title": "Helping in a refugee center",
-                    "description": "Volunteer your time at a refugee center that caters to elderly refugees to improve their integration and well-being.",
-                    "link": "https://www.punainenristi.fi/vapaaehtoiseksi/maahanmuuttotyon-tueksi/"
-                },
-                {
-                    "title": "Volunteer at a soup kitchen (Hursti)",
-                    "description": "Join efforts at a soup kitchen like Hursti to help prepare and serve meals to elderly individuals in need.",
-                    "link": "https://www.facebook.com/HurstinApu.fi/?locale=fi_FI"
-                },
-                {
-                    "title": "Donate food",
-                    "description": "Contribute to food drives or local charities that provide meals for elderly individuals to ensure they receive nutritious food.",
-                    "link": "https://ruoka-apu.fi/elintarvikkeiden-lahjoittajille/ohjeet-ruoan-lahjoittajille/"
-                },
-                {
-                    "title": "Practical help",
-                    "description": "Offer practical assistance to elderly individuals with household chores, repairs, or outdoor maintenance.",
-                    "link": ""
-                },
-                {
-                    "title": "IT help",
-                    "description": "Provide technical support to elderly individuals who may need assistance with computers or other electronic devices.",
-                    "link": ""
-                },
-                {
-                    "title": "Do house chores",
-                    "description": "Assist elderly individuals with household chores such as cleaning, laundry, or organizing to maintain a comfortable living space.",
-                    "link": ""
-                },
-                {
-                    "title": "Donate blood",
-                    "description": "Donate blood to support elderly individuals who may require transfusions due to medical conditions or surgeries.",
-                    "link": "https://www.veripalvelu.fi/verenluovutus/luovutusedellytykset/"
-                },
-                {
-                    "title": "Give someone a compliment",
-                    "description": "Brighten an elderly person's day by offering a sincere compliment to boost their confidence.",
-                    "link": ""
-                }
-            ]
-        },
-        {
-            "category": "Children and teenagers",
-            "content": [
-                {
-                    "title": "Be a friend",
-                    "description": "Be a supportive friend to children and teenagers, offering companionship and understanding during their formative years.",
-                    "link": ""
-                },
-                {
-                    "title": "Teach a language",
-                    "description": "Help children and teenagers learn a new language to expand their horizons and enhance their cognitive development.",
-                    "link": ""
-                },
-                {
-                    "title": "Help with homework",
-                    "description": "Provide academic support by assisting children and teenagers with their homework and studies.",
-                    "link": ""
-                },
-                {
-                    "title": "Helping in a refugee center",
-                    "description": "Volunteer your time at a refugee center to provide assistance and support to children and teenagers who are refugees.",
-                    "link": "https://www.punainenristi.fi/vapaaehtoiseksi/maahanmuuttotyon-tueksi/"
-                },
-                {
-                    "title": "Helping teenagers in the city",
-                    "description": "Support teenagers in urban areas by offering mentorship, guidance, and resources to navigate challenges and opportunities.",
-                    "link": "https://www.helsinkimissio.fi/vapaaehtoiseksi/nuorten-tueksi/"
-                },
-                {
-                    "title": "Volunteer at a soup kitchen",
-                    "description": "Join efforts at a soup kitchen like Hursti to help prepare and serve meals to children and teenagers in need.",
-                    "link": "https://www.facebook.com/HurstinApu.fi/?locale=fi_FI"
-                },
-                {
-                    "title": "Donate food",
-                    "description": "Contribute to food drives or local charities that provide meals for children and teenagers to ensure they receive proper nutrition.",
-                    "link": "https://ruoka-apu.fi/elintarvikkeiden-lahjoittajille/ohjeet-ruoan-lahjoittajille/"
-                },
-                {
-                    "title": "Make octopus toy for the newborn",
-                    "description": "Create handmade octopus toys for newborn babies to provide comfort and sensory stimulation.",
-                    "link": "https://vuosaarimartat.marttayhdistys.fi/@Bin/206818/Turvalonkerot.pdf"
-                },
-                {
-                    "title": "Sew a hat for children with cancer",
-                    "description": "Sew warm and cozy hats for children undergoing cancer treatment to help them stay comfortable during chemotherapy.",
-                    "link": ""
-                },
-                {
-                    "title": "Join a group to entertain children in hospitals",
-                    "description": "Join a volunteer group that visits children in hospitals to entertain them and lift their spirits during their stay.",
-                    "link": ""
-                },
-                {
-                    "title": "Practical help",
-                    "description": "Offer practical assistance to children and teenagers with tasks such as lawn mowing or toy repairs.",
-                    "link": ""
-                },
-                {
-                    "title": "Donate blood",
-                    "description": "Donate blood to support children and teenagers who may require transfusions due to medical conditions or injuries.",
-                    "link": "https://www.veripalvelu.fi/verenluovutus/luovutusedellytykset/"
-                },
-                {
-                    "title": "Give someone a compliment",
-                    "description": "Brighten a child or teenager's day by offering a genuine compliment to boost their self-esteem.",
-                    "link": ""
-                },
-                {
-                    "title": "Smile to someone",
-                    "description": "Share a smile with children and teenagers to spread positivity and warmth.",
-                    "link": ""
-                },
-                {
-                    "title": "Massage",
-                    "description": "Provide relaxation and comfort to children and teenagers through gentle massages.",
-                    "link": ""
-                },
-                {
-                    "title": "Ask someone how they are doing",
-                    "description": "Show care and concern by asking children and teenagers how they are feeling and if they need support.",
-                    "link": ""
-                },
-                {
-                    "title": "Give someone a hug",
-                    "description": "Offer a warm hug to children and teenagers to provide comfort and reassurance.",
-                    "link": ""
-                },
-                {
-                    "title": "Open a door for someone",
-                    "description": "Demonstrate courtesy and kindness by holding the door open for children and teenagers.",
-                    "link": ""
-                },
-                {
-                    "title": "Offer to pay for groceries",
-                    "description": "Surprise someone by offering to pay for their groceries as an act of kindness.",
-                    "link": ""
-                },
-                {
-                    "title": "Donate clothes",
-                    "description": "Donate gently used clothing to organizations that support children and teenagers in need.",
-                    "link": "https://vvary.fi/lahjoita/"
-                },
-                {
-                    "title": "Volunteer as a crisis chat",
-                    "description": "Provide support and assistance to children and teenagers in crisis by volunteering for crisis chat or phone lines.",
-                    "link": "https://mieli.fi/vapaaehtoiseksi/"
-                },
-                {
-                    "title": "Volunteer at a mother & child center",
-                    "description": "Support mothers and children by volunteering at a center that offers resources and support services.",
-                    "link": "https://ensijaturvakotienliitto.fi/lahjoita_liity/tule-vapaaehtoiseksi/"
-                },
-                {
-                    "title": "Volunteer at the fire department",
-                    "description": "Support your local fire department by volunteering your time, including participating in community events and fundraisers.",
-                    "link": ""
-                },
-                {
-                    "title": "Become a sponsor",
-                    "description": "Consider sponsoring programs or initiatives that benefit children and teenagers.",
-                    "link": "https://www.worldvision.fi/lahjoita/ryhdy-kummiksi/"
-                }
-            ]
-        },
-        {
-            "category": "Adults",
-            "content": [
-                {
-                    "title": "Be a friend",
-                    "description": "Be a supportive friend to adults, offering companionship, understanding, and encouragement.",
-                    "link": ""
-                },
-                {
-                    "title": "Teach a language",
-                    "description": "Help adults learn a new language to enhance their communication skills and cultural understanding.",
-                    "link": ""
-                },
-                {
-                    "title": "Help with homework",
-                    "description": "Provide academic support to adults pursuing further education or skill development.",
-                    "link": ""
-                },
-                {
-                    "title": "Walking company",
-                    "description": "Offer companionship and motivation by joining adults for walks or outdoor activities.",
-                    "link": ""
-                },
-                {
-                    "title": "Helping in a refugee center",
-                    "description": "Volunteer your time at a refugee center to provide assistance and support to adults who are refugees.",
-                    "link": "https://www.punainenristi.fi/vapaaehtoiseksi/maahanmuuttotyon-tueksi/"
-                },
-                {
-                    "title": "Volunteer at a soup kitchen",
-                    "description": "Join efforts at a soup kitchen like Hursti to help prepare and serve meals to adults in need.",
-                    "link": "https://www.facebook.com/HurstinApu.fi/?locale=fi_FI"
-                },
-                {
-                    "title": "Donate food",
-                    "description": "Contribute to food drives or local charities that provide meals for adults to ensure they receive proper nutrition.",
-                    "link": "https://ruoka-apu.fi/elintarvikkeiden-lahjoittajille/ohjeet-ruoan-lahjoittajille/"
-                },
-                {
-                    "title": "Practical help",
-                    "description": "Offer practical assistance to adults with tasks such as car maintenance, yard work, or household repairs.",
-                    "link": ""
-                },
-                {
-                    "title": "IT help",
-                    "description": "Provide technical support to adults who may need assistance with computers, smartphones, or software applications.",
-                    "link": ""
-                },
-                {
-                    "title": "Do house chores",
-                    "description": "Assist adults with household chores such as cleaning, cooking, or organizing to lighten their workload.",
-                    "link": ""
-                },
-                {
-                    "title": "Donate blood",
-                    "description": "Donate blood to support adults who may require transfusions due to medical conditions or emergencies.",
-                    "link": "https://www.veripalvelu.fi/verenluovutus/luovutusedellytykset/"
-                },
-                {
-                    "title": "Give someone a compliment",
-                    "description": "Brighten an adult's day by offering a sincere compliment to uplift their spirits.",
-                    "link": ""
-                },
-                {
-                    "title": "Smile to someone",
-                    "description": "Share a smile with adults to spread positivity and warmth in their day.",
-                    "link": ""
-                },
-                {
-                    "title": "Massage",
-                    "description": "Provide relaxation and stress relief to adults through therapeutic massages.",
-                    "link": ""
-                },
-                {
-                    "title": "Ask someone how they are doing",
-                    "description": "Show empathy and concern by asking adults how they are feeling and if they need support.",
-                    "link": ""
-                },
-                {
-                    "title": "Give someone a hug",
-                    "description": "Offer a comforting hug to adults in need of emotional support or reassurance.",
-                    "link": ""
-                },
-                {
-                    "title": "Open a door for someone",
-                    "description": "Demonstrate courtesy and kindness by holding the door open for adults, especially those with mobility challenges.",
-                    "link": ""
-                },
-                {
-                    "title": "Offer to pay for groceries",
-                    "description": "Surprise someone by offering to pay for their groceries as an act of kindness.",
-                    "link": ""
-                },
-                {
-                    "title": "Donate clothes",
-                    "description": "Donate gently used clothing to organizations that support adults in need.",
-                    "link": "https://vvary.fi/lahjoita/"
-                },
-                {
-                    "title": "Volunteer as a crisis chat",
-                    "description": "Provide support and assistance to adults in crisis by volunteering for crisis chat or phone lines.",
-                    "link": "https://mieli.fi/vapaaehtoiseksi/"
-                },
-                {
-                    "title": "Volunteer at a mother & child center",
-                    "description": "Support mothers and children by volunteering at a center that offers resources and support services.",
-                    "link": "https://ensijaturvakotienliitto.fi/lahjoita_liity/tule-vapaaehtoiseksi/"
-                },
-                {
-                    "title": "Volunteer at the fire department",
-                    "description": "Support your local fire department by volunteering your time, including participating in community events and fundraisers.",
-                    "link": ""
-                },
-                {
-                    "title": "Become a sponsor",
-                    "description": "Consider sponsoring programs or initiatives that benefit adults in your community.",
-                    "link": "https://rednet.punainenristi.fi/node/50442"
+            "subcollections": [
+                {
+                    "name": "Free Help",
+                    "content": [
+                        {
+                            "title": "Volunteer in animal rescue farm",
+                            "description": "Spend your time helping out at a local animal rescue farm, caring for and nurturing animals in need.",
+                            "link": "https://tuulispaa.org/"
+                        },
+                        {
+                            "title": "Adopt an animal",
+                            "description": "Consider adopting an animal from a shelter or rescue organization to give them a loving home.",
+                            "link": "https://kodittomat.info/"
+                        },
+                        {
+                            "title": "Care for someone else's animal",
+                            "description": "Offer to pet-sit or provide care for a friend or neighbor's animal while they're away.",
+                            "link": ""
+                        },
+                        {
+                            "title": "Volunteer for animal shelter",
+                            "description": "Volunteer your time at a local animal shelter like Hesy, where you can help with tasks such as walking dogs and socializing cats.",
+                            "link": "https://www.hesy.fi/"
+                        },
+                        {
+                            "title": "Donate to an organisation",
+                            "description": "Support animal welfare organizations by making a donation to help provide food, shelter, and medical care for animals in need.",
+                            "link": "https://www.hesy.fi/"
+                        },
+                        {
+                            "title": "Smile to someone",
+                            "description": "Brighten someone's day, including animals, with a simple smile.",
+                            "link": ""
+                        },
+                        {
+                            "title": "Massage",
+                            "description": "Provide comfort to animals through gentle massages to promote relaxation.",
+                            "link": ""
+                        },
+                        {
+                            "title": "Feed birds",
+                            "description": "Set up bird feeders in your backyard to provide nourishment for birds.",
+                            "link": ""
+                        },
+                        {
+                            "title": "Give someone a hug",
+                            "description": "Offer a warm embrace to a friend or loved one, including animals.",
+                            "link": ""
+                        },
+                        {
+                            "title": "Volunteer at the fire department",
+                            "description": "Support your local fire department by volunteering your time, including caring for the station's firehouse dog.",
+                            "link": ""
+                        },
+                        {
+                            "title": "Become a sponsor",
+                            "description": "Consider sponsoring an animal at a sanctuary or rescue organization to help cover the costs of their care.",
+                            "link": "https://rekkurescue.com/tue-toimintaamme/apua-tarvitsevan-elaimen-sponsoriksi/"
+                        }
+                    ]
+                },
+                {
+                    "name": "Donations",
+                    "content": [
+                        {
+                            "title": "Animalia",
+                            "description": "Works to promote animal welfare and protect animals from cruelty through advocacy, education, and rescue efforts.",
+                            "link": "https://www.animalia.fi/"
+                        },
+                        {
+                            "title": "Finnish Federation for Animal Welfare Associations (SEY)",
+                            "description": "Promotes animal rights and welfare through education, advocacy, and support for animal shelters and rescue organizations.",
+                            "link": "https://www.sey.fi/"
+                        },
+                        {
+                            "title": "Helsinki Animal Shelter (Kissaliitto)",
+                            "description": "Provides shelter, care, and adoption services for homeless and abandoned animals in the Helsinki area.",
+                            "link": "https://www.kissaliitto.fi/"
+                        },
+                        {
+                            "title": "Hope Animal Shelter",
+                            "description": "Rescues and rehabilitates animals in need, providing medical care, shelter, and adoption services to homeless pets.",
+                            "link": "https://www.hopeyhdistys.fi/"
+                        },
+                        {
+                            "title": "Finnish Association for Nature Conservation (FANC)",
+                            "description": "Works to protect wildlife and natural habitats, promoting biodiversity and sustainable coexistence between humans and animals.",
+                            "link": "https://www.sll.fi/"
+                        },
+                        {
+                            "title": "Wildlife Rescue Finland",
+                            "description": "Rescues and rehabilitates injured or orphaned wildlife, providing medical care and releasing animals back into the wild.",
+                            "link": "https://www.wildlife.fi/"
+                        },
+                        {
+                            "title": "Kulkurit - Finnish Animal Rescue Organization",
+                            "description": "Dedicated to rescuing and rehoming stray and abandoned animals, providing them with necessary medical care and finding them loving homes.",
+                            "link": "https://kulkurit.fi/"
+                        },
+                        {
+                            "title": "SOS Dog Rescue",
+                            "description": "Rescues, rehabilitates, and rehomes dogs in need, providing medical treatment, foster care, and adoption services.",
+                            "link": "https://www.sosdogrescue.fi/"
+                        },
+                        {
+                            "title": "Finnish Animal Rights Organization (SEY)",
+                            "description": "Advocates for animal rights and welfare",
+                            "link": "https://www.sey.fi/"
+                        },
+                        {
+                            "title": "Finnish Horse Aid Association",
+                            "description": "Provides assistance and care for horses in need, rescuing abused or neglected horses and offering rehabilitation and rehoming services.",
+                            "link": "https://www.hevostenautt.fi/"
+                        }
+                    ]
+                },
+                {
+                    "name": "Donations",
+                    "content": [
+                        {
+                            "category": "Elderly",
+                            "content": [
+                                {
+                                    "title": "Be a friend",
+                                    "description": "Spend quality time with elderly individuals who may be lonely or isolated to provide meaningful social interaction.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Teach a language",
+                                    "description": "Share your language skills with the elderly by offering language lessons or conversation practice to stimulate their minds.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Helping in a refugee center",
+                                    "description": "Volunteer your time at a refugee center that caters to elderly refugees to improve their integration and well-being.",
+                                    "link": "https://www.punainenristi.fi/vapaaehtoiseksi/maahanmuuttotyon-tueksi/"
+                                },
+                                {
+                                    "title": "Volunteer at a soup kitchen (Hursti)",
+                                    "description": "Join efforts at a soup kitchen like Hursti to help prepare and serve meals to elderly individuals in need.",
+                                    "link": "https://www.facebook.com/HurstinApu.fi/?locale=fi_FI"
+                                },
+                                {
+                                    "title": "Donate food",
+                                    "description": "Contribute to food drives or local charities that provide meals for elderly individuals to ensure they receive nutritious food.",
+                                    "link": "https://ruoka-apu.fi/elintarvikkeiden-lahjoittajille/ohjeet-ruoan-lahjoittajille/"
+                                },
+                                {
+                                    "title": "Practical help",
+                                    "description": "Offer practical assistance to elderly individuals with household chores, repairs, or outdoor maintenance.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "IT help",
+                                    "description": "Provide technical support to elderly individuals who may need assistance with computers or other electronic devices.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Do house chores",
+                                    "description": "Assist elderly individuals with household chores such as cleaning, laundry, or organizing to maintain a comfortable living space.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Donate blood",
+                                    "description": "Donate blood to support elderly individuals who may require transfusions due to medical conditions or surgeries.",
+                                    "link": "https://www.veripalvelu.fi/verenluovutus/luovutusedellytykset/"
+                                },
+                                {
+                                    "title": "Give someone a compliment",
+                                    "description": "Brighten an elderly person's day by offering a sincere compliment to boost their confidence.",
+                                    "link": ""
+                                }
+                            ]
+                        },
+                        {
+                            "category": "Children and teenagers",
+                            "content": [
+                                {
+                                    "title": "Be a friend",
+                                    "description": "Be a supportive friend to children and teenagers, offering companionship and understanding during their formative years.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Teach a language",
+                                    "description": "Help children and teenagers learn a new language to expand their horizons and enhance their cognitive development.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Help with homework",
+                                    "description": "Provide academic support by assisting children and teenagers with their homework and studies.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Helping in a refugee center",
+                                    "description": "Volunteer your time at a refugee center to provide assistance and support to children and teenagers who are refugees.",
+                                    "link": "https://www.punainenristi.fi/vapaaehtoiseksi/maahanmuuttotyon-tueksi/"
+                                },
+                                {
+                                    "title": "Helping teenagers in the city",
+                                    "description": "Support teenagers in urban areas by offering mentorship, guidance, and resources to navigate challenges and opportunities.",
+                                    "link": "https://www.helsinkimissio.fi/vapaaehtoiseksi/nuorten-tueksi/"
+                                },
+                                {
+                                    "title": "Volunteer at a soup kitchen",
+                                    "description": "Join efforts at a soup kitchen like Hursti to help prepare and serve meals to children and teenagers in need.",
+                                    "link": "https://www.facebook.com/HurstinApu.fi/?locale=fi_FI"
+                                },
+                                {
+                                    "title": "Donate food",
+                                    "description": "Contribute to food drives or local charities that provide meals for children and teenagers to ensure they receive proper nutrition.",
+                                    "link": "https://ruoka-apu.fi/elintarvikkeiden-lahjoittajille/ohjeet-ruoan-lahjoittajille/"
+                                },
+                                {
+                                    "title": "Make octopus toy for the newborn",
+                                    "description": "Create handmade octopus toys for newborn babies to provide comfort and sensory stimulation.",
+                                    "link": "https://vuosaarimartat.marttayhdistys.fi/@Bin/206818/Turvalonkerot.pdf"
+                                },
+                                {
+                                    "title": "Sew a hat for children with cancer",
+                                    "description": "Sew warm and cozy hats for children undergoing cancer treatment to help them stay comfortable during chemotherapy.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Join a group to entertain children in hospitals",
+                                    "description": "Join a volunteer group that visits children in hospitals to entertain them and lift their spirits during their stay.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Practical help",
+                                    "description": "Offer practical assistance to children and teenagers with tasks such as lawn mowing or toy repairs.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Donate blood",
+                                    "description": "Donate blood to support children and teenagers who may require transfusions due to medical conditions or injuries.",
+                                    "link": "https://www.veripalvelu.fi/verenluovutus/luovutusedellytykset/"
+                                },
+                                {
+                                    "title": "Give someone a compliment",
+                                    "description": "Brighten a child or teenager's day by offering a genuine compliment to boost their self-esteem.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Smile to someone",
+                                    "description": "Share a smile with children and teenagers to spread positivity and warmth.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Massage",
+                                    "description": "Provide relaxation and comfort to children and teenagers through gentle massages.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Ask someone how they are doing",
+                                    "description": "Show care and concern by asking children and teenagers how they are feeling and if they need support.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Give someone a hug",
+                                    "description": "Offer a warm hug to children and teenagers to provide comfort and reassurance.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Open a door for someone",
+                                    "description": "Demonstrate courtesy and kindness by holding the door open for children and teenagers.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Offer to pay for groceries",
+                                    "description": "Surprise someone by offering to pay for their groceries as an act of kindness.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Donate clothes",
+                                    "description": "Donate gently used clothing to organizations that support children and teenagers in need.",
+                                    "link": "https://vvary.fi/lahjoita/"
+                                },
+                                {
+                                    "title": "Volunteer as a crisis chat",
+                                    "description": "Provide support and assistance to children and teenagers in crisis by volunteering for crisis chat or phone lines.",
+                                    "link": "https://mieli.fi/vapaaehtoiseksi/"
+                                },
+                                {
+                                    "title": "Volunteer at a mother & child center",
+                                    "description": "Support mothers and children by volunteering at a center that offers resources and support services.",
+                                    "link": "https://ensijaturvakotienliitto.fi/lahjoita_liity/tule-vapaaehtoiseksi/"
+                                },
+                                {
+                                    "title": "Volunteer at the fire department",
+                                    "description": "Support your local fire department by volunteering your time, including participating in community events and fundraisers.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Become a sponsor",
+                                    "description": "Consider sponsoring programs or initiatives that benefit children and teenagers.",
+                                    "link": "https://www.worldvision.fi/lahjoita/ryhdy-kummiksi/"
+                                }
+                            ]
+                        },
+                        {
+                            "category": "Adults",
+                            "content": [
+                                {
+                                    "title": "Be a friend",
+                                    "description": "Be a supportive friend to adults, offering companionship, understanding, and encouragement.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Teach a language",
+                                    "description": "Help adults learn a new language to enhance their communication skills and cultural understanding.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Help with homework",
+                                    "description": "Provide academic support to adults pursuing further education or skill development.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Walking company",
+                                    "description": "Offer companionship and motivation by joining adults for walks or outdoor activities.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Helping in a refugee center",
+                                    "description": "Volunteer your time at a refugee center to provide assistance and support to adults who are refugees.",
+                                    "link": "https://www.punainenristi.fi/vapaaehtoiseksi/maahanmuuttotyon-tueksi/"
+                                },
+                                {
+                                    "title": "Volunteer at a soup kitchen",
+                                    "description": "Join efforts at a soup kitchen like Hursti to help prepare and serve meals to adults in need.",
+                                    "link": "https://www.facebook.com/HurstinApu.fi/?locale=fi_FI"
+                                },
+                                {
+                                    "title": "Donate food",
+                                    "description": "Contribute to food drives or local charities that provide meals for adults to ensure they receive proper nutrition.",
+                                    "link": "https://ruoka-apu.fi/elintarvikkeiden-lahjoittajille/ohjeet-ruoan-lahjoittajille/"
+                                },
+                                {
+                                    "title": "Practical help",
+                                    "description": "Offer practical assistance to adults with tasks such as car maintenance, yard work, or household repairs.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "IT help",
+                                    "description": "Provide technical support to adults who may need assistance with computers, smartphones, or software applications.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Do house chores",
+                                    "description": "Assist adults with household chores such as cleaning, cooking, or organizing to lighten their workload.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Donate blood",
+                                    "description": "Donate blood to support adults who may require transfusions due to medical conditions or emergencies.",
+                                    "link": "https://www.veripalvelu.fi/verenluovutus/luovutusedellytykset/"
+                                },
+                                {
+                                    "title": "Give someone a compliment",
+                                    "description": "Brighten an adult's day by offering a sincere compliment to uplift their spirits.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Smile to someone",
+                                    "description": "Share a smile with adults to spread positivity and warmth in their day.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Massage",
+                                    "description": "Provide relaxation and stress relief to adults through therapeutic massages.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Ask someone how they are doing",
+                                    "description": "Show empathy and concern by asking adults how they are feeling and if they need support.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Give someone a hug",
+                                    "description": "Offer a comforting hug to adults in need of emotional support or reassurance.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Open a door for someone",
+                                    "description": "Demonstrate courtesy and kindness by holding the door open for adults, especially those with mobility challenges.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Offer to pay for groceries",
+                                    "description": "Surprise someone by offering to pay for their groceries as an act of kindness.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Donate clothes",
+                                    "description": "Donate gently used clothing to organizations that support adults in need.",
+                                    "link": "https://vvary.fi/lahjoita/"
+                                },
+                                {
+                                    "title": "Volunteer as a crisis chat",
+                                    "description": "Provide support and assistance to adults in crisis by volunteering for crisis chat or phone lines.",
+                                    "link": "https://mieli.fi/vapaaehtoiseksi/"
+                                },
+                                {
+                                    "title": "Volunteer at a mother & child center",
+                                    "description": "Support mothers and children by volunteering at a center that offers resources and support services.",
+                                    "link": "https://ensijaturvakotienliitto.fi/lahjoita_liity/tule-vapaaehtoiseksi/"
+                                },
+                                {
+                                    "title": "Volunteer at the fire department",
+                                    "description": "Support your local fire department by volunteering your time, including participating in community events and fundraisers.",
+                                    "link": ""
+                                },
+                                {
+                                    "title": "Become a sponsor",
+                                    "description": "Consider sponsoring programs or initiatives that benefit adults in your community.",
+                                    "link": "https://rednet.punainenristi.fi/node/50442"
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }

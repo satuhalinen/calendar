@@ -12,6 +12,7 @@ const Footer = () => {
     "/admin-calendars",
     "/create-calendar",
     "/edit-calendar",
+    "/calendar",
     "/user-management",
     "/customer-messages",
     "/login",

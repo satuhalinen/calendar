@@ -2,16 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
   font-size: 1.5rem;
 }
 
-.cards {
+.adminCards {
   margin-top: 1rem;
   display: grid;
   grid-template-columns: 33% 33% 33%;
   grid-template-rows: 30vh 30vh;
-  column-gap: 10px;
+  column-gap: 15px;
   row-gap: 15px;
   justify-items: center;
   align-items: center;
@@ -29,7 +28,6 @@
   color: white;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
-  padding: 20px;
   transition: all 0.3s ease;
 }
 
@@ -52,4 +50,42 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+}
+
+.calendarScreenShot {
+  width: 170px;
+  height: 180px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.349);
+  object-fit: cover;
+  filter: saturate(0.8);
+}
+
+.calendarScreenShot:hover {
+  filter: saturate(1);
+  transform: scale(1.03);
+  transition: all 0.3s ease;
+}
+
+.adminCalendarBody {
+  margin-top: 0.5rem;
+}
+
+.modifyButton {
+  width: 50%;
+  background: #ba6c2c;
+  box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+  color: #f9f5f3;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0.5rem;
+}
+
+.modifyButton:hover {
+  box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237);
+  background-color: #a65919;
 }
