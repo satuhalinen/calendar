@@ -161,7 +161,7 @@ function EditCalendar() {
               color: "#F4EDE7",
             }}
           >
-            Modify
+            Create calendar
           </Button>
         </div>
       </div>

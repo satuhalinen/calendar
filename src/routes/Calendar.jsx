@@ -3,7 +3,6 @@ import "../calendar.css";
 import { Card } from "react-bootstrap";
 import happySymbol from "../assets/happy.svg";
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
-//import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "../auth/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -16,7 +15,6 @@ import {
   setSelectedHatchColor,
   setSelectedHatchFontColor,
   setSelectedHatchesNumber,
-  /*setInputValue,*/
 } from "../store/calendarStylingSlice.js";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
