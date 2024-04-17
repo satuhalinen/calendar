@@ -1,15 +1,15 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import happySymbol from "../../assets/happy.svg";
-import { Col, NavLink, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import "../adminCalendars/adminCalendars.css";
 import "../adminpanel/adminpanel.css";
 import Leftbar from "../../components/leftbar/Leftbar";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../auth/firebase";
+import { NavLink } from "react-router-dom";
 
 export default function AdminCalendars() {
   const [calendars, setCalendars] = useState([]);
@@ -70,9 +70,10 @@ export default function AdminCalendars() {
                   {calendar.id}
                 </Card.Title>
               </Card.Body>
-              <Button
-                variant="primary"
-                className="mt-auto"
+
+              <NavLink
+                to={`/modify-old-calendar/${calendar.id}`}
+                className="btn btn-primary mt-auto"
                 style={{
                   backgroundColor: "#BA6C2C",
                   border: "none",
@@ -80,7 +81,7 @@ export default function AdminCalendars() {
                 }}
               >
                 Modify
-              </Button>
+              </NavLink>
             </Card>
           ))}
         </div>
