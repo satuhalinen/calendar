@@ -2,15 +2,15 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Card from "react-bootstrap/Card";
 import happySymbol from "../../assets/happy.svg";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, NavLink } from "react-bootstrap";
 import "../adminCalendars/adminCalendars.css";
 import "../adminpanel/adminpanel.css";
 import Leftbar from "../../components/leftbar/Leftbar";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../auth/firebase";
-import { NavLink } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import image from "../../assets/calendar.png";
 export default function AdminCalendars() {
   const [calendars, setCalendars] = useState([]);
 
@@ -66,9 +66,15 @@ export default function AdminCalendars() {
                 <Card.Img variant="top" src={happySymbol} />
               </NavLink>
               <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-                <Card.Title style={{ color: "black" }}>
-                  {calendar.id}
-                </Card.Title>
+                <NavLink as={Link} to={`/calendar/${calendar.calendarTitle}`}>
+                  <Card.Title style={{ color: "black" }}>
+                    <img
+                      src={image}
+                      alt="calendar"
+                      style={{ width: "100px" }}
+                    />
+                  </Card.Title>
+                </NavLink>
               </Card.Body>
 
               <NavLink

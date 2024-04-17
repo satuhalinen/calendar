@@ -1,6 +1,6 @@
 import EditHatch from "../components/editHatch/EditHatch";
 import "../calendar.css";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Nav } from "react-bootstrap";
 import SmallHeader from "../components/smallHeader/SmallHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -17,6 +17,7 @@ import {
   fetchFromFirebase,
   setAvailableAlternatives,
 } from "../store/alternativesSlice";
+import { Link } from "react-router-dom";
 
 function EditCalendar() {
   const backgroundColor = useSelector(
@@ -162,6 +163,21 @@ function EditCalendar() {
           >
             Save calendar
           </Button>
+
+          <Nav.Link as={Link} to={`/calendar`}>
+            <Button
+              style={{
+                width: "20%",
+                margin: "0% 0% 2% 0%",
+                backgroundColor: "#BA6C2C",
+                color: "#FFFAF7",
+                border: "none",
+              }}
+              href="/calendar"
+            >
+              preview calendar
+            </Button>
+          </Nav.Link>
         </div>
       </div>
     </>

@@ -7,12 +7,12 @@ import { getAuth, signOut } from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API,
-  authDomain: "adventcalendar-b2e76.firebaseapp.com",
-  projectId: "adventcalendar-b2e76",
-  storageBucket: "adventcalendar-b2e76.appspot.com",
-  messagingSenderId: "689918361565",
-  appId: "1:689918361565:web:9d0e01d0ac5eba015ec034",
-  measurementId: "G-L67CMF6Q1L",
+  authDomain: "adventcalendar-d45aa.firebaseapp.com",
+  projectId: "adventcalendar-d45aa",
+  storageBucket: "adventcalendar-d45aa.appspot.com",
+  messagingSenderId: "751232377525",
+  appId: "1:751232377525:web:37fb252cfcbeee7fedd4fc",
+  measurementId: "G-L0QFRDN492",
 };
 
 // Initialize Firebase

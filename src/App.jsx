@@ -54,6 +54,10 @@ function App() {
                 element={<ProtectedRoute component={Calendar} />}
               />
               <Route
+                path="/calendar/:calendarTitle"
+                element={<ProtectedRoute component={Calendar} />}
+              />
+              <Route
                 path="/calendars"
                 element={<ProtectedRoute component={Calendars} />}
               />

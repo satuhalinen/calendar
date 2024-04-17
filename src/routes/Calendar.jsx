@@ -1,9 +1,10 @@
 import Hatch from "../components/hatch/Hatch.jsx";
+import { useParams } from "react-router-dom";
 import "../calendar.css";
 import { Card } from "react-bootstrap";
 import happySymbol from "../assets/happy.svg";
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
-import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
+import { collection, doc, getDocs, query, where } from "firebase/firestore";
 import { db } from "../auth/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -16,23 +17,61 @@ import {
   setSelectedHatchColor,
   setSelectedHatchFontColor,
   setSelectedHatchesNumber,
-  setInputValue,
 } from "../store/calendarStylingSlice.js";
 
 function Calendar() {
   const dispatch = useDispatch();
 
-  const fetchContent = async () => {
+  const { calendarTitle } = useParams();
+  console.log("Calendar title usepara", calendarTitle);
+
+  // const fetchContent = async () => {
+  //   try {
+  //     const querySnapshot = await getDocs(
+  //       query(collection(db, "calendars", doc.id))
+  //     );
+  //     querySnapshot.forEach((doc) => {
+  //       const data = doc.data();
+  //       console.log("Data fetched", data);
+  //       dispatch(showCalendarText(data.content));
+  //       dispatch(setSelectedImage(data.calendarImage));
+  //       dispatch(setSelectedColor(data.calendarBackgroundColor));
+  //       dispatch(setSelectedFont(data.calendarFont));
+  //       dispatch(setSelectedTitleFont(data.calendarTitleFont));
+  //       dispatch(setSelectedHatchColor(data.calendarHatchColor));
+  //       dispatch(setSelectedHatchFontColor(data.calendarHatchFontColor));
+  //       dispatch(setSelectedHatchesNumber(data.calendarHatchesNumber));
+  //       dispatch(setInputValue(data.calendarTitle));
+  //     });
+  //   } catch (error) {
+  //     console.log("Error fetching content", error);
+  //   }
+  // };
+
+  const fetchContentByTitle = async (title, calendarTitle) => {
     try {
-      const querySnapshot = await getDocs(
-        query(
+      let q;
+
+      if (calendarTitle) {
+        q = query(
           collection(db, "calendars"),
-          orderBy("createdAt", "desc"),
-          limit(1)
-        )
-      );
+          where("calendarTitle", "==", calendarTitle)
+        );
+      } else if (title) {
+        q = query(
+          collection(db, "calendars"),
+          where("calendarTitle", "==", title)
+        );
+      } else {
+        console.error("Both title and calendarTitle are falsy");
+        return;
+      }
+
+      const querySnapshot = await getDocs(q);
+
       querySnapshot.forEach((doc) => {
         const data = doc.data();
+        console.log("Data fetched", data);
         dispatch(showCalendarText(data.content));
         dispatch(setSelectedImage(data.calendarImage));
         dispatch(setSelectedColor(data.calendarBackgroundColor));
@@ -41,7 +80,6 @@ function Calendar() {
         dispatch(setSelectedHatchColor(data.calendarHatchColor));
         dispatch(setSelectedHatchFontColor(data.calendarHatchFontColor));
         dispatch(setSelectedHatchesNumber(data.calendarHatchesNumber));
-        dispatch(setInputValue(data.calendarTitle));
       });
     } catch (error) {
       console.log("Error fetching content", error);
@@ -65,12 +103,13 @@ function Calendar() {
   );
 
   const title = useSelector((state) => state.calendarStyling.inputValue);
+  console.log("Title", title);
 
   useEffect(() => {
     (async () => {
-      await fetchContent();
+      await fetchContentByTitle(title, calendarTitle);
     })();
-  }, []);
+  }, [title, calendarTitle]);
 
   return (
     <>
@@ -78,7 +117,7 @@ function Calendar() {
       <Card.Title
         style={{ textAlign: "center", margin: "2% 0% 0% 0%", fontSize: "32px" }}
       >
-        <p style={{ fontFamily: titleFont }}>{title}</p>
+        <p style={{ fontFamily: titleFont }}>{calendarTitle || title}</p>
       </Card.Title>
       <div className="calendarSections" style={{ display: "flex" }}>
         <Card
