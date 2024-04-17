@@ -23,7 +23,7 @@ function Calendar() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const fetchContentByTitle = async () => {
+  const fetchContentById = async () => {
     try {
       const docRef = doc(db, "calendars", id);
       const docSnap = await getDoc(docRef);
@@ -67,7 +67,7 @@ function Calendar() {
 
   useEffect(() => {
     (async () => {
-      await fetchContentByTitle();
+      await fetchContentById();
     })();
   }, []);
 

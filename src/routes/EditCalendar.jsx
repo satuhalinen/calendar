@@ -154,11 +154,13 @@ function EditCalendar() {
 
           <Button
             onClick={saveHatchText}
-            className="btn btn-primary mt-auto"
             style={{
+              width: "20%",
+              justifySelf: "center",
               backgroundColor: "#BA6C2C",
+              color: "#FFFAF7",
               border: "none",
-              color: "#F4EDE7",
+              margin: "0% 0% 2% 0%",
             }}
           >
             Create calendar
