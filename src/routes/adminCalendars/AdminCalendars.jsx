@@ -104,6 +104,17 @@ export default function AdminCalendars() {
                   Modify
                 </button>
               </Card.Body>
+              <NavLink
+                to={`/modify-old-calendar/${calendar.id}`}
+                className="btn btn-primary mt-auto"
+                style={{
+                  backgroundColor: "#BA6C2C",
+                  border: "none",
+                  color: "#F4EDE7",
+                }}
+              >
+                Modify
+              </NavLink>
             </Card>
           ))}
         </div>
