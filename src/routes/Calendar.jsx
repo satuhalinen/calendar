@@ -1,15 +1,13 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import html2canvas from "html2canvas";
 import Hatch from "../components/hatch/Hatch.jsx";
-import { Row, Col } from "react-bootstrap";
-import { Card } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import happySymbol from "../assets/happy.svg";
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
 import { collection, getDocs, limit, orderBy, query, updateDoc, doc } from "firebase/firestore";
 import { db, storage } from "../auth/firebase"; // Import storage from Firebase configuration
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { showCalendarText } from "../store/alternativesSlice.js";
 import {
   setSelectedImage,

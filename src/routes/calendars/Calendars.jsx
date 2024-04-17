@@ -6,7 +6,6 @@ import happySymbol from "../../assets/happy.svg";
 import { Col, NavLink, Row } from "react-bootstrap";
 import "../adminCalendars/adminCalendars.css";
 import "../adminpanel/adminpanel.css";
-import ImageGenerator from "../../components/imageGenerator/ImageGenerator";
 
 export default function Calendars() {
   return (
