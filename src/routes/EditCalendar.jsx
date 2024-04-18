@@ -7,17 +7,16 @@ import { useEffect } from "react";
 import {
   collection,
   getDocs,
-  getDoc,
   serverTimestamp,
-  doc,
   addDoc,
 } from "firebase/firestore";
 import { db } from "../auth/firebase";
+
 import {
   fetchFromFirebase,
   setAvailableAlternatives,
 } from "../store/alternativesSlice";
-import './editCalendar.css';
+import "./editCalendar.css";
 import { useNavigate, NavLink } from "react-router-dom";
 
 function EditCalendar() {
@@ -54,7 +53,7 @@ function EditCalendar() {
   const dispatch = useDispatch();
 
   const fetchAlternatives = async () => {
-    const colRef = collection(db, "topic");
+    const colRef = collection(db, "categories");
     const querySnapshot = await getDocs(colRef);
 
     const data = querySnapshot.docs.map((doc) => ({
@@ -70,6 +69,7 @@ function EditCalendar() {
       await fetchAlternatives();
     })();
   }, []);
+
   const navigate = useNavigate();
   const saveHatchText = async () => {
     if (calendarContent !== undefined) {
@@ -94,29 +94,11 @@ function EditCalendar() {
     (state) => state.alternatives.savedAlternatives
   );
 
-  const fetchAlternativesFromFirebase = async () => {
-    const docRef = doc(db, "calendars", "calendar");
-    const docSnapshot = await getDoc(docRef);
-    if (docSnapshot.exists()) {
-      const data = docSnapshot.data().content;
-      if (data !== undefined) {
-        dispatch(fetchFromFirebase(data));
-      }
-    }
-  };
-
-  useEffect(() => {
-    (async () => {
-      await fetchAlternativesFromFirebase();
-    })();
-  }, []);
-
   return (
     <>
       <SmallHeader />
       <div style={{ display: "grid" }} className="editCalendar">
-        <div className="calendarSections"
-          style={{ display: "flex" }}>
+        <div className="calendarSections" style={{ display: "flex" }}>
           <Card
             style={{
               margin: "1.5% 0",
@@ -134,16 +116,15 @@ function EditCalendar() {
                 fontFamily: titleFont,
                 color: selectedHatchFontColor,
               }}
-
             >
               <p className="editCalendarTitle">{title}</p>
             </Card.Title>
-            <div
-              className="calendar"
-            >
-              {Array.from({ length: selectedHatchesNumber || 31 }).map((_, i) => (
-                <EditHatch key={i} number={i + 1} />
-              ))}
+            <div className="calendar">
+              {Array.from({ length: selectedHatchesNumber || 31 }).map(
+                (_, i) => (
+                  <EditHatch key={i} number={i + 1} />
+                )
+              )}
             </div>
           </Card>
         </div>
@@ -155,7 +136,7 @@ function EditCalendar() {
               backgroundColor: "#BA6C2C",
               color: "#FFFAF7",
               border: "none",
-              textDecoration: 'none',
+              textDecoration: "none",
             }}
             className="backToCreateCalendarButton"
             to="/create-calendar"
@@ -171,7 +152,7 @@ function EditCalendar() {
               color: "#FFFAF7",
               border: "none",
               margin: "0% 0% 2% 0%",
-              textDecoration: 'none',
+              textDecoration: "none",
             }}
             className="createCalendarButton"
             to="#"
@@ -179,7 +160,7 @@ function EditCalendar() {
             Create calendar
           </NavLink>
         </div>
-      </div >
+      </div>
     </>
   );
 }

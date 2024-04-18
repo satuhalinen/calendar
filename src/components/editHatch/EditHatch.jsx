@@ -39,16 +39,21 @@ function EditHatch({ number }) {
       }}
       className="hatchCard"
     >
-      <div className="hatch" style={{ color: hatchFontColor }}>{number}</div>
-      <DropdownButton id="dropdown-item-button" title="Choose a topic"
-        style={{ backgroundColor: backgroundColor }}>
+      <div className="hatch" style={{ color: hatchFontColor }}>
+        {number}
+      </div>
+      <DropdownButton
+        id="dropdown-item-button"
+        title="Choose a topic"
+        style={{ backgroundColor: backgroundColor }}
+      >
         <Dropdown.Item
           as="button"
           style={{
             backgroundColor: "#F9F5F3",
           }}
           className="dropdownTopic"
-          onClick={() => setSelectedTopic("adults")}
+          onClick={() => setSelectedTopic("Adults")}
         >
           Adults
         </Dropdown.Item>
@@ -58,15 +63,36 @@ function EditHatch({ number }) {
             backgroundColor: "#F9F5F3",
           }}
           className="dropdownTopic"
-          onClick={() => setSelectedTopic("animals")}
+          onClick={() => setSelectedTopic("Animals")}
         >
           Animals
+        </Dropdown.Item>
+        <Dropdown.Item
+          as="button"
+          style={{
+            backgroundColor: "#F9F5F3",
+          }}
+          className="dropdownTopic"
+          onClick={() => setSelectedTopic("Children and teenagers")}
+        >
+          Children and teenagers
+        </Dropdown.Item>
+        <Dropdown.Item
+          as="button"
+          style={{
+            backgroundColor: "#F9F5F3",
+          }}
+          className="dropdownTopic"
+          onClick={() => setSelectedTopic("Elderly")}
+        >
+          Elderly
         </Dropdown.Item>
       </DropdownButton>
       <DropdownButton id="dropdown-item-button" title="Choose an alternative">
         {alternatives
           .filter((alternative) => alternative.id === selectedTopic)
-          .flatMap((alternative) => alternative.alternatives)
+          .flatMap((alternative) => alternative.content)
+          .map((alternative) => alternative.title)
           .map((alternative, index) => (
             <Dropdown.Item
               key={index}
@@ -83,7 +109,7 @@ function EditHatch({ number }) {
             </Dropdown.Item>
           ))}
       </DropdownButton>
-    </Card >
+    </Card>
   );
 }
 export default EditHatch;
