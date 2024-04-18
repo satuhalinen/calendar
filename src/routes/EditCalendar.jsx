@@ -54,7 +54,7 @@ function EditCalendar() {
   const dispatch = useDispatch();
 
   const fetchAlternatives = async () => {
-    const colRef = collection(db, "topic");
+    const colRef = collection(db, "categories");
     const querySnapshot = await getDocs(colRef);
 
     const data = querySnapshot.docs.map((doc) => ({
