@@ -7,7 +7,12 @@ import '../adminCalendars/adminCalendars.css';
 import '../adminpanel/adminpanel.css';
 
 export default function AdminCalendars() {
+
   const { calendars, intersectionObserverRef } = useCalendarData();
+
+
+
+
 
   return (
     <Row className="mainContent">
@@ -30,7 +35,11 @@ export default function AdminCalendars() {
             </DropdownButton>
           </div>
           <div className="topic">
-            <DropdownButton id="dropdown-item-button" title="Choose topic" className="dropdownItemAdmin">
+            <DropdownButton
+              id="dropdown-item-button"
+              title="Choose topic"
+              className="dropdownItemAdmin"
+            >
               <Dropdown.Item as="button">Adults</Dropdown.Item>
               <Dropdown.Item as="button">Animals</Dropdown.Item>
               <Dropdown.Item as="button">Children and teenagers</Dropdown.Item>
@@ -51,10 +60,12 @@ export default function AdminCalendars() {
               }
             >
               <Card.Body className="d-flex flex-column justify-content-center align-items-center adminCalendarBody">
+
                 <NavLink
                   to={`/calendar/${calendar.id}`}
                   style={{ textDecoration: 'none' }}
                 >
+
                   <Card.Img
                     src={calendar.imageUrl || defaultScreenshot}
                     data-src={calendar.imageUrl}
@@ -64,6 +75,10 @@ export default function AdminCalendars() {
                 <Card.Title style={{ color: 'black' }}>
                   {calendar.title}
                 </Card.Title>
+
+                <button className="modifyButton">Modify</button>
+
+
               </Card.Body>
               <NavLink
                 to={`/modify-old-calendar/${calendar.id}`}

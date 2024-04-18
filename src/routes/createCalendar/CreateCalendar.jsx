@@ -122,7 +122,12 @@ export default function CreateCalendar() {
           <p className="para">Choose a title</p>
           <Row>
             <div>
-              <input placeholder="Enter the title" className="createTitleInput" type="text" onChange={handleInputValue} />
+              <input
+                placeholder="Enter the title"
+                className="createTitleInput"
+                type="text"
+                onChange={handleInputValue}
+              />
             </div>
           </Row>
           <p className="para ">Choose the number of hatches</p>
@@ -164,8 +169,7 @@ export default function CreateCalendar() {
                     className="arrowDownButton"
                     onClick={handleBackgroundColorClick}
                   >
-                    <ArrowDown
-                    />
+                    <ArrowDown />
                   </Button>
                   {colorShow && (
                     <div
@@ -177,7 +181,10 @@ export default function CreateCalendar() {
                         transform: "translateX(-50%)",
                       }}
                     >
-                      <SketchPicker onChange={handelColorChange} />
+                      <SketchPicker
+                        color={selectedColor}
+                        onChange={handelColorChange}
+                      />
                     </div>
                   )}
                 </div>
@@ -203,8 +210,7 @@ export default function CreateCalendar() {
                     className="arrowDownButton"
                     onClick={handleTitleFontSelect}
                   >
-                    <ArrowDown
-                    />
+                    <ArrowDown />
                   </Button>
                   {titleFontShow && (
                     <div
@@ -242,9 +248,7 @@ export default function CreateCalendar() {
                     className="arrowDownButton"
                     onClick={handleImageClick}
                   >
-                    <ArrowDown
-
-                    />
+                    <ArrowDown />
                   </Button>
 
                   {imageShow && (
@@ -267,7 +271,9 @@ export default function CreateCalendar() {
           <Row className="justify-content-center">
             <Col style={{ maxWidth: "340px" }}>
               <div>
-                <p className="colorOptionsTitle">Choose hatch background color:</p>
+                <p className="colorOptionsTitle">
+                  Choose hatch background color:
+                </p>
                 <div
                   style={{
                     display: "flex",
@@ -284,8 +290,7 @@ export default function CreateCalendar() {
                     className="arrowDownButton"
                     onClick={handleHatchColorSelect}
                   >
-                    <ArrowDown
-                    />
+                    <ArrowDown />
                   </Button>
 
                   {hatchColorShow && (
@@ -298,7 +303,10 @@ export default function CreateCalendar() {
                         transform: "translateX(-50%)",
                       }}
                     >
-                      <SketchPicker onChange={handleHatchColorChange} />
+                      <SketchPicker
+                        color={selectedHatchColor}
+                        onChange={handleHatchColorChange}
+                      />
                     </div>
                   )}
                 </div>
@@ -323,8 +331,7 @@ export default function CreateCalendar() {
                     className="arrowDownButton"
                     onClick={handleFontSelect}
                   >
-                    <ArrowDown
-                    />
+                    <ArrowDown />
                   </Button>
 
                   {fontShow && (
@@ -365,8 +372,7 @@ export default function CreateCalendar() {
                     className="arrowDownButton"
                     onClick={handleHatchFontColorSelect}
                   >
-                    <ArrowDown
-                    />
+                    <ArrowDown />
                   </Button>
 
                   {hatchFontColorShow && (
@@ -379,7 +385,10 @@ export default function CreateCalendar() {
                         transform: "translateX(-50%)",
                       }}
                     >
-                      <SketchPicker onChange={handleHatchFontColorChange} />
+                      <SketchPicker
+                        color={selectedHatchFontColor}
+                        onChange={handleHatchFontColorChange}
+                      />
                     </div>
                   )}
                 </div>
@@ -412,7 +421,7 @@ export default function CreateCalendar() {
                   backgroundColor: selectedColor,
                   backgroundImage: `url(${selectedImage})`,
                   backgroundSize: "cover",
-                  boxShadow: "0px 0px 5px 0px #0000005e"
+                  boxShadow: "0px 0px 5px 0px #0000005e",
                 }}
               >
                 <div
@@ -426,13 +435,17 @@ export default function CreateCalendar() {
                     alignItems: "center",
                     fontSize: "1.5rem",
                     textTransform: "uppercase",
-                    fontWeight: "600"
+                    fontWeight: "600",
                   }}
                 >
-                  <p style={{
-                    fontFamily: selectedTitleFont,
-                    color: selectedHatchFontColor
-                  }}>{inputValue}</p>
+                  <p
+                    style={{
+                      fontFamily: selectedTitleFont,
+                      color: selectedHatchFontColor,
+                    }}
+                  >
+                    {inputValue}
+                  </p>
                 </div>
                 <div
                   style={{
@@ -443,7 +456,7 @@ export default function CreateCalendar() {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    boxShadow: "0px 0px 5px 0px #0000005e"
+                    boxShadow: "0px 0px 5px 0px #0000005e",
                   }}
                 >
                   <p
@@ -464,7 +477,7 @@ export default function CreateCalendar() {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    boxShadow: "0px 0px 5px 0px #0000005e"
+                    boxShadow: "0px 0px 5px 0px #0000005e",
                   }}
                 >
                   <p
@@ -485,7 +498,7 @@ export default function CreateCalendar() {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    boxShadow: "0px 0px 5px 0px #0000005e"
+                    boxShadow: "0px 0px 5px 0px #0000005e",
                   }}
                 >
                   <p
@@ -511,6 +524,6 @@ export default function CreateCalendar() {
           </Link>
         </Container>
       </Col>
-    </Row >
+    </Row>
   );
 }
