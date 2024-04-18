@@ -24,7 +24,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import ProtectedRoute from "./auth/ProtectedRoute";
+
+import ErrorPage from "./routes/errorPage/errorPage";
+
 import { ScrollToTop } from "react-router-scroll-to-top";
+
 
 function App() {
   return (
@@ -56,10 +60,13 @@ function App() {
                 element={<ProtectedRoute component={Calendar} />}
               />
               <Route
+
+
                 path="/calendar/:id"
                 element={<ProtectedRoute adminOnly component={Calendar} />}
               />
               <Route
+
                 path="/calendars"
                 element={<ProtectedRoute component={Calendars} />}
               />
@@ -100,6 +107,8 @@ function App() {
                 element={<ProtectedRoute adminOnly component={EditCalendar} />}
               />
             </Route>
+
+            <Route path="*" element={<ErrorPage />} />
             <Route
               path="/modify-old-calendar"
               element={
@@ -112,6 +121,7 @@ function App() {
                 <ProtectedRoute adminOnly component={ModifyOldCalendar} />
               }
             />
+
           </Routes>
         </Router>
       </LocalizationProvider>
