@@ -56,10 +56,7 @@ function Hatch({ number }) {
         </Modal.Header>
         <Modal.Body className="hatchModalContent" style={{ backgroundColor: "#FFFAF7" }}>
           <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
-            {hatchTextHatch.content === undefined ||
-              hatchTextHatch.content[number] === undefined
-              ? "No content available"
-              : hatchTextHatch.content[number]}
+            {hatchTextHatch[number] ? hatchTextHatch[number] : "No content"}
           </p>
         </Modal.Body>
         <Modal.Footer className="hatchModalContent" style={{ backgroundColor: "#FFFAF7", justifyContent: "center" }}>

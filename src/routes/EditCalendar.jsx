@@ -18,6 +18,7 @@ import {
   setAvailableAlternatives,
 } from "../store/alternativesSlice";
 import './editCalendar.css';
+import { useNavigate } from "react-router-dom";
 
 function EditCalendar() {
   const backgroundColor = useSelector(
@@ -69,10 +70,10 @@ function EditCalendar() {
       await fetchAlternatives();
     })();
   }, []);
-
+  const navigate = useNavigate();
   const saveHatchText = async () => {
     if (calendarContent !== undefined) {
-      await addDoc(collection(db, "calendars"), {
+      const docRef = await addDoc(collection(db, "calendars"), {
         content: calendarContent,
         calendarBackgroundColor: backgroundColor,
         calendarHatchColor: hatchColor,
@@ -84,6 +85,8 @@ function EditCalendar() {
         calendarTitle: title,
         createdAt: serverTimestamp(),
       });
+      const calendarId = docRef.id;
+      navigate(`/calendar/${calendarId}`);
     }
   };
 
@@ -169,7 +172,7 @@ function EditCalendar() {
               margin: "0% 0% 2% 0%",
             }}
           >
-            Save calendar
+            Create calendar
           </Button>
         </div>
       </div >

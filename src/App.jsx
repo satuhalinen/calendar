@@ -108,6 +108,10 @@ function App() {
                 <ProtectedRoute adminOnly component={ModifyOldCalendar} />
               }
             />
+            <Route
+              path="/calendar/:id"
+              element={<ProtectedRoute adminOnly component={Calendar} />}
+            />
           </Routes>
         </Router>
       </LocalizationProvider>
