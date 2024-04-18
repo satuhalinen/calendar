@@ -1,6 +1,6 @@
 import EditHatch from "../components/editHatch/EditHatch";
 import "../calendar.css";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import SmallHeader from "../components/smallHeader/SmallHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -18,7 +18,7 @@ import {
   setAvailableAlternatives,
 } from "../store/alternativesSlice";
 import './editCalendar.css';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 function EditCalendar() {
   const backgroundColor = useSelector(
@@ -148,34 +148,36 @@ function EditCalendar() {
           </Card>
         </div>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <Button
+          <NavLink
             style={{
               width: "7%",
               margin: "0% 0% 2% 0%",
               backgroundColor: "#BA6C2C",
               color: "#FFFAF7",
               border: "none",
+              textDecoration: 'none',
             }}
             className="backToCreateCalendarButton"
-            href="/create-calendar"
+            to="/create-calendar"
           >
             Back
-          </Button>
+          </NavLink>
 
-          <Button
+          <NavLink
             onClick={saveHatchText}
             style={{
-              width: "15%",
               justifySelf: "center",
               backgroundColor: "#BA6C2C",
               color: "#FFFAF7",
               border: "none",
               margin: "0% 0% 2% 0%",
+              textDecoration: 'none',
             }}
             className="createCalendarButton"
+            to="#"
           >
             Create calendar
-          </Button>
+          </NavLink>
         </div>
       </div >
     </>
