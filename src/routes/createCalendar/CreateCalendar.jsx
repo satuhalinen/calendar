@@ -112,72 +112,61 @@ export default function CreateCalendar() {
   };
 
   return (
-    <Row className="main-row">
+    <Row className="mainContent">
       <Col xs={2}>
         <Leftbar />
       </Col>
       <Col xs={10}>
-        <Container className="text-center mx-auto">
-          <h1 className="header-crCAL">Create a Calendar</h1>
+        <Container className="text-center">
+          <p className="header-crCAL">Create a Calendar</p>
           <p className="para">Choose a title</p>
           <Row>
             <div>
-              <input type="text" onChange={handleInputValue} />
+              <input placeholder="Enter the title" className="createTitleInput" type="text" onChange={handleInputValue} />
             </div>
           </Row>
-          <p className="para">Choose free or not</p>
+          <p className="para ">Choose the number of hatches</p>
           <Row>
-            <Form className="crCAL-form">
-              {["Option 1", "Option 2"].map((option, index) => (
+            <Form className="crCAL-form2">
+              {["24", "28", "30", "31"].map((option, index) => (
                 <Form.Check
                   key={`radio-${index}`}
                   inline
                   label={option}
                   name="group1"
                   type="radio"
-                  id={`radioButton-${index}`}
+                  id={`radio-${index}`}
                   className="radioButton"
+                  onClick={() => handleHatchesNumber(option)}
                 />
               ))}
             </Form>
           </Row>
           <p className="para">Choose the color theme</p>
           <Row className="justify-content-center">
-            <Col>
+            <Col style={{ maxWidth: "340px" }}>
               <div>
-                <p>Calendar background color:</p>
+                <p className="colorOptionsTitle">Calendar background color:</p>
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "center",
                     position: "relative",
                   }}
+                  className="colorOptionsWrap"
                 >
                   <input
+                    className="colorOptionInput"
                     type="text"
                     placeholder={selectedColor}
-                    style={{
-                      width: "188px",
-                    }}
                   />
                   <Button
-                    style={{
-                      width: "30px",
-                      height: "30px",
-                      border: "1px solid black",
-                      backgroundColor: "transparent",
-                      borderRadius: "0",
-                    }}
+                    className="arrowDownButton"
                     onClick={handleBackgroundColorClick}
                   >
                     <ArrowDown
-                      style={{
-                        color: "black",
-                        marginBottom: "10px",
-                      }}
                     />
                   </Button>
-
                   {colorShow && (
                     <div
                       style={{
@@ -194,41 +183,29 @@ export default function CreateCalendar() {
                 </div>
               </div>
             </Col>
-            <Col>
+            <Col style={{ maxWidth: "340px" }}>
               <div>
-                <p>Choose title Font:</p>
+                <p className="colorOptionsTitle">Choose title Font:</p>
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "center",
                     position: "relative",
                   }}
+                  className="colorOptionsWrap"
                 >
                   <input
+                    className="colorOptionInput"
                     type="text"
                     placeholder={selectedTitleFont}
-                    style={{
-                      width: "188px",
-                    }}
                   />
                   <Button
-                    style={{
-                      width: "30px",
-                      height: "30px",
-                      border: "1px solid black",
-                      backgroundColor: "transparent",
-                      borderRadius: "0",
-                    }}
+                    className="arrowDownButton"
                     onClick={handleTitleFontSelect}
                   >
                     <ArrowDown
-                      style={{
-                        color: "black",
-                        marginBottom: "10px",
-                      }}
                     />
                   </Button>
-
                   {titleFontShow && (
                     <div
                       style={{
@@ -245,38 +222,28 @@ export default function CreateCalendar() {
                 </div>
               </div>
             </Col>
-            <Col>
+            <Col style={{ maxWidth: "340px" }}>
               <div>
-                <p>Choose Background Image:</p>
+                <p className="colorOptionsTitle">Choose Background Image:</p>
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "center",
                     position: "relative",
                   }}
+                  className="colorOptionsWrap"
                 >
                   <input
+                    className="colorOptionInput"
                     type="text"
                     placeholder={selectedImage}
-                    style={{
-                      width: "188px",
-                    }}
                   />
                   <Button
-                    style={{
-                      width: "30px",
-                      height: "30px",
-                      border: "1px solid black",
-                      backgroundColor: "transparent",
-                      borderRadius: "0",
-                    }}
+                    className="arrowDownButton"
                     onClick={handleImageClick}
                   >
                     <ArrowDown
-                      style={{
-                        color: "black",
-                        marginBottom: "10px",
-                      }}
+
                     />
                   </Button>
 
@@ -298,9 +265,9 @@ export default function CreateCalendar() {
             </Col>
           </Row>
           <Row className="justify-content-center">
-            <Col>
+            <Col style={{ maxWidth: "340px" }}>
               <div>
-                <p> Hatch background color:</p>
+                <p className="colorOptionsTitle">Choose hatch background color:</p>
                 <div
                   style={{
                     display: "flex",
@@ -309,27 +276,15 @@ export default function CreateCalendar() {
                   }}
                 >
                   <input
+                    className="colorOptionInput"
                     type="text"
                     placeholder={selectedHatchColor}
-                    style={{
-                      width: "188px",
-                    }}
                   />
                   <Button
-                    style={{
-                      width: "30px",
-                      height: "30px",
-                      border: "1px solid black",
-                      backgroundColor: "transparent",
-                      borderRadius: "0",
-                    }}
+                    className="arrowDownButton"
                     onClick={handleHatchColorSelect}
                   >
                     <ArrowDown
-                      style={{
-                        color: "black",
-                        marginBottom: "10px",
-                      }}
                     />
                   </Button>
 
@@ -349,9 +304,9 @@ export default function CreateCalendar() {
                 </div>
               </div>
             </Col>
-            <Col>
+            <Col style={{ maxWidth: "340px" }}>
               <div>
-                <p>Hatch Font:</p>
+                <p className="colorOptionsTitle">Choose hatch Font:</p>
                 <div
                   style={{
                     display: "flex",
@@ -360,27 +315,15 @@ export default function CreateCalendar() {
                   }}
                 >
                   <input
+                    className="colorOptionInput"
                     type="text"
                     placeholder={selectedFont}
-                    style={{
-                      width: "188px",
-                    }}
                   />
                   <Button
-                    style={{
-                      width: "30px",
-                      height: "30px",
-                      border: "1px solid black",
-                      backgroundColor: "transparent",
-                      borderRadius: "0",
-                    }}
+                    className="arrowDownButton"
                     onClick={handleFontSelect}
                   >
                     <ArrowDown
-                      style={{
-                        color: "black",
-                        marginBottom: "10px",
-                      }}
                     />
                   </Button>
 
@@ -400,9 +343,9 @@ export default function CreateCalendar() {
                 </div>
               </div>
             </Col>
-            <Col>
+            <Col style={{ maxWidth: "340px" }}>
               <div>
-                <p>Hatch font color:</p>
+                <p className="colorOptionsTitle">Choose font color:</p>
                 <div
                   style={{
                     display: "flex",
@@ -411,6 +354,7 @@ export default function CreateCalendar() {
                   }}
                 >
                   <input
+                    className="colorOptionInput"
                     type="text"
                     placeholder={selectedHatchFontColor}
                     style={{
@@ -418,20 +362,10 @@ export default function CreateCalendar() {
                     }}
                   />
                   <Button
-                    style={{
-                      width: "30px",
-                      height: "30px",
-                      border: "1px solid black",
-                      backgroundColor: "transparent",
-                      borderRadius: "0",
-                    }}
+                    className="arrowDownButton"
                     onClick={handleHatchFontColorSelect}
                   >
                     <ArrowDown
-                      style={{
-                        color: "black",
-                        marginBottom: "10px",
-                      }}
                     />
                   </Button>
 
@@ -454,7 +388,7 @@ export default function CreateCalendar() {
           </Row>
           <Row className="justify-content-center">
             <div>
-              <p style={{ marginTop: "80px" }}>
+              <p className="para" style={{ marginTop: "50px" }}>
                 Explore the calendar preview below and feel empowered to tweak
                 it as you see fit.
               </p>
@@ -478,20 +412,27 @@ export default function CreateCalendar() {
                   backgroundColor: selectedColor,
                   backgroundImage: `url(${selectedImage})`,
                   backgroundSize: "cover",
+                  boxShadow: "0px 0px 5px 0px #0000005e"
                 }}
               >
                 <div
                   style={{
-                    width: "250px",
+                    width: "auto",
                     height: "150px",
-                    backgroundColor: "#BA824F",
+                    padding: "20px",
                     borderRadius: "10px",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    fontSize: "1.5rem",
+                    textTransform: "uppercase",
+                    fontWeight: "600"
                   }}
                 >
-                  <p style={{ fontFamily: selectedTitleFont }}>{inputValue}</p>
+                  <p style={{
+                    fontFamily: selectedTitleFont,
+                    color: selectedHatchFontColor
+                  }}>{inputValue}</p>
                 </div>
                 <div
                   style={{
@@ -502,6 +443,7 @@ export default function CreateCalendar() {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    boxShadow: "0px 0px 5px 0px #0000005e"
                   }}
                 >
                   <p
@@ -522,6 +464,7 @@ export default function CreateCalendar() {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    boxShadow: "0px 0px 5px 0px #0000005e"
                   }}
                 >
                   <p
@@ -542,6 +485,7 @@ export default function CreateCalendar() {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    boxShadow: "0px 0px 5px 0px #0000005e"
                   }}
                 >
                   <p
@@ -556,23 +500,6 @@ export default function CreateCalendar() {
               </div>
             </div>
           </Row>
-          <p className="para ">Number of hatches</p>
-          <Row>
-            <Form className="crCAL-form2">
-              {["24", "28", "30", "31"].map((option, index) => (
-                <Form.Check
-                  key={`radio-${index}`}
-                  inline
-                  label={option}
-                  name="group1"
-                  type="radio"
-                  id={`radio-${index}`}
-                  className="radioButton"
-                  onClick={() => handleHatchesNumber(option)}
-                />
-              ))}
-            </Form>
-          </Row>
           <Link
             to={{
               pathname: "/edit-calendar",
@@ -584,6 +511,6 @@ export default function CreateCalendar() {
           </Link>
         </Container>
       </Col>
-    </Row>
+    </Row >
   );
 }

@@ -33,25 +33,31 @@ function EditHatch({ number }) {
   return (
     <Card
       style={{
-        width: "80%",
-        height: "80%",
+        width: "90%",
+        height: "100%",
         backgroundColor: backgroundColor,
       }}
+      className="hatchCard"
     >
-      <div className="hatch">{number}</div>
-      <DropdownButton id="dropdown-item-button" title="Choose a topic">
+      <div className="hatch" style={{ color: hatchFontColor }}>{number}</div>
+      <DropdownButton id="dropdown-item-button" title="Choose a topic"
+        style={{ backgroundColor: backgroundColor }}>
         <Dropdown.Item
           as="button"
           style={{
             backgroundColor: "#F9F5F3",
           }}
+          className="dropdownTopic"
           onClick={() => setSelectedTopic("adults")}
         >
           Adults
         </Dropdown.Item>
         <Dropdown.Item
           as="button"
-          style={{ backgroundColor: "#F9F5F3" }}
+          style={{
+            backgroundColor: "#F9F5F3",
+          }}
+          className="dropdownTopic"
           onClick={() => setSelectedTopic("animals")}
         >
           Animals
@@ -71,12 +77,13 @@ function EditHatch({ number }) {
                 fontFamily: hatchFont,
                 color: hatchFontColor,
               }}
+              className="dropdownItem"
             >
               {alternative}
             </Dropdown.Item>
           ))}
       </DropdownButton>
-    </Card>
+    </Card >
   );
 }
 export default EditHatch;

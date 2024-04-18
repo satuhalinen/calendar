@@ -13,11 +13,14 @@
     background-color: #ba6c2c !important;
 }
 
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    display: none;
+}
+
 .carousel {
-    margin: 0.5rem 7rem;
-    background-color: #F4EDE7;
+    margin: 0rem 5rem;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.214);
     padding: 1rem;
 }
 
@@ -27,7 +30,7 @@
 
 .carouselImg {
     position: relative;
-    max-height: 75vh;
+    max-height: 76vh;
     max-width: 100%;
     object-fit: contain;
 }

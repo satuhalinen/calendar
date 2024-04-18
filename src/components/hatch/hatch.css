@@ -1,11 +1,56 @@
 .flip-card {
-  transition: transform 0.6s;
+  transition: transform all 2s ease;
   transform-style: preserve-3d;
   background-color: #cbd6d5;
 }
 
 .flipped {
   transform: rotateY(180deg);
-  color: white;
-  background-color: white;
+  filter: brightness(1.5) !important;
+}
+
+.hatchModalTitle {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.hatchModalButton {
+  width: 20%;
+  background: #597773 !important;
+  box-shadow: 1px 1px 5px #27120478;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+  color: #f9f5f3;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.hatchModalButton:hover {
+  box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237) !important;
+  background-color: #425f5b !important;
+}
+
+.hatchCardUsed {
+  padding: 10px;
+  margin-bottom: 1rem;
+  box-shadow: 0px 0px 5px 0px #0000005e;
+  filter: saturate(0.8);
+  transition: all 0.3s ease;
+}
+
+.hatchCardUsed:hover {
+  transform: scale(1.05);
+  filter: saturate(1);
+}
+
+.hatchModalContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F4EDE7 !important;
+  border: none;
 }

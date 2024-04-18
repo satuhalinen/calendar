@@ -15,7 +15,7 @@ export default function Header() {
   const location = useLocation();
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  const adminHeaderColor = ['/', '/adminpanel', '/admin-calendars', '/create-calendar', '/edit-calendar', '/user-management', '/customer-messages'];
+  const adminHeaderColor = ['/', '/adminpanel', '/admin-calendars', '/create-calendar', '/edit-calendar', '/user-management', '/customer-messages', '/login', '/register', '/about', '/terms-and-conditions', '/contact'];
   const userHeaderRoutes = ['/', '/login', '/register', '/about', '/terms-and-conditions', '/contact'];
   const authenticatedUserRoutes = ['/profile', '/calendars', '/favorites', '/logout', '/account-settings'];
   const authenticatedAdminRoutes = ['/adminpanel', '/logout', '/admin-calendars', '/create-calendar', '/user-management', '/customer-messages'];
@@ -50,13 +50,15 @@ export default function Header() {
     <Navbar className={isAdminRoute ? 'navBarAdmin' : 'navBarDefault'} fixed='top'>
       <Container>
         {imagesLoaded && (
-          <Image
-            src={isAdminRoute ? logo1 : logo2}
-            width="auto"
-            height="70"
-            className="d-inline-block align-top"
-            alt="logo"
-          />
+          <NavLink to="/">
+            <Image
+              src={isAdminRoute ? logo1 : logo2}
+              width="auto"
+              height="70"
+              className="d-inline-block align-top"
+              alt="logo"
+            />
+          </NavLink>
         )}
         <Nav className="links">
           {isUserRoute && (

@@ -2,11 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   selectedImage: null,
-  selectedColor: "#597773",
-  selectedFont: "sans-serif",
-  selectedTitleFont: "Lato",
-  selectedHatchColor: "#BA824F",
-  selectedHatchFontColor: "#c6122e",
+  savedImageURL: null,
+  selectedColor: "#ab7244",
+  selectedFont: "Raleway",
+  selectedTitleFont: "Raleway",
+  selectedHatchColor: "#c18e60",
+  selectedHatchFontColor: "#f5ebeb",
   selectedHatchesNumber: 31,
   colorShow: false,
   fontShow: false,
@@ -24,13 +25,15 @@ const calendarStylingSlice = createSlice({
     setSelectedImage: (state, action) => {
       state.selectedImage = action.payload;
     },
+    saveImageURL: (state, action) => {
+      state.savedImageURL = action.payload;
+    },
     setSelectedColor: (state, action) => {
       state.selectedColor = action.payload;
     },
     setSelectedFont: (state, action) => {
       state.selectedFont = action.payload;
     },
-
     setSelectedTitleFont: (state, action) => {
       state.selectedTitleFont = action.payload;
     },
@@ -69,6 +72,7 @@ const calendarStylingSlice = createSlice({
 });
 
 export const {
+  saveImageURL,
   setSelectedImage,
   setSelectedColor,
   setSelectedFont,

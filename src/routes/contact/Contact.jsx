@@ -59,7 +59,7 @@ const ContactForm = () => {
     };
 
     return (
-        <Col className="mainContent">
+        <Col className="mainContent contactWrap">
             <Container className="contactContainer">
                 <Form className="contactForm" onSubmit={handleSubmit}>
                     <p className="contactTitle">Contact Us</p>

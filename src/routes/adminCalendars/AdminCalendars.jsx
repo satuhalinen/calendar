@@ -1,15 +1,15 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Card from "react-bootstrap/Card";
-import happySymbol from "../../assets/happy.svg";
+import { NavLink } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import "../adminCalendars/adminCalendars.css";
 import "../adminpanel/adminpanel.css";
 import Leftbar from "../../components/leftbar/Leftbar";
 import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { db } from "../../auth/firebase";
-import { NavLink } from "react-router-dom";
+import { db, storage } from "../../auth/firebase";
+import { ref, getDownloadURL } from "firebase/storage";
 
 export default function AdminCalendars() {
   const [calendars, setCalendars] = useState([]);
@@ -18,13 +18,40 @@ export default function AdminCalendars() {
     const fetchCalendars = async () => {
       const calendarCollection = collection(db, "calendars");
       const calendarSnapshot = await getDocs(calendarCollection);
-      setCalendars(
-        calendarSnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      );
+
+      const calendarData = [];
+      for (const doc of calendarSnapshot.docs) {
+        const data = doc.data();
+        const imageUrl = await getImageUrl(data.calendarTitle);
+        calendarData.push({ ...data, id: doc.id, imageUrl });
+      }
+
+      setCalendars(calendarData);
     };
 
     fetchCalendars();
   }, []);
+
+  const getImageUrl = async (calendarTitle) => {
+    try {
+      if (!calendarTitle) {
+        console.error("Calendar title is undefined");
+        return null;
+      }
+
+      const storageRef = ref(storage, `images/${calendarTitle}.png`);
+      const url = await getDownloadURL(storageRef);
+      return url;
+    } catch (error) {
+      if (error.code === 'storage/object-not-found') {
+        console.error(`Image not found for title: ${calendarTitle}`);
+        return 'https://via.placeholder.com/150';
+      } else {
+        console.error("Error fetching image URL:", error);
+        return null;
+      }
+    }
+  };
 
   return (
     <Row className="mainContent">
@@ -34,7 +61,6 @@ export default function AdminCalendars() {
       <Col xs={9} className="adminCalendars">
         <p className="adminCalendarTitle">Calendars</p>
         <div className="dropDowns">
-          {" "}
           <div className="price">
             <DropdownButton
               className="adminCalendarsDropDown"
@@ -48,7 +74,7 @@ export default function AdminCalendars() {
             </DropdownButton>
           </div>
           <div className="topic">
-            <DropdownButton id="dropdown-item-button" title="Choose topic">
+            <DropdownButton id="dropdown-item-button" title="Choose topic" className="dropdownItemAdmin">
               <Dropdown.Item as="button">Adults</Dropdown.Item>
               <Dropdown.Item as="button">Animals</Dropdown.Item>
               <Dropdown.Item as="button">Children and teenagers</Dropdown.Item>
@@ -62,15 +88,22 @@ export default function AdminCalendars() {
               key={calendar.id}
               className="calendarCard d-flex flex-column justify-content-center align-items-center"
             >
-              <NavLink style={{ textDecoration: "none" }}>
-                <Card.Img variant="top" src={happySymbol} />
-              </NavLink>
-              <Card.Body className="d-flex flex-column justify-content-center align-items-center">
+              <Card.Body className="d-flex flex-column justify-content-center align-items-center adminCalendarBody">
+                <NavLink to={`/calendar`} style={{ textDecoration: "none" }}>
+                  <Card.Img
+                    src={calendar.imageUrl}
+                    className="calendarScreenShot"
+                  />
+                </NavLink>
                 <Card.Title style={{ color: "black" }}>
-                  {calendar.id}
+                  {calendar.title}
                 </Card.Title>
+                <button
+                  className="modifyButton"
+                >
+                  Modify
+                </button>
               </Card.Body>
-
               <NavLink
                 to={`/modify-old-calendar/${calendar.id}`}
                 className="btn btn-primary mt-auto"
