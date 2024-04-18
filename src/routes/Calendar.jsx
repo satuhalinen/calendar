@@ -96,11 +96,11 @@ const Calendar = () => {
       dispatch(saveImageURL(dataURL));
 
       try {
-        const storageRef = ref(storage, "images/" + title + ".png");
+        const storageRef = ref(storage, `screenshots/${id}.png`);
         await uploadString(storageRef, dataURL, "data_url");
         const downloadURL = await getDownloadURL(storageRef);
 
-        const calendarDocRef = doc(db, "calendars", title);
+        const calendarDocRef = doc(db, "calendars", id);
         await updateDoc(calendarDocRef, {
           imageURL: downloadURL,
         });
