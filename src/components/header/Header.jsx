@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,6 +13,7 @@ import avatar from '../../assets/avatar.png';
 import { ref, getDownloadURL } from 'firebase/storage';
 
 export default function Header() {
+  const { id } = useParams();
   const [user] = useAuthState(auth);
   const location = useLocation();
   const [imagesLoaded, setImagesLoaded] = useState(false);
@@ -29,9 +30,9 @@ export default function Header() {
   const isAuthenticatedAdmin = authenticatedAdminRoutes.includes(location.pathname);
 
   useEffect(() => {
-    if (user?.photoURL) {
+    if (isAuthenticatedUser && user?.photoURL) {
       setPhotoUrl(user.photoURL);
-    } else {
+    } else if (isAuthenticatedUser && !user?.photoURL) {
       const fetchPhotoUrl = async () => {
         try {
           const photoRef = ref(storage, `${user.uid}.jpg`);
@@ -44,8 +45,7 @@ export default function Header() {
 
       fetchPhotoUrl();
     }
-  }, [user]);
-
+  }, [user, isAuthenticatedUser]);
 
   // Preload images to make the change faster
   useEffect(() => {
@@ -64,7 +64,7 @@ export default function Header() {
     preloadImages();
   }, []);
 
-  if (location.pathname === '/calendar' || location.pathname === '/edit-calendar') {
+  if (location.pathname === '/calendar' || location.pathname === '/edit-calendar' || location.pathname === `/calendar/${id}`) {
     return null;
   }
 
