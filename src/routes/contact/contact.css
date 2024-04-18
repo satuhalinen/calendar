@@ -13,14 +13,25 @@
     text-align: center;
     background-color: #f4ede7;
     border-radius: 10px;
-    padding: 15px;
-    max-width: 37vw;
+    padding: 20px;
+    max-width: 33vw;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
 }
 
+.contactForm {
+    text-align: left;
+}
+
+.contactFormButton {
+    display: flex;
+    justify-content: center;
+}
+
 .contactTitle {
-    font-size: 1.6rem;
+    text-align: center;
+    font-size: 30px;
     margin-bottom: 10px;
+    font-weight: 500;
     background: none;
     border: none;
 }
@@ -33,15 +44,14 @@
 
 .formGroupTitle {
     font-size: 0.9rem;
-    margin: 7px 0 0;
+    margin: 0.5rem 0.5rem 0;
 }
 
 .formInput {
-    width: 22vw;
+    width: 18vw;
     padding: 0.7rem;
-    text-align: center;
     margin: 5px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: none;
     font-size: 0.8rem;
 }
@@ -58,7 +68,6 @@
 .formInput::placeholder {
     color: rgb(129, 127, 127);
     font-size: 0.8rem;
-    font-style: italic;
 }
 
 .contactButton {
@@ -74,6 +83,7 @@
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s ease;
+    font-size: 0.85rem;
 }
 
 .contactButton:hover {
