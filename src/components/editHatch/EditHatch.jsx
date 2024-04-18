@@ -70,9 +70,9 @@ function EditHatch({ number }) {
       </DropdownButton>
       <DropdownButton id="dropdown-item-button" title="Choose an alternative">
         {alternatives
-          .filter((alternative) => alternative.id === selectedTopic) //adults
+          .filter((alternative) => alternative.id === selectedTopic)
           .flatMap((alternative) => alternative.content)
-          .map((alternative) => alternative.title) // ["be a friend", "go for a walk"]
+          .map((alternative) => alternative.title)
           .map((alternative, index) => (
             <Dropdown.Item
               key={index}

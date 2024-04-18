@@ -94,14 +94,14 @@ function EditCalendar() {
     (state) => state.alternatives.savedAlternatives
   );
 
-  const fetchAlternativesFromFirebase = async () => {
+  /*const fetchAlternativesFromFirebase = async () => {
     const docRef = doc(db, "calendars", "calendar");
     const docSnapshot = await getDoc(docRef);
     if (docSnapshot.exists()) {
-      const data = docSnapshot.data().content;
+      const data = docSnapshot.data().content.title;
       if (data !== undefined) {
         dispatch(fetchFromFirebase(data));
-        console.log("data", data);
+        console.log("data edit calendarissa on", data);
       }
     }
   };
@@ -110,7 +110,7 @@ function EditCalendar() {
     (async () => {
       await fetchAlternativesFromFirebase();
     })();
-  }, []);
+  }, []);*/
 
   return (
     <>
