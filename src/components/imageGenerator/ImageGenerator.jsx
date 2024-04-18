@@ -1,44 +1,35 @@
-import { useEffect, useRef } from "react";
+import React, { useRef, useState } from "react";
 import html2canvas from "html2canvas";
-import Calendar from "../../routes/Calendar";
 
 const ImageGenerator = () => {
-  const generatedImageRef = useRef(null);
+  const toCaptureRef = useRef(null);
+  const [imageURL, setImageURL] = useState(null);
 
-  useEffect(() => {
-    generateImage();
-  }, []);
+  const captureScreenshot = () => {
+    if (!toCaptureRef.current) return;
 
-  const generateImage = async () => {
-    if (!generatedImageRef.current) return;
-
-    const scaleValue = 2;
-    const originalTransform = generatedImageRef.current.style.transform;
-    generatedImageRef.current.style.transform = `scale(${scaleValue})`;
-
-    const canvas = await html2canvas(generatedImageRef.current, {
-      scrollY: -window.scrollY,
+    const canvasPromise = html2canvas(toCaptureRef.current, {
+      useCORS: true
     });
 
-    generatedImageRef.current.style.transform = originalTransform;
-
-    const url = canvas.toDataURL();
-    setImageUrl(url);
+    canvasPromise.then((canvas) => {
+      const dataURL = canvas.toDataURL("image/png");
+      setImageURL(dataURL);
+    });
   };
 
   return (
-    <div style={{ width: "200px", height: "100px", overflow: "hidden" }}>
-      <div
-        ref={generatedImageRef}
-        style={{
-          width: "100%",
-          height: "100%",
-          position: "relative",
-          top: "-200px",
-        }}
-      >
-        <Calendar style={{ transform: "scale:1.5" }} />
-      </div>
+    <div ref={toCaptureRef}>
+      <h1>Hello hello</h1>
+      <img
+        alt="temp"
+        style={{ width: "500px" }}
+        src="https://images.pexels.com/photos/2694037/pexels-photo-2694037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+      />
+      <button onClick={captureScreenshot}>ScreenShot</button>
+
+      {/* Render the captured image if available */}
+      {imageURL && <img src={imageURL} alt="Captured" />}
     </div>
   );
 };

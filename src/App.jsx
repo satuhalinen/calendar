@@ -12,6 +12,7 @@ import Contact from "./routes/contact/Contact";
 import CreateCalendar from "./routes/createCalendar/CreateCalendar";
 import CustomerMessages from "./routes/customerMessages/CustomerMessages";
 import EditCalendar from "./routes/EditCalendar";
+import ModifyOldCalendar from "./routes/modifyOldCalendar/ModifyOldCalendar";
 import Favorites from "./routes/favorites/Favorites";
 import Login from "./routes/login/Login";
 import Register from "./routes/register/Register";
@@ -23,13 +24,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import ProtectedRoute from "./auth/ProtectedRoute";
+
 import ErrorPage from "./routes/errorPage/errorPage";
+
+import { ScrollToTop } from "react-router-scroll-to-top";
+
 
 function App() {
   return (
     <Provider store={store}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Router>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Root />}>
               <Route index element={<LandingPage />} />
@@ -54,6 +60,13 @@ function App() {
                 element={<ProtectedRoute component={Calendar} />}
               />
               <Route
+
+
+                path="/calendar/:id"
+                element={<ProtectedRoute adminOnly component={Calendar} />}
+              />
+              <Route
+
                 path="/calendars"
                 element={<ProtectedRoute component={Calendars} />}
               />
@@ -94,7 +107,21 @@ function App() {
                 element={<ProtectedRoute adminOnly component={EditCalendar} />}
               />
             </Route>
+
             <Route path="*" element={<ErrorPage />} />
+            <Route
+              path="/modify-old-calendar"
+              element={
+                <ProtectedRoute adminOnly component={ModifyOldCalendar} />
+              }
+            />
+            <Route
+              path="/modify-old-calendar/:id"
+              element={
+                <ProtectedRoute adminOnly component={ModifyOldCalendar} />
+              }
+            />
+
           </Routes>
         </Router>
       </LocalizationProvider>

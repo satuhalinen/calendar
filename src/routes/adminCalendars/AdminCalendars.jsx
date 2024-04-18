@@ -1,30 +1,18 @@
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import happySymbol from "../../assets/happy.svg";
-import { Col, NavLink, Row } from "react-bootstrap";
-import "../adminCalendars/adminCalendars.css";
-import "../adminpanel/adminpanel.css";
-import Leftbar from "../../components/leftbar/Leftbar";
-import { collection, getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { db } from "../../auth/firebase";
+import { Card, Col, Dropdown, DropdownButton, Row } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import Leftbar from '../../components/leftbar/Leftbar';
+import defaultScreenshot from '../../assets/defaultScreenshot.png';
+import useCalendarData from '../../hooks/useCalendarData';
+import '../adminCalendars/adminCalendars.css';
+import '../adminpanel/adminpanel.css';
 
 export default function AdminCalendars() {
-  const [calendars, setCalendars] = useState([]);
 
-  useEffect(() => {
-    const fetchCalendars = async () => {
-      const calendarCollection = collection(db, "calendars");
-      const calendarSnapshot = await getDocs(calendarCollection);
-      setCalendars(
-        calendarSnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      );
-    };
+  const { calendars, intersectionObserverRef } = useCalendarData();
 
-    fetchCalendars();
-  }, []);
+
+
+
 
   return (
     <Row className="mainContent">
@@ -34,7 +22,6 @@ export default function AdminCalendars() {
       <Col xs={9} className="adminCalendars">
         <p className="adminCalendarTitle">Calendars</p>
         <div className="dropDowns">
-          {" "}
           <div className="price">
             <DropdownButton
               className="adminCalendarsDropDown"
@@ -48,7 +35,11 @@ export default function AdminCalendars() {
             </DropdownButton>
           </div>
           <div className="topic">
-            <DropdownButton id="dropdown-item-button" title="Choose topic">
+            <DropdownButton
+              id="dropdown-item-button"
+              title="Choose topic"
+              className="dropdownItemAdmin"
+            >
               <Dropdown.Item as="button">Adults</Dropdown.Item>
               <Dropdown.Item as="button">Animals</Dropdown.Item>
               <Dropdown.Item as="button">Children and teenagers</Dropdown.Item>
@@ -56,31 +47,45 @@ export default function AdminCalendars() {
             </DropdownButton>
           </div>
         </div>
-        <div className="cards">
+        <div className="adminCalendarCards">
           {calendars.map((calendar) => (
             <Card
               key={calendar.id}
               className="calendarCard d-flex flex-column justify-content-center align-items-center"
+              data-calendar-id={calendar.id}
+              ref={(calendarRef) =>
+                calendarRef &&
+                intersectionObserverRef.current &&
+                intersectionObserverRef.current.observe(calendarRef)
+              }
             >
-              <NavLink style={{ textDecoration: "none" }}>
-                <Card.Img variant="top" src={happySymbol} />
-              </NavLink>
-              <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-                <Card.Title style={{ color: "black" }}>
-                  {calendar.id}
+              <Card.Body className="d-flex flex-column justify-content-center align-items-center adminCalendarBody">
+
+                <NavLink
+                  to={`/calendar/${calendar.id}`}
+                  style={{ textDecoration: 'none' }}
+                >
+
+                  <Card.Img
+                    src={calendar.imageUrl || defaultScreenshot}
+                    data-src={calendar.imageUrl}
+                    className="calendarScreenShot"
+                  />
+                </NavLink>
+                <Card.Title style={{ color: 'black' }}>
+                  {calendar.title}
                 </Card.Title>
+
+                <button className="modifyButton">Modify</button>
+
+
               </Card.Body>
-              <Button
-                variant="primary"
-                className="mt-auto"
-                style={{
-                  backgroundColor: "#BA6C2C",
-                  border: "none",
-                  color: "#F4EDE7",
-                }}
+              <NavLink
+                to={`/modify-old-calendar/${calendar.id}`}
+                className="modifyButton btn btn-primary"
               >
                 Modify
-              </Button>
+              </NavLink>
             </Card>
           ))}
         </div>

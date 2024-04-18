@@ -6,7 +6,7 @@ const MessageModal = ({ show, handleClose, message }) => {
         return null;
     }
     return (
-        <Modal className="messageModal" show={show} onHide={handleClose} >
+        <Modal centered className="messageModal" show={show} onHide={handleClose} >
             <Modal.Header className="messageModalHeader">
                 <Modal.Title className='messageModalTitle'>{message.subject}</Modal.Title>
             </Modal.Header>

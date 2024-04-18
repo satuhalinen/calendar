@@ -1,0 +1,38 @@
+.editCalendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.editCalendarTitle {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.082);
+}
+
+.createCalendarButton,
+.backToCreateCalendarButton {
+    background-color: #ba6c2c;
+    box-shadow: 1px 1px 3px rgba(15, 7, 1, 0.471);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+    font-size: 1rem;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.5rem 2rem;
+    margin: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.createCalendarButton:hover,
+.backToCreateCalendarButton:hover {
+    box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237) !important;
+    background-color: #a65919 !important;
+    color: white;
+}

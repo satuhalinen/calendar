@@ -1,3 +1,10 @@
+.contactWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .contactContainer {
     display: flex;
     flex-direction: column;
@@ -5,16 +12,26 @@
     justify-content: center;
     text-align: center;
     background-color: #f4ede7;
-    margin-bottom: 20px;
     border-radius: 10px;
     padding: 20px;
-    max-width: 37vw;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
+    max-width: 33vw;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
+}
+
+.contactForm {
+    text-align: left;
+}
+
+.contactFormButton {
+    display: flex;
+    justify-content: center;
 }
 
 .contactTitle {
-    font-size: 32px;
+    text-align: center;
+    font-size: 30px;
     margin-bottom: 10px;
+    font-weight: 500;
     background: none;
     border: none;
 }
@@ -26,18 +43,17 @@
 }
 
 .formGroupTitle {
-    font-size: 1rem;
-    margin: 7px 0 0;
+    font-size: 0.9rem;
+    margin: 0.5rem 0.5rem 0;
 }
 
 .formInput {
-    width: 22vw;
+    width: 18vw;
     padding: 0.7rem;
-    text-align: center;
     margin: 5px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: none;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .formInput:focus {
@@ -51,10 +67,8 @@
 
 .formInput::placeholder {
     color: rgb(129, 127, 127);
-    font-size: 0.9rem;
-    font-style: italic;
+    font-size: 0.8rem;
 }
-
 
 .contactButton {
     background-color: #ba6c2c;
@@ -69,6 +83,7 @@
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s ease;
+    font-size: 0.85rem;
 }
 
 .contactButton:hover {

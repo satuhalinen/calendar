@@ -1,7 +1,7 @@
-import EditHatch from "../components/editHatch/EditHatch";
-import "../calendar.css";
+import EditHatch from "../../components/editHatch/EditHatch";
+import "../../calendar.css";
 import { Card, Button } from "react-bootstrap";
-import SmallHeader from "../components/smallHeader/SmallHeader";
+import SmallHeader from "../../components/smallHeader/SmallHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
@@ -10,17 +10,18 @@ import {
   getDoc,
   serverTimestamp,
   doc,
-  addDoc,
+  setDoc,
 } from "firebase/firestore";
-import { db } from "../auth/firebase";
+import { db } from "../../auth/firebase";
 import {
   fetchFromFirebase,
   setAvailableAlternatives,
-} from "../store/alternativesSlice";
-import './editCalendar.css';
-import { useNavigate } from "react-router-dom";
+} from "../../store/alternativesSlice";
+import { useParams } from "react-router-dom";
 
-function EditCalendar() {
+function ModifyOldCalendar() {
+  const { id } = useParams();
+  console.log(id);
   const backgroundColor = useSelector(
     (state) => state.calendarStyling.selectedColor
   );
@@ -70,10 +71,10 @@ function EditCalendar() {
       await fetchAlternatives();
     })();
   }, []);
-  const navigate = useNavigate();
+
   const saveHatchText = async () => {
     if (calendarContent !== undefined) {
-      const docRef = await addDoc(collection(db, "calendars"), {
+      await setDoc(doc(db, "calendars", id), {
         content: calendarContent,
         calendarBackgroundColor: backgroundColor,
         calendarHatchColor: hatchColor,
@@ -85,8 +86,6 @@ function EditCalendar() {
         calendarTitle: title,
         createdAt: serverTimestamp(),
       });
-      const calendarId = docRef.id;
-      navigate(`/calendar/${calendarId}`);
     }
   };
 
@@ -95,7 +94,7 @@ function EditCalendar() {
   );
 
   const fetchAlternativesFromFirebase = async () => {
-    const docRef = doc(db, "calendars", "calendar");
+    const docRef = doc(db, "calendars", id);
     const docSnapshot = await getDoc(docRef);
     if (docSnapshot.exists()) {
       const data = docSnapshot.data().content;
@@ -115,71 +114,61 @@ function EditCalendar() {
     <>
       <SmallHeader />
       <div style={{ display: "grid" }} className="editCalendar">
-        <div className="calendarSections"
-          style={{ display: "flex" }}>
+        <Card.Title
+          style={{
+            textAlign: "center",
+            margin: "3% 0% 0% 0%",
+            fontSize: "40px",
+          }}
+        >
+          <p style={{ fontFamily: titleFont }}>{title}</p>
+        </Card.Title>
+        <div className="calendarSections" style={{ display: "flex" }}>
           <Card
+            className="calendar"
             style={{
-              margin: "1.5% 0",
-              backgroundImage: `url(${selectedImage})`,
+              margin: "2%",
               backgroundColor: backgroundColor,
+              backgroundImage: `url(${selectedImage})`,
               backgroundSize: "cover",
-              boxShadow: "0px 0px 5px 0px #00000059",
-              border: "none",
             }}
           >
-            <Card.Title
-              style={{
-                textAlign: "center",
-                margin: "3% 0% 0% 0%",
-                fontFamily: titleFont,
-                color: selectedHatchFontColor,
-              }}
-
-            >
-              <p className="editCalendarTitle">{title}</p>
-            </Card.Title>
-            <div
-              className="calendar"
-            >
-              {Array.from({ length: selectedHatchesNumber || 31 }).map((_, i) => (
-                <EditHatch key={i} number={i + 1} />
-              ))}
-            </div>
+            {Array.from({ length: selectedHatchesNumber || 31 }).map((_, i) => (
+              <EditHatch key={i} number={i + 1} />
+            ))}
           </Card>
         </div>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
           <Button
             style={{
-              width: "7%",
+              width: "20%",
               margin: "0% 0% 2% 0%",
               backgroundColor: "#BA6C2C",
               color: "#FFFAF7",
               border: "none",
             }}
-            className="backToCreateCalendarButton"
             href="/create-calendar"
           >
-            Back
+            back
           </Button>
 
           <Button
             onClick={saveHatchText}
             style={{
-              width: "15%",
+              width: "20%",
               justifySelf: "center",
               backgroundColor: "#BA6C2C",
               color: "#FFFAF7",
               border: "none",
               margin: "0% 0% 2% 0%",
             }}
-            className="createCalendarButton"
           >
-            Create calendar
+            Save calendar
           </Button>
         </div>
-      </div >
+      </div>
     </>
   );
 }
 
-export default EditCalendar;
+export default ModifyOldCalendar;

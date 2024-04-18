@@ -12,8 +12,14 @@ const Footer = () => {
     "/admin-calendars",
     "/create-calendar",
     "/edit-calendar",
+    "/calendar",
     "/user-management",
     "/customer-messages",
+    "/login",
+    "/register",
+    "/about",
+    "/terms-and-conditions",
+    "/contact",
   ];
   const isAdminRoute = adminFooterColor.includes(location.pathname);
 
