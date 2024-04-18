@@ -1,11 +1,16 @@
+.loginWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f9f5f3;
+}
+
 .loginContainer {
-  margin: auto;
   width: 400px;
   margin-bottom: 10px;
 }
 
 .loginFormWrap {
-  margin-top: 1rem;
   background: #f4ede7;
   padding: 2rem;
   border-radius: 5px;
@@ -19,22 +24,29 @@
 
 .loginFormGroup label {
   display: block;
-  font-size: 15px;
-  margin-bottom: 0.3rem;
-  margin-left: 3.2rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+  margin-left: 3.4rem;
   color: #000000;
   text-align: left;
 }
 
 .loginFormGroup input {
-  width: 70%;
-  padding: 10px;
+  width: 16vw;
+  padding: 0.7rem;
+  margin: 5px;
   border-radius: 5px;
-  border: 1px solid #a7a7a7;
+  border: none;
+  font-size: 0.8rem;
+}
+
+.loginFormGroup input:hover {
+  box-shadow: 0 0 5px rgba(143, 56, 15, 0.743);
 }
 
 .loginFormGroup input:focus {
   outline: none;
+  box-shadow: 0 0 5px rgba(143, 56, 15, 0.416);
 }
 
 .loginBtn {
@@ -46,8 +58,7 @@
   padding: 10px;
   border-radius: 5px;
   border: none;
-  font-size: 12px;
-  text-transform: uppercase;
+  font-size: 0.85rem;
   margin-bottom: 20px;
 }
 
@@ -195,18 +206,23 @@
   0% {
     transform: translateX(0);
   }
+
   20% {
     transform: translateX(-5px);
   }
+
   40% {
     transform: translateX(5px);
   }
+
   60% {
     transform: translateX(-5px);
   }
+
   80% {
     transform: translateX(5px);
   }
+
   100% {
     transform: translateX(0);
   }
