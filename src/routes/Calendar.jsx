@@ -46,9 +46,11 @@ const Calendar = () => {
         dispatch(setSelectedHatchFontColor(data.calendarHatchFontColor));
         dispatch(setSelectedHatchesNumber(data.calendarHatchesNumber));
         dispatch(setInputValue(data.calendarTitle));
+
       } else {
         console.log("No such document!");
       }
+
     } catch (error) {
       console.log("Error fetching content", error);
     }
