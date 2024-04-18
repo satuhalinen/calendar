@@ -10,6 +10,7 @@ import { BsImage } from "react-icons/bs";
 import "./profile.css";
 import avatar from "../../assets/avatar.png";
 import defaultScreenshot from "../../assets/defaultScreenshot.png";
+import useCalendarData from "../../hooks/useCalendarData";
 
 export default function Profile() {
   const [user] = useAuthState(auth);
@@ -17,22 +18,7 @@ export default function Profile() {
   const [loading, setLoading] = useState(false);
   const [photoUrl, setPhotoUrl] = useState(avatar);
   const [userData, setUserData] = useState({ name: "", email: "" });
-  const [calendarData, setCalendarData] = useState(null);
-
-  useEffect(() => {
-    const fetchUserCalendars = async () => {
-      const userCalendars = [];
-      const calendarQuerySnapshot = await getDocs(collection(db, "calendars"));
-      calendarQuerySnapshot.forEach((doc) => {
-        userCalendars.push({ id: doc.id, ...doc.data() });
-      });
-      setCalendarData(userCalendars);
-    };
-
-    fetchUserCalendars();
-  }, []);
-
-  console.log("calendarData:", calendarData);
+  const { calendars, intersectionObserverRef } = useCalendarData();
 
   useEffect(() => {
     if (!user) return;
@@ -123,10 +109,19 @@ export default function Profile() {
       <h3 className="h3savedCalendars">Saved calendars</h3>
       <Container>
         <Row className="favoriteCards">
-          {calendarData?.slice(0, 6).map((calendar) => (
-            <Col xs={12} md={4} key={calendar.id} className="calendarCard profileCalendar">
+          {calendars.slice(0, 6).map((calendar) => (
+            <Col
+              xs={12} md={4}
+              key={calendar.id}
+              className="calendarCard profileCalendar"
+              data-calendar-id={calendar.id}
+              ref={(calendarRef) =>
+                calendarRef &&
+                intersectionObserverRef.current &&
+                intersectionObserverRef.current.observe(calendarRef)
+              }>
               <NavLink to={`/calendar/${calendar.id}`} className="calendarLinkFavorite">
-                <img src={defaultScreenshot} alt="no img" className="defaultScreenshotFavorite" />
+                <img src={calendar.imageUrl || defaultScreenshot} alt="no img" className="defaultScreenshotFavorite" />
                 <button className="useCalendarButton">Use Calendar</button>
               </NavLink>
             </Col>
