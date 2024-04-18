@@ -52,7 +52,7 @@
     padding: 0.7rem;
     margin: 5px;
     border-radius: 5px;
-    border: none;
+    border: 0.2px solid #bbbbbb;
     font-size: 0.8rem;
 }
 

@@ -1,10 +1,9 @@
-import { DropdownButton } from "react-bootstrap";
-import { Dropdown } from "react-bootstrap";
-import "./editHatch.css";
+import { DropdownButton, Dropdown } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { saveAlternatives } from "../../store/alternativesSlice";
+import "./editHatch.css";
 
 function EditHatch({ number }) {
   const alternatives = useSelector(
@@ -12,6 +11,7 @@ function EditHatch({ number }) {
   );
 
   const [selectedTopic, setSelectedTopic] = useState(null);
+  const [selectedAlternative, setSelectedAlternative] = useState(null);
   const dispatch = useDispatch();
 
   function saveAlternative(number, alternative) {
@@ -43,52 +43,29 @@ function EditHatch({ number }) {
         {number}
       </div>
       <DropdownButton
-        id="dropdown-item-button"
-        title="Choose a topic"
+        id="dropdown-topic-button"
+        title={selectedTopic ? selectedTopic : "Choose a topic"}
         style={{ backgroundColor: backgroundColor }}
       >
-        <Dropdown.Item
-          as="button"
-          style={{
-            backgroundColor: "#F9F5F3",
-          }}
-          className="dropdownTopic"
-          onClick={() => setSelectedTopic("Adults")}
-        >
-          Adults
-        </Dropdown.Item>
-        <Dropdown.Item
-          as="button"
-          style={{
-            backgroundColor: "#F9F5F3",
-          }}
-          className="dropdownTopic"
-          onClick={() => setSelectedTopic("Animals")}
-        >
-          Animals
-        </Dropdown.Item>
-        <Dropdown.Item
-          as="button"
-          style={{
-            backgroundColor: "#F9F5F3",
-          }}
-          className="dropdownTopic"
-          onClick={() => setSelectedTopic("Children and teenagers")}
-        >
-          Children and teenagers
-        </Dropdown.Item>
-        <Dropdown.Item
-          as="button"
-          style={{
-            backgroundColor: "#F9F5F3",
-          }}
-          className="dropdownTopic"
-          onClick={() => setSelectedTopic("Elderly")}
-        >
-          Elderly
-        </Dropdown.Item>
+        {["Adults", "Animals", "Children and teenagers", "Elderly"].map((topic) => (
+          <Dropdown.Item
+            key={topic}
+            as="button"
+            style={{
+              backgroundColor: selectedTopic === topic ? "lightgrey" : "#F9F5F3",
+            }}
+            className="dropdownTopic"
+            onClick={() => setSelectedTopic(topic)}
+          >
+            {topic}
+          </Dropdown.Item>
+        ))}
       </DropdownButton>
-      <DropdownButton id="dropdown-item-button" title="Choose an alternative">
+      <DropdownButton
+        id="dropdown-alternative-button"
+        title={selectedAlternative ? selectedAlternative : "Choose an alternative"}
+        style={{ backgroundColor: backgroundColor }}
+      >
         {alternatives
           .filter((alternative) => alternative.id === selectedTopic)
           .flatMap((alternative) => alternative.content)
@@ -97,11 +74,14 @@ function EditHatch({ number }) {
             <Dropdown.Item
               key={index}
               as="button"
-              onClick={() => saveAlternative(number, alternative)}
+              onClick={() => {
+                setSelectedAlternative(alternative);
+                saveAlternative(number, alternative);
+              }}
               style={{
-                backgroundColor: "#F9F5F3",
+                backgroundColor: selectedAlternative === alternative ? "lightgrey" : "#F9F5F3",
                 fontFamily: hatchFont,
-                color: hatchFontColor,
+                color: "grey",
               }}
               className="dropdownItem"
             >

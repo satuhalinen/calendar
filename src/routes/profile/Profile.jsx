@@ -109,7 +109,7 @@ export default function Profile() {
       <h3 className="h3savedCalendars">Saved calendars</h3>
       <Container>
         <Row className="favoriteCards">
-          {calendars.slice(0, 6).map((calendar) => (
+          {calendars.slice(0, 4).map((calendar) => (
             <Col
               xs={12} md={4}
               key={calendar.id}

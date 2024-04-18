@@ -1,9 +1,10 @@
 import { Container, Row, Col, Nav } from "react-bootstrap";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa"; // Import icons
 import "./footer.css";
 
 const Footer = () => {
+  const { id } = useParams();
   const location = useLocation();
 
   const adminFooterColor = [
@@ -13,6 +14,7 @@ const Footer = () => {
     "/create-calendar",
     "/edit-calendar",
     "/calendar",
+    `/calendar/${id}`,
     "/user-management",
     "/customer-messages",
     "/login",

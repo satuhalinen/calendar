@@ -10,10 +10,6 @@ export default function AdminCalendars() {
 
   const { calendars, intersectionObserverRef } = useCalendarData();
 
-
-
-
-
   return (
     <Row className="mainContent adminCalendarsContainer">
       <Col xs={2} className="leftBarCol">
@@ -75,10 +71,6 @@ export default function AdminCalendars() {
                 <Card.Title style={{ color: 'black' }}>
                   {calendar.title}
                 </Card.Title>
-
-                <button className="modifyButton">Modify</button>
-
-
               </Card.Body>
               <NavLink
                 to={`/modify-old-calendar/${calendar.id}`}

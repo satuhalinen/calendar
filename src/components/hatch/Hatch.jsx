@@ -27,6 +27,10 @@ function Hatch({ number }) {
     (state) => state.calendarStyling.selectedHatchFontColor
   );
 
+  const calendarBackgroundColor = useSelector(
+    (state) => state.calendarStyling.selectedColor
+  );
+
   const hatchFont = useSelector((state) => state.calendarStyling.selectedFont);
 
   return (
@@ -50,19 +54,22 @@ function Hatch({ number }) {
         <div className="hatch"
           style={{ color: hatchFontColor }}>{number}</div>
       </Card>
-      <Modal className="hatchModal" centered show={show} onHide={handleClose}>
-        <Modal.Header className="hatchModalContent text-center">
-          <Modal.Title className="hatchModalTitle">{number}</Modal.Title>
+      <Modal centered show={show} onHide={handleClose}>
+        <Modal.Header className="hatchModalContent text-center"
+          style={{ background: calendarBackgroundColor }}>
+          <Modal.Title className="hatchModalTitle"
+            style={{ color: hatchColor }}>{number}</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="hatchModalContent" style={{ backgroundColor: "#FFFAF7" }}>
+        <Modal.Body className="hatchModalContent" style={{ backgroundColor: "#FFFAF7", background: calendarBackgroundColor }}>
           <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
             {hatchTextHatch[number] ? hatchTextHatch[number] : "No content"}
           </p>
         </Modal.Body>
-        <Modal.Footer className="hatchModalContent" style={{ backgroundColor: "#FFFAF7", justifyContent: "center" }}>
+        <Modal.Footer className="hatchModalContent" style={{ backgroundColor: "#FFFAF7", justifyContent: "center", background: calendarBackgroundColor }}>
           <Button
             className="hatchModalButton"
             onClick={handleClose}
+            style={{ backgroundColor: hatchColor, color: hatchFontColor }}
           >
             Close
           </Button>

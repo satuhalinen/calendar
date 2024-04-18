@@ -1,14 +1,3 @@
-#dropdown-item-button {
-  font-size: 0.8rem;
-  padding: 0.5rem;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.349);
-  margin: 0.1rem;
-}
-
 .hatch {
   font-size: 1rem;
   font-weight: 600;
@@ -40,4 +29,40 @@
   font-size: 0.8rem;
   font-weight: 500;
   color: #7a928e;
+}
+
+.dropdownButton {
+  margin-top: 10px;
+}
+
+.dropdownItem {
+  padding: 5px 10px;
+}
+
+.dropdownTopic.selected {
+  background-color: rgb(230, 173, 213);
+}
+
+.dropdownItem.selected {
+  background-color: beige;
+}
+
+#dropdown-alternative-button,
+#dropdown-topic-button {
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  width: 100%;
+  color: black !important;
+  background-color: #F4EDE7 !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: none !important;
+  margin: 0.1rem;
+  border: none;
+}
+
+#dropdown-alternative-button:hover,
+#dropdown-topic-button:hover {
+  background-color: #d5d1cd !important;
 }
