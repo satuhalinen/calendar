@@ -50,8 +50,6 @@ const Calendar = () => {
         dispatch(setSelectedHatchesNumber(data.calendarHatchesNumber));
         dispatch(setInputValue(data.calendarTitle));
 
-      };
-
       } else {
         console.log("No such document!");
       }
