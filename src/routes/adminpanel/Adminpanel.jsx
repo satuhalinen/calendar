@@ -11,15 +11,18 @@ import hatchData from '../../data/hatchData.json';
 
 export default function Adminpanel() {
   const [submissions, setSubmissions] = useState([]);
+  const [calendarCount, setCalendarCount] = useState(0);
   const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [selectedMessage, setSelectedMessage] = useState(null);
   const userChartRef = useRef(null);
   const submissionChartRef = useRef(null);
+  const calendarChartRef = useRef(null);
 
   useEffect(() => {
     fetchSubmissions();
     fetchUsers();
+    fetchCalendarCount();
     // addDataToFirebase();
   }, []);
 
@@ -35,6 +38,20 @@ export default function Adminpanel() {
     console.log('Data added to Firebase successfully!');
   };
 
+  const fetchCalendarCount = async () => {
+    try {
+      const calendarCollectionRef = collection(db, 'calendars');
+      const querySnapshot = await getDocs(calendarCollectionRef);
+      const calendarData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setCalendarCount(calendarData.length);
+      createCalendarChart(calendarData.length);
+    } catch (error) {
+      console.error('Error fetching calendars:', error);
+    }
+  };
 
   const fetchSubmissions = async () => {
     try {
@@ -106,7 +123,7 @@ export default function Adminpanel() {
       submissionChartRef.current = new Chart(ctx, {
         type: "bar",
         data: {
-          labels: ["Contact Form Submissions"],
+          labels: ["Customer Messages Received"],
           datasets: [{
             label: "Forms Received",
             data: [submissionCount],
@@ -126,6 +143,37 @@ export default function Adminpanel() {
     } else {
       submissionChartRef.current.data.datasets[0].data = [submissionCount];
       submissionChartRef.current.update();
+    }
+  };
+
+  const createCalendarChart = (calendarCount) => {
+    const ctx = document.getElementById("calendarChart").getContext("2d");
+    if (!calendarChartRef.current) {
+      calendarChartRef.current = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Calendars"],
+          datasets: [{
+            label: "Calendars Created",
+            data: [calendarCount],
+            backgroundColor: ['#ba6c2c'],
+            borderWidth: 1,
+            borderRadius: 5,
+          }]
+        },
+        options: {
+          scales: {
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        }
+      });
+    } else {
+      calendarChartRef.current.data.datasets[0].data = [calendarCount];
+      calendarChartRef.current.update();
     }
   };
 
@@ -165,9 +213,8 @@ export default function Adminpanel() {
           <Col className="dataCardCol" xs={12} md={4}>
             <Card className="dataCard">
               <Card.Body className="dataCardBody">
-                <Card.Title>Calendar Data</Card.Title>
                 <Card.Text>
-                  Quantity of Calendars here.
+                  <canvas id="calendarChart"></canvas>
                 </Card.Text>
               </Card.Body>
             </Card>
