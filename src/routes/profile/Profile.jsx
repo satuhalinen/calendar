@@ -1,5 +1,5 @@
 import { Container, Row, Col, Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useState, useEffect } from "react";
 import { auth, db, storage } from "../../auth/firebase";
@@ -9,6 +9,8 @@ import { updateProfile } from "firebase/auth";
 import { BsImage } from "react-icons/bs";
 import "./profile.css";
 import avatar from "../../assets/avatar.png";
+import defaultScreenshot from "../../assets/defaultScreenshot.png";
+import useCalendarData from "../../hooks/useCalendarData";
 
 export default function Profile() {
   const [user] = useAuthState(auth);
@@ -16,6 +18,7 @@ export default function Profile() {
   const [loading, setLoading] = useState(false);
   const [photoUrl, setPhotoUrl] = useState(avatar);
   const [userData, setUserData] = useState({ name: "", email: "" });
+  const { calendars, intersectionObserverRef } = useCalendarData();
 
   useEffect(() => {
     if (!user) return;
@@ -106,15 +109,23 @@ export default function Profile() {
       <h3 className="h3savedCalendars">Saved calendars</h3>
       <Container>
         <Row className="favoriteCards">
-          <Col className="calendarCard profileCalendar">
-            <p>Calendar 1</p>
-          </Col>
-          <Col className="calendarCard profileCalendar">
-            <p>Calendar 2</p>
-          </Col>
-          <Col className="calendarCard profileCalendar">
-            <p>Calendar 3</p>
-          </Col>
+          {calendars.slice(0, 6).map((calendar) => (
+            <Col
+              xs={12} md={4}
+              key={calendar.id}
+              className="calendarCard profileCalendar"
+              data-calendar-id={calendar.id}
+              ref={(calendarRef) =>
+                calendarRef &&
+                intersectionObserverRef.current &&
+                intersectionObserverRef.current.observe(calendarRef)
+              }>
+              <NavLink to={`/calendar/${calendar.id}`} className="calendarLinkFavorite">
+                <img src={calendar.imageUrl || defaultScreenshot} alt="no img" className="defaultScreenshotFavorite" />
+                <button className="useCalendarButton">Use Calendar</button>
+              </NavLink>
+            </Col>
+          ))}
         </Row>
         <Row>
           <Link className="linkToFavorites" to="/favorites">

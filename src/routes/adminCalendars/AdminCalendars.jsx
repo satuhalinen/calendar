@@ -1,57 +1,18 @@
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Card from "react-bootstrap/Card";
-import { NavLink } from "react-router-dom";
-import { Col, Row } from "react-bootstrap";
-import "../adminCalendars/adminCalendars.css";
-import "../adminpanel/adminpanel.css";
-import Leftbar from "../../components/leftbar/Leftbar";
-import { collection, getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { db, storage } from "../../auth/firebase";
-import { ref, getDownloadURL } from "firebase/storage";
+import { Card, Col, Dropdown, DropdownButton, Row } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import Leftbar from '../../components/leftbar/Leftbar';
+import defaultScreenshot from '../../assets/defaultScreenshot.png';
+import useCalendarData from '../../hooks/useCalendarData';
+import '../adminCalendars/adminCalendars.css';
+import '../adminpanel/adminpanel.css';
 
 export default function AdminCalendars() {
-  const [calendars, setCalendars] = useState([]);
 
-  useEffect(() => {
-    const fetchCalendars = async () => {
-      const calendarCollection = collection(db, "calendars");
-      const calendarSnapshot = await getDocs(calendarCollection);
+  const { calendars, intersectionObserverRef } = useCalendarData();
 
-      const calendarData = [];
-      for (const doc of calendarSnapshot.docs) {
-        const data = doc.data();
-        const imageUrl = await getImageUrl(data.calendarTitle);
-        calendarData.push({ ...data, id: doc.id, imageUrl });
-      }
 
-      setCalendars(calendarData);
-    };
 
-    fetchCalendars();
-  }, []);
 
-  const getImageUrl = async (calendarTitle) => {
-    try {
-      if (!calendarTitle) {
-        console.error("Calendar title is undefined");
-        return null;
-      }
-
-      const storageRef = ref(storage, `images/${calendarTitle}.png`);
-      const url = await getDownloadURL(storageRef);
-      return url;
-    } catch (error) {
-      if (error.code === 'storage/object-not-found') {
-        console.error(`Image not found for title: ${calendarTitle}`);
-        return 'https://via.placeholder.com/150';
-      } else {
-        console.error("Error fetching image URL:", error);
-        return null;
-      }
-    }
-  };
 
   return (
     <Row className="mainContent">
@@ -74,7 +35,11 @@ export default function AdminCalendars() {
             </DropdownButton>
           </div>
           <div className="topic">
-            <DropdownButton id="dropdown-item-button" title="Choose topic" className="dropdownItemAdmin">
+            <DropdownButton
+              id="dropdown-item-button"
+              title="Choose topic"
+              className="dropdownItemAdmin"
+            >
               <Dropdown.Item as="button">Adults</Dropdown.Item>
               <Dropdown.Item as="button">Animals</Dropdown.Item>
               <Dropdown.Item as="button">Children and teenagers</Dropdown.Item>
@@ -82,36 +47,42 @@ export default function AdminCalendars() {
             </DropdownButton>
           </div>
         </div>
-        <div className="cards">
+        <div className="adminCalendarCards">
           {calendars.map((calendar) => (
             <Card
               key={calendar.id}
               className="calendarCard d-flex flex-column justify-content-center align-items-center"
+              data-calendar-id={calendar.id}
+              ref={(calendarRef) =>
+                calendarRef &&
+                intersectionObserverRef.current &&
+                intersectionObserverRef.current.observe(calendarRef)
+              }
             >
               <Card.Body className="d-flex flex-column justify-content-center align-items-center adminCalendarBody">
-                <NavLink to={`/calendar`} style={{ textDecoration: "none" }}>
+
+                <NavLink
+                  to={`/calendar/${calendar.id}`}
+                  style={{ textDecoration: 'none' }}
+                >
+
                   <Card.Img
-                    src={calendar.imageUrl}
+                    src={calendar.imageUrl || defaultScreenshot}
+                    data-src={calendar.imageUrl}
                     className="calendarScreenShot"
                   />
                 </NavLink>
-                <Card.Title style={{ color: "black" }}>
+                <Card.Title style={{ color: 'black' }}>
                   {calendar.title}
                 </Card.Title>
-                <button
-                  className="modifyButton"
-                >
-                  Modify
-                </button>
+
+                <button className="modifyButton">Modify</button>
+
+
               </Card.Body>
               <NavLink
                 to={`/modify-old-calendar/${calendar.id}`}
-                className="btn btn-primary mt-auto"
-                style={{
-                  backgroundColor: "#BA6C2C",
-                  border: "none",
-                  color: "#F4EDE7",
-                }}
+                className="modifyButton btn btn-primary"
               >
                 Modify
               </NavLink>

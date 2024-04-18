@@ -9,20 +9,20 @@ export default function AccountSettings() {
     >
       <Container id="form-container" className="text-center">
         <p className="accsetCAL-h1">Account Settings</p>
-        <Form>
+        <Form className="accountForm">
           <Form.Group
             className="mb-3 formGroup-container"
             controlId="formUsername"
           >
             <Form.Label>Change name</Form.Label>
-            <Form.Control id="input-field" type="text" placeholder="name" />
+            <Form.Control id="input-field" type="text" placeholder="Name" />
           </Form.Group>
           <Form.Group
             className="mb-3 formGroup-container"
             controlId="formEmail"
           >
             <Form.Label>Change Email</Form.Label>
-            <Form.Control id="input-field" type="email" placeholder="email" />
+            <Form.Control id="input-field" type="email" placeholder="Email" />
           </Form.Group>
           <Form.Group
             className="mb-3 formGroup-container"
@@ -32,7 +32,7 @@ export default function AccountSettings() {
             <Form.Control
               id="input-field"
               type="password"
-              placeholder="password"
+              placeholder="Password"
             />
           </Form.Group>
           <div className="button-a-container">

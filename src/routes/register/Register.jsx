@@ -58,47 +58,49 @@ export default function Register() {
   }, [user, navigate]);
 
   return (
-    <div className="mainContent registerContainer">
-      <div className="registerFormWrap">
-        <h3 className="h3Register">Register</h3>
-        <form onSubmit={handleSubmit}>
-          <div className="registerFormGroup">
-            <label htmlFor="fullname">Full name:</label>
-            <input
-              type="text"
-              name="fullname"
-              placeholder="Name"
-              id="fullname"
-            />
-          </div>
-          <div className="registerFormGroup">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              className={inputError ? "input-error input-shake" : ""}
-              style={inputError ? { border: "2px solid red" } : {}}
-            />
-          </div>
-          <div className="registerFormGroup">
-            <label htmlFor="createpassword">Create password:</label>
-            <input
-              type="password"
-              name="createpassword"
-              placeholder="Password"
-              id="createpassword"
-            />
-          </div>
-          <Button type="submit" className="registerBtn">
-            Register
-          </Button>
-          {error && <p style={{ color: "red" }}>{error}</p>}
-        </form>
-        <p className="termsConditions">
-          By clicking the register button, you agree to our{" "}
-          <Link to="/terms-and-conditions">Terms & Conditions</Link>
-        </p>
+    <div className="mainContent registerWrap">
+      <div className="registerContainer">
+        <div className="registerFormWrap">
+          <h3 className="h3Register">Register</h3>
+          <form onSubmit={handleSubmit}>
+            <div className="registerFormGroup">
+              <label htmlFor="fullname">Full name</label>
+              <input
+                type="text"
+                name="fullname"
+                placeholder="Name"
+                id="fullname"
+              />
+            </div>
+            <div className="registerFormGroup">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                className={inputError ? "input-error input-shake" : ""}
+                style={inputError ? { border: "2px solid red" } : {}}
+              />
+            </div>
+            <div className="registerFormGroup">
+              <label htmlFor="createpassword">Create password</label>
+              <input
+                type="password"
+                name="createpassword"
+                placeholder="Password"
+                id="createpassword"
+              />
+            </div>
+            <Button type="submit" className="registerBtn">
+              Register
+            </Button>
+            {error && <p style={{ color: "red" }}>{error}</p>}
+          </form>
+          <p className="termsConditions">
+            By clicking the register button, you agree to our{" "}
+            <Link to="/terms-and-conditions">Terms & Conditions</Link>
+          </p>
+        </div>
       </div>
     </div>
   );

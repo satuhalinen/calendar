@@ -116,10 +116,11 @@ const ContactForm = () => {
                             required
                         />
                     </Form.Group>
-
-                    <Button className="contactButton" type="submit">
-                        Submit
-                    </Button>
+                    <Form.Group className="contactFormButton" controlId="formButton">
+                        <Button className="contactButton" type="submit">
+                            Submit
+                        </Button>
+                    </Form.Group>
                 </Form>
             </Container>
         </Col>
