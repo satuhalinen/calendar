@@ -44,9 +44,13 @@ export default function AdminCalendars() {
       const url = await getDownloadURL(storageRef);
       return url;
     } catch (error) {
+
+ 
+
       if (error.code === 'storage/object-not-found') {
         console.error(`Image not found for ID: ${calendarId}`);
         return defaultScreenshot;
+
       } else {
         console.error("Error fetching image URL:", error);
         return null;
@@ -75,7 +79,11 @@ export default function AdminCalendars() {
             </DropdownButton>
           </div>
           <div className="topic">
-            <DropdownButton id="dropdown-item-button" title="Choose topic" className="dropdownItemAdmin">
+            <DropdownButton
+              id="dropdown-item-button"
+              title="Choose topic"
+              className="dropdownItemAdmin"
+            >
               <Dropdown.Item as="button">Adults</Dropdown.Item>
               <Dropdown.Item as="button">Animals</Dropdown.Item>
               <Dropdown.Item as="button">Children and teenagers</Dropdown.Item>
@@ -90,7 +98,13 @@ export default function AdminCalendars() {
               className="calendarCard d-flex flex-column justify-content-center align-items-center"
             >
               <Card.Body className="d-flex flex-column justify-content-center align-items-center adminCalendarBody">
-                <NavLink to={`/calendar/${calendar.id}`} style={{ textDecoration: "none" }}>
+
+                <NavLink
+                  to={`/calendar/${calendar.id}`}
+                  style={{ textDecoration: "none" }}
+                >
+
+
                   <Card.Img
                     src={calendar.imageUrl}
                     className="calendarScreenShot"
@@ -99,6 +113,10 @@ export default function AdminCalendars() {
                 <Card.Title style={{ color: "black" }}>
                   {calendar.title}
                 </Card.Title>
+
+                <button className="modifyButton">Modify</button>
+
+
               </Card.Body>
               <NavLink
                 to={`/modify-old-calendar/${calendar.id}`}
