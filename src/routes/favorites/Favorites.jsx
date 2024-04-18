@@ -1,52 +1,11 @@
-import { useState, useEffect } from "react";
-import { db, storage } from "../../auth/firebase";
-import { getDocs, collection } from "firebase/firestore";
-import { ref, getDownloadURL } from "firebase/storage";
 import { Card, Row, Col, Dropdown, DropdownButton } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import defaultScreenshot from "../../assets/defaultScreenshot.png";
 import "./favorites.css";
+import useCalendarData from "../../hooks/useCalendarData";
 
 export default function Calendars() {
-  const [calendars, setCalendars] = useState([]);
-
-  useEffect(() => {
-    const fetchCalendars = async () => {
-      try {
-        const calendarCollection = collection(db, "calendars");
-        const calendarSnapshot = await getDocs(calendarCollection);
-
-        const calendarData = [];
-        for (const doc of calendarSnapshot.docs) {
-          const data = doc.data();
-          const imageUrl = await getImageUrl(doc.id); // Pass ID instead of title
-          calendarData.push({ ...data, id: doc.id, imageUrl });
-        }
-
-        setCalendars(calendarData);
-      } catch (error) {
-        console.error("Error fetching calendars:", error);
-      }
-    };
-
-    fetchCalendars();
-  }, []);
-
-  const getImageUrl = async (calendarId) => {
-    try {
-      const storageRef = ref(storage, `screenshots/${calendarId}.png`);
-      const url = await getDownloadURL(storageRef);
-      return url;
-    } catch (error) {
-      if (error.code === 'storage/object-not-found') {
-        console.error(`Image not found for ID: ${calendarId}`);
-        return defaultScreenshot;
-      } else {
-        console.error("Error fetching image URL:", error);
-        return null;
-      }
-    }
-  };
+  const { calendars, intersectionObserverRef } = useCalendarData();
 
   return (
     <Row className="mainContent">
@@ -64,7 +23,15 @@ export default function Calendars() {
         </div>
         <div className="calendarGrid">
           {calendars.map((calendar) => (
-            <Card key={calendar.id} className="calendarCard d-flex flex-column justify-content-center align-items-center">
+            <Card
+              key={calendar.id}
+              className="calendarCard d-flex flex-column justify-content-center align-items-center"
+              data-calendar-id={calendar.id}
+              ref={(calendarRef) =>
+                calendarRef &&
+                intersectionObserverRef.current &&
+                intersectionObserverRef.current.observe(calendarRef)
+              }>
               <NavLink to={`/calendar/${calendar.id}`} className="linkToOneCalendar" style={{ textDecoration: "none" }}>
                 <Card.Img className="calendarCardImg" src={calendar.imageUrl || defaultScreenshot} />
                 <button
