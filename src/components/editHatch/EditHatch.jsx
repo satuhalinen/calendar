@@ -67,6 +67,26 @@ function EditHatch({ number }) {
         >
           Animals
         </Dropdown.Item>
+        <Dropdown.Item
+          as="button"
+          style={{
+            backgroundColor: "#F9F5F3",
+          }}
+          className="dropdownTopic"
+          onClick={() => setSelectedTopic("Children and teenagers")}
+        >
+          Children and teenagers
+        </Dropdown.Item>
+        <Dropdown.Item
+          as="button"
+          style={{
+            backgroundColor: "#F9F5F3",
+          }}
+          className="dropdownTopic"
+          onClick={() => setSelectedTopic("Elderly")}
+        >
+          Elderly
+        </Dropdown.Item>
       </DropdownButton>
       <DropdownButton id="dropdown-item-button" title="Choose an alternative">
         {alternatives
