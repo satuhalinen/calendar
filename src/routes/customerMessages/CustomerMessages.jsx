@@ -71,7 +71,7 @@ export default function CustomerMessages() {
     };
 
     return (
-        <Row className="mainContent">
+        <Row className="mainContent customerMessagesWrap">
             <Col xs={2} className="leftBarCol">
                 <Leftbar />
             </Col>

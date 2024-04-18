@@ -8,7 +8,7 @@ export default function Calendars() {
   const { calendars, intersectionObserverRef } = useCalendarData();
 
   return (
-    <Row className="mainContent">
+    <Row className="mainContent userCalendarsWrap">
       <Col className="userCalendarsContainer">
         <p className="favoritesTitle">Favorites</p>
         <div className="dropDowns">

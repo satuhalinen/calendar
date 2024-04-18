@@ -15,7 +15,7 @@ export default function AdminCalendars() {
 
 
   return (
-    <Row className="mainContent">
+    <Row className="mainContent adminCalendarsContainer">
       <Col xs={2} className="leftBarCol">
         <Leftbar />
       </Col>

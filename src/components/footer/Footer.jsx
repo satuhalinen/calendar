@@ -1,5 +1,5 @@
 import { Container, Row, Col, Nav } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa"; // Import icons
 import "./footer.css";
 
@@ -51,12 +51,12 @@ const Footer = () => {
           <Col className="termsLinks">
             <Nav className="termsAndContact">
               <Nav.Item>
-                <Nav.Link as={Link} to="/terms-and-conditions">
+                <Nav.Link as={NavLink} to="/terms-and-conditions">
                   Terms and Conditions
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link as={Link} to="/contact">
+                <Nav.Link as={NavLink} to="/contact">
                   Contact
                 </Nav.Link>
               </Nav.Item>
