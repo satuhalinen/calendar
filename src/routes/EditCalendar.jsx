@@ -150,27 +150,29 @@ function EditCalendar() {
         <div style={{ display: "flex", justifyContent: "space-around" }}>
           <Button
             style={{
-              width: "20%",
+              width: "7%",
               margin: "0% 0% 2% 0%",
               backgroundColor: "#BA6C2C",
               color: "#FFFAF7",
               border: "none",
             }}
+            className="backToCreateCalendarButton"
             href="/create-calendar"
           >
-            back
+            Back
           </Button>
 
           <Button
             onClick={saveHatchText}
             style={{
-              width: "20%",
+              width: "15%",
               justifySelf: "center",
               backgroundColor: "#BA6C2C",
               color: "#FFFAF7",
               border: "none",
               margin: "0% 0% 2% 0%",
             }}
+            className="createCalendarButton"
           >
             Create calendar
           </Button>

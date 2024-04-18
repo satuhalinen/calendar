@@ -1,11 +1,13 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import html2canvas from "html2canvas";
 import Hatch from "../components/hatch/Hatch.jsx";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../auth/firebase";
 import { Row, Col, Card } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import happySymbol from "../assets/happy.svg";
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
-import { updateDoc, doc, getDoc } from "firebase/firestore";
+import { updateDoc, doc, getDoc, query, where, collection, getDocs } from "firebase/firestore";
 import { db, storage } from "../auth/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { showCalendarText } from "../store/alternativesSlice.js";
@@ -24,9 +26,11 @@ import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import { useParams } from "react-router-dom";
 
 const Calendar = () => {
+  const [user] = useAuthState(auth);
   const toCaptureRef = useRef(null);
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [userData, setUserData] = useState({ name: "", email: "" });
 
   const fetchContentById = async () => {
     try {
@@ -55,6 +59,21 @@ const Calendar = () => {
       console.log("Error fetching content", error);
     }
   };
+
+  useEffect(() => {
+    if (!user) return;
+
+    const fetchUserData = async () => {
+      const q = query(collection(db, "users"), where("uid", "==", user.uid));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        const userData = doc.data();
+        setUserData(userData);
+      });
+    };
+
+    fetchUserData();
+  }, [user]);
 
   const hatchFontColor = useSelector(
     (state) => state.calendarStyling.selectedHatchFontColor
@@ -126,7 +145,7 @@ const Calendar = () => {
             <Card className="gamification">
               <Card.Body style={{ display: "flex", alignItems: "center" }}>
                 <Card.Title className="scoreTitle" style={{ marginRight: "30px" }}>
-                  <strong>Name:</strong> Username here
+                  <strong>Name:</strong> {userData.fullname}
                 </Card.Title>
                 <Card.Title className="scoreTitle" style={{ marginRight: "10px" }}>
                   Score:
