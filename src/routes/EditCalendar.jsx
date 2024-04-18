@@ -7,16 +7,11 @@ import { useEffect } from "react";
 import {
   collection,
   getDocs,
-  getDoc,
   serverTimestamp,
-  doc,
   addDoc,
 } from "firebase/firestore";
 import { db } from "../auth/firebase";
-import {
-  fetchFromFirebase,
-  setAvailableAlternatives,
-} from "../store/alternativesSlice";
+import { setAvailableAlternatives } from "../store/alternativesSlice";
 import "./editCalendar.css";
 import { useNavigate } from "react-router-dom";
 
@@ -70,6 +65,7 @@ function EditCalendar() {
       await fetchAlternatives();
     })();
   }, []);
+
   const navigate = useNavigate();
   const saveHatchText = async () => {
     if (calendarContent !== undefined) {
@@ -93,24 +89,6 @@ function EditCalendar() {
   const calendarContent = useSelector(
     (state) => state.alternatives.savedAlternatives
   );
-
-  /*const fetchAlternativesFromFirebase = async () => {
-    const docRef = doc(db, "calendars", "calendar");
-    const docSnapshot = await getDoc(docRef);
-    if (docSnapshot.exists()) {
-      const data = docSnapshot.data().content.title;
-      if (data !== undefined) {
-        dispatch(fetchFromFirebase(data));
-        console.log("data edit calendarissa on", data);
-      }
-    }
-  };
-
-  useEffect(() => {
-    (async () => {
-      await fetchAlternativesFromFirebase();
-    })();
-  }, []);*/
 
   return (
     <>
