@@ -17,7 +17,7 @@ import {
   fetchFromFirebase,
   setAvailableAlternatives,
 } from "../store/alternativesSlice";
-import './editCalendar.css';
+import "./editCalendar.css";
 import { useNavigate } from "react-router-dom";
 
 function EditCalendar() {
@@ -101,6 +101,7 @@ function EditCalendar() {
       const data = docSnapshot.data().content;
       if (data !== undefined) {
         dispatch(fetchFromFirebase(data));
+        console.log("data", data);
       }
     }
   };
@@ -115,8 +116,7 @@ function EditCalendar() {
     <>
       <SmallHeader />
       <div style={{ display: "grid" }} className="editCalendar">
-        <div className="calendarSections"
-          style={{ display: "flex" }}>
+        <div className="calendarSections" style={{ display: "flex" }}>
           <Card
             style={{
               margin: "1.5% 0",
@@ -134,16 +134,15 @@ function EditCalendar() {
                 fontFamily: titleFont,
                 color: selectedHatchFontColor,
               }}
-
             >
               <p className="editCalendarTitle">{title}</p>
             </Card.Title>
-            <div
-              className="calendar"
-            >
-              {Array.from({ length: selectedHatchesNumber || 31 }).map((_, i) => (
-                <EditHatch key={i} number={i + 1} />
-              ))}
+            <div className="calendar">
+              {Array.from({ length: selectedHatchesNumber || 31 }).map(
+                (_, i) => (
+                  <EditHatch key={i} number={i + 1} />
+                )
+              )}
             </div>
           </Card>
         </div>
@@ -175,7 +174,7 @@ function EditCalendar() {
             Create calendar
           </Button>
         </div>
-      </div >
+      </div>
     </>
   );
 }

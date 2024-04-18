@@ -6,8 +6,14 @@ import { Card } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import happySymbol from "../assets/happy.svg";
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
-import { collection, getDocs, limit, orderBy, query, updateDoc, doc, getDoc } from "firebase/firestore";
-import { db, storage } from "../auth/firebase"; 
+import {
+  updateDoc,
+  doc,
+  getDoc,
+  getDocs,
+  collection,
+} from "firebase/firestore";
+import { db, storage } from "../auth/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { showCalendarText } from "../store/alternativesSlice.js";
@@ -22,9 +28,8 @@ import {
   setInputValue,
   saveImageURL,
 } from "../store/calendarStylingSlice.js";
-import { ref, uploadString, getDownloadURL } from "firebase/storage"; 
+import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import { useParams } from "react-router-dom";
-
 
 const Calendar = () => {
   const toCaptureRef = useRef(null);
@@ -32,6 +37,19 @@ const Calendar = () => {
   const { id } = useParams();
 
   const fetchContentById = async () => {
+    if (!id) {
+      console.log("ID is undefined", "id: ", id);
+
+      // Fetch all documents from the "calendars" collection
+      const querySnapshot = await getDocs(collection(db, "calendars"));
+
+      // Print the IDs of all documents
+      querySnapshot.forEach((doc) => {
+        console.log("Calendar ID:", doc.id);
+      });
+
+      return;
+    }
     try {
       const docRef = doc(db, "calendars", id);
       const docSnap = await getDoc(docRef);
@@ -49,11 +67,9 @@ const Calendar = () => {
         dispatch(setSelectedHatchFontColor(data.calendarHatchFontColor));
         dispatch(setSelectedHatchesNumber(data.calendarHatchesNumber));
         dispatch(setInputValue(data.calendarTitle));
-
       } else {
         console.log("No such document!");
       }
-
     } catch (error) {
       console.log("Error fetching content", error);
     }
@@ -122,16 +138,24 @@ const Calendar = () => {
         <Row className="d-flex justify-content-between align-items-center">
           <Col xs={3}>
             <NavLink to="/admin-calendars" onClick={() => captureScreenshot()}>
-              <button className="backToAdminCalendars">Back to Calendars</button>
+              <button className="backToAdminCalendars">
+                Back to Calendars
+              </button>
             </NavLink>
           </Col>
           <Col xs={9}>
             <Card className="gamification">
               <Card.Body style={{ display: "flex", alignItems: "center" }}>
-                <Card.Title className="scoreTitle" style={{ marginRight: "30px" }}>
+                <Card.Title
+                  className="scoreTitle"
+                  style={{ marginRight: "30px" }}
+                >
                   <strong>Name:</strong> Username here
                 </Card.Title>
-                <Card.Title className="scoreTitle" style={{ marginRight: "10px" }}>
+                <Card.Title
+                  className="scoreTitle"
+                  style={{ marginRight: "10px" }}
+                >
                   Score:
                 </Card.Title>
                 <Card.Img
@@ -155,7 +179,11 @@ const Calendar = () => {
             }}
           >
             <Card.Title
-              style={{ textAlign: "center", margin: "3% 0% 0.5% 0%", color: hatchFontColor }}
+              style={{
+                textAlign: "center",
+                margin: "3% 0% 0.5% 0%",
+                color: hatchFontColor,
+              }}
               className="useCalendarTitle"
             >
               <p style={{ fontFamily: titleFont }}>{title}</p>
@@ -167,7 +195,7 @@ const Calendar = () => {
             </div>
           </Card>
         </div>
-      </div >
+      </div>
     </>
   );
 };
