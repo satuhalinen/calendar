@@ -112,8 +112,8 @@ export default function CreateCalendar() {
   };
 
   return (
-    <Row className="mainContent">
-      <Col xs={2}>
+    <Row className="mainContent createCalendarContainer">
+      <Col xs={2} className="leftBarCol">
         <Leftbar />
       </Col>
       <Col xs={10}>

@@ -4,6 +4,10 @@
     padding: 0 1.5rem 0 0.7rem;
 }
 
+.customerMessagesWrap {
+    margin: 0;
+}
+
 .customerMessagesTitle {
     text-align: center;
     font-size: 1.5rem;

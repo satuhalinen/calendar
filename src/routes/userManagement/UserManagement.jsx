@@ -68,8 +68,8 @@ function UserManagement() {
     );
 
     return (
-        <Row className="mainContent">
-            <Col xs={2}>
+        <Row className="mainContent userManagementWrap">
+            <Col xs={2} className="leftBarCol">
                 <Leftbar />
             </Col>
             <Col xs={10}>

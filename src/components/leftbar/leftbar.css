@@ -2,7 +2,7 @@
   background-color: #4b5c59;
   height: 100%;
   align-items: flex-start;
-  padding-top: 70px;
+  padding: 70px 0 0 0 !important;
   text-align: left;
   margin-top: -20px;
   position: fixed;

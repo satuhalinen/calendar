@@ -1,3 +1,7 @@
+.userCalendarsWrap {
+  margin: 0;
+}
+
 .userCalendarsContainer {
   display: flex;
   flex-direction: column;

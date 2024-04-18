@@ -10,7 +10,7 @@ export default function AdminCalendars() {
   const { calendars, intersectionObserverRef } = useCalendarData();
 
   return (
-    <Row className="mainContent">
+    <Row className="mainContent adminCalendarsContainer">
       <Col xs={2} className="leftBarCol">
         <Leftbar />
       </Col>

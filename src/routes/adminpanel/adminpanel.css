@@ -1,5 +1,5 @@
 .dashboard-container {
-    margin-top: 0;
+    margin: 0;
 }
 
 .dashboardTitle {
@@ -7,6 +7,11 @@
     font-size: 1.5rem;
     font-weight: 400;
     transition: color 0.3s ease;
+}
+
+.leftBarCol {
+    padding: 0rem 0rem !important;
+    margin: 0rem 0rem !important;
 }
 
 .dataCards,
@@ -18,7 +23,7 @@
     flex-wrap: wrap;
     text-align: center;
     margin: 0.5rem 0;
-    padding: 15px;
+    padding: 15px 10px 15px 0px;
 }
 
 .dataCard {
