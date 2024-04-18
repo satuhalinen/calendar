@@ -10,7 +10,6 @@ import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db, storage } from "../../auth/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
-import { NavLink } from "react-router-dom";
 
 export default function AdminCalendars() {
   const [calendars, setCalendars] = useState([]);
