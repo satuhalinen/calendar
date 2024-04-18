@@ -12,8 +12,8 @@
 .navBarAdmin .links,
 .navBarDefault .links {
     display: flex;
-    align-items: right;
-    justify-content: right;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .navBarAdmin {
@@ -59,4 +59,11 @@
 
 .navLink {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.035);
+}
+
+.profileImageHeader {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.213);
 }
