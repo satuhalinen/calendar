@@ -1,31 +1,58 @@
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import happySymbol from "../../assets/happy.svg";
-import { Col, NavLink, Row } from "react-bootstrap";
-import "../adminCalendars/adminCalendars.css";
-import "../adminpanel/adminpanel.css";
-import ImageGenerator from "../../components/imageGenerator/ImageGenerator";
+import { useState, useEffect } from "react";
+import { db, storage } from "../../auth/firebase";
+import { getDocs, collection } from "firebase/firestore";
+import { ref, getDownloadURL } from "firebase/storage";
+import { Card, Row, Col, Dropdown, DropdownButton } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import defaultScreenshot from "../../assets/defaultScreenshot.png";
+import "./Calendars.css";
 
 export default function Calendars() {
+  const [calendars, setCalendars] = useState([]);
+
+  useEffect(() => {
+    const fetchCalendars = async () => {
+      try {
+        const calendarCollection = collection(db, "calendars");
+        const calendarSnapshot = await getDocs(calendarCollection);
+
+        const calendarData = [];
+        for (const doc of calendarSnapshot.docs) {
+          const data = doc.data();
+          const imageUrl = await getImageUrl(doc.id);
+          calendarData.push({ ...data, id: doc.id, imageUrl });
+        }
+
+        setCalendars(calendarData);
+      } catch (error) {
+        console.error("Error fetching calendars:", error);
+      }
+    };
+
+    fetchCalendars();
+  }, []);
+
+  const getImageUrl = async (calendarId) => {
+    try {
+      const storageRef = ref(storage, `screenshots/${calendarId}.png`);
+      const url = await getDownloadURL(storageRef);
+      return url;
+    } catch (error) {
+      if (error.code === 'storage/object-not-found') {
+        console.error(`Image not found for ID: ${calendarId}`);
+        return defaultScreenshot;
+      } else {
+        console.error("Error fetching image URL:", error);
+        return null;
+      }
+    }
+  };
+
   return (
     <Row className="mainContent">
-      <Col xs={2} className="leftBarCol"></Col>
-      <Col xs={8} className="adminCalendars">
+      <Col className="userCalendarsContainer">
+        <p className="calendarsTitle">Calendars</p>
         <div className="dropDowns">
-          <div className="price">
-            <DropdownButton
-              className="adminCalendarsDropDown"
-              id="dropdown-item-button"
-              title="Select free or paid"
-            >
-              <Dropdown.Item className="dropDownItem" as="button">
-                Free
-              </Dropdown.Item>
-              <Dropdown.Item as="button">Paid</Dropdown.Item>
-            </DropdownButton>
-          </div>
           <div className="topic">
             <DropdownButton id="dropdown-item-button" title="Sort">
               <Dropdown.Item as="button">Adults</Dropdown.Item>
@@ -35,122 +62,24 @@ export default function Calendars() {
             </DropdownButton>
           </div>
         </div>
-        <div className="cards">
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <div>
-              </div>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Use calendar
-            </Button>
-          </Card>
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 2</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Use calendar
-            </Button>
-          </Card>
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 3</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Use calendar
-            </Button>
-          </Card>
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 4</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Use calendar
-            </Button>
-          </Card>
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 5</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Use calendar
-            </Button>
-          </Card>
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 6</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Use calendar
-            </Button>
-          </Card>
+        <div className="calendarGrid">
+          {calendars.map((calendar) => (
+            <Card key={calendar.id} className="calendarCard d-flex flex-column justify-content-center align-items-center">
+              <NavLink to={`/calendar/${calendar.id}`} className="linkToOneCalendar" style={{ textDecoration: "none" }}>
+                <Card.Img className="calendarCardImg" src={calendar.imageUrl || defaultScreenshot} />
+                <button
+                  className="useCalendarButton"
+                  style={{
+                    backgroundColor: "#BA6C2C",
+                    border: "none",
+                    color: "#F4EDE7",
+                  }}
+                >
+                  Use calendar
+                </button>
+              </NavLink>
+            </Card>
+          ))}
         </div>
       </Col>
     </Row>

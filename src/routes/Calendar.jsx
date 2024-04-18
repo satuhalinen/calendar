@@ -1,15 +1,13 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import html2canvas from "html2canvas";
 import Hatch from "../components/hatch/Hatch.jsx";
-import { Row, Col } from "react-bootstrap";
-import { Card } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import happySymbol from "../assets/happy.svg";
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
-import { collection, getDocs, limit, orderBy, query, updateDoc, doc, getDoc } from "firebase/firestore";
-import { db, storage } from "../auth/firebase"; 
+import { updateDoc, doc, getDoc } from "firebase/firestore";
+import { db, storage } from "../auth/firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { showCalendarText } from "../store/alternativesSlice.js";
 import {
   setSelectedImage,
@@ -22,9 +20,8 @@ import {
   setInputValue,
   saveImageURL,
 } from "../store/calendarStylingSlice.js";
-import { ref, uploadString, getDownloadURL } from "firebase/storage"; 
+import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import { useParams } from "react-router-dom";
-
 
 const Calendar = () => {
   const toCaptureRef = useRef(null);
@@ -99,11 +96,11 @@ const Calendar = () => {
       dispatch(saveImageURL(dataURL));
 
       try {
-        const storageRef = ref(storage, "images/" + title + ".png");
+        const storageRef = ref(storage, `screenshots/${id}.png`);
         await uploadString(storageRef, dataURL, "data_url");
         const downloadURL = await getDownloadURL(storageRef);
 
-        const calendarDocRef = doc(db, "calendars", title);
+        const calendarDocRef = doc(db, "calendars", id);
         await updateDoc(calendarDocRef, {
           imageURL: downloadURL,
         });

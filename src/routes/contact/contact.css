@@ -74,7 +74,6 @@
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s ease;
-    font-size: 0.8rem;
 }
 
 .contactButton:hover {

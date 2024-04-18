@@ -10,6 +10,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db, storage } from "../../auth/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
+import defaultScreenshot from "../../assets/defaultScreenshot.png";
 
 export default function AdminCalendars() {
   const [calendars, setCalendars] = useState([]);
@@ -22,7 +23,7 @@ export default function AdminCalendars() {
       const calendarData = [];
       for (const doc of calendarSnapshot.docs) {
         const data = doc.data();
-        const imageUrl = await getImageUrl(data.calendarTitle);
+        const imageUrl = await getImageUrl(doc.id);
         calendarData.push({ ...data, id: doc.id, imageUrl });
       }
 
@@ -32,20 +33,24 @@ export default function AdminCalendars() {
     fetchCalendars();
   }, []);
 
-  const getImageUrl = async (calendarTitle) => {
+  const getImageUrl = async (calendarId) => {
     try {
-      if (!calendarTitle) {
-        console.error("Calendar title is undefined");
+      if (!calendarId) {
+        console.error("Calendar ID is undefined");
         return null;
       }
 
-      const storageRef = ref(storage, `images/${calendarTitle}.png`);
+      const storageRef = ref(storage, `screenshots/${calendarId}.png`);
       const url = await getDownloadURL(storageRef);
       return url;
     } catch (error) {
-      if (error.code === "storage/object-not-found") {
-        console.error(`Image not found for title: ${calendarTitle}`);
-        return "https://via.placeholder.com/150";
+
+ 
+
+      if (error.code === 'storage/object-not-found') {
+        console.error(`Image not found for ID: ${calendarId}`);
+        return defaultScreenshot;
+
       } else {
         console.error("Error fetching image URL:", error);
         return null;
@@ -86,17 +91,20 @@ export default function AdminCalendars() {
             </DropdownButton>
           </div>
         </div>
-        <div className="cards">
+        <div className="adminCalendarCards">
           {calendars.map((calendar) => (
             <Card
               key={calendar.id}
               className="calendarCard d-flex flex-column justify-content-center align-items-center"
             >
               <Card.Body className="d-flex flex-column justify-content-center align-items-center adminCalendarBody">
+
                 <NavLink
                   to={`/calendar/${calendar.id}`}
                   style={{ textDecoration: "none" }}
                 >
+
+
                   <Card.Img
                     src={calendar.imageUrl}
                     className="calendarScreenShot"
@@ -105,16 +113,14 @@ export default function AdminCalendars() {
                 <Card.Title style={{ color: "black" }}>
                   {calendar.title}
                 </Card.Title>
+
                 <button className="modifyButton">Modify</button>
+
+
               </Card.Body>
               <NavLink
                 to={`/modify-old-calendar/${calendar.id}`}
-                className="btn btn-primary mt-auto"
-                style={{
-                  backgroundColor: "#BA6C2C",
-                  border: "none",
-                  color: "#F4EDE7",
-                }}
+                className="modifyButton btn btn-primary"
               >
                 Modify
               </NavLink>
