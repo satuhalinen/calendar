@@ -6,7 +6,7 @@ import { Card } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import happySymbol from "../assets/happy.svg";
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
-import { collection, getDocs, limit, orderBy, query, updateDoc, doc } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query, updateDoc, doc, getDoc } from "firebase/firestore";
 import { db, storage } from "../auth/firebase"; 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -24,7 +24,6 @@ import {
 } from "../store/calendarStylingSlice.js";
 import { ref, uploadString, getDownloadURL } from "firebase/storage"; 
 import { useParams } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
 
 
 const Calendar = () => {
@@ -51,7 +50,7 @@ const Calendar = () => {
         dispatch(setSelectedHatchesNumber(data.calendarHatchesNumber));
         dispatch(setInputValue(data.calendarTitle));
 
-      });
+      };
 
       } else {
         console.log("No such document!");
