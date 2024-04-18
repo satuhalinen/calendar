@@ -3,7 +3,6 @@ import "../calendar.css";
 import { Card } from "react-bootstrap";
 import happySymbol from "../assets/happy.svg";
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
-import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "../auth/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -16,23 +15,22 @@ import {
   setSelectedHatchColor,
   setSelectedHatchFontColor,
   setSelectedHatchesNumber,
-  setInputValue,
 } from "../store/calendarStylingSlice.js";
+import { useParams } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
 
 function Calendar() {
   const dispatch = useDispatch();
+  const { id } = useParams();
 
-  const fetchContent = async () => {
+  const fetchContentById = async () => {
     try {
-      const querySnapshot = await getDocs(
-        query(
-          collection(db, "calendars"),
-          orderBy("createdAt", "desc"),
-          limit(1)
-        )
-      );
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
+      const docRef = doc(db, "calendars", id);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        console.log("Data fetched", data);
         dispatch(showCalendarText(data.content));
         dispatch(setSelectedImage(data.calendarImage));
         dispatch(setSelectedColor(data.calendarBackgroundColor));
@@ -41,8 +39,9 @@ function Calendar() {
         dispatch(setSelectedHatchColor(data.calendarHatchColor));
         dispatch(setSelectedHatchFontColor(data.calendarHatchFontColor));
         dispatch(setSelectedHatchesNumber(data.calendarHatchesNumber));
-        dispatch(setInputValue(data.calendarTitle));
-      });
+      } else {
+        console.log("No such document!");
+      }
     } catch (error) {
       console.log("Error fetching content", error);
     }
@@ -68,7 +67,7 @@ function Calendar() {
 
   useEffect(() => {
     (async () => {
-      await fetchContent();
+      await fetchContentById();
     })();
   }, []);
 
