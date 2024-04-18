@@ -71,7 +71,7 @@
 }
 
 .modifyButton {
-  width: 50%;
+  width: 30%;
   background: #ba6c2c;
   box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
@@ -82,10 +82,10 @@
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin: 0.5rem;
+  margin: 0 0 1rem;
 }
 
 .modifyButton:hover {
-  box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237);
+  box-shadow: inset 1px 1px 5px rgba(32, 13, 8, 0.237);
   background-color: #a65919;
 }

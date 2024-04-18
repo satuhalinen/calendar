@@ -98,20 +98,10 @@ export default function AdminCalendars() {
                 <Card.Title style={{ color: "black" }}>
                   {calendar.title}
                 </Card.Title>
-                <button
-                  className="modifyButton"
-                >
-                  Modify
-                </button>
               </Card.Body>
               <NavLink
                 to={`/modify-old-calendar/${calendar.id}`}
-                className="btn btn-primary mt-auto"
-                style={{
-                  backgroundColor: "#BA6C2C",
-                  border: "none",
-                  color: "#F4EDE7",
-                }}
+                className="modifyButton btn btn-primary"
               >
                 Modify
               </NavLink>

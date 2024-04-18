@@ -5,8 +5,8 @@ import { Row, Col, Card } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import happySymbol from "../assets/happy.svg";
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
-import { collection, getDocs, limit, orderBy, query, updateDoc, doc } from "firebase/firestore";
-import { db, storage } from "../auth/firebase"; // Import storage from Firebase configuration
+import { updateDoc, doc, getDoc } from "firebase/firestore";
+import { db, storage } from "../auth/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { showCalendarText } from "../store/alternativesSlice.js";
 import {
@@ -20,19 +20,23 @@ import {
   setInputValue,
   saveImageURL,
 } from "../store/calendarStylingSlice.js";
-import { ref, uploadString, getDownloadURL } from "firebase/storage"; // Import storage functions
+import { ref, uploadString, getDownloadURL } from "firebase/storage";
+import { useParams } from "react-router-dom";
 
 const Calendar = () => {
   const toCaptureRef = useRef(null);
   const dispatch = useDispatch();
+  const { id } = useParams();
 
-  const fetchContent = async () => {
+  const fetchContentById = async () => {
     try {
-      const querySnapshot = await getDocs(
-        query(collection(db, "calendars"), orderBy("createdAt", "desc"), limit(1))
-      );
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
+      const docRef = doc(db, "calendars", id);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        console.log("Data fetched", data);
+
         dispatch(showCalendarText(data.content));
         dispatch(setSelectedImage(data.calendarImage));
         dispatch(setSelectedColor(data.calendarBackgroundColor));
@@ -42,8 +46,9 @@ const Calendar = () => {
         dispatch(setSelectedHatchFontColor(data.calendarHatchFontColor));
         dispatch(setSelectedHatchesNumber(data.calendarHatchesNumber));
         dispatch(setInputValue(data.calendarTitle));
-
-      });
+      } else {
+        console.log("No such document!");
+      }
     } catch (error) {
       console.log("Error fetching content", error);
     }
@@ -73,7 +78,7 @@ const Calendar = () => {
 
   useEffect(() => {
     (async () => {
-      await fetchContent();
+      await fetchContentById();
     })();
   }, []);
 

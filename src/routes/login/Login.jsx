@@ -22,13 +22,46 @@ export default function Login() {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+
+    if (!email || !password) {
+      let errorMessage;
+      if (!email && !password) {
+        errorMessage = "Error, fields are empty.";
+      } else if (!email) {
+        errorMessage = "Please type your email.";
+      } else {
+        errorMessage = "Please type your password.";
+      }
+
+      const newInputError = {
+        email: !email,
+        password: !password,
+      };
+      setError(errorMessage);
+      setInputError(newInputError);
+      return;
+    }
+
+    setInputError(false);
+
     try {
       await signInWithEmailAndPassword(email, password);
       navigate("/profile");
     } catch (error) {
       console.error("Error signing in with email and password:", error);
-      setError("Incorrect email or password.");
-      setInputError(true);
+      if (
+        error.code === "auth/user-not-found" ||
+        error.code === "auth/wrong-password"
+      ) {
+        const newInputError = {
+          email: error.code === "auth/user-not-found",
+          password: error.code === "auth/wrong-password",
+        };
+        setInputError(newInputError);
+        setError("Incorrect email or password.");
+      } else {
+        setError("An error occurred. Please try again.");
+      }
     }
   };
 
@@ -66,8 +99,8 @@ export default function Login() {
           <div className="loginFormGroup">
             <label htmlFor="email">Email:</label>
             <input
-              className={inputError ? "input-error input-shake" : ""}
-              style={inputError ? { border: "2px solid red" } : {}}
+              className={inputError.email ? "input-error input-shake" : ""}
+              style={inputError.email ? { border: "2px solid red" } : {}}
               type="email"
               name="email"
               placeholder="Email"
@@ -77,8 +110,8 @@ export default function Login() {
           <div className="loginFormGroup">
             <label htmlFor="password">Password:</label>
             <input
-              className={inputError ? "input-error input-shake" : ""}
-              style={inputError ? { border: "2px solid red" } : {}}
+              className={inputError.password ? "input-error input-shake" : ""}
+              style={inputError.password ? { border: "2px solid red" } : {}}
               type="password"
               name="password"
               placeholder="Password"
