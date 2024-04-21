@@ -1,13 +1,12 @@
-import { Card, Col, Dropdown, DropdownButton, Row } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
-import Leftbar from '../../components/leftbar/Leftbar';
-import defaultScreenshot from '../../assets/defaultScreenshot.png';
-import useCalendarData from '../../hooks/useCalendarData';
-import '../adminCalendars/adminCalendars.css';
-import '../adminpanel/adminpanel.css';
+import { Card, Col, Dropdown, DropdownButton, Row } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import Leftbar from "../../components/leftbar/Leftbar";
+import defaultScreenshot from "../../assets/defaultScreenshot.png";
+import useCalendarData from "../../hooks/useCalendarData";
+import "../adminCalendars/adminCalendars.css";
+import "../adminpanel/adminpanel.css";
 
 export default function AdminCalendars() {
-
   const { calendars, intersectionObserverRef } = useCalendarData();
 
   return (
@@ -56,19 +55,17 @@ export default function AdminCalendars() {
               }
             >
               <Card.Body className="d-flex flex-column justify-content-center align-items-center adminCalendarBody">
-
                 <NavLink
                   to={`/calendar/${calendar.id}`}
-                  style={{ textDecoration: 'none' }}
+                  style={{ textDecoration: "none" }}
                 >
-
                   <Card.Img
                     src={calendar.imageUrl || defaultScreenshot}
                     data-src={calendar.imageUrl}
                     className="calendarScreenShot"
                   />
                 </NavLink>
-                <Card.Title style={{ color: 'black' }}>
+                <Card.Title style={{ color: "black" }}>
                   {calendar.title}
                 </Card.Title>
               </Card.Body>
