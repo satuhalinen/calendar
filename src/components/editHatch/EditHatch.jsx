@@ -12,6 +12,7 @@ function EditHatch({ number }) {
 
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [selectedAlternative, setSelectedAlternative] = useState(null);
+
   const dispatch = useDispatch();
 
   function saveAlternative(number, alternative) {
@@ -47,29 +48,35 @@ function EditHatch({ number }) {
         title={selectedTopic ? selectedTopic : "Choose a topic"}
         style={{ backgroundColor: backgroundColor }}
       >
-        {["Adults", "Animals", "Children and teenagers", "Elderly"].map((topic) => (
-          <Dropdown.Item
-            key={topic}
-            as="button"
-            style={{
-              backgroundColor: selectedTopic === topic ? "lightgrey" : "#F9F5F3",
-            }}
-            className="dropdownTopic"
-            onClick={() => setSelectedTopic(topic)}
-          >
-            {topic}
-          </Dropdown.Item>
-        ))}
+        {["Adults", "Animals", "Children and teenagers", "Elderly"].map(
+          (topic) => (
+            <Dropdown.Item
+              key={topic}
+              as="button"
+              style={{
+                backgroundColor:
+                  selectedTopic === topic ? "lightgrey" : "#F9F5F3",
+              }}
+              className="dropdownTopic"
+              onClick={() => setSelectedTopic(topic)}
+            >
+              {topic}
+            </Dropdown.Item>
+          )
+        )}
       </DropdownButton>
       <DropdownButton
         id="dropdown-alternative-button"
-        title={selectedAlternative ? selectedAlternative : "Choose an alternative"}
+        title={
+          selectedAlternative
+            ? selectedAlternative.title
+            : "Choose an alternative"
+        }
         style={{ backgroundColor: backgroundColor }}
       >
         {alternatives
           .filter((alternative) => alternative.id === selectedTopic)
           .flatMap((alternative) => alternative.content)
-          .map((alternative) => alternative.title)
           .map((alternative, index) => (
             <Dropdown.Item
               key={index}
@@ -79,13 +86,14 @@ function EditHatch({ number }) {
                 saveAlternative(number, alternative);
               }}
               style={{
-                backgroundColor: selectedAlternative === alternative ? "lightgrey" : "#F9F5F3",
+                backgroundColor:
+                  selectedAlternative === alternative ? "lightgrey" : "#F9F5F3",
                 fontFamily: hatchFont,
                 color: "grey",
               }}
               className="dropdownItem"
             >
-              {alternative}
+              {alternative.title}
             </Dropdown.Item>
           ))}
       </DropdownButton>
