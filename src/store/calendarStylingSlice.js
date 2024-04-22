@@ -47,22 +47,40 @@ const calendarStylingSlice = createSlice({
       state.selectedHatchesNumber = action.payload;
     },
     setColorShow: (state) => {
-      state.colorShow = !state.colorShow;
+      return {
+        ...state,
+        colorShow: !state.colorShow,
+      };
     },
     setFontShow: (state) => {
-      state.fontShow = !state.fontShow;
+      return {
+        ...state,
+        fontShow: !state.fontShow,
+      };
     },
     setTitleFontShow: (state) => {
-      state.titleFontShow = !state.titleFontShow;
+      return {
+        ...state,
+        titleFontShow: !state.titleFontShow,
+      };
     },
     setImageShow: (state) => {
-      state.imageShow = !state.imageShow;
+      return {
+        ...state,
+        imageShow: !state.imageShow,
+      };
     },
     setHatchColorShow: (state) => {
-      state.hatchColorShow = !state.hatchColorShow;
+      return {
+        ...state,
+        hatchColorShow: !state.hatchColorShow,
+      };
     },
     setHatchFontColorShow: (state) => {
-      state.hatchFontColorShow = !state.hatchFontColorShow;
+      return {
+        ...state,
+        hatchFontColorShow: !state.hatchFontColorShow,
+      };
     },
 
     setInputValue: (state, action) => {
