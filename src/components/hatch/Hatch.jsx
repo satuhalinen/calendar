@@ -75,9 +75,7 @@ function Hatch({ number }) {
           }}
         >
           <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
-            {hatchTextHatch[number]
-              ? hatchTextHatch[number].title
-              : "No content"}
+            {hatchTextHatch[number] ? hatchTextHatch[number].title : "No title"}
           </p>
           <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
             {hatchTextHatch[number]
