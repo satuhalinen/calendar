@@ -34,6 +34,10 @@ function Hatch({ number, onCheck }) {
     (state) => state.calendarStyling.selectedHatchFontColor
   );
 
+  const backgroundImg = useSelector(
+    (state) => state.calendarStyling.selectedImage
+  );
+
   const calendarBackgroundColor = useSelector(
     (state) => state.calendarStyling.selectedColor
   );
@@ -65,11 +69,16 @@ function Hatch({ number, onCheck }) {
       <Modal centered show={show} onHide={handleClose}>
         <Modal.Header
           className="hatchModalContent text-center"
-          style={{ background: calendarBackgroundColor }}
+          style={{
+            background: backgroundImg ? `url(${backgroundImg})` : calendarBackgroundColor,
+            backgroundSize: "cover",
+          }}
         >
           <Modal.Title
             className="hatchModalTitle"
-            style={{ color: hatchColor }}
+            style={{
+              color: hatchFontColor,
+            }}
           >
             {number}
           </Modal.Title>
@@ -78,24 +87,29 @@ function Hatch({ number, onCheck }) {
           className="hatchModalContent"
           style={{
             backgroundColor: "#FFFAF7",
-            background: calendarBackgroundColor,
+            background: hatchColor,
           }}
         >
-          <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
-            {hatchTextHatch[number] ? hatchTextHatch[number].title : "No title"}
-          </p>
-          <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
-            {hatchTextHatch[number]
-              ? hatchTextHatch[number].description
-              : "No description"}
-          </p>
-          <Container>
+          <div className="hatchModalContent">
+            <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
+              {hatchTextHatch[number] ? hatchTextHatch[number].title : "No title"}
+            </p>
+            <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
+              {hatchTextHatch[number]
+                ? hatchTextHatch[number].description
+                : "No description"}
+            </p>
+          </div>
+          <Container className="hatchModalContent">
             <Row>
-              <Col xs={6} md={4}>
+              <Col>
                 {hatchTextHatch[number] ? (
                   <Image
                     src={`https://source.unsplash.com/400x400/?${hatchTextHatch[number].title}`}
-                    rounded
+
+                    roundedCircle
+                    className="hatchModalImage"
+
                   />
                 ) : null}
               </Col>
@@ -104,10 +118,12 @@ function Hatch({ number, onCheck }) {
           <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
             {hatchTextHatch[number] ? (
               <Button
+                className="linkToHatchContent"
                 variant="link"
                 href={hatchTextHatch[number].link}
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{ color: hatchFontColor }}
               >
                 {hatchTextHatch[number].link}
               </Button>
@@ -125,7 +141,8 @@ function Hatch({ number, onCheck }) {
           style={{
             backgroundColor: "#FFFAF7",
             justifyContent: "center",
-            background: calendarBackgroundColor,
+            background: backgroundImg ? `url(${backgroundImg})` : calendarBackgroundColor,
+            backgroundSize: "cover",
           }}
         >
           <Button
@@ -136,7 +153,7 @@ function Hatch({ number, onCheck }) {
             Close
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal >
     </>
   );
 }
