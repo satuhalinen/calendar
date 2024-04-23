@@ -12,10 +12,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../auth/firebase";
 
-import {
-  fetchFromFirebase,
-  setAvailableAlternatives,
-} from "../store/alternativesSlice";
+import { setAvailableAlternatives } from "../store/alternativesSlice";
 import "./editCalendar.css";
 import { useNavigate, NavLink } from "react-router-dom";
 

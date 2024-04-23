@@ -47,25 +47,53 @@ function Hatch({ number }) {
           width: "90%",
           height: "100%",
           backgroundColor: hatchColor,
-          cursor: "pointer"
+          cursor: "pointer",
         }}
         className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""}`}
       >
-        <div className="hatch"
-          style={{ color: hatchFontColor }}>{number}</div>
+        <div className="hatch" style={{ color: hatchFontColor }}>
+          {number}
+        </div>
       </Card>
       <Modal centered show={show} onHide={handleClose}>
-        <Modal.Header className="hatchModalContent text-center"
-          style={{ background: calendarBackgroundColor }}>
-          <Modal.Title className="hatchModalTitle"
-            style={{ color: hatchColor }}>{number}</Modal.Title>
+        <Modal.Header
+          className="hatchModalContent text-center"
+          style={{ background: calendarBackgroundColor }}
+        >
+          <Modal.Title
+            className="hatchModalTitle"
+            style={{ color: hatchColor }}
+          >
+            {number}
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body className="hatchModalContent" style={{ backgroundColor: "#FFFAF7", background: calendarBackgroundColor }}>
+        <Modal.Body
+          className="hatchModalContent"
+          style={{
+            backgroundColor: "#FFFAF7",
+            background: calendarBackgroundColor,
+          }}
+        >
           <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
-            {hatchTextHatch[number] ? hatchTextHatch[number] : "No content"}
+            {hatchTextHatch[number] ? hatchTextHatch[number].title : "No title"}
+          </p>
+          <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
+            {hatchTextHatch[number]
+              ? hatchTextHatch[number].description
+              : "No description"}
+          </p>
+          <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
+            {hatchTextHatch[number] ? hatchTextHatch[number].link : "No link"}
           </p>
         </Modal.Body>
-        <Modal.Footer className="hatchModalContent" style={{ backgroundColor: "#FFFAF7", justifyContent: "center", background: calendarBackgroundColor }}>
+        <Modal.Footer
+          className="hatchModalContent"
+          style={{
+            backgroundColor: "#FFFAF7",
+            justifyContent: "center",
+            background: calendarBackgroundColor,
+          }}
+        >
           <Button
             className="hatchModalButton"
             onClick={handleClose}
