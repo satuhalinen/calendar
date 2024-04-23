@@ -1,8 +1,8 @@
 import { Modal, Button } from "react-bootstrap";
 import { auth } from "../../auth/firebase";
-import "./userModule.css";
+import "./userModal.css";
 
-function UserModule({ user, show, handleClose, handleDelete }) {
+function UserModal({ user, show, handleClose, handleDelete }) {
     if (!user) return null;
 
     const { id, fullname, email, isAdmin } = user;
@@ -51,4 +51,4 @@ function UserModule({ user, show, handleClose, handleDelete }) {
     );
 }
 
-export default UserModule;
+export default UserModal;

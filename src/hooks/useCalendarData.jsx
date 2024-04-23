@@ -29,7 +29,10 @@ const useCalendarData = () => {
     useEffect(() => {
         const observer = intersectionObserverRef.current;
         if (observer) {
+            console.log("Observer exists. Disconnecting...");
             observer.disconnect();
+        } else {
+            console.log("Observer is null.");
         }
 
         intersectionObserverRef.current = new IntersectionObserver(
@@ -48,7 +51,10 @@ const useCalendarData = () => {
         return () => {
             const observer = intersectionObserverRef.current;
             if (observer) {
+                console.log("Disconnecting observer on unmount...");
                 observer.disconnect();
+            } else {
+                console.log("Observer is null during cleanup.");
             }
         };
     }, []);
