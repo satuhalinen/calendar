@@ -45,6 +45,7 @@ function UserManagement() {
     const handleFilter = (e) => {
         setRoleFilter(e.target.value);
     };
+
     const handleDeleteUser = async (userId) => {
         try {
             await deleteUser(auth.currentUser);
