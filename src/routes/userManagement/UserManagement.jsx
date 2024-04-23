@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs, query, where, deleteDoc, doc } from "firebase/firestore";
-import { db } from "../../auth/firebase";
+import { deleteUser } from "firebase/auth";
+import { auth, db } from "../../auth/firebase";
 import { Row, Col, Form, Table } from "react-bootstrap";
 import './userManagement.css';
 import Leftbar from "../../components/leftbar/Leftbar";
@@ -44,10 +45,12 @@ function UserManagement() {
     const handleFilter = (e) => {
         setRoleFilter(e.target.value);
     };
-
     const handleDeleteUser = async (userId) => {
         try {
+            await deleteUser(auth.currentUser);
+
             await deleteDoc(doc(db, "users", userId));
+
             setUsers(users.filter(user => user.id !== userId));
         } catch (error) {
             console.error('Error deleting user:', error);

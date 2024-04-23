@@ -40,7 +40,8 @@
 }
 
 .messageModalButton,
-.resetPasswordButton {
+.resetPasswordButton,
+.deleteUserModalButton {
     width: 20%;
     background: #ba6c2c;
     box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
