@@ -37,6 +37,7 @@
 }
 
 .messageSent {
+    text-align: center;
     color: #ba6c2c;
     font-size: 0.9rem;
     margin: 10px;

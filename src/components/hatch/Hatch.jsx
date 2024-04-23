@@ -6,13 +6,19 @@ import "./hatch.css";
 import { useSelector } from "react-redux";
 import { Container, Row, Col, Image } from "react-bootstrap";
 
-function Hatch({ number }) {
+function Hatch({ number, onCheck }) {
   const [show, setShow] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const handleClose = () => {
     setShow(false);
     setIsFlipped(false);
   };
+
+  const handleCheck = () => {
+    setIsChecked(!isChecked);
+    onCheck(number, !isChecked);
+  }
 
   const handleShow = () => setShow(true);
 
@@ -109,6 +115,14 @@ function Hatch({ number }) {
               "No link"
             )}
           </p>
+          <label className="toggle-btn">
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onChange={handleCheck}
+            />
+            <span className="slider round"></span>
+          </label>
         </Modal.Body>
         <Modal.Footer
           className="hatchModalContent"
