@@ -27,25 +27,17 @@ const useCalendarData = () => {
     }, []);
 
     useEffect(() => {
-        const observer = intersectionObserverRef.current;
-        if (observer) {
-            console.log("Observer exists. Disconnecting...");
-            observer.disconnect();
-        } else {
-            console.log("Observer is null.");
-        }
-
         intersectionObserverRef.current = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         const calendarId = entry.target.getAttribute('data-calendar-id');
                         loadImage(calendarId);
-                        observer.unobserve(entry.target);
+                        intersectionObserverRef.current.unobserve(entry.target);
                     }
                 });
             },
-            { threshold: 0.5 }
+            { threshold: 0.1 }
         );
 
         return () => {
