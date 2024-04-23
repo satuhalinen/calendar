@@ -4,6 +4,7 @@ import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import "./hatch.css";
 import { useSelector } from "react-redux";
+import { Container, Row, Col, Image } from "react-bootstrap";
 
 function Hatch({ number }) {
   const [show, setShow] = useState(false);
@@ -82,8 +83,31 @@ function Hatch({ number }) {
               ? hatchTextHatch[number].description
               : "No description"}
           </p>
+          <Container>
+            <Row>
+              <Col xs={6} md={4}>
+                {hatchTextHatch[number] ? (
+                  <Image
+                    src={`https://source.unsplash.com/400x400/?${hatchTextHatch[number].title}`}
+                    roundedCircle
+                  />
+                ) : null}
+              </Col>
+            </Row>
+          </Container>
           <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
-            {hatchTextHatch[number] ? hatchTextHatch[number].link : "No link"}
+            {hatchTextHatch[number] ? (
+              <Button
+                variant="link"
+                href={hatchTextHatch[number].link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {hatchTextHatch[number].link}
+              </Button>
+            ) : (
+              "No link"
+            )}
           </p>
         </Modal.Body>
         <Modal.Footer
