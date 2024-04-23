@@ -18,7 +18,7 @@ function Hatch({ number, onCheck }) {
   const handleCheck = () => {
     setIsChecked(!isChecked);
     onCheck(number, !isChecked);
-  }
+  };
 
   const handleShow = () => setShow(true);
 
@@ -95,7 +95,7 @@ function Hatch({ number, onCheck }) {
                 {hatchTextHatch[number] ? (
                   <Image
                     src={`https://source.unsplash.com/400x400/?${hatchTextHatch[number].title}`}
-                    roundedCircle
+                    rounded
                   />
                 ) : null}
               </Col>
@@ -116,11 +116,7 @@ function Hatch({ number, onCheck }) {
             )}
           </p>
           <label className="toggle-btn">
-            <input
-              type="checkbox"
-              checked={isChecked}
-              onChange={handleCheck}
-            />
+            <input type="checkbox" checked={isChecked} onChange={handleCheck} />
             <span className="slider round"></span>
           </label>
         </Modal.Body>
