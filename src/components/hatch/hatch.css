@@ -16,7 +16,6 @@
 
 .hatchModalButton {
   width: 20%;
-  /* background: #597773 !important; */
   box-shadow: 1px 1px 5px #27120478;
   color: #f9f5f3;
   padding: 10px;
@@ -30,7 +29,6 @@
 
 .hatchModalButton:hover {
   box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237) !important;
-  /* background-color: #425f5b !important; */
 }
 
 .hatchCardUsed {
@@ -51,8 +49,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color: #F4EDE7 !important; */
   border: none;
+  text-align: center;
+}
+
+.hatchModalImage {
+  max-width: 30vh;
+  border-radius: 5px;
+}
+
+.linkToHatchContent {
+  text-decoration: none;
+}
+
+.linkToHatchContent:hover {
+  text-decoration: underline;
 }
 
 .toggle-btn {
