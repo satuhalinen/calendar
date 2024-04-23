@@ -26,6 +26,7 @@ import {
   setHatchFontColorShow,
   setInputValue,
 } from "../../store/calendarStylingSlice";
+import { useEffect, useRef } from "react";
 
 export default function CreateCalendar() {
   const dispatch = useDispatch();
@@ -63,11 +64,83 @@ export default function CreateCalendar() {
   );
   const inputValue = useSelector((state) => state.calendarStyling.inputValue);
 
-  const handleBackgroundColorClick = () => {
-    dispatch(setColorShow());
+  const buttonRefs = {
+    backgroundColorContainerRef: useRef(null),
+    backgroundColorButtonRef: useRef(null),
+    titleFontcontainerRef: useRef(null),
+    titleFontButtonRef: useRef(null),
+    imagecontainerRef: useRef(null),
+    imageButtonRef: useRef(null),
+    hatchColorContainerRef: useRef(null),
+    hatchColorButtonRef: useRef(null),
+    hatchFontRef: useRef(null),
+    hatchFontButtonRef: useRef(null),
+    fontColorContainerRef: useRef(null),
+    fontColorButtonRef: useRef(null),
   };
 
-  const handleFontSelect = (font) => {
+  console.log("buttonRefs", buttonRefs);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        buttonRefs.backgroundColorContainerRef.current &&
+        !buttonRefs.backgroundColorContainerRef.current.contains(
+          event.target
+        ) &&
+        !buttonRefs.backgroundColorButtonRef.current.contains(event.target)
+      ) {
+        dispatch(setColorShow(false));
+      }
+      if (
+        buttonRefs.titleFontcontainerRef.current &&
+        !buttonRefs.titleFontcontainerRef.current.contains(event.target) &&
+        !buttonRefs.titleFontButtonRef.current.contains(event.target)
+      ) {
+        dispatch(setTitleFontShow(false));
+      }
+      if (
+        buttonRefs.imagecontainerRef.current &&
+        !buttonRefs.imagecontainerRef.current.contains(event.target) &&
+        !buttonRefs.imageButtonRef.current.contains(event.target)
+      ) {
+        dispatch(setImageShow(false));
+      }
+      if (
+        buttonRefs.hatchColorContainerRef.current &&
+        !buttonRefs.hatchColorContainerRef.current.contains(event.target) &&
+        !buttonRefs.hatchColorButtonRef.current.contains(event.target)
+      ) {
+        dispatch(setHatchColorShow(false));
+      }
+      if (
+        buttonRefs.hatchFontRef.current &&
+        !buttonRefs.hatchFontRef.current.contains(event.target) &&
+        !buttonRefs.hatchFontButtonRef.current.contains(event.target)
+      ) {
+        dispatch(setFontShow(false));
+      }
+      if (
+        buttonRefs.fontColorContainerRef.current &&
+        !buttonRefs.fontColorContainerRef.current.contains(event.target) &&
+        !buttonRefs.fontColorButtonRef.current.contains(event.target)
+      ) {
+        dispatch(setHatchFontColorShow(false));
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleBackgroundColorClick = () => {
+    dispatch(setColorShow());
+    console.log("colorShow", colorShow);
+  };
+
+  const handleFontSelect = () => {
     dispatch(setFontShow());
   };
 
@@ -166,8 +239,10 @@ export default function CreateCalendar() {
                     placeholder={selectedColor}
                   />
                   <Button
+                    id="btn-1"
                     className="arrowDownButton"
                     onClick={handleBackgroundColorClick}
+                    ref={buttonRefs.backgroundColorButtonRef}
                   >
                     <ArrowDown />
                   </Button>
@@ -180,9 +255,11 @@ export default function CreateCalendar() {
                         left: "50%",
                         transform: "translateX(-50%)",
                       }}
+                      ref={buttonRefs.backgroundColorContainerRef}
+                      className="colorRef"
                     >
                       <SketchPicker
-                        color={selectedColor}
+                        color={selectedColor || "#FFFFFF"}
                         onChange={handelColorChange}
                       />
                     </div>
@@ -207,8 +284,10 @@ export default function CreateCalendar() {
                     placeholder={selectedTitleFont}
                   />
                   <Button
+                    id="btn-2"
                     className="arrowDownButton"
                     onClick={handleTitleFontSelect}
+                    ref={buttonRefs.titleFontButtonRef}
                   >
                     <ArrowDown />
                   </Button>
@@ -221,6 +300,8 @@ export default function CreateCalendar() {
                         left: "50%",
                         transform: "translateX(-50%)",
                       }}
+                      ref={buttonRefs.titleFontcontainerRef}
+                      className="titleFontRef"
                     >
                       <TitleFontPicker />
                     </div>
@@ -245,8 +326,10 @@ export default function CreateCalendar() {
                     placeholder={selectedImage}
                   />
                   <Button
+                    id="btn-3"
                     className="arrowDownButton"
                     onClick={handleImageClick}
+                    ref={buttonRefs.imageButtonRef}
                   >
                     <ArrowDown />
                   </Button>
@@ -260,6 +343,7 @@ export default function CreateCalendar() {
                         left: "50%",
                         transform: "translateX(-50%)",
                       }}
+                      ref={buttonRefs.imagecontainerRef}
                     >
                       <ImagePicker />
                     </div>
@@ -287,8 +371,10 @@ export default function CreateCalendar() {
                     placeholder={selectedHatchColor}
                   />
                   <Button
+                    id="btn-4"
                     className="arrowDownButton"
                     onClick={handleHatchColorSelect}
+                    ref={buttonRefs.hatchColorButtonRef}
                   >
                     <ArrowDown />
                   </Button>
@@ -302,9 +388,10 @@ export default function CreateCalendar() {
                         left: "50%",
                         transform: "translateX(-50%)",
                       }}
+                      ref={buttonRefs.hatchColorContainerRef}
                     >
                       <SketchPicker
-                        color={selectedHatchColor}
+                        color={selectedHatchColor || "#FFFFFF"}
                         onChange={handleHatchColorChange}
                       />
                     </div>
@@ -328,8 +415,10 @@ export default function CreateCalendar() {
                     placeholder={selectedFont}
                   />
                   <Button
+                    id="btn-5"
                     className="arrowDownButton"
                     onClick={handleFontSelect}
+                    ref={buttonRefs.hatchFontButtonRef}
                   >
                     <ArrowDown />
                   </Button>
@@ -343,6 +432,7 @@ export default function CreateCalendar() {
                         left: "50%",
                         transform: "translateX(-50%)",
                       }}
+                      ref={buttonRefs.hatchFontRef}
                     >
                       <FontPicker />
                     </div>
@@ -369,8 +459,10 @@ export default function CreateCalendar() {
                     }}
                   />
                   <Button
+                    id="btn-6"
                     className="arrowDownButton"
                     onClick={handleHatchFontColorSelect}
+                    ref={buttonRefs.fontColorButtonRef}
                   >
                     <ArrowDown />
                   </Button>
@@ -384,9 +476,10 @@ export default function CreateCalendar() {
                         left: "50%",
                         transform: "translateX(-50%)",
                       }}
+                      ref={buttonRefs.fontColorContainerRef}
                     >
                       <SketchPicker
-                        color={selectedHatchFontColor}
+                        color={selectedHatchFontColor || "#FFFFFF"}
                         onChange={handleHatchFontColorChange}
                       />
                     </div>
