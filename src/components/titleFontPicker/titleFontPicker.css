@@ -1,0 +1,24 @@
+.font-picker-container {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 220px;
+  scroll-behavior: smooth;
+  overflow: auto;
+}
+
+.font-option {
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.font-option:hover {
+  background-color: #c0c0c0;
+}
+
+.font-picker-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

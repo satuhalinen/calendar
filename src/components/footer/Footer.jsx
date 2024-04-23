@@ -1,9 +1,10 @@
 import { Container, Row, Col, Nav } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa"; // Import icons
 import "./footer.css";
 
 const Footer = () => {
+  const { id } = useParams();
   const location = useLocation();
 
   const adminFooterColor = [
@@ -12,6 +13,15 @@ const Footer = () => {
     "/admin-calendars",
     "/create-calendar",
     "/edit-calendar",
+    "/calendar",
+    `/calendar/${id}`,
+    "/user-management",
+    "/customer-messages",
+    "/login",
+    "/register",
+    "/about",
+    "/terms-and-conditions",
+    "/contact",
   ];
   const isAdminRoute = adminFooterColor.includes(location.pathname);
 
@@ -43,12 +53,12 @@ const Footer = () => {
           <Col className="termsLinks">
             <Nav className="termsAndContact">
               <Nav.Item>
-                <Nav.Link as={Link} to="/terms-and-conditions">
+                <Nav.Link as={NavLink} to="/terms-and-conditions">
                   Terms and Conditions
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link as={Link} to="/about">
+                <Nav.Link as={NavLink} to="/contact">
                   Contact
                 </Nav.Link>
               </Nav.Item>

@@ -1,40 +1,54 @@
 .dashboard-container {
-    margin-top: 0;
+    margin: 0;
 }
 
 .dashboardTitle {
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 400;
     transition: color 0.3s ease;
 }
 
+.leftBarCol {
+    padding: 0rem 0rem !important;
+    margin: 0rem 0rem !important;
+}
+
 .dataCards,
-.users {
+.users,
+.contact-submissions {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     text-align: center;
-    margin: 1rem 0;
-    padding: 15px;
+    margin: 0.5rem 0;
+    padding: 15px 10px 15px 0px;
 }
 
 .dataCard {
-    font-size: 0.8rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
     width: 100%;
-    max-height: 25vh;
+    max-height: 100%;
     font-weight: 400;
     background-color: #ba6c2c;
+    color: #855127;
     color: white;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
-    padding: 20px;
     transition: all 0.3s ease;
+}
+
+.dataCardBody canvas {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    background: #F4EDE7;
+    border-radius: 5px;
+    padding: 0.2rem;
 }
 
 .dashboardCol {
@@ -53,44 +67,87 @@
 }
 
 .dataCardBody {
-    margin: 1rem;
-    padding: 3rem;
+    font-size: 0.6rem;
+    position: relative;
 }
 
-.usersCard {
-    background-color: #F4EDE7;
+.usersCard,
+.contactSubmissionsCard {
+    background-color: #f9f6f4;
     border-radius: 5px;
     width: 100%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.266);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.266);
 }
 
-.usersCardHeader {
-    font-size: 1.2rem;
+.usersCardHeader,
+.contactSubmissionsCardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
     font-weight: 500;
-    background-color: #597773;
+    background-color: #7a928e;
     color: white;
     margin: 0;
-    padding: 1rem;
+    padding: 0.7rem;
+    position: relative;
 }
 
-.usersTable {
+.manageUsersLink,
+.manageContactSubmissionsLink {
+    color: white;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.5rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.manageUsersLink:hover {
+    color: #ebbf93;
+}
+
+.tableWrapper {
+    max-height: 140px;
+    overflow-y: auto;
+}
+
+.usersTable,
+.contactSubmissionsTable {
     width: 100%;
     cursor: pointer;
-    border: solid 0.2px #a3b5b2;
 }
 
-.usersTable th {
+.usersTable th,
+.contactSubmissionsTable th {
     background-color: #f9f6f4;
     color: black;
     font-weight: 500;
     padding: 0.5rem;
     margin: 0;
+    font-size: 0.7rem;
 }
 
-.usersTable td {
+.usersTable td,
+.contactSubmissionsTable td {
     padding: 0.5rem;
     margin: 0;
     background-color: #f6f2ed;
+    font-size: 0.7rem;
+}
+
+.contactFormMessage {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #ba6c2c;
+    margin: 0;
+    padding: 0.5rem;
+    max-width: 10vw;
 }
 
 @media screen and (max-width: 768px) {

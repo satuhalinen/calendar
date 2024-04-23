@@ -3,17 +3,53 @@
   grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
   grid-template-rows: 20vh 20vh 20vh 20vh 20vh;
   column-gap: 10px;
-  row-gap: 15px;
+  row-gap: 20px;
   justify-items: center;
   align-items: center;
   place-items: center;
   width: 100%;
   justify-content: center;
-  background-color: #cbd6d5;
-  padding: 1rem;
+  padding: 1.5rem 2rem;
 }
 
 .gamification {
-  justify-content: center;
   background-color: #f4ede7;
+  max-width: 60%;
+  min-height: 20px;
+  margin: 3rem 0rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.218);
+}
+
+.useCalendarTitle {
+  font-size: 2.9rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.164);
+}
+
+.scoreTitle {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.backToAdminCalendars {
+  width: 40%;
+  background: #597773 !important;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.471);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+  color: #f9f5f3;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 0.8rem;
+  margin: 4rem 2rem 0;
+  cursor: pointer;
+}
+
+.backToAdminCalendars:hover {
+  box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237) !important;
+  background-color: #425f5b !important;
 }

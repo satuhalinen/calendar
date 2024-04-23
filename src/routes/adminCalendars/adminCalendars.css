@@ -1,24 +1,19 @@
+.adminCalendarsContainer {
+  margin: 0;
+}
+
 .adminCalendarTitle {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
-  font-size: 32px;
-
+  font-size: 1.5rem;
 }
 
-.cards {
+.adminCalendarCards {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 30vh 30vh;
-  column-gap: 10px;
-  row-gap: 15px;
-  justify-items: center;
-  align-items: center;
-  width: 100%;
-  place-items: center;
-  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
 }
 
 .calendarCard {
@@ -30,7 +25,6 @@
   color: white;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
-  padding: 20px;
   transition: all 0.3s ease;
 }
 
@@ -45,7 +39,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 70vh;
   margin: 1rem;
 }
 
@@ -54,4 +47,39 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+}
+
+.calendarScreenShot {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.349);
+  object-fit: cover;
+  filter: saturate(0.9);
+}
+
+.calendarScreenShot:hover {
+  filter: saturate(1);
+  transition: all 0.3s ease;
+}
+
+.adminCalendarBody {
+  margin-top: 0.5rem;
+}
+
+.modifyButton {
+  width: 30%;
+  background: #ba6c2c;
+  box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+  color: #f9f5f3;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 0 1rem;
+}
+
+.modifyButton:hover {
+  box-shadow: inset 1px 1px 5px rgba(32, 13, 8, 0.237);
+  background-color: #a65919;
 }

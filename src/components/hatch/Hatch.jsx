@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import "./hatch.css";
+import { useSelector } from "react-redux";
 
 function Hatch({ number }) {
   const [show, setShow] = useState(false);
@@ -14,6 +15,24 @@ function Hatch({ number }) {
 
   const handleShow = () => setShow(true);
 
+  const hatchTextHatch = useSelector(
+    (state) => state.alternatives.calendarText
+  );
+
+  const hatchColor = useSelector(
+    (state) => state.calendarStyling.selectedHatchColor
+  );
+
+  const hatchFontColor = useSelector(
+    (state) => state.calendarStyling.selectedHatchFontColor
+  );
+
+  const calendarBackgroundColor = useSelector(
+    (state) => state.calendarStyling.selectedColor
+  );
+
+  const hatchFont = useSelector((state) => state.calendarStyling.selectedFont);
+
   return (
     <>
       <Card
@@ -24,30 +43,61 @@ function Hatch({ number }) {
           }
         }}
         style={{
-          border: "1px solid black",
-          width: "70%",
-          height: "70%",
+          border: "none",
+          width: "90%",
+          height: "100%",
+          backgroundColor: hatchColor,
+          cursor: "pointer",
         }}
-        className={`flip-card ${isFlipped ? "flipped" : ""}`}
+        className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""}`}
       >
-        <div className="hatch">{number}</div>
+        <div className="hatch" style={{ color: hatchFontColor }}>
+          {number}
+        </div>
       </Card>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton style={{ backgroundColor: "#FFFAF7" }}>
-          <Modal.Title>{number}</Modal.Title>
+      <Modal centered show={show} onHide={handleClose}>
+        <Modal.Header
+          className="hatchModalContent text-center"
+          style={{ background: calendarBackgroundColor }}
+        >
+          <Modal.Title
+            className="hatchModalTitle"
+            style={{ color: hatchColor }}
+          >
+            {number}
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ backgroundColor: "#FFFAF7" }}>
-          Welcome to hatch {number} !
+        <Modal.Body
+          className="hatchModalContent"
+          style={{
+            backgroundColor: "#FFFAF7",
+            background: calendarBackgroundColor,
+          }}
+        >
+          <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
+            {hatchTextHatch[number] ? hatchTextHatch[number].title : "No title"}
+          </p>
+          <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
+            {hatchTextHatch[number]
+              ? hatchTextHatch[number].description
+              : "No description"}
+          </p>
+          <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
+            {hatchTextHatch[number] ? hatchTextHatch[number].link : "No link"}
+          </p>
         </Modal.Body>
-        <Modal.Footer style={{ backgroundColor: "#FFFAF7" }}>
+        <Modal.Footer
+          className="hatchModalContent"
+          style={{
+            backgroundColor: "#FFFAF7",
+            justifyContent: "center",
+            background: calendarBackgroundColor,
+          }}
+        >
           <Button
-            style={{
-              backgroundColor: "#cbd6d5",
-              border: "none",
-              color: "black",
-            }}
-            variant="secondary"
+            className="hatchModalButton"
             onClick={handleClose}
+            style={{ backgroundColor: hatchColor, color: hatchFontColor }}
           >
             Close
           </Button>

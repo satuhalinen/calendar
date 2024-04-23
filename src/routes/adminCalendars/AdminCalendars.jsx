@@ -1,17 +1,18 @@
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import happySymbol from "../../assets/happy.svg";
-import { Col, NavLink, Row } from "react-bootstrap";
-import "../adminCalendars/adminCalendars.css";
-import "../adminpanel/adminpanel.css";
-import Leftbar from "../../components/leftbar/Leftbar";
+import { Card, Col, Dropdown, DropdownButton, Row } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import Leftbar from '../../components/leftbar/Leftbar';
+import defaultScreenshot from '../../assets/defaultScreenshot.png';
+import useCalendarData from '../../hooks/useCalendarData';
+import '../adminCalendars/adminCalendars.css';
+import '../adminpanel/adminpanel.css';
 
 export default function AdminCalendars() {
+
+  const { calendars, intersectionObserverRef } = useCalendarData();
+
   return (
-    <Row className="mainContent">
-      <Col xs={2} className="leftBarCol" >
+    <Row className="mainContent adminCalendarsContainer">
+      <Col xs={2} className="leftBarCol">
         <Leftbar />
       </Col>
       <Col xs={9} className="adminCalendars">
@@ -30,7 +31,11 @@ export default function AdminCalendars() {
             </DropdownButton>
           </div>
           <div className="topic">
-            <DropdownButton id="dropdown-item-button" title="Choose topic">
+            <DropdownButton
+              id="dropdown-item-button"
+              title="Choose topic"
+              className="dropdownItemAdmin"
+            >
               <Dropdown.Item as="button">Adults</Dropdown.Item>
               <Dropdown.Item as="button">Animals</Dropdown.Item>
               <Dropdown.Item as="button">Children and teenagers</Dropdown.Item>
@@ -38,121 +43,43 @@ export default function AdminCalendars() {
             </DropdownButton>
           </div>
         </div>
-        <div className="cards">
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
+        <div className="adminCalendarCards">
+          {calendars.map((calendar) => (
+            <Card
+              key={calendar.id}
+              className="calendarCard d-flex flex-column justify-content-center align-items-center"
+              data-calendar-id={calendar.id}
+              ref={(calendarRef) =>
+                calendarRef &&
+                intersectionObserverRef.current &&
+                intersectionObserverRef.current.observe(calendarRef)
+              }
             >
-              Modify
-            </Button>
-          </Card>
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Modify
-            </Button>
-          </Card>
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Modify
-            </Button>
-          </Card>
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Modify
-            </Button>
-          </Card>
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Modify
-            </Button>
-          </Card>
-          <Card className="calendarCard d-flex flex-column justify-content-center align-items-center">
-            <NavLink style={{ textDecoration: "none" }}>
-              <Card.Img variant="top" src={happySymbol} />
-            </NavLink>
-            <Card.Body className="d-flex flex-column justify-content-center align-items-center">
-              <Card.Title style={{ color: "black" }}>Calendar 1</Card.Title>
-            </Card.Body>
-            <Button
-              variant="primary"
-              className="mt-auto"
-              style={{
-                backgroundColor: "#BA6C2C",
-                border: "none",
-                color: "#F4EDE7",
-              }}
-            >
-              Modify
-            </Button>
-          </Card>
+              <Card.Body className="d-flex flex-column justify-content-center align-items-center adminCalendarBody">
+
+                <NavLink
+                  to={`/calendar/${calendar.id}`}
+                  style={{ textDecoration: 'none' }}
+                >
+
+                  <Card.Img
+                    src={calendar.imageUrl || defaultScreenshot}
+                    data-src={calendar.imageUrl}
+                    className="calendarScreenShot"
+                  />
+                </NavLink>
+                <Card.Title style={{ color: 'black' }}>
+                  {calendar.title}
+                </Card.Title>
+              </Card.Body>
+              <NavLink
+                to={`/modify-old-calendar/${calendar.id}`}
+                className="modifyButton btn btn-primary"
+              >
+                Modify
+              </NavLink>
+            </Card>
+          ))}
         </div>
       </Col>
     </Row>

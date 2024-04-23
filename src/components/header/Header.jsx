@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,20 +7,45 @@ import logo2 from '../../assets/logo2.png';
 import { Image } from 'react-bootstrap';
 import '../header/header.css';
 import { useEffect, useState } from 'react';
+import { auth, logout, storage } from "../../auth/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import avatar from '../../assets/avatar.png';
+import { ref, getDownloadURL } from 'firebase/storage';
 
 export default function Header() {
+  const { id } = useParams();
+  const [user] = useAuthState(auth);
   const location = useLocation();
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [photoUrl, setPhotoUrl] = useState(avatar);
 
-  const adminHeaderColor = ['/', '/adminpanel', '/admin-calendars', '/create-calendar', '/edit-calendar'];
-  const userHeaderRoutes = ['/', '/login', '/register', '/about', '/terms-and-conditions'];
+  const adminHeaderColor = ['/', '/adminpanel', '/admin-calendars', '/create-calendar', '/edit-calendar', '/user-management', '/customer-messages', '/login', '/register', '/about', '/terms-and-conditions', '/contact'];
+  const userHeaderRoutes = ['/', '/login', '/register', '/about', '/terms-and-conditions', '/contact'];
   const authenticatedUserRoutes = ['/profile', '/calendars', '/favorites', '/logout', '/account-settings'];
-  const authenticatedAdminRoutes = ['/adminpanel', '/logout', '/admin-calendars', '/create-calendar'];
+  const authenticatedAdminRoutes = ['/adminpanel', '/logout', '/admin-calendars', '/create-calendar', '/user-management', '/customer-messages'];
 
   const isAdminRoute = adminHeaderColor.includes(location.pathname);
   const isUserRoute = userHeaderRoutes.includes(location.pathname);
   const isAuthenticatedUser = authenticatedUserRoutes.includes(location.pathname);
   const isAuthenticatedAdmin = authenticatedAdminRoutes.includes(location.pathname);
+
+  useEffect(() => {
+    if (isAuthenticatedUser && user?.photoURL) {
+      setPhotoUrl(user.photoURL);
+    } else if (isAuthenticatedUser && !user?.photoURL) {
+      const fetchPhotoUrl = async () => {
+        try {
+          const photoRef = ref(storage, `${user.uid}.jpg`);
+          const downloadURL = await getDownloadURL(photoRef);
+          setPhotoUrl(downloadURL);
+        } catch (error) {
+          console.error("Error fetching photo URL:", error);
+        }
+      };
+
+      fetchPhotoUrl();
+    }
+  }, [user, isAuthenticatedUser]);
 
   // Preload images to make the change faster
   useEffect(() => {
@@ -39,7 +64,7 @@ export default function Header() {
     preloadImages();
   }, []);
 
-  if (location.pathname === '/calendar' || location.pathname === '/edit-calendar') {
+  if (location.pathname === '/calendar' || location.pathname === '/edit-calendar' || location.pathname === `/calendar/${id}`) {
     return null;
   }
 
@@ -47,13 +72,15 @@ export default function Header() {
     <Navbar className={isAdminRoute ? 'navBarAdmin' : 'navBarDefault'} fixed='top'>
       <Container>
         {imagesLoaded && (
-          <Image
-            src={isAdminRoute ? logo1 : logo2}
-            width="auto"
-            height="70"
-            className="d-inline-block align-top"
-            alt="logo"
-          />
+          <NavLink to="/">
+            <Image
+              src={isAdminRoute ? logo1 : logo2}
+              width="auto"
+              height="70"
+              className="d-inline-block align-top"
+              alt="logo"
+            />
+          </NavLink>
         )}
         <Nav className="links">
           {isUserRoute && (
@@ -66,16 +93,18 @@ export default function Header() {
           )}
           {isAuthenticatedUser && (
             <>
-              <Nav.Link as={NavLink} to="/profile" className="navLink">Profile</Nav.Link>
+              <Nav.Link as={NavLink} to="/profile" className="navLink">
+                <img src={photoUrl} alt="profile" className="profileImageHeader" />
+              </Nav.Link>
               <Nav.Link as={NavLink} to="/calendars" className="navLink">Calendars</Nav.Link>
               <Nav.Link as={NavLink} to="/favorites" className="navLink">Favorites</Nav.Link>
-              <Nav.Link as={NavLink} to="/" className="navLink">Logout</Nav.Link>
+              <Nav.Link as={NavLink} to="/" onClick={logout} className="navLink">Logout</Nav.Link>
             </>
           )}
           {isAuthenticatedAdmin && (
             <>
               <Nav.Link as={NavLink} to="/adminpanel" className="navLink">Home</Nav.Link>
-              <Nav.Link as={NavLink} to="/" className="navLink">Logout</Nav.Link>
+              <Nav.Link as={NavLink} to="/" onClick={logout} className="navLink">Logout</Nav.Link>
             </>
           )}
         </Nav>

@@ -1,0 +1,93 @@
+.contactWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contactContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #f4ede7;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 33vw;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
+}
+
+.contactForm {
+    text-align: left;
+}
+
+.contactFormButton {
+    display: flex;
+    justify-content: center;
+}
+
+.contactTitle {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    background: none;
+    border: none;
+}
+
+.messageSent {
+    color: #ba6c2c;
+    font-size: 0.9rem;
+    margin: 10px;
+}
+
+.formGroupTitle {
+    font-size: 0.9rem;
+    margin: 0.5rem 0.5rem 0;
+}
+
+.formInput {
+    width: 18vw;
+    padding: 0.7rem;
+    margin: 5px;
+    border-radius: 5px;
+    border: 0.2px solid #bbbbbb;
+    font-size: 0.8rem;
+}
+
+.formInput:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(143, 56, 15, 0.416);
+}
+
+.formInput:hover {
+    box-shadow: 0 0 5px rgba(143, 56, 15, 0.743);
+}
+
+.formInput::placeholder {
+    color: rgb(129, 127, 127);
+    font-size: 0.8rem;
+}
+
+.contactButton {
+    background-color: #ba6c2c;
+    box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+    font-size: 1rem;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.5rem 2rem;
+    margin: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.contactButton:hover {
+    box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237);
+    background-color: #a65919;
+    color: white;
+}
