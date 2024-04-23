@@ -161,12 +161,18 @@ const Calendar = () => {
   const captureScreenshot = () => {
     if (!toCaptureRef.current) return;
 
+    const width = toCaptureRef.current.offsetWidth;
+
+    const marginWidth = width * 0.02;
+
     const canvasPromise = html2canvas(toCaptureRef.current, {
       useCORS: true,
+      width: width - 2 * marginWidth,
+      x: marginWidth,
     });
 
     canvasPromise.then(async (canvas) => {
-      const dataURL = canvas.toDataURL("image/png", 0.001);
+      const dataURL = canvas.toDataURL("image/png", 0.05);
       dispatch(saveImageURL(dataURL));
 
       try {

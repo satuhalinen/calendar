@@ -50,6 +50,7 @@
 }
 
 .calendarScreenShot {
+  width: 100%;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.349);
   object-fit: cover;
   filter: saturate(0.9);
