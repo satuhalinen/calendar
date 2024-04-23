@@ -5,13 +5,19 @@ import { Button } from "react-bootstrap";
 import "./hatch.css";
 import { useSelector } from "react-redux";
 
-function Hatch({ number }) {
+function Hatch({ number, onCheck }) {
   const [show, setShow] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const handleClose = () => {
     setShow(false);
     setIsFlipped(false);
   };
+
+  const handleCheck = () => {
+    setIsChecked(!isChecked);
+    onCheck(number, !isChecked);
+  }
 
   const handleShow = () => setShow(true);
 
@@ -64,6 +70,14 @@ function Hatch({ number }) {
           <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
             {hatchTextHatch[number] ? hatchTextHatch[number] : "No content"}
           </p>
+          <label className="toggle-btn">
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onChange={handleCheck}
+            />
+            <span className="slider round"></span>
+          </label>
         </Modal.Body>
         <Modal.Footer className="hatchModalContent" style={{ backgroundColor: "#FFFAF7", justifyContent: "center", background: calendarBackgroundColor }}>
           <Button

@@ -4,14 +4,14 @@ import { db } from "../../auth/firebase";
 import { Row, Col, Form, Table } from "react-bootstrap";
 import './userManagement.css';
 import Leftbar from "../../components/leftbar/Leftbar";
-import UserModule from "../../components/userModule/UserModule";
+import UserModal from "../../components/userModal/UserModal";
 
 function UserManagement() {
     const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [roleFilter, setRoleFilter] = useState("");
     const [selectedUser, setSelectedUser] = useState(null);
-    const [showUserModule, setShowUserModule] = useState(false);
+    const [showUserModal, setShowUserModal] = useState(false);
 
     useEffect(() => {
         fetchUsers();
@@ -54,13 +54,13 @@ function UserManagement() {
         }
     };
 
-    const handleOpenUserModule = (user) => {
+    const handleOpenUserModal = (user) => {
         setSelectedUser(user);
-        setShowUserModule(true);
+        setShowUserModal(true);
     };
 
-    const handleCloseUserModule = () => {
-        setShowUserModule(false);
+    const handleCloseUserModal = () => {
+        setShowUserModal(false);
     };
 
     const filteredUsers = users.filter((user) =>
@@ -128,7 +128,7 @@ function UserManagement() {
                                             <td>{user.email}</td>
                                             <td>{user.isAdmin ? 'Admin' : 'User'}</td>
                                             <td className="detailsColumn">
-                                                <button className="userDetailsButton" onClick={() => handleOpenUserModule(user)}>Manage User</button>
+                                                <button className="userDetailsButton" onClick={() => handleOpenUserModal(user)}>Manage User</button>
                                             </td></tr>
                                     ))}
                             </tbody>
@@ -136,10 +136,10 @@ function UserManagement() {
                     </div>
                 </div>
             </Col>
-            <UserModule
+            <UserModal
                 user={selectedUser}
-                show={showUserModule}
-                handleClose={handleCloseUserModule}
+                show={showUserModal}
+                handleClose={handleCloseUserModal}
                 handleDelete={handleDeleteUser}
             />
         </Row>

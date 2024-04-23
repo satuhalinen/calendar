@@ -3,9 +3,9 @@ import html2canvas from "html2canvas";
 import Hatch from "../components/hatch/Hatch.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../auth/firebase";
-import { Row, Col, Card } from "react-bootstrap";
+import { Row, Col, Card, ProgressBar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import happySymbol from "../assets/happy.svg";
+import { FaCloud, FaCloudRain, FaCloudShowersHeavy, FaCloudSun, FaInfoCircle, FaPooStorm, FaSun } from "react-icons/fa";
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
 import {
   updateDoc,
@@ -32,13 +32,17 @@ import {
 } from "../store/calendarStylingSlice.js";
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import { useParams } from "react-router-dom";
+import InfoModal from "../components/infoModal/InfoModal.jsx";
 
 const Calendar = () => {
   const [user] = useAuthState(auth);
+  const [checkedHatches, setCheckedHatches] = useState({});
+  const [weatherIcon, setWeatherIcon] = useState(<FaCloudRain />);
   const toCaptureRef = useRef(null);
   const dispatch = useDispatch();
   const { id } = useParams();
   const [userData, setUserData] = useState({ name: "", email: "" });
+  const [showInfoModal, setShowInfoModal] = useState(false);
 
   const fetchContentById = async () => {
     if (!id) {
@@ -79,6 +83,18 @@ const Calendar = () => {
     }
   };
 
+  const handleCheck = (number, isChecked) => {
+    setCheckedHatches((prevState) => ({
+      ...prevState,
+      [number]: isChecked,
+    }));
+  };
+
+  const calculateScore = () => {
+    return Object.values(checkedHatches).filter((isChecked) => isChecked)
+      .length;
+  };
+
   useEffect(() => {
     if (!user) return;
 
@@ -116,6 +132,26 @@ const Calendar = () => {
 
   const title = useSelector((state) => state.calendarStyling.inputValue);
 
+  const maxScore = selectedHatchesNumber;
+  const score = calculateScore();
+  const progress = (score / maxScore) * 100;
+
+  useEffect(() => {
+    if (progress >= 100) {
+      setWeatherIcon(<FaSun className="sun-icon" />);
+    } else if (progress >= 80) {
+      setWeatherIcon(<FaCloudSun className="cloud-sun-icon" />);
+    } else if (progress >= 60) {
+      setWeatherIcon(<FaCloud className="cloud-icon" />);
+    } else if (progress >= 40) {
+      setWeatherIcon(<FaCloudRain className="cloud-rain-icon" />);
+    } else if (progress >= 20) {
+      setWeatherIcon(<FaCloudShowersHeavy className="cloud-heavy-icon" />);
+    } else {
+      setWeatherIcon(<FaPooStorm className="storm-icon" />);
+    }
+  }, [progress]);
+
   useEffect(() => {
     (async () => {
       await fetchContentById();
@@ -150,6 +186,15 @@ const Calendar = () => {
     });
   };
 
+  const handleOpenInfoModal = () => {
+    setShowInfoModal(true);
+  };
+
+  const handleCloseInfoModal = () => {
+    setShowInfoModal(false);
+  };
+
+
   return (
     <>
       <SmallHeader />
@@ -164,24 +209,26 @@ const Calendar = () => {
           </Col>
           <Col xs={9}>
             <Card className="gamification">
-              <Card.Body style={{ display: "flex", alignItems: "center" }}>
-                <Card.Title
-                  className="scoreTitle"
-                  style={{ marginRight: "30px" }}
-                >
-                  <strong>Name:</strong> {userData.fullname}
-                </Card.Title>
-                <Card.Title
-                  className="scoreTitle"
-                  style={{ marginRight: "10px" }}
-                >
-                  Score:
-                </Card.Title>
-                <Card.Img
-                  variant="top"
-                  src={happySymbol}
-                  style={{ width: "20px", marginBottom: "0.5rem" }}
-                />
+              <Card.Body className="gameCardBody" style={{ display: "flex", alignItems: "center" }}>
+                <div className="userInfo">
+                  <FaInfoCircle className="infoCircle" onClick={() => handleOpenInfoModal()} />
+                  <Card.Title
+                    className="userScoreTitle"
+                  >
+                    <strong className="userNameTitle">Username:</strong> {userData.fullname}
+                  </Card.Title>
+                  <Card.Title
+                    className="progressTitle"
+                  >
+                    <strong>Progress:</strong>
+                  </Card.Title>
+                </div>
+                <ProgressBar
+                  variant="red"
+                  now={progress}
+                  label={`${progress.toFixed()}%`}
+                  className="progressBar" />
+                {weatherIcon && <div className="weatherIconWrapper">{weatherIcon}</div>}
               </Card.Body>
             </Card>
           </Col>
@@ -209,10 +256,14 @@ const Calendar = () => {
             </Card.Title>
             <div className="calendar">
               {Array.from({ length: selectedHatchesNumber }).map((_, i) => (
-                <Hatch key={i} number={i + 1} />
+                <Hatch key={i} number={i + 1} onCheck={handleCheck} />
               ))}
             </div>
           </Card>
+          <InfoModal
+            show={showInfoModal}
+            handleClose={handleCloseInfoModal}
+          />
         </div>
       </div>
     </>

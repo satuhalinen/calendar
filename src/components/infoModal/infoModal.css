@@ -1,0 +1,60 @@
+.infoModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.infoModalHeader {
+    padding: 15px 20px;
+    background-color: #F4EDE7;
+    color: black;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.infoModalTitle {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 1rem;
+}
+
+.infoModalBody {
+    padding: 20px 40px;
+    background-color: #F4EDE7;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    font-size: 0.9rem;
+}
+
+.infoModalFooter {
+    display: block;
+    padding: 5px;
+    background-color: #F4EDE7;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.infoModalButton,
+.deleteUserModalButton {
+    width: 20%;
+    background: #597773;
+    box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+    color: #f9f5f3;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 0.8rem;
+    margin: 0.5rem;
+}
+
+.infoModalButton:hover {
+    cursor: pointer;
+    box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237);
+    background-color: #425f5b;
+}
