@@ -3,8 +3,7 @@ import html2canvas from "html2canvas";
 import Hatch from "../components/hatch/Hatch.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../auth/firebase";
-import { Row, Col, Card, ProgressBar } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { Row, Card, ProgressBar } from "react-bootstrap";
 import { FaCloud, FaCloudRain, FaCloudShowersHeavy, FaCloudSun, FaInfoCircle, FaPooStorm, FaSun } from "react-icons/fa";
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
 import {
@@ -153,9 +152,12 @@ const Calendar = () => {
   }, [progress]);
 
   useEffect(() => {
-    (async () => {
+    const fetchDataAndCaptureScreenshot = async () => {
       await fetchContentById();
-    })();
+      captureScreenshot();
+    };
+
+    fetchDataAndCaptureScreenshot();
   }, []);
 
   const captureScreenshot = () => {
@@ -205,39 +207,30 @@ const Calendar = () => {
     <>
       <SmallHeader />
       <div className="useCalendar">
-        <Row className="d-flex justify-content-between align-items-center">
-          <Col xs={3}>
-            <NavLink to="/admin-calendars" onClick={() => captureScreenshot()}>
-              <button className="backToAdminCalendars">
-                Back to Calendars
-              </button>
-            </NavLink>
-          </Col>
-          <Col xs={9}>
-            <Card className="gamification">
-              <Card.Body className="gameCardBody" style={{ display: "flex", alignItems: "center" }}>
-                <div className="userInfo">
-                  <FaInfoCircle className="infoCircle" onClick={() => handleOpenInfoModal()} />
-                  <Card.Title
-                    className="userScoreTitle"
-                  >
-                    <strong className="userNameTitle">Username:</strong> {userData.fullname}
-                  </Card.Title>
-                  <Card.Title
-                    className="progressTitle"
-                  >
-                    <strong>Progress:</strong>
-                  </Card.Title>
-                </div>
-                <ProgressBar
-                  variant="red"
-                  now={progress}
-                  label={`${progress.toFixed()}%`}
-                  className="progressBar" />
-                {weatherIcon && <div className="weatherIconWrapper">{weatherIcon}</div>}
-              </Card.Body>
-            </Card>
-          </Col>
+        <Row className="d-flex justify-content-center align-items-center">
+          <Card className="gamification">
+            <Card.Body className="gameCardBody" style={{ display: "flex", alignItems: "center" }}>
+              <div className="userInfo">
+                <FaInfoCircle className="infoCircle" onClick={() => handleOpenInfoModal()} />
+                <Card.Title
+                  className="userScoreTitle"
+                >
+                  <strong className="userNameTitle">Username:</strong> {userData.fullname}
+                </Card.Title>
+                <Card.Title
+                  className="progressTitle"
+                >
+                  <strong>Progress:</strong>
+                </Card.Title>
+              </div>
+              <ProgressBar
+                variant="red"
+                now={progress}
+                label={`${progress.toFixed()}%`}
+                className="progressBar" />
+              {weatherIcon && <div className="weatherIconWrapper">{weatherIcon}</div>}
+            </Card.Body>
+          </Card>
         </Row>
         <div className="calendarSections" ref={toCaptureRef}>
           <Card
