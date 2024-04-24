@@ -14,7 +14,7 @@ import { setScore } from "../../store/scoreSlice";
 import { useEffect } from "react";
 import { getDoc } from "firebase/firestore";
 
-function Hatch({ number, onCheck }) {
+function Hatch({ number }) {
   const [show, setShow] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -80,7 +80,6 @@ function Hatch({ number, onCheck }) {
       [`users.${currentUser.uid}`]: updatedScore,
     });
     setIsChecked(!isChecked);
-    onCheck(number, !isChecked);
   };
 
   return (
