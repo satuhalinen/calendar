@@ -11,7 +11,6 @@ import {
   addDoc,
 } from "firebase/firestore";
 import { db } from "../auth/firebase";
-
 import { setAvailableAlternatives } from "../store/alternativesSlice";
 import "./editCalendar.css";
 import { useNavigate, NavLink } from "react-router-dom";
@@ -84,6 +83,7 @@ function EditCalendar() {
       });
       const calendarId = docRef.id;
       navigate(`/calendar/${calendarId}`);
+      console.log("Document written with ID: ", docRef.id);
     }
   };
 

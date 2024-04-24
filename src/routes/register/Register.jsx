@@ -42,7 +42,7 @@ export default function Register() {
         uid: currentUser.uid,
         fullname: e.target.fullname.value,
         email: currentUser.email,
-        isAdmin: false
+        isAdmin: false,
       });
 
       navigate("/profile");

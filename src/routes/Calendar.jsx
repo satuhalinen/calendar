@@ -5,7 +5,15 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../auth/firebase";
 import { Row, Col, Card, ProgressBar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { FaCloud, FaCloudRain, FaCloudShowersHeavy, FaCloudSun, FaInfoCircle, FaPooStorm, FaSun } from "react-icons/fa";
+import {
+  FaCloud,
+  FaCloudRain,
+  FaCloudShowersHeavy,
+  FaCloudSun,
+  FaInfoCircle,
+  FaPooStorm,
+  FaSun,
+} from "react-icons/fa";
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
 import {
   updateDoc,
@@ -36,7 +44,7 @@ import InfoModal from "../components/infoModal/InfoModal.jsx";
 
 const Calendar = () => {
   const [user] = useAuthState(auth);
-  const [checkedHatches, setCheckedHatches] = useState({});
+
   const [weatherIcon, setWeatherIcon] = useState(<FaCloudRain />);
   const toCaptureRef = useRef(null);
   const dispatch = useDispatch();
@@ -47,11 +55,7 @@ const Calendar = () => {
   const fetchContentById = async () => {
     if (!id) {
       console.log("ID is undefined", "id: ", id);
-
-      // Fetch all documents from the "calendars" collection
       const querySnapshot = await getDocs(collection(db, "calendars"));
-
-      // Print the IDs of all documents
       querySnapshot.forEach((doc) => {
         console.log("Calendar ID:", doc.id);
       });
@@ -83,17 +87,12 @@ const Calendar = () => {
     }
   };
 
-  const handleCheck = (number, isChecked) => {
-    setCheckedHatches((prevState) => ({
-      ...prevState,
-      [number]: isChecked,
-    }));
-  };
+  const selectedHatchesNumber = useSelector(
+    (state) => state.calendarStyling.selectedHatchesNumber
+  );
+  const score = useSelector((state) => state.score);
 
-  const calculateScore = () => {
-    return Object.values(checkedHatches).filter((isChecked) => isChecked)
-      .length;
-  };
+  const progress = (score / selectedHatchesNumber) * 100;
 
   useEffect(() => {
     if (!user) return;
@@ -122,19 +121,11 @@ const Calendar = () => {
     (state) => state.calendarStyling.selectedImage
   );
 
-  const selectedHatchesNumber = useSelector(
-    (state) => state.calendarStyling.selectedHatchesNumber
-  );
-
   const titleFont = useSelector(
     (state) => state.calendarStyling.selectedTitleFont
   );
 
   const title = useSelector((state) => state.calendarStyling.inputValue);
-
-  const maxScore = selectedHatchesNumber;
-  const score = calculateScore();
-  const progress = (score / maxScore) * 100;
 
   useEffect(() => {
     if (progress >= 100) {
@@ -200,7 +191,6 @@ const Calendar = () => {
     setShowInfoModal(false);
   };
 
-
   return (
     <>
       <SmallHeader />
@@ -211,21 +201,25 @@ const Calendar = () => {
               <button className="backToAdminCalendars">
                 Back to Calendars
               </button>
+              <p> {score}</p>
             </NavLink>
           </Col>
           <Col xs={9}>
             <Card className="gamification">
-              <Card.Body className="gameCardBody" style={{ display: "flex", alignItems: "center" }}>
+              <Card.Body
+                className="gameCardBody"
+                style={{ display: "flex", alignItems: "center" }}
+              >
                 <div className="userInfo">
-                  <FaInfoCircle className="infoCircle" onClick={() => handleOpenInfoModal()} />
-                  <Card.Title
-                    className="userScoreTitle"
-                  >
-                    <strong className="userNameTitle">Username:</strong> {userData.fullname}
+                  <FaInfoCircle
+                    className="infoCircle"
+                    onClick={() => handleOpenInfoModal()}
+                  />
+                  <Card.Title className="userScoreTitle">
+                    <strong className="userNameTitle">Username:</strong>{" "}
+                    {userData.fullname}
                   </Card.Title>
-                  <Card.Title
-                    className="progressTitle"
-                  >
+                  <Card.Title className="progressTitle">
                     <strong>Progress:</strong>
                   </Card.Title>
                 </div>
@@ -233,8 +227,11 @@ const Calendar = () => {
                   variant="red"
                   now={progress}
                   label={`${progress.toFixed()}%`}
-                  className="progressBar" />
-                {weatherIcon && <div className="weatherIconWrapper">{weatherIcon}</div>}
+                  className="progressBar"
+                />
+                {weatherIcon && (
+                  <div className="weatherIconWrapper">{weatherIcon}</div>
+                )}
               </Card.Body>
             </Card>
           </Col>
@@ -262,14 +259,11 @@ const Calendar = () => {
             </Card.Title>
             <div className="calendar">
               {Array.from({ length: selectedHatchesNumber }).map((_, i) => (
-                <Hatch key={i} number={i + 1} onCheck={handleCheck} />
+                <Hatch key={i} number={i + 1} />
               ))}
             </div>
           </Card>
-          <InfoModal
-            show={showInfoModal}
-            handleClose={handleCloseInfoModal}
-          />
+          <InfoModal show={showInfoModal} handleClose={handleCloseInfoModal} />
         </div>
       </div>
     </>
