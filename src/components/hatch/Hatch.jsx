@@ -5,14 +5,18 @@ import { Button } from "react-bootstrap";
 import "./hatch.css";
 import { useSelector } from "react-redux";
 import { Container, Row, Col, Image } from "react-bootstrap";
+import { FaCheck } from "react-icons/fa";
 
 function Hatch({ number, onCheck }) {
   const [show, setShow] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isOpened, setIsOpened] = useState(false);
+
   const handleClose = () => {
     setShow(false);
     setIsFlipped(false);
+    setIsOpened(true);
   };
 
   const handleCheck = () => {
@@ -48,9 +52,9 @@ function Hatch({ number, onCheck }) {
     <>
       <Card
         onClick={() => {
-          if (!isFlipped) {
+          handleShow();
+          if (!isOpened) {
             setIsFlipped(true);
-            handleShow();
           }
         }}
         style={{
@@ -60,12 +64,32 @@ function Hatch({ number, onCheck }) {
           backgroundColor: hatchColor,
           cursor: "pointer",
         }}
-        className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""}`}
+        className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""} ${isOpened ? "opened" : ""}`}
       >
-        <div className="hatch" style={{ color: hatchFontColor }}>
+        <div className="hatch" style={{ color: hatchFontColor, fontSize: isOpened ? "0.1rem" : "", display: isFlipped ? "none" : "" }}>
           {number}
         </div>
-      </Card>
+        {isOpened && !hatchTextHatch[number] && (
+          <div className="hatchModalContent">
+            <p className="noContentOpened"
+              style={{ color: hatchFontColor }}>No content</p>
+          </div>
+        )}
+        {isOpened && hatchTextHatch[number] && (
+          <div className="hatchModalContent"
+            style={{ background: hatchColor, color: hatchFontColor }}
+          >
+            <p className="hatchOpenedTitle">{hatchTextHatch[number].title}</p>
+            <Image
+              src={`https://source.unsplash.com/400x400/?${hatchTextHatch[number].title}`}
+              roundedCircle
+              className="hatchImage" />
+            {isChecked && (
+              <FaCheck className="checkMarkOpened" />
+            )}
+          </div>
+        )}
+      </Card >
       <Modal centered show={show} onHide={handleClose}>
         <Modal.Header
           className="hatchModalContent text-center"
