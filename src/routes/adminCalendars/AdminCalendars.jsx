@@ -5,10 +5,10 @@ import defaultScreenshot from '../../assets/defaultScreenshot.png';
 import useCalendarData from '../../hooks/useCalendarData';
 import '../adminCalendars/adminCalendars.css';
 import '../adminpanel/adminpanel.css';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function AdminCalendars() {
-
-  const { calendars, intersectionObserverRef } = useCalendarData();
+  const { loading, calendars, intersectionObserverRef } = useCalendarData();
 
   return (
     <Row className="mainContent adminCalendarsContainer">
@@ -43,44 +43,49 @@ export default function AdminCalendars() {
             </DropdownButton>
           </div>
         </div>
-        <div className="adminCalendarCards">
-          {calendars.map((calendar) => (
-            <Card
-              key={calendar.id}
-              className="calendarCard d-flex flex-column justify-content-center align-items-center"
-              data-calendar-id={calendar.id}
-              ref={(calendarRef) =>
-                calendarRef &&
-                intersectionObserverRef.current &&
-                intersectionObserverRef.current.observe(calendarRef)
-              }
-            >
-              <Card.Body className="d-flex flex-column justify-content-center align-items-center adminCalendarBody">
-
-                <NavLink
-                  to={`/calendar/${calendar.id}`}
-                  style={{ textDecoration: 'none' }}
+        {loading ? (
+          <Spinner animation="border" variant="secondary" />) : (
+          <div className="adminCalendarCards">
+            {
+              calendars.map((calendar) => (
+                <Card
+                  key={calendar.id}
+                  className="calendarCard d-flex flex-column justify-content-center align-items-center"
+                  data-calendar-id={calendar.id}
+                  ref={(calendarRef) =>
+                    calendarRef &&
+                    intersectionObserverRef.current &&
+                    intersectionObserverRef.current.observe(calendarRef)
+                  }
                 >
+                  <Card.Body className="d-flex flex-column justify-content-center align-items-center adminCalendarBody">
 
-                  <Card.Img
-                    src={calendar.imageUrl || defaultScreenshot}
-                    data-src={calendar.imageUrl}
-                    className="calendarScreenShot"
-                  />
-                </NavLink>
-                <Card.Title style={{ color: 'black' }}>
-                  {calendar.title}
-                </Card.Title>
-              </Card.Body>
-              <NavLink
-                to={`/modify-old-calendar/${calendar.id}`}
-                className="modifyButton btn btn-primary"
-              >
-                Modify
-              </NavLink>
-            </Card>
-          ))}
-        </div>
+                    <NavLink
+                      to={`/calendar/${calendar.id}`}
+                      style={{ textDecoration: 'none' }}
+                    >
+
+                      <Card.Img
+                        src={calendar.imageUrl || defaultScreenshot}
+                        data-src={calendar.imageUrl}
+                        className="calendarScreenShot"
+                      />
+                    </NavLink>
+                    <Card.Title style={{ color: 'black' }}>
+                      {calendar.title}
+                    </Card.Title>
+                  </Card.Body>
+                  <NavLink
+                    to={`/modify-old-calendar/${calendar.id}`}
+                    className="modifyButton btn btn-primary"
+                  >
+                    Modify
+                  </NavLink>
+                </Card>
+              ))
+            }
+          </div>
+        )}
       </Col>
     </Row>
   );

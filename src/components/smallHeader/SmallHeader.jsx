@@ -16,7 +16,7 @@ function SmallHeader() {
   return (
     <Navbar className="lightHeader">
       <Container>
-        <NavLink to="#" onClick={goBack} className="logo-link">
+        <NavLink to="/" className="logo-link">
           <Image
             src={smallLogo}
             width="auto"
@@ -26,9 +26,12 @@ function SmallHeader() {
           />
         </NavLink>
         <Nav className="me-auto">
-          <Nav.Link as={NavLink} className="smallHeaderLink" to="#" onClick={goBack}>
+          <NavLink className="smallHeaderLink" to="#" onClick={goBack}>
             Go Back
-          </Nav.Link>
+          </NavLink>
+          <NavLink className="smallHeaderLink" to="/calendars">
+            Calendars
+          </NavLink>
         </Nav>
       </Container>
     </Navbar>
