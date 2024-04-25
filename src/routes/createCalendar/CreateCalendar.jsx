@@ -137,7 +137,6 @@ export default function CreateCalendar() {
 
   const handleBackgroundColorClick = () => {
     dispatch(setColorShow());
-    console.log("colorShow", colorShow);
   };
 
   const handleFontSelect = () => {

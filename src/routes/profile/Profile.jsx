@@ -19,6 +19,7 @@ export default function Profile() {
   const [photoUrl, setPhotoUrl] = useState(avatar);
   const [userData, setUserData] = useState({ name: "", email: "" });
   const { calendars, intersectionObserverRef } = useCalendarData();
+  const [docId, setDocId] = useState(null);
 
   useEffect(() => {
     if (!user) return;
@@ -28,7 +29,9 @@ export default function Profile() {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         const userData = doc.data();
+        const docId = doc.id;
         setUserData(userData);
+        setDocId(docId);
       });
     };
 
@@ -91,15 +94,25 @@ export default function Profile() {
               <div className="profileImgContainer">
                 <Image className="profileImg" src={photoUrl} alt="avatar" />
                 <label className="inputImg">
-                  <input disabled={loading} type="file" onChange={handleChange} />
-                  <BsImage style={{ fontSize: '12px' }} />
+                  <input
+                    disabled={loading}
+                    type="file"
+                    onChange={handleChange}
+                  />
+                  <BsImage style={{ fontSize: "12px" }} />
                 </label>
               </div>
             </Col>
             <Col className="profileText">
               <p>Name: {userData.fullname}</p>
               <p>Email: {userData.email}</p>
-              <Link className="linkToAccount" to="/account-settings">
+              <Link
+                className="linkToAccount"
+                to={{
+                  pathname: "/account-settings",
+                }}
+                state={{ docID: docId }}
+              >
                 <p className="linkToAccount">Account Settings</p>
               </Link>
             </Col>
@@ -111,7 +124,8 @@ export default function Profile() {
         <Row className="favoriteCards">
           {calendars.slice(0, 4).map((calendar) => (
             <Col
-              xs={12} md={4}
+              xs={12}
+              md={4}
               key={calendar.id}
               className="calendarCard profileCalendar"
               data-calendar-id={calendar.id}
@@ -119,9 +133,17 @@ export default function Profile() {
                 calendarRef &&
                 intersectionObserverRef.current &&
                 intersectionObserverRef.current.observe(calendarRef)
-              }>
-              <NavLink to={`/calendar/${calendar.id}`} className="calendarLinkFavorite">
-                <img src={calendar.imageUrl || defaultScreenshot} alt="no img" className="defaultScreenshotFavorite" />
+              }
+            >
+              <NavLink
+                to={`/calendar/${calendar.id}`}
+                className="calendarLinkFavorite"
+              >
+                <img
+                  src={calendar.imageUrl || defaultScreenshot}
+                  alt="no img"
+                  className="defaultScreenshotFavorite"
+                />
                 <button className="useCalendarButton">Use Calendar</button>
               </NavLink>
             </Col>

@@ -22,7 +22,7 @@
 
 #form-container {
   max-width: 513px;
-  height: 568px;
+  /* height: 568px; */
   background-color: #f4ede7;
   padding: 30px;
   border-radius: 10px;
@@ -35,7 +35,7 @@
   font-weight: 500;
 }
 
-#input-field {
+.input-field {
   width: 18vw;
   padding: 0.7rem;
   margin: 5px;
