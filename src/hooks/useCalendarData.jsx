@@ -2,25 +2,29 @@ import { useState, useEffect, useRef } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../auth/firebase';
-import defaultScreenshot from '../assets/defaultScreenshot.png';
 
 const useCalendarData = () => {
+    const [loading, setLoading] = useState(true);
     const [calendars, setCalendars] = useState([]);
     const intersectionObserverRef = useRef(null);
 
     useEffect(() => {
         const fetchCalendars = async () => {
-            const calendarCollection = collection(db, 'calendars');
-            const calendarSnapshot = await getDocs(calendarCollection);
+            try {
+                const calendarCollection = collection(db, 'calendars');
+                const calendarSnapshot = await getDocs(calendarCollection);
 
-            const calendarData = [];
-            for (const doc of calendarSnapshot.docs) {
-                const data = doc.data();
-                const imageUrl = defaultScreenshot;
-                calendarData.push({ ...data, id: doc.id, imageUrl });
+                const calendarData = [];
+                for (const doc of calendarSnapshot.docs) {
+                    const data = doc.data();
+                    calendarData.push({ ...data, id: doc.id });
+                }
+
+                setCalendars(calendarData);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error fetching calendars:', error);
             }
-
-            setCalendars(calendarData);
         };
 
         fetchCalendars();
@@ -43,25 +47,20 @@ const useCalendarData = () => {
         return () => {
             const observer = intersectionObserverRef.current;
             if (observer) {
-                console.log("Disconnecting observer on unmount...");
                 observer.disconnect();
-            } else {
-                console.log("Observer is null during cleanup.");
             }
         };
     }, []);
 
     const loadImage = async (calendarId) => {
         try {
-            if (!calendarId) {
-                console.error('Calendar ID is undefined');
+            const imageUrl = await getImageUrl(calendarId);
+            if (!imageUrl) {
                 return;
             }
-
-            const imageUrl = await getImageUrl(calendarId);
             setCalendars((prevCalendars) =>
                 prevCalendars.map((calendar) =>
-                    calendar.id === calendarId ? { ...calendar, imageUrl } : calendar
+                    calendar.id === calendarId ? { ...calendar, imageUrl, isLoading: false } : calendar
                 )
             );
         } catch (error) {
@@ -80,11 +79,11 @@ const useCalendarData = () => {
             } else {
                 console.error('Error fetching image URL:', error);
             }
-            return defaultScreenshot;
+            return null;
         }
     };
 
-    return { calendars, intersectionObserverRef };
+    return { loading, calendars, intersectionObserverRef };
 };
 
 export default useCalendarData;
