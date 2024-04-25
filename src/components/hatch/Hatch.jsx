@@ -10,13 +10,12 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../auth/firebase";
 import { auth } from "../../auth/firebase";
 import { useParams } from "react-router-dom";
-import { setScore } from "../../store/scoreSlice";
+import { setScore, fetchScoreFromFirebase } from "../../store/scoreSlice";
 import { useEffect } from "react";
 import { getDoc } from "firebase/firestore";
 
 function Hatch({ number }) {
   const [show, setShow] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const dispatch = useDispatch();
   const handleClose = () => {
@@ -53,33 +52,32 @@ function Hatch({ number }) {
       const currentUser = auth.currentUser;
       const calendarRef = doc(db, "calendars", id);
       const docSnap = await getDoc(calendarRef);
-      const fetchedScore = docSnap.data().users[currentUser.uid];
-      dispatch(setScore(fetchedScore));
+      const userData = docSnap.data().users[currentUser.uid];
+      dispatch(fetchScoreFromFirebase(userData));
     };
-
     fetchScore();
   }, []);
 
-  const score = useSelector((state) => state.score);
-
   const { id } = useParams();
-  let updatedScore;
+
+  const checkState = useSelector((state) => state.score[number]) || false;
+
   const handleClick = async () => {
     const currentUser = auth.currentUser;
-
     const calendarRef = doc(db, "calendars", id);
+    let newCheckState;
 
-    if (isChecked) {
-      updatedScore = score - 1;
-      dispatch(setScore(updatedScore));
+    if (checkState === false) {
+      newCheckState = true;
+      dispatch(setScore({ hatchNumber: number, isChecked: newCheckState }));
     } else {
-      updatedScore = score + 1;
-      dispatch(setScore(updatedScore));
+      newCheckState = false;
+      dispatch(setScore({ hatchNumber: number, isChecked: newCheckState }));
     }
+
     await updateDoc(calendarRef, {
-      [`users.${currentUser.uid}`]: updatedScore,
+      [`users.${currentUser.uid}.${number}`]: newCheckState,
     });
-    setIsChecked(!isChecked);
   };
 
   return (
@@ -172,7 +170,11 @@ function Hatch({ number }) {
             )}
           </p>
           <label className="toggle-btn">
-            <input type="checkbox" checked={isChecked} onChange={handleClick} />
+            <input
+              type="checkbox"
+              checked={checkState}
+              onChange={handleClick}
+            />
             <span className="slider round"></span>
           </label>
         </Modal.Body>

@@ -90,9 +90,13 @@ const Calendar = () => {
   const selectedHatchesNumber = useSelector(
     (state) => state.calendarStyling.selectedHatchesNumber
   );
-  const score = useSelector((state) => state.score);
+  const trueFalseObject = useSelector((state) => state.score);
 
-  const progress = (score / selectedHatchesNumber) * 100;
+  const length = Object.values(trueFalseObject).filter(
+    (isChecked) => isChecked
+  ).length;
+
+  const progress = (length / selectedHatchesNumber) * 100;
 
   useEffect(() => {
     if (!user) return;
@@ -201,7 +205,6 @@ const Calendar = () => {
               <button className="backToAdminCalendars">
                 Back to Calendars
               </button>
-              <p> {score}</p>
             </NavLink>
           </Col>
           <Col xs={9}>
