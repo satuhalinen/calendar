@@ -5,24 +5,34 @@ import { Button } from "react-bootstrap";
 import "./hatch.css";
 import { useSelector } from "react-redux";
 import { Container, Row, Col, Image } from "react-bootstrap";
+
+import { useDispatch } from "react-redux";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../auth/firebase";
+import { auth } from "../../auth/firebase";
+import { useParams } from "react-router-dom";
+import { setScore } from "../../store/scoreSlice";
+import { useEffect } from "react";
+import { getDoc } from "firebase/firestore";
+
 import { FaCheck } from "react-icons/fa";
 
-function Hatch({ number, onCheck }) {
+
+function Hatch({ number }) {
   const [show, setShow] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
+
+  const dispatch = useDispatch();
+
   const [isOpened, setIsOpened] = useState(false);
+
 
   const handleClose = () => {
     setShow(false);
     setIsFlipped(false);
     setIsOpened(true);
   };
-
-  const handleCheck = () => {
-    setIsChecked(!isChecked);
-    onCheck(number, !isChecked);
-  }
 
   const handleShow = () => setShow(true);
 
@@ -47,6 +57,40 @@ function Hatch({ number, onCheck }) {
   );
 
   const hatchFont = useSelector((state) => state.calendarStyling.selectedFont);
+
+  useEffect(() => {
+    const fetchScore = async () => {
+      const currentUser = auth.currentUser;
+      const calendarRef = doc(db, "calendars", id);
+      const docSnap = await getDoc(calendarRef);
+      const fetchedScore = docSnap.data().users[currentUser.uid];
+      dispatch(setScore(fetchedScore));
+    };
+
+    fetchScore();
+  }, []);
+
+  const score = useSelector((state) => state.score);
+
+  const { id } = useParams();
+  let updatedScore;
+  const handleClick = async () => {
+    const currentUser = auth.currentUser;
+
+    const calendarRef = doc(db, "calendars", id);
+
+    if (isChecked) {
+      updatedScore = score - 1;
+      dispatch(setScore(updatedScore));
+    } else {
+      updatedScore = score + 1;
+      dispatch(setScore(updatedScore));
+    }
+    await updateDoc(calendarRef, {
+      [`users.${currentUser.uid}`]: updatedScore,
+    });
+    setIsChecked(!isChecked);
+  };
 
   return (
     <>
@@ -94,7 +138,9 @@ function Hatch({ number, onCheck }) {
         <Modal.Header
           className="hatchModalContent text-center"
           style={{
-            background: backgroundImg ? `url(${backgroundImg})` : calendarBackgroundColor,
+            background: backgroundImg
+              ? `url(${backgroundImg})`
+              : calendarBackgroundColor,
             backgroundSize: "cover",
           }}
         >
@@ -116,7 +162,9 @@ function Hatch({ number, onCheck }) {
         >
           <div className="hatchModalContent">
             <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
-              {hatchTextHatch[number] ? hatchTextHatch[number].title : "No title"}
+              {hatchTextHatch[number]
+                ? hatchTextHatch[number].title
+                : "No title"}
             </p>
             <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
               {hatchTextHatch[number]
@@ -154,11 +202,7 @@ function Hatch({ number, onCheck }) {
             )}
           </p>
           <label className="toggle-btn">
-            <input
-              type="checkbox"
-              checked={isChecked}
-              onChange={handleCheck}
-            />
+            <input type="checkbox" checked={isChecked} onChange={handleClick} />
             <span className="slider round"></span>
           </label>
         </Modal.Body>
@@ -167,7 +211,9 @@ function Hatch({ number, onCheck }) {
           style={{
             backgroundColor: "#FFFAF7",
             justifyContent: "center",
-            background: backgroundImg ? `url(${backgroundImg})` : calendarBackgroundColor,
+            background: backgroundImg
+              ? `url(${backgroundImg})`
+              : calendarBackgroundColor,
             backgroundSize: "cover",
           }}
         >
@@ -179,7 +225,7 @@ function Hatch({ number, onCheck }) {
             Close
           </Button>
         </Modal.Footer>
-      </Modal >
+      </Modal>
     </>
   );
 }
