@@ -1,14 +1,13 @@
-import { auth } from "../auth/firebase";
+import { auth, db } from "../auth/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Navigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../auth/firebase";
 
 const ProtectedRoute = ({ component: Component, adminOnly, ...rest }) => {
     const [user, loading] = useAuthState(auth);
-    const [isAdmin, setIsAdmin] = useState(null); // Initialize isAdmin as null for loading state
+    const [isAdmin, setIsAdmin] = useState(null);
 
     useEffect(() => {
         const checkAdmin = async () => {
@@ -21,7 +20,7 @@ const ProtectedRoute = ({ component: Component, adminOnly, ...rest }) => {
                     setIsAdmin(adminUserUids.includes(user.uid));
                 } else {
                     console.error("User not found");
-                    setIsAdmin(false); // Set isAdmin to false if user is not found
+                    setIsAdmin(false);
                 }
             } catch (error) {
                 console.error("Error checking admin status:", error);
@@ -29,14 +28,14 @@ const ProtectedRoute = ({ component: Component, adminOnly, ...rest }) => {
             }
         };
 
-        if (!loading) { // Check if authentication state is not loading
+        if (!loading) {
             checkAdmin();
         }
     }, [user, loading]);
 
     console.log("isAdmin:", isAdmin);
 
-    if (loading || isAdmin === null) { // Display loading spinner while loading or isAdmin is null
+    if (loading || isAdmin === null) {
         return (
             <Spinner
                 animation="border"
@@ -53,7 +52,7 @@ const ProtectedRoute = ({ component: Component, adminOnly, ...rest }) => {
         return <Navigate to="/login" replace />;
     }
 
-    if (adminOnly && isAdmin !== true) { // Check if isAdmin is not true
+    if (adminOnly && isAdmin !== true) {
         return <Navigate to="/" replace />;
     }
 

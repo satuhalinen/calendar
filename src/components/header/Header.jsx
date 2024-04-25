@@ -30,9 +30,9 @@ export default function Header() {
   const isAuthenticatedAdmin = authenticatedAdminRoutes.includes(location.pathname);
 
   useEffect(() => {
-    if (isAuthenticatedUser && user?.photoURL) {
+    if (isAuthenticatedUser && user && user.photoURL) {
       setPhotoUrl(user.photoURL);
-    } else if (isAuthenticatedUser && !user?.photoURL) {
+    } else if (isAuthenticatedUser && user && !user.photoURL) {
       const fetchPhotoUrl = async () => {
         try {
           const photoRef = ref(storage, `${user.uid}.jpg`);
