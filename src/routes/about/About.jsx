@@ -23,8 +23,8 @@ export default function About() {
             <Image
               src={volunteer}
               className="volunteer"
-              width="600"
-              height="400"
+              width="570"
+              height="370"
               alt="logo"
             />
           </Col>

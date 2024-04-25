@@ -38,9 +38,12 @@
   height: 2px;
   background-color: #ba6c2c;
 }
+.aboutH4 {
+  margin-top: -0.2rem;
+}
 
 .volunteer {
-  margin-top: -1rem;
+  margin-top: -3rem;
   margin-left: -1.7rem;
 }
 
