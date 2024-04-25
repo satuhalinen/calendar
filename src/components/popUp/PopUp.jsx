@@ -28,9 +28,9 @@ const PopUp = ({ showInitially, handleClose }) => {
   return (
     <div className="popUpOpen">
       <div className="popUpContent">
-        <h2 className="popUpTitle">Contact us!</h2>
+        <h2 className="popUpTitle">Want to get in touch?</h2>
         <Link to="/contact" className="popUpLink">
-          <p className="popUpContactLink">Send us a message</p>
+          <p className="popUpContactLink">Send us a message!</p>
         </Link>
         <button className="popUpButton" onClick={handleCloseClick}>
           Close
