@@ -24,11 +24,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import ProtectedRoute from "./auth/ProtectedRoute";
-
 import ErrorPage from "./routes/errorPage/errorPage";
-
 import { ScrollToTop } from "react-router-scroll-to-top";
-
 
 function App() {
   return (
