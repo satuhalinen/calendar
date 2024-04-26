@@ -1,20 +1,25 @@
 .terms-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .terms-wrap {
-    padding: 20px 60px 40px 60px;
-    background-color: #f4ede7;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
+  padding: 20px 60px 40px 60px;
+  background-color: #f4ede7;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
 }
 
 .termsTitle {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 400;
-    margin: 2rem 0 4rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 2rem 0 4rem;
+}
+.termscontent h2 {
+  text-align: left;
+  font-size: 1.5rem;
+  font-weight: 300;
 }
