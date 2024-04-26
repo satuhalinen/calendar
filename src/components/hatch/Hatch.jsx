@@ -5,7 +5,6 @@ import { Button } from "react-bootstrap";
 import "./hatch.css";
 import { useSelector } from "react-redux";
 import { Container, Row, Col, Image } from "react-bootstrap";
-
 import { useDispatch } from "react-redux";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../auth/firebase";
@@ -14,18 +13,14 @@ import { useParams } from "react-router-dom";
 import { setScore, fetchScoreFromFirebase } from "../../store/scoreSlice";
 import { useEffect } from "react";
 import { getDoc } from "firebase/firestore";
-
+import { setOpen } from "../../store/scoreSlice";
 import { FaCheck } from "react-icons/fa";
-
 
 function Hatch({ number }) {
   const [show, setShow] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
-
   const dispatch = useDispatch();
-
   const [isOpened, setIsOpened] = useState(false);
-
 
   const handleClose = () => {
     setShow(false);
@@ -70,23 +65,52 @@ function Hatch({ number }) {
 
   const { id } = useParams();
 
-  const checkState = useSelector((state) => state.score[number]) || false;
-
+  const checkState =
+    useSelector((state) => state.score[number]?.isChecked) || false;
+  const isOpenedHatch =
+    useSelector((state) => state.score[number]?.isOpened) || false;
   const handleClick = async () => {
     const currentUser = auth.currentUser;
     const calendarRef = doc(db, "calendars", id);
     let newCheckState;
-
     if (checkState === false) {
       newCheckState = true;
-      dispatch(setScore({ hatchNumber: number, isChecked: newCheckState }));
+      dispatch(
+        setScore({
+          hatchNumber: number,
+          isChecked: newCheckState,
+        })
+      );
     } else {
       newCheckState = false;
-      dispatch(setScore({ hatchNumber: number, isChecked: newCheckState }));
+      dispatch(
+        setScore({
+          hatchNumber: number,
+          isChecked: newCheckState,
+        })
+      );
     }
 
     await updateDoc(calendarRef, {
-      [`users.${currentUser.uid}.${number}`]: newCheckState,
+      [`users.${currentUser.uid}.${number}`]: {
+        isChecked: newCheckState,
+        isOpened: isOpenedHatch,
+      },
+    });
+  };
+
+  const cardClick = async () => {
+    const currentUser = auth.currentUser;
+    const calendarRef = doc(db, "calendars", id);
+    let newOpenState = isOpenedHatch ? isOpenedHatch : true;
+    if (!isOpenedHatch) {
+      dispatch(setOpen({ hatchNumber: number, isOpened: newOpenState }));
+    }
+    await updateDoc(calendarRef, {
+      [`users.${currentUser.uid}.${number}`]: {
+        isChecked: checkState,
+        isOpened: newOpenState,
+      },
     });
   };
 
@@ -95,6 +119,7 @@ function Hatch({ number }) {
       <Card
         onClick={() => {
           handleShow();
+          cardClick();
           if (!isOpened) {
             setIsFlipped(true);
           }
@@ -106,32 +131,42 @@ function Hatch({ number }) {
           backgroundColor: hatchColor,
           cursor: "pointer",
         }}
-        className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""} ${isOpened ? "opened" : ""}`}
+        className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""} ${
+          isOpened ? "opened" : ""
+        }`}
       >
-        <div className="hatch" style={{ color: hatchFontColor, fontSize: isOpened ? "0.1rem" : "", display: isFlipped ? "none" : "" }}>
+        <div
+          className="hatch"
+          style={{
+            color: hatchFontColor,
+            fontSize: isOpened ? "0.1rem" : "",
+            display: isFlipped ? "none" : "",
+          }}
+        >
           {number}
         </div>
-        {isOpened && !hatchTextHatch[number] && (
+        {isOpenedHatch && !hatchTextHatch[number] && (
           <div className="hatchModalContent">
-            <p className="noContentOpened"
-              style={{ color: hatchFontColor }}>No content</p>
+            <p className="noContentOpened" style={{ color: hatchFontColor }}>
+              No content
+            </p>
           </div>
         )}
-        {isOpened && hatchTextHatch[number] && (
-          <div className="hatchModalContent"
+        {isOpenedHatch && hatchTextHatch[number] && (
+          <div
+            className="hatchModalContent"
             style={{ background: hatchColor, color: hatchFontColor }}
           >
             <p className="hatchOpenedTitle">{hatchTextHatch[number].title}</p>
             <Image
               src={`https://source.unsplash.com/400x400/?${hatchTextHatch[number].title}`}
               roundedCircle
-              className="hatchImage" />
-            {isChecked && (
-              <FaCheck className="checkMarkOpened" />
-            )}
+              className="hatchImage"
+            />
+            {checkState && <FaCheck className="checkMarkOpened" />}
           </div>
         )}
-      </Card >
+      </Card>
       <Modal centered show={show} onHide={handleClose}>
         <Modal.Header
           className="hatchModalContent text-center"
