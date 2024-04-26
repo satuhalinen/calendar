@@ -61,7 +61,10 @@ export default function Profile() {
 
   const upload = async (file, currentUser, setLoading) => {
     const fileExtension = file.name.split(".").pop();
-    const fileRef = ref(storage, `${currentUser.uid}.${fileExtension}`);
+    const fileRef = ref(
+      storage,
+      `profileImg/${currentUser.uid}.${fileExtension}`
+    );
 
     setLoading(true);
     try {
@@ -91,8 +94,12 @@ export default function Profile() {
               <div className="profileImgContainer">
                 <Image className="profileImg" src={photoUrl} alt="avatar" />
                 <label className="inputImg">
-                  <input disabled={loading} type="file" onChange={handleChange} />
-                  <BsImage style={{ fontSize: '12px' }} />
+                  <input
+                    disabled={loading}
+                    type="file"
+                    onChange={handleChange}
+                  />
+                  <BsImage style={{ fontSize: "12px" }} />
                 </label>
               </div>
             </Col>
@@ -111,7 +118,8 @@ export default function Profile() {
         <Row className="favoriteCards">
           {calendars.slice(0, 4).map((calendar) => (
             <Col
-              xs={12} md={4}
+              xs={12}
+              md={4}
               key={calendar.id}
               className="calendarCard profileCalendar"
               data-calendar-id={calendar.id}
@@ -119,9 +127,17 @@ export default function Profile() {
                 calendarRef &&
                 intersectionObserverRef.current &&
                 intersectionObserverRef.current.observe(calendarRef)
-              }>
-              <NavLink to={`/calendar/${calendar.id}`} className="calendarLinkFavorite">
-                <img src={calendar.imageUrl || defaultScreenshot} alt="no img" className="defaultScreenshotFavorite" />
+              }
+            >
+              <NavLink
+                to={`/calendar/${calendar.id}`}
+                className="calendarLinkFavorite"
+              >
+                <img
+                  src={calendar.imageUrl || defaultScreenshot}
+                  alt="no img"
+                  className="defaultScreenshotFavorite"
+                />
                 <button className="useCalendarButton">Use Calendar</button>
               </NavLink>
             </Col>
