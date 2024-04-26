@@ -15,11 +15,11 @@
 .hatchOpenedTitle {
   font-size: 0.6rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin: 0 0 0.5rem 0;
 }
 
 .hatchImage {
-  max-width: 75px;
+  max-width: 70px;
   max-height: auto;
   margin-bottom: 0.5rem;
   border-radius: 5px;
