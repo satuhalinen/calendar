@@ -1,31 +1,41 @@
-import { auth } from "../auth/firebase";
+import { auth, db } from "../auth/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
-// import { doc, getDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
 
 const ProtectedRoute = ({ component: Component, adminOnly, ...rest }) => {
     const [user, loading] = useAuthState(auth);
-    const [isAdmin, setIsAdmin] = useState(true);
+    const [isAdmin, setIsAdmin] = useState(null);
 
-    // useEffect(() => {
-    //     const checkAdmin = async () => {
-    //         if (user) {
-    //             const userDoc = await getDoc(doc(db, "users", user.uid));
-    //             const userData = userDoc.data();
-    //             setIsAdmin(userData?.isAdmin ?? false);
-    //         }
-    //     };
+    useEffect(() => {
+        const checkAdmin = async () => {
+            try {
+                if (user) {
+                    const usersCollection = collection(db, 'users');
+                    const usersSnapshot = await getDocs(usersCollection);
+                    const adminUsers = usersSnapshot.docs.filter((doc) => doc.data().isAdmin === true);
+                    const adminUserUids = adminUsers.map((doc) => doc.data().uid);
+                    setIsAdmin(adminUserUids.includes(user.uid));
+                } else {
+                    console.error("User not found");
+                    setIsAdmin(false);
+                }
+            } catch (error) {
+                console.error("Error checking admin status:", error);
+                setIsAdmin(false);
+            }
+        };
 
-    //     checkAdmin();
-    // }
-    //     , [user]);
+        if (!loading) {
+            checkAdmin();
+        }
+    }, [user, loading]);
 
-    // console.log("user", user);
+    console.log("isAdmin:", isAdmin);
 
-
-    if (loading) {
+    if (loading || isAdmin === null) {
         return (
             <Spinner
                 animation="border"
@@ -42,7 +52,7 @@ const ProtectedRoute = ({ component: Component, adminOnly, ...rest }) => {
         return <Navigate to="/login" replace />;
     }
 
-    if (adminOnly && !isAdmin) {
+    if (adminOnly && isAdmin !== true) {
         return <Navigate to="/" replace />;
     }
 
