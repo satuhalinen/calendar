@@ -19,6 +19,7 @@ export default function Profile() {
   const [photoUrl, setPhotoUrl] = useState(avatar);
   const [userData, setUserData] = useState({ name: "", email: "" });
   const { calendars, intersectionObserverRef } = useCalendarData();
+  const [docId, setDocId] = useState(null);
 
   useEffect(() => {
     if (!user) return;
@@ -28,7 +29,9 @@ export default function Profile() {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         const userData = doc.data();
+        const docId = doc.id;
         setUserData(userData);
+        setDocId(docId);
       });
     };
 
@@ -106,7 +109,13 @@ export default function Profile() {
             <Col className="profileText">
               <p>Name: {userData.fullname}</p>
               <p>Email: {userData.email}</p>
-              <Link className="linkToAccount" to="/account-settings">
+              <Link
+                className="linkToAccount"
+                to={{
+                  pathname: "/account-settings",
+                }}
+                state={{ docID: docId }}
+              >
                 <p className="linkToAccount">Account Settings</p>
               </Link>
             </Col>
