@@ -1,92 +1,94 @@
 .popUpClosed {
-    position: fixed;
-    text-align: center;
-    font-size: 1rem;
-    left: 0;
-    top: 60%;
-    transform: translateY(-50%) rotate(-90deg);
-    width: 120px;
-    height: 50px;
-    background-color: #ba6c2c;
-    color: white;
-    padding: 10px;
-    border-right: 1px solid #d9c8bf;
-    border-radius: 0 0 10px 10px;
-    transform-origin: left top;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.197);
-    cursor: pointer;
-    z-index: 1000;
-    transition: color 0.5s, background-color 0.5s;
+  position: fixed;
+  text-align: center;
+  font-size: 1rem;
+  left: 0;
+  top: 60%;
+  transform: translateY(-50%) rotate(-90deg);
+  width: 120px;
+  height: 50px;
+  background-color: #ba6c2c;
+  color: white;
+  padding: 10px;
+  border-right: 1px solid #d9c8bf;
+  border-radius: 0 0 10px 10px;
+  transform-origin: left top;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.197);
+  cursor: pointer;
+  z-index: 1000;
+  transition: color 0.5s, background-color 0.5s;
 }
 
 .popUpClosed:hover {
-    box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237);
-    background-color: #a65919;
+  box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237);
+  background-color: #a65919;
 }
 
 .popUpContactLink,
 .popUpLink {
-    color: white;
-    text-decoration: none;
+  color: #a65919;
+  text-decoration: none;
 }
 
 .popUpContactLink:hover {
-    color: #eab287;
-    text-decoration: underline;
+  color: #a65919;
+  text-decoration: underline;
 }
 
 .popUpOpen {
-    position: fixed;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 280px;
-    background-color: #ba6c2c;
-    color: white;
-    padding: 40px 10px 40px 10px;
-    border-radius: 0 10px 10px 0px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.383);
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.197);
-    cursor: pointer;
-    z-index: 1000;
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 280px;
+  background-color: #f4ede7;
+  padding: 40px 10px 40px 10px;
+  border-radius: 0 10px 10px 0px;
+  border-color: #a65919;
+  border-style: solid;
+  border-width: 3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.383);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.197);
+  cursor: pointer;
+  z-index: 1000;
 }
 
 .popUpTitle {
-    font-size: 1.3rem;
-    font-weight: 500;
-    padding: 1rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: 1rem;
 }
 
 .popUpContent {
-    text-align: center;
+  text-align: center;
 }
 
 .popUpButton {
-    background-color: #ba6c2c;
-    box-shadow: 1px 1px 5px rgba(74, 40, 17, 0.471);
-    border: none;
-    border-radius: 5px;
-    color: white;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  background-color: #ba6c2c;
+  box-shadow: 1px 1px 5px rgba(74, 40, 17, 0.471);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .popUpButton:hover {
-    box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237);
-    background-color: #a65919;
+  box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237);
+  background-color: #a65919;
 }
 
 @media (max-width: 768px) {
-    .popUpClosed {
-        width: 100px;
-        height: 40px;
-        font-size: 1rem;
-    }
+  .popUpClosed {
+    width: 100px;
+    height: 40px;
+    font-size: 1rem;
+  }
 }
