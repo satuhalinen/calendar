@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../auth/firebase';
+import defaultScreenshot from '../assets/defaultScreenshot.png';
 
 const useCalendarData = () => {
     const [loading, setLoading] = useState(true);
@@ -79,7 +80,7 @@ const useCalendarData = () => {
             } else {
                 console.error('Error fetching image URL:', error);
             }
-            return null;
+            return defaultScreenshot;
         }
     };
 

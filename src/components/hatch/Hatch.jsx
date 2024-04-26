@@ -5,7 +5,6 @@ import { Button } from "react-bootstrap";
 import "./hatch.css";
 import { useSelector } from "react-redux";
 import { Container, Row, Col, Image } from "react-bootstrap";
-
 import { useDispatch } from "react-redux";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../auth/firebase";
@@ -14,18 +13,15 @@ import { useParams } from "react-router-dom";
 import { setScore, fetchScoreFromFirebase } from "../../store/scoreSlice";
 import { useEffect } from "react";
 import { getDoc } from "firebase/firestore";
-
 import { FaCheck } from "react-icons/fa";
 
 
 function Hatch({ number }) {
   const [show, setShow] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
-
-  const dispatch = useDispatch();
-
   const [isOpened, setIsOpened] = useState(false);
 
+  const dispatch = useDispatch();
 
   const handleClose = () => {
     setShow(false);
@@ -56,6 +52,8 @@ function Hatch({ number }) {
   );
 
   const hatchFont = useSelector((state) => state.calendarStyling.selectedFont);
+
+  const isChecked = useSelector((state) => state.score[number]);
 
   useEffect(() => {
     const fetchScore = async () => {
@@ -117,6 +115,7 @@ function Hatch({ number }) {
               style={{ color: hatchFontColor }}>No content</p>
           </div>
         )}
+
         {isOpened && hatchTextHatch[number] && (
           <div className="hatchModalContent"
             style={{ background: hatchColor, color: hatchFontColor }}

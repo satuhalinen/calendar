@@ -26,7 +26,7 @@
     max-height: 40vh;
     max-width: 50vw;
     object-fit: cover;
-    margin: 0 0.5rem;
+    margin: 0rem;
     transition: all 0.5s ease-in-out;
     cursor: zoom-in;
     border-radius: 5px;

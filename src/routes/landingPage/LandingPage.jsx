@@ -6,11 +6,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../landingPage/landingPage.css";
 import { Link } from "react-router-dom";
 import CalendarCarousel from "../../components/calendarCarousel/CalendarCarousel.jsx";
+import ChatBot from "../../components/chatBot/ChatBot.jsx";
 
 const LandingPage = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const [showChatBot, setShowChatBot] = useState(false);
+
   const handleClosePopup = () => {
     setShowPopup(false);
+  };
+
+  const handleCloseChatBot = () => {
+    setShowChatBot(false);
   };
 
   const [expandedStates, setExpandedStates] = useState({
@@ -174,6 +181,9 @@ const LandingPage = () => {
           </Card.Body>
         </Card>
       </Col>
+      <Row>
+        <ChatBot showInitially={!showChatBot} handleClose={handleCloseChatBot} />
+      </Row>
     </Col>
   );
 };
