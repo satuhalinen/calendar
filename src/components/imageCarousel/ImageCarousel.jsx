@@ -16,7 +16,7 @@ const ImageCarousel = () => {
 
   return (
     <Carousel activeIndex={index} onSelect={handleSelect} variant="dark">
-      <Carousel.Item interval={3000}>
+      <Carousel.Item className="carouselItem" interval={3000}>
         <Image
           className="d-block w-100 carouselImg"
           src={carousel1}
@@ -28,8 +28,8 @@ const ImageCarousel = () => {
             Nulla vitae elit libero, a pharetra augue mollis interdum.
           </p>
         </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item interval={3000}>
+      </Carousel.Item >
+      <Carousel.Item className="carouselItem" interval={3000}>
         <Image
           className="d-block w-100 carouselImg"
           src={carousel2}
@@ -42,7 +42,7 @@ const ImageCarousel = () => {
           </p>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item interval={3000}>
+      <Carousel.Item className="carouselItem" interval={3000}>
         <Image
           className="d-block w-100 carouselImg"
           src={carousel3}

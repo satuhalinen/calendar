@@ -5,6 +5,7 @@ import { Row, Col, Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../landingPage/landingPage.css";
 import { Link } from "react-router-dom";
+import CalendarCarousel from "../../components/calendarCarousel/CalendarCarousel.jsx";
 
 const LandingPage = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -153,6 +154,10 @@ const LandingPage = () => {
           <Button className="registerNow">Register now</Button>
         </Link>
       </Col>
+      <Row className="calendarCarouselRow">
+        <h2 className="versionTitle">Choose your own style</h2>
+        <CalendarCarousel />
+      </Row>
       <Col className="aboutUs">
         <Card className="aboutUsCard">
           <Card.Header className="aboutUsTitle">Who are we?</Card.Header>

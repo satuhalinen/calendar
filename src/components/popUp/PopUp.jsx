@@ -8,7 +8,7 @@ const PopUp = ({ showInitially, handleClose }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setShowPopup(true);
-    }, 5000);
+    }, 10000);
     return () => clearTimeout(timeout);
   }, []);
 
