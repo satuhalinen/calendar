@@ -139,8 +139,7 @@ function Hatch({ number }) {
           className="hatch"
           style={{
             color: hatchFontColor,
-            fontSize: isOpened ? "0.1rem" : "",
-            display: isFlipped ? "none" : "",
+            display: isFlipped || isOpened ? "none" : "",
           }}
         >
           {number}
