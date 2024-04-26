@@ -2,13 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const scoreSlice = createSlice({
   name: "score",
-  initialState: 0,
+  initialState: {},
   reducers: {
     setScore: (state, action) => {
+      state[action.payload.hatchNumber] = action.payload.isChecked;
+    },
+    fetchScoreFromFirebase: (state, action) => {
       return action.payload;
     },
   },
 });
 
-export const { setScore } = scoreSlice.actions;
+export const { setScore, fetchScoreFromFirebase } = scoreSlice.actions;
 export default scoreSlice.reducer;
