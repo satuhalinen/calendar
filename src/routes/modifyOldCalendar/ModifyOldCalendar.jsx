@@ -1,6 +1,6 @@
 import EditHatch from "../../components/editHatch/EditHatch";
 import "../../calendar.css";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, NavLink } from "react-bootstrap";
 import SmallHeader from "../../components/smallHeader/SmallHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -114,61 +114,70 @@ function ModifyOldCalendar() {
     <>
       <SmallHeader />
       <div style={{ display: "grid" }} className="editCalendar">
-        <Card.Title
-          style={{
-            textAlign: "center",
-            margin: "3% 0% 0% 0%",
-            fontSize: "40px",
-          }}
-        >
-          <p style={{ fontFamily: titleFont }}>{title}</p>
-        </Card.Title>
         <div className="calendarSections" style={{ display: "flex" }}>
           <Card
-            className="calendar"
             style={{
-              margin: "2%",
-              backgroundColor: backgroundColor,
+              margin: "1.5% 0",
               backgroundImage: `url(${selectedImage})`,
+              backgroundColor: backgroundColor,
               backgroundSize: "cover",
+              boxShadow: "0px 0px 5px 0px #00000059",
+              border: "none",
             }}
           >
-            {Array.from({ length: selectedHatchesNumber || 31 }).map((_, i) => (
-              <EditHatch key={i} number={i + 1} />
-            ))}
+            <Card.Title
+              style={{
+                textAlign: "center",
+                margin: "3% 0% 0% 0%",
+                fontFamily: titleFont,
+                color: selectedHatchFontColor,
+              }}
+            >
+              <p className="editCalendarTitle">{title}</p>
+            </Card.Title>
+            <div className="calendar">
+              {Array.from({ length: selectedHatchesNumber || 31 }).map(
+                (_, i) => (
+                  <EditHatch key={i} number={i + 1} />
+                )
+              )}
+            </div>
           </Card>
         </div>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <Button
+          <NavLink
             style={{
-              width: "20%",
+              width: "7%",
               margin: "0% 0% 2% 0%",
               backgroundColor: "#BA6C2C",
               color: "#FFFAF7",
               border: "none",
+              textDecoration: "none",
             }}
-            href="/create-calendar"
+            className="backToCreateCalendarButton"
+            to="/create-calendar"
           >
-            back
-          </Button>
+            Back
+          </NavLink>
 
-          <Button
+          <NavLink
             onClick={saveHatchText}
             style={{
-              width: "20%",
               justifySelf: "center",
               backgroundColor: "#BA6C2C",
               color: "#FFFAF7",
               border: "none",
               margin: "0% 0% 2% 0%",
+              textDecoration: "none",
             }}
+            className="createCalendarButton"
+            to="#"
           >
-            Save calendar
-          </Button>
+            Create calendar
+          </NavLink>
         </div>
       </div>
     </>
   );
 }
-
 export default ModifyOldCalendar;
