@@ -35,6 +35,7 @@
 .carouselItem {
     height: 80vh;
     position: relative;
+    transition: all 2s ease-in-out !important;
 }
 
 .carouselCaption {
