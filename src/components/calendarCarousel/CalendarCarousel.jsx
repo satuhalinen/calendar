@@ -20,21 +20,21 @@ const CalendarCarousel = () => {
 
     return (
         <Carousel activeIndex={selectedIndex} onSelect={handleSelect} className="customCarousel">
-            <Carousel.Item className="carouselItem" interval={3000}>
+            <Carousel.Item className="calendarCarouselItem" interval={3000}>
                 <div className="d-flex firstCarousel">
                     <img src={exampleCalendar} alt="Image1" className="calendarCarouselImg" />
                     <img src={exampleCalendar2} alt="Image2" className="calendarCarouselImg" />
                     <img src={exampleCalendar3} alt="Image3" className="calendarCarouselImg" />
                 </div>
             </Carousel.Item>
-            <Carousel.Item className="carouselItem" interval={3000}>
+            <Carousel.Item className="calendarCarouselItem" interval={3000}>
                 <div className="d-flex firstCarousel">
                     <img src={exampleCalendar4} alt="Image1" className="calendarCarouselImg" />
                     <img src={exampleCalendar5} alt="Image2" className="calendarCarouselImg" />
                     <img src={exampleCalendar6} alt="Image3" className="calendarCarouselImg" />
                 </div>
             </Carousel.Item>
-            <Carousel.Item className="carouselItem" interval={3000}>
+            <Carousel.Item className="calendarCarouselItem" interval={3000}>
                 <div className="d-flex firstCarousel">
                     <img src={exampleCalendar7} alt="Image1" className="calendarCarouselImg" />
                     <img src={exampleCalendar8} alt="Image2" className="calendarCarouselImg" />

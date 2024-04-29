@@ -11,7 +11,7 @@
     width: 100%;
 }
 
-.carouselItem {
+.calendarCarouselItem {
     transition: all 2s ease-in-out !important;
 }
 
@@ -23,8 +23,8 @@
 }
 
 .calendarCarouselImg {
-    max-height: 40vh;
-    max-width: 50vw;
+    max-height: 35vh;
+    max-width: 40vw;
     object-fit: cover;
     margin: 0rem;
     cursor: zoom-in;

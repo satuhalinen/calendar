@@ -109,7 +109,7 @@ export default function Header() {
           )}
           {isAuthenticatedAdmin && (
             <>
-              <Nav.Link as={NavLink} to="/adminpanel" className="navLink">Home</Nav.Link>
+              <Nav.Link as={NavLink} to="/" className="navLink">Home</Nav.Link>
               <Nav.Link as={NavLink} to="/" onClick={logout} className="navLink">Logout</Nav.Link>
             </>
           )}

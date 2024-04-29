@@ -13,7 +13,7 @@ export default function ChatBot({ showInitially, handleClose }) {
     useEffect(() => {
         const timeout = setTimeout(() => {
             setShowChatBot(true);
-        }, 5000);
+        }, 10000);
         return () => clearTimeout(timeout);
     }, []);
 

@@ -15,43 +15,33 @@ const ImageCarousel = () => {
   };
 
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect} variant="dark">
+    <Carousel activeIndex={index} onSelect={handleSelect} variant="light">
       <Carousel.Item className="carouselItem" interval={3000}>
-        <Image
-          className="d-block w-100 carouselImg"
-          src={carousel1}
-          text="First slide"
-        />
-        <Carousel.Caption>
-          <h3 className="carouselText">First slide label</h3>
+        <Image className="d-block w-100" src={carousel1} alt="First slide" />
+        <Carousel.Caption className="carouselCaption">
+          <h3 className="carouselText">Keep company to the elderly</h3>
           <p className="carouselText">
-            Nulla vitae elit libero, a pharetra augue mollis interdum.
-          </p>
-        </Carousel.Caption>
-      </Carousel.Item >
-      <Carousel.Item className="carouselItem" interval={3000}>
-        <Image
-          className="d-block w-100 carouselImg"
-          src={carousel2}
-          text="Second slide"
-        />
-        <Carousel.Caption>
-          <h3 className="carouselText">Second slide label</h3>
-          <p className="carouselText">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Create a calendar to help the elderly and make their days brighter.
           </p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item className="carouselItem" interval={3000}>
-        <Image
-          className="d-block w-100 carouselImg"
-          src={carousel3}
-          text="Third slide"
-        />
-        <Carousel.Caption>
-          <h3 className="carouselText">Third slide label</h3>
+        <Image className="d-block w-100" src={carousel2} alt="Second slide" />
+        <Carousel.Caption className="carouselCaption">
+          <h3 className="carouselText">Join the Red Cross</h3>
           <p className="carouselText">
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            Help the Red Cross by volunteering and making a difference in the
+            world.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item className="carouselItem" interval={3000}>
+        <Image className="d-block w-100" src={carousel3} alt="Third slide" />
+        <Carousel.Caption className="carouselCaption">
+          <h3 className="carouselText">Volunteer at the Soup Kitchen</h3>
+          <p className="carouselText">
+            Make a difference in the community by volunteering at the local soup
+            kitchen.
           </p>
         </Carousel.Caption>
       </Carousel.Item>

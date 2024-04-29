@@ -162,8 +162,9 @@ const LandingPage = () => {
         </Link>
       </Col>
       <Row className="calendarCarouselRow">
-        <h2 className="versionTitle">Choose your own style</h2>
+        <h2 className="calendarCarouselTitle">Choose your own style</h2>
         <CalendarCarousel />
+        <p className="calendarCarouselTitleBottom"></p>
       </Row>
       <Col className="aboutUs">
         <Card className="aboutUsCard">

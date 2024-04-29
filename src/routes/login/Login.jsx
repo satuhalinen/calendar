@@ -8,6 +8,7 @@ import {
 } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import { addDoc, getDoc, doc, collection, getDocs } from "firebase/firestore";
+import { Spinner } from "react-bootstrap";
 import "./login.css";
 
 export default function Login() {
@@ -187,7 +188,7 @@ export default function Login() {
               <span style={{ display: "none" }}>Sign in with Google</span>
             </div>
           </Button>
-          {loading && <p>Loading...</p>}
+          {loading && <div> <Spinner animation="border" variant="secondary" /></div>}
           {error && <p style={{ color: "red" }}>{error}</p>}
           <p className="noAccount">
             Don't have an account? <Link to="/register">Sign up</Link> now.
