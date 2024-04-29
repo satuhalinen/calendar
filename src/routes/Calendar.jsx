@@ -94,7 +94,7 @@ const Calendar = () => {
   const trueFalseObject = useSelector((state) => state.score);
 
   const length = Object.values(trueFalseObject).filter(
-    (isChecked) => isChecked
+    (hatch) => hatch.isChecked
   ).length;
 
   const progress = (length / selectedHatchesNumber) * 100;
