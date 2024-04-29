@@ -6,7 +6,36 @@
 
 .flipped {
   transform: rotateY(180deg);
-  filter: brightness(1.5) !important;
+}
+
+.opened {
+  /* background: #f9f5f3 !important; */
+}
+
+.hatchOpenedTitle {
+  font-size: 0.6rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.hatchImage {
+  max-width: 70px;
+  max-height: auto;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  object-fit: contain;
+  filter: saturate(0.3);
+}
+
+.checkMarkOpened {
+  font-size: 0.9rem;
+  color: #425f5b;
+}
+
+.noContentOpened {
+  margin-top: 3rem;
+  font-size: 0.8rem;
+  color: #425f5b;
 }
 
 .hatchModalTitle {

@@ -137,7 +137,6 @@ export default function CreateCalendar() {
 
   const handleBackgroundColorClick = () => {
     dispatch(setColorShow());
-    console.log("colorShow", colorShow);
   };
 
   const handleFontSelect = () => {
@@ -222,7 +221,7 @@ export default function CreateCalendar() {
           </Row>
           <p className="para">Choose the color theme</p>
           <Row className="justify-content-center">
-            <Col style={{ maxWidth: "340px" }}>
+            <Col style={{ maxWidth: "400px" }}>
               <div>
                 <p className="colorOptionsTitle">Calendar background color:</p>
                 <div
@@ -267,7 +266,7 @@ export default function CreateCalendar() {
                 </div>
               </div>
             </Col>
-            <Col style={{ maxWidth: "340px" }}>
+            <Col style={{ maxWidth: "400px" }}>
               <div>
                 <p className="colorOptionsTitle">Choose title Font:</p>
                 <div
@@ -309,7 +308,7 @@ export default function CreateCalendar() {
                 </div>
               </div>
             </Col>
-            <Col style={{ maxWidth: "340px" }}>
+            <Col style={{ maxWidth: "400px" }}>
               <div>
                 <p className="colorOptionsTitle">Choose Background Image:</p>
                 <div
@@ -353,7 +352,7 @@ export default function CreateCalendar() {
             </Col>
           </Row>
           <Row className="justify-content-center">
-            <Col style={{ maxWidth: "340px" }}>
+            <Col style={{ maxWidth: "400px" }}>
               <div>
                 <p className="colorOptionsTitle">
                   Choose hatch background color:
@@ -399,7 +398,7 @@ export default function CreateCalendar() {
                 </div>
               </div>
             </Col>
-            <Col style={{ maxWidth: "340px" }}>
+            <Col style={{ maxWidth: "400px" }}>
               <div>
                 <p className="colorOptionsTitle">Choose hatch Font:</p>
                 <div
@@ -440,7 +439,7 @@ export default function CreateCalendar() {
                 </div>
               </div>
             </Col>
-            <Col style={{ maxWidth: "340px" }}>
+            <Col style={{ maxWidth: "400px" }}>
               <div>
                 <p className="colorOptionsTitle">Choose font color:</p>
                 <div
@@ -515,6 +514,7 @@ export default function CreateCalendar() {
                   backgroundImage: `url(${selectedImage})`,
                   backgroundSize: "cover",
                   boxShadow: "0px 0px 5px 0px #0000005e",
+                  width: "75vw",
                 }}
               >
                 <div
@@ -617,6 +617,6 @@ export default function CreateCalendar() {
           </Link>
         </Container>
       </Col>
-    </Row>
+    </Row >
   );
 }
