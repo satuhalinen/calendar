@@ -53,8 +53,6 @@ function Hatch({ number }) {
 
   const hatchFont = useSelector((state) => state.calendarStyling.selectedFont);
 
-  const isChecked = useSelector((state) => state.score[number]);
-
   useEffect(() => {
     const fetchScore = async () => {
       const currentUser = auth.currentUser;

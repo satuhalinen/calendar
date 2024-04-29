@@ -25,7 +25,7 @@ export default function Message({ role, content }) {
                 {role === "assistant" ? (
                     <img src={chatBot} className="botAvatar" alt="profile avatar" />
                 ) : (
-                    user && profileImageUrl ? (
+                    profileImageUrl ? (
                         <img src={profileImageUrl} className="botAvatar" alt="profile avatar" />
                     ) : (
                         <img src={avatar} className="botAvatar" alt="profile avatar" />

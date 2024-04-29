@@ -42,6 +42,7 @@
 .botAvatar {
     width: 30px;
     height: 30px;
+    border-radius: 50%;
 }
 
 .chatInputWrapper {
@@ -116,10 +117,6 @@
     background: #f4ede7;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.379);
     z-index: 1000;
-}
-
-.botAvatar {
-    border-radius: 50%;
 }
 
 .chatBotTitle {

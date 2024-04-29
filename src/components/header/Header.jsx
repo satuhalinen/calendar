@@ -24,7 +24,7 @@ export default function Header() {
   const profileImageUrl = useSelector(selectProfileImageUrl);
 
   useEffect(() => {
-    if (user && user.uid) {
+    if (user?.uid) {
       dispatch(fetchProfileImage(user.uid));
     }
   }, [user, dispatch]);

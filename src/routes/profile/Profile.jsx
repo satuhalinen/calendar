@@ -8,12 +8,11 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 import { BsImage } from "react-icons/bs";
 import { fetchProfileImage } from '../../store/actions/actions'
-import { selectProfileImageUrl } from '../../store/profileImageSlice';
+import { selectProfileImageUrl, updateProfileImageUrl } from '../../store/profileImageSlice';
 import "./profile.css";
 import defaultScreenshot from "../../assets/defaultScreenshot.png";
 import useCalendarData from "../../hooks/useCalendarData";
 import { useDispatch, useSelector } from 'react-redux';
-import { updateProfileImageUrl } from '../../store/profileImageSlice';
 import avatar from "../../assets/avatar.png";
 
 export default function Profile() {

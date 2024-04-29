@@ -107,7 +107,7 @@ export default function ChatBot({ showInitially, handleClose }) {
 
     if (!showChatBot && showInitially) {
         return (
-            <div className="chatBotClosed" onClick={() => setShowChatBot(true)}>
+            <div className="chatBotClosed" aria-hidden="true" onClick={() => setShowChatBot(true)}>
                 Open Chat
             </div>
         );
