@@ -132,7 +132,7 @@
 .chatBotContent {
     overflow-y: auto;
     margin-bottom: 20px;
-    max-height: 50vh;
+    max-height: 40vh;
     padding: 10px;
     border-radius: 10px;
 }
