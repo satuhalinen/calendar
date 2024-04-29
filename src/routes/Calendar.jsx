@@ -30,6 +30,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { showCalendarText } from "../store/alternativesSlice.js";
 import {
   setSelectedImage,
+  setUploadedImage,
   setSelectedColor,
   setSelectedFont,
   setSelectedTitleFont,
@@ -80,6 +81,7 @@ const Calendar = () => {
         dispatch(setSelectedHatchFontColor(data.calendarHatchFontColor));
         dispatch(setSelectedHatchesNumber(data.calendarHatchesNumber));
         dispatch(setInputValue(data.calendarTitle));
+        dispatch(setUploadedImage(data.calendarUploadedImage));
       } else {
         console.log("No such document!");
       }
@@ -124,6 +126,10 @@ const Calendar = () => {
 
   const selectedImage = useSelector(
     (state) => state.calendarStyling.selectedImage
+  );
+
+  const uploadedImage = useSelector(
+    (state) => state.calendarStyling.uploadedImage
   );
 
   const titleFont = useSelector(
@@ -241,7 +247,10 @@ const Calendar = () => {
               border: "none",
               margin: "1.5% 2% 2%",
               backgroundColor: backgroundColor,
-              backgroundImage: `url(${selectedImage})`,
+              backgroundImage:
+                selectedImage !== null
+                  ? `url(${selectedImage})`
+                  : `url(${uploadedImage})`,
               backgroundSize: "cover",
             }}
           >

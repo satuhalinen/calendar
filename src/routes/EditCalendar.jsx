@@ -24,6 +24,9 @@ function EditCalendar() {
     (state) => state.calendarStyling.selectedHatchColor
   );
 
+  const uploadedImage = useSelector(
+    (state) => state.calendarStyling.uploadedImage
+  );
   const selectedImage = useSelector(
     (state) => state.calendarStyling.selectedImage
   );
@@ -79,6 +82,7 @@ function EditCalendar() {
         calendarHatchesNumber: selectedHatchesNumber,
         calendarTitleFont: titleFont,
         calendarTitle: title,
+        calendarUploadedImage: uploadedImage,
         createdAt: serverTimestamp(),
       });
       const calendarId = docRef.id;
@@ -99,7 +103,10 @@ function EditCalendar() {
           <Card
             style={{
               margin: "1.5% 0",
-              backgroundImage: `url(${selectedImage})`,
+              backgroundImage:
+                selectedImage !== null
+                  ? `url(${selectedImage})`
+                  : `url(${uploadedImage})`,
               backgroundColor: backgroundColor,
               backgroundSize: "cover",
               boxShadow: "0px 0px 5px 0px #00000059",

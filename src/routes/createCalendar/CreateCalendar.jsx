@@ -11,8 +11,11 @@ import ImagePicker from "../../components/imagePicker/ImagePicker";
 import { ArrowDown } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { PiImageSquareThin } from "react-icons/pi";
+import Preview from "../../components/preview/Preview";
 
 import {
+  setUploadedImage,
   setSelectedColor,
   setSelectedHatchColor,
   setSelectedHatchFontColor,
@@ -31,9 +34,6 @@ import { useEffect, useRef } from "react";
 export default function CreateCalendar() {
   const dispatch = useDispatch();
 
-  const selectedImage = useSelector(
-    (state) => state.calendarStyling.selectedImage
-  );
   const selectedColor = useSelector(
     (state) => state.calendarStyling.selectedColor
   );
@@ -62,7 +62,6 @@ export default function CreateCalendar() {
   const hatchFontColorShow = useSelector(
     (state) => state.calendarStyling.hatchFontColorShow
   );
-  const inputValue = useSelector((state) => state.calendarStyling.inputValue);
 
   const buttonRefs = {
     backgroundColorContainerRef: useRef(null),
@@ -162,6 +161,7 @@ export default function CreateCalendar() {
   const handelColorChange = (color) => {
     dispatch(setSelectedColor(color.hex));
     dispatch(setSelectedImage(null));
+    dispatch(setUploadedImage(null));
   };
 
   const handleHatchColorChange = (color) => {
@@ -181,6 +181,19 @@ export default function CreateCalendar() {
     const capitalizedValue =
       inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
     dispatch(setInputValue(capitalizedValue));
+  };
+
+  const handeluploadedImage = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      dispatch(setUploadedImage(reader.result));
+      dispatch(setSelectedImage(null));
+      dispatch(setSelectedColor(null));
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -221,7 +234,7 @@ export default function CreateCalendar() {
           </Row>
           <p className="para">Choose the color theme</p>
           <Row className="justify-content-center">
-            <Col style={{ maxWidth: "400px" }}>
+            <Col sm={4}>
               <div>
                 <p className="colorOptionsTitle">Calendar background color:</p>
                 <div
@@ -266,7 +279,7 @@ export default function CreateCalendar() {
                 </div>
               </div>
             </Col>
-            <Col style={{ maxWidth: "400px" }}>
+            <Col sm={4}>
               <div>
                 <p className="colorOptionsTitle">Choose title Font:</p>
                 <div
@@ -308,7 +321,7 @@ export default function CreateCalendar() {
                 </div>
               </div>
             </Col>
-            <Col style={{ maxWidth: "400px" }}>
+            <Col sm={4}>
               <div>
                 <p className="colorOptionsTitle">Choose Background Image:</p>
                 <div
@@ -322,8 +335,24 @@ export default function CreateCalendar() {
                   <input
                     className="colorOptionInput"
                     type="text"
-                    placeholder={selectedImage}
+                    placeholder="Upload Image"
                   />
+                  <div
+                    style={{
+                      position: "absolute",
+                      right: "32%",
+                      width: "30px",
+                    }}
+                  >
+                    <label htmlFor="fileInput">
+                      <PiImageSquareThin />
+                    </label>
+                    <input
+                      id="fileInput"
+                      type="file"
+                      onChange={handeluploadedImage}
+                    />
+                  </div>
                   <Button
                     id="btn-3"
                     className="arrowDownButton"
@@ -352,7 +381,7 @@ export default function CreateCalendar() {
             </Col>
           </Row>
           <Row className="justify-content-center">
-            <Col style={{ maxWidth: "400px" }}>
+            <Col sm={4}>
               <div>
                 <p className="colorOptionsTitle">
                   Choose hatch background color:
@@ -398,7 +427,7 @@ export default function CreateCalendar() {
                 </div>
               </div>
             </Col>
-            <Col style={{ maxWidth: "400px" }}>
+            <Col sm={4}>
               <div>
                 <p className="colorOptionsTitle">Choose hatch Font:</p>
                 <div
@@ -439,7 +468,7 @@ export default function CreateCalendar() {
                 </div>
               </div>
             </Col>
-            <Col style={{ maxWidth: "400px" }}>
+            <Col sm={4}>
               <div>
                 <p className="colorOptionsTitle">Choose font color:</p>
                 <div
@@ -453,9 +482,6 @@ export default function CreateCalendar() {
                     className="colorOptionInput"
                     type="text"
                     placeholder={selectedHatchFontColor}
-                    style={{
-                      width: "188px",
-                    }}
                   />
                   <Button
                     id="btn-6"
@@ -488,123 +514,7 @@ export default function CreateCalendar() {
             </Col>
           </Row>
           <Row className="justify-content-center">
-            <div>
-              <p className="para" style={{ marginTop: "50px" }}>
-                Explore the calendar preview below and feel empowered to tweak
-                it as you see fit.
-              </p>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "250px",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-around",
-                  gap: "60px",
-                  padding: "40px",
-                  borderRadius: "10px",
-                  backgroundColor: selectedColor,
-                  backgroundImage: `url(${selectedImage})`,
-                  backgroundSize: "cover",
-                  boxShadow: "0px 0px 5px 0px #0000005e",
-                  width: "75vw",
-                }}
-              >
-                <div
-                  style={{
-                    width: "auto",
-                    height: "150px",
-                    padding: "20px",
-                    borderRadius: "10px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontSize: "1.5rem",
-                    textTransform: "uppercase",
-                    fontWeight: "600",
-                  }}
-                >
-                  <p
-                    style={{
-                      fontFamily: selectedTitleFont,
-                      color: selectedHatchFontColor,
-                    }}
-                  >
-                    {inputValue}
-                  </p>
-                </div>
-                <div
-                  style={{
-                    width: "190px",
-                    height: "150px",
-                    backgroundColor: selectedHatchColor,
-                    borderRadius: "10px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    boxShadow: "0px 0px 5px 0px #0000005e",
-                  }}
-                >
-                  <p
-                    style={{
-                      fontFamily: selectedFont,
-                      color: selectedHatchFontColor,
-                    }}
-                  >
-                    Hatch 1
-                  </p>
-                </div>
-                <div
-                  style={{
-                    width: "190px",
-                    height: "150px",
-                    backgroundColor: selectedHatchColor,
-                    borderRadius: "10px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    boxShadow: "0px 0px 5px 0px #0000005e",
-                  }}
-                >
-                  <p
-                    style={{
-                      fontFamily: selectedFont,
-                      color: selectedHatchFontColor,
-                    }}
-                  >
-                    Hatch 2
-                  </p>
-                </div>
-                <div
-                  style={{
-                    width: "190px",
-                    height: "150px",
-                    backgroundColor: selectedHatchColor,
-                    borderRadius: "10px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    boxShadow: "0px 0px 5px 0px #0000005e",
-                  }}
-                >
-                  <p
-                    style={{
-                      fontFamily: selectedFont,
-                      color: selectedHatchFontColor,
-                    }}
-                  >
-                    Hatch 3
-                  </p>
-                </div>
-              </div>
-            </div>
+            <Preview />
           </Row>
           <Link
             to={{
@@ -617,6 +527,6 @@ export default function CreateCalendar() {
           </Link>
         </Container>
       </Col>
-    </Row >
+    </Row>
   );
 }
