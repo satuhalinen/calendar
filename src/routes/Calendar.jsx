@@ -164,7 +164,6 @@ const Calendar = () => {
 
     if (existingImageURL) {
       console.log("Screenshot already exists");
-      dispatch(saveImageURL(existingImageURL));
       return;
     }
     if (!toCaptureRef.current) return;

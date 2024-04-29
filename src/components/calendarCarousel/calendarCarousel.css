@@ -41,9 +41,22 @@
 }
 
 .calendarCarouselImg:not(:hover) {
-    transform: scale(0.8);
+    transform: scale(0.9);
 }
 
 .customCarousel .carousel-indicators {
     display: none;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+    .calendarCarouselImg {
+        max-height: 20vh;
+        max-width: 30vw;
+    }
+
 }
