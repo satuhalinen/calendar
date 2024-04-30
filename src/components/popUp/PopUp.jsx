@@ -33,7 +33,7 @@ const PopUp = ({ showInitially, handleClose }) => {
           <p className="popUpContactLink">Send us a message!</p>
         </Link>
         <button className="popUpButton" onClick={handleCloseClick}>
-          Close
+          No thanks!
         </button>
       </div>
     </div>

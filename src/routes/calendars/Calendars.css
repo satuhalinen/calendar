@@ -82,12 +82,14 @@
   position: relative;
   display: inline-block;
 }
+
 ::placeholder {
   color: black;
   opacity: 1;
 }
+
 .search-field {
-  padding-right: 30px; /* Space for the icon */
+  padding-right: 30px;
 }
 
 .search-button {
@@ -95,7 +97,7 @@
   top: 0;
   right: 0;
   bottom: 0;
-  width: 30px; /* Width of the icon */
+  width: 30px;
   background: transparent;
   border: none;
   cursor: pointer;
