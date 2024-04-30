@@ -1,14 +1,19 @@
-import { Card, Col, Dropdown, DropdownButton, Row } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
-import Leftbar from '../../components/leftbar/Leftbar';
-import defaultScreenshot from '../../assets/defaultScreenshot.png';
-import useCalendarData from '../../hooks/useCalendarData';
-import '../adminCalendars/adminCalendars.css';
-import '../adminpanel/adminpanel.css';
-import Spinner from 'react-bootstrap/Spinner';
+import { Card, Col, Dropdown, DropdownButton, Row } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import Leftbar from "../../components/leftbar/Leftbar";
+import defaultScreenshot from "../../assets/defaultScreenshot.png";
+import useCalendarData from "../../hooks/useCalendarData";
+import "../adminCalendars/adminCalendars.css";
+import "../adminpanel/adminpanel.css";
+import Spinner from "react-bootstrap/Spinner";
 
 export default function AdminCalendars() {
   const { loading, calendars, intersectionObserverRef } = useCalendarData();
+  const [search, setSearch] = useState("");
+
+  const searchHandler = (event) => {
+    setSearch(event.target.value);
+  };
 
   return (
     <Row className="mainContent adminCalendarsContainer">
@@ -17,37 +22,26 @@ export default function AdminCalendars() {
       </Col>
       <Col xs={9} className="adminCalendars">
         <p className="adminCalendarTitle">Calendars</p>
-        <div className="dropDowns">
-          <div className="price">
-            <DropdownButton
-              className="adminCalendarsDropDown"
-              id="dropdown-item-button"
-              title="Select free or paid"
-            >
-              <Dropdown.Item className="dropDownItem" as="button">
-                Free
-              </Dropdown.Item>
-              <Dropdown.Item as="button">Paid</Dropdown.Item>
-            </DropdownButton>
-          </div>
-          <div className="topic">
-            <DropdownButton
-              id="dropdown-item-button"
-              title="Choose topic"
-              className="dropdownItemAdmin"
-            >
-              <Dropdown.Item as="button">Adults</Dropdown.Item>
-              <Dropdown.Item as="button">Animals</Dropdown.Item>
-              <Dropdown.Item as="button">Children and teenagers</Dropdown.Item>
-              <Dropdown.Item as="button">Elderly</Dropdown.Item>
-            </DropdownButton>
-          </div>
+        <div className="search-input">
+          <input
+            type="text"
+            className="search-field"
+            placeholder="Search By Title"
+            onChange={searchHandler}
+          />
         </div>
+
         {loading ? (
-          <Spinner animation="border" variant="secondary" />) : (
+          <Spinner animation="border" variant="secondary" />
+        ) : (
           <div className="adminCalendarCards">
-            {
-              calendars.map((calendar) => (
+            {calendars
+              .filter((calendarItem) =>
+                calendarItem.calendarTitle
+                  .toLowerCase()
+                  .includes(search.toLowerCase())
+              )
+              .map((calendar) => (
                 <Card
                   key={calendar.id}
                   className="calendarCard d-flex flex-column justify-content-center align-items-center"
@@ -59,19 +53,17 @@ export default function AdminCalendars() {
                   }
                 >
                   <Card.Body className="d-flex flex-column justify-content-center align-items-center adminCalendarBody">
-
                     <NavLink
                       to={`/calendar/${calendar.id}`}
-                      style={{ textDecoration: 'none' }}
+                      style={{ textDecoration: "none" }}
                     >
-
                       <Card.Img
                         src={calendar.imageUrl || defaultScreenshot}
                         data-src={calendar.imageUrl}
                         className="calendarScreenShot"
                       />
                     </NavLink>
-                    <Card.Title style={{ color: 'black' }}>
+                    <Card.Title style={{ color: "black" }}>
                       {calendar.title}
                     </Card.Title>
                   </Card.Body>
@@ -82,8 +74,7 @@ export default function AdminCalendars() {
                     Modify
                   </NavLink>
                 </Card>
-              ))
-            }
+              ))}
           </div>
         )}
       </Col>
