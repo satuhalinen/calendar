@@ -57,13 +57,10 @@ function App() {
                 element={<ProtectedRoute component={Calendar} />}
               />
               <Route
-
-
                 path="/calendar/:id"
-                element={<ProtectedRoute adminOnly component={Calendar} />}
+                element={<ProtectedRoute component={Calendar} />}
               />
               <Route
-
                 path="/calendars"
                 element={<ProtectedRoute component={Calendars} />}
               />
@@ -118,7 +115,6 @@ function App() {
                 <ProtectedRoute adminOnly component={ModifyOldCalendar} />
               }
             />
-
           </Routes>
         </Router>
       </LocalizationProvider>

@@ -85,7 +85,6 @@
 ::placeholder {
   color: black;
   opacity: 1;
-  font-family: "Times New Roman", Times, serif;
 }
 .search-field {
   padding-right: 30px; /* Space for the icon */
