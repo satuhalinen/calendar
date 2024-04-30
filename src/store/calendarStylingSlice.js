@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  uploadedImage: null,
   selectedImage: null,
   savedImageURL: null,
   selectedColor: "#ab7244",
@@ -22,6 +23,9 @@ const calendarStylingSlice = createSlice({
   name: "calendarStyling",
   initialState,
   reducers: {
+    setUploadedImage: (state, action) => {
+      state.uploadedImage = action.payload;
+    },
     setSelectedImage: (state, action) => {
       state.selectedImage = action.payload;
     },
@@ -90,6 +94,7 @@ const calendarStylingSlice = createSlice({
 });
 
 export const {
+  setUploadedImage,
   saveImageURL,
   setSelectedImage,
   setSelectedColor,
