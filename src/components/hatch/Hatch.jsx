@@ -15,8 +15,12 @@ import { useEffect } from "react";
 import { getDoc } from "firebase/firestore";
 import { setOpen } from "../../store/scoreSlice";
 import { FaCheck } from "react-icons/fa";
+import { query, collection, where, getDocs } from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { saveToMyCalendar } from "../../store/scoreSlice";
+import { resetState } from "../../store/scoreSlice";
 
-function Hatch({ number }) {
+function Hatch({ number, saveMyCalendarsClick }) {
   const [show, setShow] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
   const dispatch = useDispatch();
@@ -52,27 +56,57 @@ function Hatch({ number }) {
 
   const hatchFont = useSelector((state) => state.calendarStyling.selectedFont);
 
+  const calendarSave = useSelector(
+    (state) => state.score?.startedUsing || false
+  );
+
+  const [user] = useAuthState(auth);
+
+  const checkIfStartedUsing = async () => {
+    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    const querySnapshot = await getDocs(q);
+    const document = querySnapshot.docs[0];
+    const docId = document.id;
+    const calendarRef = doc(db, "users", docId, "myCalendars", id);
+    const docSnap = await getDoc(calendarRef);
+    const userData = docSnap.data();
+    const startedUsing = userData?.startedUsing || false;
+    dispatch(saveToMyCalendar(startedUsing));
+  };
   useEffect(() => {
-    const fetchScore = async () => {
-      const currentUser = auth.currentUser;
-      const calendarRef = doc(db, "calendars", id);
-      const docSnap = await getDoc(calendarRef);
-      const userData = docSnap.data().users[currentUser.uid];
-      dispatch(fetchScoreFromFirebase(userData));
-    };
-    fetchScore();
+    checkIfStartedUsing();
   }, []);
 
-  const { id } = useParams();
+  useEffect(() => {
+    dispatch(resetState());
+  }, [dispatch]);
 
-  const checkState =
-    useSelector((state) => state.score[number]?.isChecked) || false;
-  const isOpenedHatch =
-    useSelector((state) => state.score[number]?.isOpened) || false;
+  useEffect(() => {
+
+    if (calendarSave) {
+      const fetchScore = async () => {
+        const q = query(collection(db, "users"), where("uid", "==", user.uid));
+        const querySnapshot = await getDocs(q);
+        const document = querySnapshot.docs[0];
+        const docId = document.id;
+        const calendarRef = doc(db, "users", docId, "myCalendars", id);
+        const docSnap = await getDoc(calendarRef);
+        const userData = docSnap.data();
+        dispatch(fetchScoreFromFirebase(userData));
+      };
+      fetchScore();
+    }
+
+  }, [saveMyCalendarsClick, calendarSave]);
+
+  const { id } = useParams();
+  const hatches = useSelector((state) => state.score.hatches) || {};
+  const checkState = hatches[number]?.isChecked || false;
+  const isOpenedHatch = hatches[number]?.isOpened || false;
+
   const handleClick = async () => {
-    const currentUser = auth.currentUser;
-    const calendarRef = doc(db, "calendars", id);
     let newCheckState;
+
     if (checkState === false) {
       newCheckState = true;
       dispatch(
@@ -91,27 +125,37 @@ function Hatch({ number }) {
       );
     }
 
-    await updateDoc(calendarRef, {
-      [`users.${currentUser.uid}.${number}`]: {
-        isChecked: newCheckState,
-        isOpened: isOpenedHatch,
-      },
-    });
+    if (calendarSave) {
+      const q = query(collection(db, "users"), where("uid", "==", user.uid));
+      const querySnapshot = await getDocs(q);
+      const document = querySnapshot.docs[0];
+      const docId = document.id;
+      const calendarRef = doc(db, "users", docId, "myCalendars", id);
+      await updateDoc(calendarRef, {
+        startedUsing: true,
+        [`hatches.${number}`]: {
+          isChecked: newCheckState,
+          isOpened: isOpenedHatch,
+        },
+      });
+    }
   };
 
   const cardClick = async () => {
-    const currentUser = auth.currentUser;
-    const calendarRef = doc(db, "calendars", id);
+    if (calendarSave) {
+      const q = query(collection(db, "users"), where("uid", "==", user.uid));
+      const querySnapshot = await getDocs(q);
+      const document = querySnapshot.docs[0];
+      const docId = document.id;
+      const calendarRef = doc(db, "users", docId, "myCalendars", id);
+      await updateDoc(calendarRef, {
+        startedUsing: true,
+      });
+    }
     let newOpenState = isOpenedHatch ? isOpenedHatch : true;
     if (!isOpenedHatch) {
       dispatch(setOpen({ hatchNumber: number, isOpened: newOpenState }));
     }
-    await updateDoc(calendarRef, {
-      [`users.${currentUser.uid}.${number}`]: {
-        isChecked: checkState,
-        isOpened: newOpenState,
-      },
-    });
   };
 
   return (
