@@ -19,9 +19,9 @@ const ImageCarousel = () => {
       <Carousel.Item className="carouselItem" interval={3000}>
         <Image className="d-block w-100" src={carousel1} alt="First slide" />
         <Carousel.Caption className="carouselCaption">
-          <h3 className="carouselText">Keep company to the elderly</h3>
+          <h3 className="carouselText">Quality time with the elderly</h3>
           <p className="carouselText">
-            Create a calendar to help the elderly and make their days brighter.
+            Spend quality time with elderly individuals who may be lonely.
           </p>
         </Carousel.Caption>
       </Carousel.Item>

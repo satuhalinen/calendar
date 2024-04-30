@@ -158,7 +158,7 @@ const LandingPage = () => {
           </Col>
         </Row>
         <Link to="/register">
-          <Button className="registerNow">Register now</Button>
+          <button className="registerNow">Register now</button>
         </Link>
       </Col>
       <Row className="calendarCarouselRow">

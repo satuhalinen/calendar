@@ -27,6 +27,7 @@
 
 .popUpContactLink,
 .popUpLink {
+  font-size: 1rem;
   color: #a65919;
   text-decoration: none;
 }
@@ -43,21 +44,25 @@
   transform: translateY(-50%);
   width: 280px;
   background-color: #f4ede7;
-  padding: 40px 10px 40px 10px;
-  border-radius: 0 10px 10px 0px;
-  border-color: #a65919;
-  border-style: solid;
-  border-width: 3px;
+  padding: 0px 0px 30px 0px;
+  margin-left: 0.5rem;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.383);
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.197);
   cursor: pointer;
   z-index: 1000;
 }
 
 .popUpTitle {
-  font-size: 1.3rem;
+  margin-top: 0;
+  font-size: 1.1rem;
   font-weight: 500;
-  padding: 1rem;
+  padding: 1.5rem 1rem 1.2rem 1rem;
+  margin-bottom: 1.2rem;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.397);
+  background-color: #a65919;
+  color: white;
+
 }
 
 .popUpContent {
@@ -70,7 +75,7 @@
   border: none;
   border-radius: 5px;
   color: white;
-  padding: 5px 10px;
+  padding: 8px 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;

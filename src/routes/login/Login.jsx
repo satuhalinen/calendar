@@ -151,9 +151,9 @@ export default function Login() {
                 id="password"
               />
             </div>
-            <Button type="submit" className="loginBtn">
+            <button type="submit" className="loginBtn">
               Log in
-            </Button>
+            </button>
           </form>
           <Button onClick={handleGoogleSignIn} className="gsi-material-button">
             <div className="gsi-material-button-state"></div>

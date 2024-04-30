@@ -57,10 +57,8 @@ function App() {
                 element={<ProtectedRoute component={Calendar} />}
               />
               <Route
-
-
                 path="/calendar/:id"
-                element={<ProtectedRoute adminOnly component={Calendar} />}
+                element={<ProtectedRoute component={Calendar} />}
               />
               <Route
 

@@ -2,14 +2,13 @@ import {
   Card,
   Row,
   Col,
-  Dropdown,
-  DropdownButton,
   Spinner,
 } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import defaultScreenshot from "../../assets/defaultScreenshot.png";
 import "./Calendars.css";
 import useCalendarData from "../../hooks/useCalendarData";
+import { useState } from "react";
 
 export default function Calendars() {
   const { loading, calendars, intersectionObserverRef } = useCalendarData();
