@@ -163,7 +163,15 @@ const Calendar = () => {
     fetchDataAndCaptureScreenshot();
   }, []);
 
-  const captureScreenshot = () => {
+  const captureScreenshot = async () => {
+    const calendarDocRef = doc(db, "calendars", id);
+    const calendarDocSnapshot = await getDoc(calendarDocRef);
+    const existingImageURL = calendarDocSnapshot.data().imageURL;
+
+    if (existingImageURL) {
+      console.log("Screenshot already exists");
+      return;
+    }
     if (!toCaptureRef.current) return;
 
     const width = toCaptureRef.current.offsetWidth;

@@ -19,7 +19,7 @@ body {
 }
 
 .mainContent {
-  padding-top: 110px;
+  padding-top: 100px;
   min-height: calc(100vh - 120px);
 }
 

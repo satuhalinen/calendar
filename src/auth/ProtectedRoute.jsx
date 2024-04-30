@@ -56,7 +56,7 @@ const ProtectedRoute = ({ component: Component, adminOnly, ...rest }) => {
         return <Navigate to="/" replace />;
     }
 
-    return <Component {...rest} />;
+    return <Component isAdmin={isAdmin} {...rest} />;
 };
 
 export default ProtectedRoute;

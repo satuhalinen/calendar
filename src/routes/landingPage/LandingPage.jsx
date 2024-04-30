@@ -5,11 +5,19 @@ import { Row, Col, Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../landingPage/landingPage.css";
 import { Link } from "react-router-dom";
+import CalendarCarousel from "../../components/calendarCarousel/CalendarCarousel.jsx";
+import ChatBot from "../../components/chatBot/ChatBot.jsx";
 
 const LandingPage = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const [showChatBot, setShowChatBot] = useState(false);
+
   const handleClosePopup = () => {
     setShowPopup(false);
+  };
+
+  const handleCloseChatBot = () => {
+    setShowChatBot(false);
   };
 
   const [expandedStates, setExpandedStates] = useState({
@@ -153,6 +161,11 @@ const LandingPage = () => {
           <Button className="registerNow">Register now</Button>
         </Link>
       </Col>
+      <Row className="calendarCarouselRow">
+        <h2 className="calendarCarouselTitle">Choose your own style</h2>
+        <CalendarCarousel />
+        <p className="calendarCarouselTitleBottom"></p>
+      </Row>
       <Col className="aboutUs">
         <Card className="aboutUsCard">
           <Card.Header className="aboutUsTitle">Who are we?</Card.Header>
@@ -169,6 +182,9 @@ const LandingPage = () => {
           </Card.Body>
         </Card>
       </Col>
+      <Row>
+        <ChatBot showInitially={!showChatBot} handleClose={handleCloseChatBot} />
+      </Row>
     </Col>
   );
 };

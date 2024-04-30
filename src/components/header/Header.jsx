@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { NavLink, useLocation, useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -6,18 +7,27 @@ import logo1 from '../../assets/logo1.png';
 import logo2 from '../../assets/logo2.png';
 import { Image } from 'react-bootstrap';
 import '../header/header.css';
-import { useEffect, useState } from 'react';
-import { auth, logout, storage } from "../../auth/firebase";
+import { auth, logout } from "../../auth/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useDispatch, useSelector } from 'react-redux';
+import { selectProfileImageUrl } from '../../store/profileImageSlice';
+import { fetchProfileImage } from '../../store/actions/actions';
 import avatar from '../../assets/avatar.png';
-import { ref, getDownloadURL } from 'firebase/storage';
 
 export default function Header() {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const [user] = useAuthState(auth);
   const location = useLocation();
   const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [photoUrl, setPhotoUrl] = useState(avatar);
+
+  const profileImageUrl = useSelector(selectProfileImageUrl);
+
+  useEffect(() => {
+    if (user?.uid) {
+      dispatch(fetchProfileImage(user.uid));
+    }
+  }, [user, dispatch]);
 
   const adminHeaderColor = ['/', '/adminpanel', '/admin-calendars', '/create-calendar', '/edit-calendar', '/user-management', '/customer-messages', '/login', '/register', '/about', '/terms-and-conditions', '/contact'];
   const userHeaderRoutes = ['/', '/login', '/register', '/about', '/terms-and-conditions', '/contact'];
@@ -28,24 +38,6 @@ export default function Header() {
   const isUserRoute = userHeaderRoutes.includes(location.pathname);
   const isAuthenticatedUser = authenticatedUserRoutes.includes(location.pathname);
   const isAuthenticatedAdmin = authenticatedAdminRoutes.includes(location.pathname);
-
-  useEffect(() => {
-    if (isAuthenticatedUser && user && user.photoURL) {
-      setPhotoUrl(user.photoURL);
-    } else if (isAuthenticatedUser && user && !user.photoURL) {
-      const fetchPhotoUrl = async () => {
-        try {
-          const photoRef = ref(storage, `${user.uid}.jpg`);
-          const downloadURL = await getDownloadURL(photoRef);
-          setPhotoUrl(downloadURL);
-        } catch (error) {
-          console.error("Error fetching photo URL:", error);
-        }
-      };
-
-      fetchPhotoUrl();
-    }
-  }, [user, isAuthenticatedUser]);
 
   // Preload images to make the change faster
   useEffect(() => {
@@ -85,25 +77,39 @@ export default function Header() {
         <Nav className="links">
           {isUserRoute && (
             <>
-              <Nav.Link as={NavLink} to="/" className="navLink">Home</Nav.Link>
-              <Nav.Link as={NavLink} to="/login" className="navLink">Login</Nav.Link>
-              <Nav.Link as={NavLink} to="/register" className="navLink">Register</Nav.Link>
+              {user ? (
+                <>
+                  <Nav.Link as={NavLink} to="/profile" className="navLink">
+                    <img src={profileImageUrl || avatar} alt="profile" className="profileImageHeader" />
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/calendars" className="navLink">Calendars</Nav.Link>
+                  <Nav.Link as={NavLink} to="/favorites" className="navLink">Favorites</Nav.Link>
+                  <button onClick={logout} className="navLinkButton">Logout</button>
+                </>
+              ) : (
+                <>
+                  <Nav.Link as={NavLink} to="/" className="navLink">Home</Nav.Link>
+                  <Nav.Link as={NavLink} to="/login" className="navLink">Login</Nav.Link>
+                  <Nav.Link as={NavLink} to="/register" className="navLink">Register</Nav.Link>
+                </>
+              )}
               <Nav.Link as={NavLink} to="/about" className="navLink">About</Nav.Link>
             </>
           )}
           {isAuthenticatedUser && (
             <>
               <Nav.Link as={NavLink} to="/profile" className="navLink">
-                <img src={photoUrl} alt="profile" className="profileImageHeader" />
+                <img src={profileImageUrl || avatar} alt="profile" className="profileImageHeader" />
               </Nav.Link>
               <Nav.Link as={NavLink} to="/calendars" className="navLink">Calendars</Nav.Link>
               <Nav.Link as={NavLink} to="/favorites" className="navLink">Favorites</Nav.Link>
               <Nav.Link as={NavLink} to="/" onClick={logout} className="navLink">Logout</Nav.Link>
+              <Nav.Link as={NavLink} to="/about" className="navLink">About</Nav.Link>
             </>
           )}
           {isAuthenticatedAdmin && (
             <>
-              <Nav.Link as={NavLink} to="/adminpanel" className="navLink">Home</Nav.Link>
+              <Nav.Link as={NavLink} to="/" className="navLink">Home</Nav.Link>
               <Nav.Link as={NavLink} to="/" onClick={logout} className="navLink">Logout</Nav.Link>
             </>
           )}

@@ -1,5 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
 import "./termsAndConditions.css";
+import { Link } from "react-router-dom";
 
 export default function TermsAndConditions() {
   return (
@@ -11,7 +12,7 @@ export default function TermsAndConditions() {
         <div className="termscontent">
           <p>
             Welcome to our Calendar App! These Terms and Conditions outline the
-            rules and regulations for the use of our app, located at [App URL].
+            rules and regulations for the use of our app, located <Link className="linkToAccount" to="https://voca-voluntary-calendar.netlify.app/">here</Link>.
           </p>
 
           <p>

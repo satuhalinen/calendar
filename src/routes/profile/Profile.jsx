@@ -7,19 +7,24 @@ import { getDocs, query, collection, where } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 import { BsImage } from "react-icons/bs";
+import { fetchProfileImage } from '../../store/actions/actions'
+import { selectProfileImageUrl, updateProfileImageUrl } from '../../store/profileImageSlice';
 import "./profile.css";
-import avatar from "../../assets/avatar.png";
 import defaultScreenshot from "../../assets/defaultScreenshot.png";
 import useCalendarData from "../../hooks/useCalendarData";
+import { useDispatch, useSelector } from 'react-redux';
+import avatar from "../../assets/avatar.png";
 
 export default function Profile() {
   const [user] = useAuthState(auth);
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [photoUrl, setPhotoUrl] = useState(avatar);
-  const [userData, setUserData] = useState({ name: "", email: "" });
+  const [userData, setUserData] = useState({ fullname: "", email: "" });
   const { calendars, intersectionObserverRef } = useCalendarData();
   const [docId, setDocId] = useState(null);
+
+  const dispatch = useDispatch();
+  const profileImageUrl = useSelector(selectProfileImageUrl);
 
   useEffect(() => {
     if (!user) return;
@@ -39,10 +44,9 @@ export default function Profile() {
   }, [user]);
 
   useEffect(() => {
-    if (user?.photoURL) {
-      setPhotoUrl(user.photoURL);
-    }
-  }, [user]);
+    dispatch(fetchProfileImage(user.uid));
+  }, [dispatch, user.uid]);
+
 
   useEffect(() => {
     const handleClick = async () => {
@@ -75,7 +79,7 @@ export default function Profile() {
       const downloadURL = await getDownloadURL(fileRef);
       await updateProfile(currentUser, { photoURL: downloadURL });
       setLoading(false);
-      setPhotoUrl(downloadURL); // Update photoURL in component state
+      dispatch(updateProfileImageUrl(downloadURL));
       console.log("Image uploaded successfully");
     } catch (error) {
       setLoading(false);
@@ -95,7 +99,7 @@ export default function Profile() {
           <Row>
             <Col>
               <div className="profileImgContainer">
-                <Image className="profileImg" src={photoUrl} alt="avatar" />
+                <Image className="profileImg" src={profileImageUrl || avatar} alt="avatar" />
                 <label className="inputImg">
                   <input
                     disabled={loading}

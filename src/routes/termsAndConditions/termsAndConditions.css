@@ -3,6 +3,8 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
+  text-align: center;
+  padding: auto;
 }
 
 .terms-wrap {
@@ -14,12 +16,25 @@
 
 .termsTitle {
   text-align: center;
+  position: relative;
   font-size: 2rem;
   font-weight: 400;
-  margin: 2rem 0 4rem;
+  margin: 2rem 0 3rem;
 }
+
+.termsTitle:after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 24%;
+  width: 50%;
+  height: 2px;
+  background-color: #ba6c2c;
+}
+
 .termscontent h2 {
-  text-align: left;
+  text-align: center;
   font-size: 1.5rem;
   font-weight: 300;
+  margin: 2rem 0 1rem;
 }
