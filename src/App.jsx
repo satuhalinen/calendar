@@ -13,7 +13,7 @@ import CreateCalendar from "./routes/createCalendar/CreateCalendar";
 import CustomerMessages from "./routes/customerMessages/CustomerMessages";
 import EditCalendar from "./routes/EditCalendar";
 import ModifyOldCalendar from "./routes/modifyOldCalendar/ModifyOldCalendar";
-import Favorites from "./routes/favorites/Favorites";
+import MyCalendars from "./routes/myCalendars/MyCalendars";
 import Login from "./routes/login/Login";
 import Register from "./routes/register/Register";
 import Profile from "./routes/profile/Profile";
@@ -65,8 +65,8 @@ function App() {
                 element={<ProtectedRoute component={Calendars} />}
               />
               <Route
-                path="/favorites"
-                element={<ProtectedRoute component={Favorites} />}
+                path="/my-calendars"
+                element={<ProtectedRoute component={MyCalendars} />}
               />
               <Route
                 path="/admin-calendars"
