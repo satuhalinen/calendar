@@ -5,11 +5,7 @@
 }
 
 .flipped {
-  transform: rotateY(180deg);
-}
-
-.opened {
-  /*background: #f9f5f3 !important;*/
+  transform: rotateY(180deg) !important;
 }
 
 .hatchOpenedTitle {
@@ -65,7 +61,7 @@
   margin-bottom: 1rem;
   box-shadow: 0px 0px 5px 0px #0000005e;
   filter: saturate(0.8);
-  transition: all 0.3s ease;
+  transition: all 1s ease;
 }
 
 .hatchCardUsed:hover {
@@ -136,15 +132,15 @@
   border-radius: 50%;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #425f5b;
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px #3e474e;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);

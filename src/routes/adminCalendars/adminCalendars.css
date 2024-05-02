@@ -92,7 +92,22 @@
 }
 
 .search-field {
-  padding-right: 30px;
+  text-align: center;
+  padding: 0.5rem;
+  width: 15vw;
+  border: 0.2px solid #bbbbbb;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  color: #333;
+}
+
+.search-field:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(143, 56, 15, 0.416);
+}
+
+.search-field:hover {
+  box-shadow: 0 0 5px rgba(143, 56, 15, 0.743);
 }
 
 .search-button {
