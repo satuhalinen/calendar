@@ -2,6 +2,7 @@ import "./imagePicker.css";
 import {
   setSelectedImage,
   setSelectedColor,
+  setUploadedImage,
 } from "../../store/calendarStylingSlice";
 import { useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
@@ -21,6 +22,7 @@ const ImagePicker = () => {
   const handleImageClick = (imageUrl) => {
     dispatch(setSelectedImage(imageUrl));
     dispatch(setSelectedColor(null));
+    dispatch(setUploadedImage(null));
   };
 
   return (

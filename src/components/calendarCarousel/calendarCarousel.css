@@ -1,0 +1,61 @@
+.customCarousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: none !important;
+    box-shadow: none;
+    height: 100% !important;
+    padding: auto;
+    margin: auto;
+    width: 100%;
+}
+
+.calendarCarouselItem {
+    transition: all 2s ease-in-out !important;
+}
+
+.firstCarousel {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendarCarouselImg {
+    max-height: 35vh;
+    max-width: 40vw;
+    object-fit: cover;
+    margin: 0rem;
+    cursor: zoom-in;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.349);
+    filter: brightness(0.9);
+    transition: all 0.5s ease-in-out;
+}
+
+.calendarCarouselImg:hover {
+    transform: scale(0.95);
+    filter: brightness(1);
+}
+
+.calendarCarouselImg:not(:hover) {
+    transform: scale(0.9);
+}
+
+.customCarousel .carousel-indicators {
+    display: none;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+    .calendarCarouselImg {
+        max-height: 20vh;
+        max-width: 30vw;
+    }
+
+}
