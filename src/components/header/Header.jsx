@@ -133,10 +133,10 @@ export default function Header() {
                     />
                   </Nav.Link>
                   <Nav.Link as={NavLink} to="/calendars" className="navLink">
-                    Calendars
+                    All Calendars
                   </Nav.Link>
                   <Nav.Link as={NavLink} to="/my-calendars" className="navLink">
-                    MyCalendars
+                    My Calendars
                   </Nav.Link>
                   <button onClick={logout} className="navLinkButton">
                     Logout
@@ -170,10 +170,10 @@ export default function Header() {
                 />
               </Nav.Link>
               <Nav.Link as={NavLink} to="/calendars" className="navLink">
-                Calendars
+                All Calendars
               </Nav.Link>
               <Nav.Link as={NavLink} to="/my-calendars" className="navLink">
-                My calendars
+                My Calendars
               </Nav.Link>
               <Nav.Link
                 as={NavLink}

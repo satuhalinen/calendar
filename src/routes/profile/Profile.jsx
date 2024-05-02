@@ -164,7 +164,7 @@ export default function Profile() {
         </Row>
         <Row>
           <Link className="linkToMyCalendars" to="/my-calendars">
-            See all of my calendars
+            See all my calendars
           </Link>
         </Row>
       </Container>
