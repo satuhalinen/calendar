@@ -259,10 +259,13 @@ const Calendar = () => {
                   backgroundColor: "#425f5b",
                   fontSize: "0.75rem",
                   borderStyle: "none",
+                  padding: "0.5rem 0.3rem",
+                  width: "15vw",
                 }}
+                className="saveToMyCalendarsButton"
                 onClick={saveMyCalendarsClick}
               >
-                Save calendar to MyCalendars
+                Save to My Calendars
               </Button>
               <div className="userInfo">
                 <FaInfoCircle

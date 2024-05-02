@@ -15,16 +15,10 @@ import { useEffect } from "react";
 import { getDoc } from "firebase/firestore";
 import { setOpen } from "../../store/scoreSlice";
 import { FaCheck } from "react-icons/fa";
-
-
-
 import { query, collection, where, getDocs } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { saveToMyCalendar } from "../../store/scoreSlice";
 import { resetState } from "../../store/scoreSlice";
-
-
-
 
 function Hatch({ number, saveMyCalendarsClick }) {
   const [show, setShow] = useState(false);
@@ -63,12 +57,12 @@ function Hatch({ number, saveMyCalendarsClick }) {
   );
 
 
-  
+
   const backgroundImage = generatedImage || backgroundImg || uploadedImage;
 
   const hatchFont = useSelector((state) => state.calendarStyling.selectedFont);
 
-  
+
   const calendarSave = useSelector(
     (state) => state.score?.startedUsing || false
   );
@@ -87,13 +81,9 @@ function Hatch({ number, saveMyCalendarsClick }) {
     dispatch(saveToMyCalendar(startedUsing));
   };
   useEffect(() => {
-
     checkIfStartedUsing();
-
-   
   }, []);
 
-  
 
   useEffect(() => {
     const fetchScore = async () => {
@@ -202,7 +192,7 @@ function Hatch({ number, saveMyCalendarsClick }) {
           border: "none",
           width: "90%",
           height: "100%",
-          backgroundColor: isOpenedHatch ? "white" : hatchColor,
+          backgroundColor: backgroundImage && isOpenedHatch ? `#f9f5f3` : hatchColor,
           cursor: "pointer",
         }}
         className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""} ${isOpenedHatch ? "opened" : ""
