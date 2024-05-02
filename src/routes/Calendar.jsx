@@ -44,6 +44,9 @@ import {
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import { useParams } from "react-router-dom";
 import InfoModal from "../components/infoModal/InfoModal.jsx";
+import { Button } from "react-bootstrap";
+import { saveToMyCalendar } from "../store/scoreSlice.js";
+import { setDoc } from "firebase/firestore";
 
 const Calendar = () => {
   const [user] = useAuthState(auth);
@@ -95,7 +98,8 @@ const Calendar = () => {
   const selectedHatchesNumber = useSelector(
     (state) => state.calendarStyling.selectedHatchesNumber
   );
-  const trueFalseObject = useSelector((state) => state.score);
+
+  const trueFalseObject = useSelector((state) => state.score?.hatches || {});
 
   const length = Object.values(trueFalseObject).filter(
     (hatch) => hatch.isChecked
@@ -219,7 +223,26 @@ const Calendar = () => {
     setShowInfoModal(false);
   };
 
+
   const backgroundImage = selectedImage || uploadedImage || generatedImage;
+
+  const saveMyCalendarsClick = async () => {
+    dispatch(saveToMyCalendar(true));
+    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    const querySnapshot = await getDocs(q);
+    const document = querySnapshot.docs[0];
+    const docId = document.id;
+    const calendarRef = doc(db, "users", docId, "myCalendars", id);
+    await setDoc(
+      calendarRef,
+      {
+        startedUsing: true,
+        hatches: trueFalseObject,
+      },
+      { merge: true }
+    );
+  };
+
 
   return (
     <>
@@ -231,6 +254,16 @@ const Calendar = () => {
               className="gameCardBody"
               style={{ display: "flex", alignItems: "center" }}
             >
+              <Button
+                style={{
+                  backgroundColor: "#425f5b",
+                  fontSize: "0.75rem",
+                  borderStyle: "none",
+                }}
+                onClick={saveMyCalendarsClick}
+              >
+                Save calendar to MyCalendars
+              </Button>
               <div className="userInfo">
                 <FaInfoCircle
                   className="infoCircle"

@@ -1,28 +1,19 @@
-import { Card, Row, Col, Dropdown, DropdownButton, Spinner } from "react-bootstrap";
+import { Card, Row, Col, Spinner } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import defaultScreenshot from "../../assets/defaultScreenshot.png";
-import "./favorites.css";
-import useCalendarData from "../../hooks/useCalendarData";
+import "./myCalendars.css";
+import useMyCalendarData from "../../hooks/useMyCalendarData";
 
-export default function Calendars() {
-  const { loading, calendars, intersectionObserverRef } = useCalendarData();
+export default function MyCalendars() {
+  const { loading, calendars, intersectionObserverRef } = useMyCalendarData();
 
   return (
     <Row className="mainContent userCalendarsWrap">
       <Col className="userCalendarsContainer">
-        <p className="favoritesTitle">Favorites</p>
-        <div className="dropDowns">
-          <div className="topic">
-            <DropdownButton id="dropdown-item-button" title="Sort">
-              <Dropdown.Item as="button">Adults</Dropdown.Item>
-              <Dropdown.Item as="button">Animals</Dropdown.Item>
-              <Dropdown.Item as="button">Children and teenagers</Dropdown.Item>
-              <Dropdown.Item as="button">Elderly</Dropdown.Item>
-            </DropdownButton>
-          </div>
-        </div>
+        <p className="myCalendarsTitle">My calendars</p>
         {loading ? (
-          <Spinner animation="border" variant="secondary" />) : (
+          <Spinner animation="border" variant="secondary" />
+        ) : (
           <div className="calendarGrid">
             {calendars.map((calendar) => (
               <Card
@@ -33,9 +24,17 @@ export default function Calendars() {
                   calendarRef &&
                   intersectionObserverRef.current &&
                   intersectionObserverRef.current.observe(calendarRef)
-                }>
-                <NavLink to={`/calendar/${calendar.id}`} className="linkToOneCalendar" style={{ textDecoration: "none" }}>
-                  <Card.Img className="calendarCardImg" src={calendar.imageUrl || defaultScreenshot} />
+                }
+              >
+                <NavLink
+                  to={`/calendar/${calendar.id}`}
+                  className="linkToOneCalendar"
+                  style={{ textDecoration: "none" }}
+                >
+                  <Card.Img
+                    className="calendarCardImg"
+                    src={calendar.imageUrl || defaultScreenshot}
+                  />
                   <button
                     className="useCalendarButton"
                     style={{
