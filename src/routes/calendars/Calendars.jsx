@@ -4,7 +4,7 @@ import { useState } from "react";
 import defaultScreenshot from "../../assets/defaultScreenshot.png";
 import "./Calendars.css";
 import useCalendarData from "../../hooks/useCalendarData";
-import { useState } from "react";
+//import { useState } from "react";
 
 export default function Calendars() {
   const { loading, calendars, intersectionObserverRef } = useCalendarData();

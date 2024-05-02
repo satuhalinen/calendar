@@ -140,7 +140,7 @@
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.349);
 }
 
-.linkToFavorites {
+.linkToMyCalendars {
   text-align: center;
   text-decoration: none !important;
   color: #664135;
@@ -148,7 +148,7 @@
   font-size: 0.9rem;
 }
 
-.linkToFavorites:hover {
+.linkToMyCalendars:hover {
   color: #ab7765;
 }
 
@@ -172,6 +172,6 @@
   background-color: #212625;
 }
 
-input[type=file] {
+input[type="file"] {
   display: none;
 }

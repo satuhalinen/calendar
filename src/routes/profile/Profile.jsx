@@ -7,12 +7,15 @@ import { getDocs, query, collection, where } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 import { BsImage } from "react-icons/bs";
-import { fetchProfileImage } from '../../store/actions/actions'
-import { selectProfileImageUrl, updateProfileImageUrl } from '../../store/profileImageSlice';
+import { fetchProfileImage } from "../../store/actions/actions";
+import {
+  selectProfileImageUrl,
+  updateProfileImageUrl,
+} from "../../store/profileImageSlice";
 import "./profile.css";
 import defaultScreenshot from "../../assets/defaultScreenshot.png";
 import useCalendarData from "../../hooks/useCalendarData";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import avatar from "../../assets/avatar.png";
 
 export default function Profile() {
@@ -46,7 +49,6 @@ export default function Profile() {
   useEffect(() => {
     dispatch(fetchProfileImage(user.uid));
   }, [dispatch, user.uid]);
-
 
   useEffect(() => {
     const handleClick = async () => {
@@ -99,7 +101,11 @@ export default function Profile() {
           <Row>
             <Col>
               <div className="profileImgContainer">
-                <Image className="profileImg" src={profileImageUrl || avatar} alt="avatar" />
+                <Image
+                  className="profileImg"
+                  src={profileImageUrl || avatar}
+                  alt="avatar"
+                />
                 <label className="inputImg">
                   <input
                     disabled={loading}
@@ -157,8 +163,8 @@ export default function Profile() {
           ))}
         </Row>
         <Row>
-          <Link className="linkToFavorites" to="/favorites">
-            See all of your favorites
+          <Link className="linkToMyCalendars" to="/my-calendars">
+            See all of my calendars
           </Link>
         </Row>
       </Container>
