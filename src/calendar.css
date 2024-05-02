@@ -120,6 +120,11 @@
   margin: 0 2rem 0 0.6rem;
 }
 
+.saveToMyCalendarsButton:hover {
+  background-color: #324e4a !important;
+  box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237) !important;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
