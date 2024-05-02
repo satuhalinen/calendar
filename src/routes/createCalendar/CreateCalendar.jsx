@@ -29,10 +29,12 @@ import {
   setHatchFontColorShow,
   setInputValue,
 } from "../../store/calendarStylingSlice";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function CreateCalendar() {
   const dispatch = useDispatch();
+
+  const [imageTooBig, setImageTooBig] = useState(false);
 
   const selectedColor = useSelector(
     (state) => state.calendarStyling.selectedColor
@@ -186,6 +188,13 @@ export default function CreateCalendar() {
   const handeluploadedImage = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
+
+    const maxSizeInBytes = 700000;
+    if (file.size > maxSizeInBytes) {
+      setImageTooBig(true);
+      return;
+    }
+
     reader.onloadend = () => {
       dispatch(setUploadedImage(reader.result));
       dispatch(setSelectedImage(null));
@@ -193,8 +202,10 @@ export default function CreateCalendar() {
     };
     if (file) {
       reader.readAsDataURL(file);
+      setImageTooBig(false);
     }
   };
+
 
   return (
     <Row className="mainContent createCalendarContainer">
@@ -373,9 +384,11 @@ export default function CreateCalendar() {
                       }}
                       ref={buttonRefs.imagecontainerRef}
                     >
+
                       <ImagePicker />
                     </div>
                   )}
+
                 </div>
               </div>
             </Col>
@@ -514,6 +527,7 @@ export default function CreateCalendar() {
             </Col>
           </Row>
           <Row className="justify-content-center">
+            {imageTooBig && (<p className="uploadWarningText">The uploaded image is too big. Please choose a smaller image.</p>)}
             <Preview />
           </Row>
           <Link

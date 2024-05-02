@@ -15,17 +15,17 @@ import { useEffect } from "react";
 import { getDoc } from "firebase/firestore";
 import { setOpen } from "../../store/scoreSlice";
 import { FaCheck } from "react-icons/fa";
+import { doesSectionFormatHaveLeadingZeros } from "@mui/x-date-pickers/internals/hooks/useField/useField.utils";
 
 function Hatch({ number }) {
   const [show, setShow] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [selectedBackground, setselectedBackground] = useState(null);
   const dispatch = useDispatch();
-  const [isOpened, setIsOpened] = useState(false);
 
   const handleClose = () => {
     setShow(false);
     setIsFlipped(false);
-    setIsOpened(true);
   };
 
   const handleShow = () => setShow(true);
@@ -50,8 +50,33 @@ function Hatch({ number }) {
     (state) => state.calendarStyling.selectedColor
   );
 
+  const uploadedImage = useSelector(
+    (state) => state.calendarStyling.uploadedImage
+  );
+
   const hatchFont = useSelector((state) => state.calendarStyling.selectedFont);
 
+  useEffect(() => {
+    if (backgroundImg) {
+      setselectedBackground('backgroundImage');
+    } else if (calendarBackgroundColor) {
+      setselectedBackground('color');
+    } else if (uploadedImage) {
+      setselectedBackground('uploadedImage');
+    }
+  }, [backgroundImg, calendarBackgroundColor, uploadedImage]);
+
+  const determineBackground = () => {
+    if (selectedBackground === 'backgroundImage') {
+      return `url(${backgroundImg})`;
+    } else if (selectedBackground === 'color') {
+      return calendarBackgroundColor;
+    } else if (selectedBackground === 'uploadedImage') {
+      return `url(${uploadedImage})`;
+    } else {
+      return calendarBackgroundColor;
+    }
+  };
   useEffect(() => {
     const fetchScore = async () => {
       const currentUser = auth.currentUser;
@@ -120,7 +145,7 @@ function Hatch({ number }) {
         onClick={() => {
           handleShow();
           cardClick();
-          if (!isOpened) {
+          if (!isOpenedHatch) {
             setIsFlipped(true);
           }
         }}
@@ -131,22 +156,21 @@ function Hatch({ number }) {
           backgroundColor: hatchColor,
           cursor: "pointer",
         }}
-        className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""} ${
-          isOpened ? "opened" : ""
-        }`}
+        className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""} ${isOpenedHatch ? "opened" : ""
+          }`}
       >
         <div
           className="hatch"
           style={{
             color: hatchFontColor,
-            display: isFlipped || isOpened ? "none" : "",
+            display: isFlipped || isOpenedHatch ? "none" : "",
           }}
         >
           {number}
         </div>
         {isOpenedHatch && !hatchTextHatch[number] && (
           <div className="hatchModalContent">
-            <p className="noContentOpened" style={{ color: hatchFontColor }}>
+            <p className="noContentOpened" style={{ color: isFlipped ? hatchColor : hatchFontColor }}>
               No content
             </p>
           </div>
@@ -154,7 +178,7 @@ function Hatch({ number }) {
         {isOpenedHatch && hatchTextHatch[number] && (
           <div
             className="hatchModalContent"
-            style={{ background: hatchColor, color: hatchFontColor }}
+            style={{ display: isFlipped ? "none" : "", background: hatchColor, color: hatchFontColor }}
           >
             <p className="hatchOpenedTitle">{hatchTextHatch[number].title}</p>
             <Image
@@ -170,9 +194,7 @@ function Hatch({ number }) {
         <Modal.Header
           className="hatchModalContent text-center"
           style={{
-            background: backgroundImg
-              ? `url(${backgroundImg})`
-              : calendarBackgroundColor,
+            background: determineBackground(),
             backgroundSize: "cover",
           }}
         >
@@ -247,9 +269,7 @@ function Hatch({ number }) {
           style={{
             backgroundColor: "#FFFAF7",
             justifyContent: "center",
-            background: backgroundImg
-              ? `url(${backgroundImg})`
-              : calendarBackgroundColor,
+            background: determineBackground(),
             backgroundSize: "cover",
           }}
         >
