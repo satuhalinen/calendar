@@ -160,3 +160,117 @@
   margin-top: 1rem;
   margin-bottom: 0;
 }
+
+.randomizeColorsButton {
+  background: #597773 !important;
+  box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 0.7rem 2rem;
+  margin: 0.5rem 0 0rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.randomizeColorsButton:hover {
+  box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237);
+  background-color: #425f5b !important;
+  color: white;
+}
+
+.prev-para {
+  margin-top: 1rem !important;
+}
+
+.generateImageInput {
+  width: 16vw;
+  padding: 0.5rem;
+  margin: 0.5rem 0.5rem 0;
+  text-align: left;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.371);
+  border: none;
+}
+
+.generateImageInput::placeholder {
+  color: rgb(129, 127, 127);
+  font-style: italic;
+}
+
+.generateImageInput:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(143, 56, 15, 0.416);
+}
+
+.generateImageInput:hover {
+  box-shadow: 0 0 5px rgba(143, 56, 15, 0.743);
+}
+
+.generatedImage {
+  max-width: 40vh;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+
+.fileInput:hover {
+  cursor: pointer;
+}
+
+.generatedImageText {
+  font-size: 0.8rem;
+  margin-top: 1rem;
+}
+
+.uploadImageInput {
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.uploadImageInput:hover {
+  color: #ba6c2c;
+}
+
+.randomImageWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.randomImageContent {
+  margin: 0 2rem;
+}
+
+.randomizeIcon {
+  border-radius: 50px;
+  background-color: #ba6c2c !important;
+  font-size: 1rem;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.randomizeIcon:hover {
+  background-color: #a65919 !important;
+}
+
+.createCalendarWrap {
+  background-color: #f4ede7;
+  padding: 1rem 0 3rem;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
+}
+
+.randomTitle {
+  font-size: 0.85rem;
+  margin: 1rem 0 0;
+}

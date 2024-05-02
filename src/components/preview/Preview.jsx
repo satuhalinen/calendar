@@ -26,7 +26,13 @@ export default function Preview() {
   );
   const inputValue = useSelector((state) => state.calendarStyling.inputValue);
 
-  const hatches = ["Hatch 1", "Hatch 2", "Hatch 3"];
+  const selectedHatchesNumber = useSelector(
+    (state) => state.calendarStyling.selectedHatchesNumber
+  );
+
+  const hatches = Array.from({ length: selectedHatchesNumber }, (_, index) => `${index + 1}`);
+
+  const backgroundImage = selectedImage || uploadedImage;
 
   return (
     <Container>
@@ -42,68 +48,66 @@ export default function Preview() {
         <Container
           style={{
             display: "flex",
-            justifyContent: "space-around",
-            gap: "60px",
-            padding: "40px",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "20px",
+            padding: "25px",
             borderRadius: "10px",
             backgroundColor: selectedColor,
             backgroundImage:
-              selectedImage !== null
-                ? `url(${selectedImage})`
-                : `url(${uploadedImage})`,
+              backgroundImage ? `url(${backgroundImage})` : 'none',
             backgroundSize: "cover",
+            backgroundPosition: "center",
             boxShadow: "0px 0px 5px 0px #0000005e",
-            width: "75vw",
+            width: "60vw",
+            height: "auto",
           }}
         >
-          <Container
+          <p
             style={{
-              width: "auto",
-              height: "150px",
-              padding: "20px",
-              borderRadius: "10px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              fontFamily: selectedTitleFont,
+              color: selectedHatchFontColor,
               fontSize: "1.5rem",
               textTransform: "uppercase",
               fontWeight: "600",
             }}
           >
-            <p
-              style={{
-                fontFamily: selectedTitleFont,
-                color: selectedHatchFontColor,
-              }}
-            >
-              {inputValue}
-            </p>
-          </Container>
+            {inputValue}
+          </p>
 
-          {hatches.map((hatch, index) => (
-            <Card
-              key={index}
-              className="text-center"
-              style={{
-                backgroundColor: selectedHatchColor,
-                width: "18rem",
-                boxShadow: "0px 0px 5px 0px #0000005e",
-                borderRadius: "10px",
-              }}
-            >
-              <Card.Body>
-                <Card.Text
-                  style={{
-                    fontFamily: selectedFont,
-                    color: selectedHatchFontColor,
-                    marginTop: "2.8rem",
-                  }}
-                >
-                  {hatch}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          ))}
+          <Container
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))",
+              gridAutoRows: "100px",
+              gap: "20px",
+            }}
+          >
+            {hatches.map((hatch, index) => (
+              <Card
+                key={index}
+                className="text-center"
+                style={{
+                  backgroundColor: selectedHatchColor,
+                  width: "100%",
+                  boxShadow: "0px 0px 5px 0px #0000005e",
+                  borderRadius: "7px",
+                }}
+              >
+                <Card.Body>
+                  <Card.Text
+                    style={{
+                      fontFamily: selectedFont,
+                      color: selectedHatchFontColor,
+                      fontSize: "1rem",
+                    }}
+                  >
+                    {hatch}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            ))}
+          </Container>
         </Container>
       </Row>
     </Container>

@@ -24,9 +24,14 @@ function EditCalendar() {
     (state) => state.calendarStyling.selectedHatchColor
   );
 
+  const generatedImage = useSelector(
+    (state) => state.calendarStyling.generatedImage
+  );
+
   const uploadedImage = useSelector(
     (state) => state.calendarStyling.uploadedImage
   );
+
   const selectedImage = useSelector(
     (state) => state.calendarStyling.selectedImage
   );
@@ -70,6 +75,7 @@ function EditCalendar() {
   }, []);
 
   const navigate = useNavigate();
+
   const saveHatchText = async () => {
     if (calendarContent !== undefined) {
       const docRef = await addDoc(collection(db, "calendars"), {
@@ -83,6 +89,7 @@ function EditCalendar() {
         calendarTitleFont: titleFont,
         calendarTitle: title,
         calendarUploadedImage: uploadedImage,
+        calendarGeneratedImage: generatedImage,
         createdAt: serverTimestamp(),
       });
       const calendarId = docRef.id;
@@ -95,6 +102,8 @@ function EditCalendar() {
     (state) => state.alternatives.savedAlternatives
   );
 
+  const backgroundImage = selectedImage || uploadedImage || generatedImage;
+
   return (
     <>
       <SmallHeader />
@@ -104,9 +113,7 @@ function EditCalendar() {
             style={{
               margin: "1.5% 0",
               backgroundImage:
-                selectedImage !== null
-                  ? `url(${selectedImage})`
-                  : `url(${uploadedImage})`,
+                backgroundImage ? `url(${backgroundImage})` : 'none',
               backgroundColor: backgroundColor,
               backgroundSize: "cover",
               boxShadow: "0px 0px 5px 0px #00000059",

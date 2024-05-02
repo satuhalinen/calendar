@@ -15,12 +15,10 @@ import { useEffect } from "react";
 import { getDoc } from "firebase/firestore";
 import { setOpen } from "../../store/scoreSlice";
 import { FaCheck } from "react-icons/fa";
-import { doesSectionFormatHaveLeadingZeros } from "@mui/x-date-pickers/internals/hooks/useField/useField.utils";
 
 function Hatch({ number }) {
   const [show, setShow] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [selectedBackground, setselectedBackground] = useState(null);
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -46,37 +44,18 @@ function Hatch({ number }) {
     (state) => state.calendarStyling.selectedImage
   );
 
-  const calendarBackgroundColor = useSelector(
-    (state) => state.calendarStyling.selectedColor
-  );
-
   const uploadedImage = useSelector(
     (state) => state.calendarStyling.uploadedImage
   );
 
+  const generatedImage = useSelector(
+    (state) => state.calendarStyling.generatedImage
+  );
+
+  const backgroundImage = generatedImage || backgroundImg || uploadedImage;
+
   const hatchFont = useSelector((state) => state.calendarStyling.selectedFont);
 
-  useEffect(() => {
-    if (backgroundImg) {
-      setselectedBackground('backgroundImage');
-    } else if (calendarBackgroundColor) {
-      setselectedBackground('color');
-    } else if (uploadedImage) {
-      setselectedBackground('uploadedImage');
-    }
-  }, [backgroundImg, calendarBackgroundColor, uploadedImage]);
-
-  const determineBackground = () => {
-    if (selectedBackground === 'backgroundImage') {
-      return `url(${backgroundImg})`;
-    } else if (selectedBackground === 'color') {
-      return calendarBackgroundColor;
-    } else if (selectedBackground === 'uploadedImage') {
-      return `url(${uploadedImage})`;
-    } else {
-      return calendarBackgroundColor;
-    }
-  };
   useEffect(() => {
     const fetchScore = async () => {
       const currentUser = auth.currentUser;
@@ -153,7 +132,7 @@ function Hatch({ number }) {
           border: "none",
           width: "90%",
           height: "100%",
-          backgroundColor: hatchColor,
+          backgroundColor: isOpenedHatch ? "white" : hatchColor,
           cursor: "pointer",
         }}
         className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""} ${isOpenedHatch ? "opened" : ""
@@ -194,7 +173,7 @@ function Hatch({ number }) {
         <Modal.Header
           className="hatchModalContent text-center"
           style={{
-            background: determineBackground(),
+            background: backgroundImage ? `url(${backgroundImage})` : hatchColor,
             backgroundSize: "cover",
           }}
         >
@@ -211,7 +190,7 @@ function Hatch({ number }) {
           className="hatchModalContent"
           style={{
             backgroundColor: "#FFFAF7",
-            background: hatchColor,
+            background: backgroundImage ? `#f9f5f3` : hatchColor,
           }}
         >
           <div className="hatchModalContent">
@@ -269,14 +248,14 @@ function Hatch({ number }) {
           style={{
             backgroundColor: "#FFFAF7",
             justifyContent: "center",
-            background: determineBackground(),
+            background: backgroundImage ? `url(${backgroundImage})` : hatchColor,
             backgroundSize: "cover",
           }}
         >
           <Button
             className="hatchModalButton"
             onClick={handleClose}
-            style={{ backgroundColor: hatchColor, color: hatchFontColor }}
+            style={{ background: backgroundImage ? `#f9f5f3` : hatchColor, color: hatchFontColor }}
           >
             Close
           </Button>
