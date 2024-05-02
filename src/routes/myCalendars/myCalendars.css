@@ -17,17 +17,6 @@
   font-size: 1.5rem;
 }
 
-.dropDowns {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.topic {
-  margin-left: 1rem;
-}
-
 .calendarGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
