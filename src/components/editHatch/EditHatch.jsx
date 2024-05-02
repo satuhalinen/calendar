@@ -42,7 +42,6 @@ function EditHatch({ number }) {
     saveAlternative(number, randomAlternative);
   };
 
-
   return (
     <Card
       style={{

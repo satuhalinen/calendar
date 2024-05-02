@@ -31,6 +31,7 @@ import { showCalendarText } from "../store/alternativesSlice.js";
 import {
   setSelectedImage,
   setUploadedImage,
+  setGeneratedImage,
   setSelectedColor,
   setSelectedFont,
   setSelectedTitleFont,
@@ -85,6 +86,7 @@ const Calendar = () => {
         dispatch(setSelectedHatchesNumber(data.calendarHatchesNumber));
         dispatch(setInputValue(data.calendarTitle));
         dispatch(setUploadedImage(data.calendarUploadedImage));
+        dispatch(setGeneratedImage(data.calendarGeneratedImage));
       } else {
         console.log("No such document!");
       }
@@ -134,6 +136,10 @@ const Calendar = () => {
 
   const uploadedImage = useSelector(
     (state) => state.calendarStyling.uploadedImage
+  );
+
+  const generatedImage = useSelector(
+    (state) => state.calendarStyling.generatedImage
   );
 
   const titleFont = useSelector(
@@ -217,6 +223,9 @@ const Calendar = () => {
     setShowInfoModal(false);
   };
 
+
+  const backgroundImage = selectedImage || uploadedImage || generatedImage;
+
   const saveMyCalendarsClick = async () => {
     dispatch(saveToMyCalendar(true));
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
@@ -233,6 +242,7 @@ const Calendar = () => {
       { merge: true }
     );
   };
+
 
   return (
     <>
@@ -287,9 +297,7 @@ const Calendar = () => {
               margin: "1.5% 2% 2%",
               backgroundColor: backgroundColor,
               backgroundImage:
-                selectedImage !== null
-                  ? `url(${selectedImage})`
-                  : `url(${uploadedImage})`,
+                backgroundImage ? `url(${backgroundImage})` : 'none',
               backgroundSize: "cover",
             }}
           >

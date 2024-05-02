@@ -9,12 +9,16 @@ import TitleFontPicker from "../../components/titleFontPicker/TitleFontPicker";
 import FontPicker from "../../components/fontPicker/FontPicker";
 import ImagePicker from "../../components/imagePicker/ImagePicker";
 import { ArrowDown } from "react-bootstrap-icons";
+import { FaRandom } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { PiImageSquareThin } from "react-icons/pi";
+import OpenAI from 'openai';
 import Preview from "../../components/preview/Preview";
+import { Spinner } from "react-bootstrap";
 
 import {
+  setGeneratedImage,
   setUploadedImage,
   setSelectedColor,
   setSelectedHatchColor,
@@ -35,6 +39,12 @@ export default function CreateCalendar() {
   const dispatch = useDispatch();
 
   const [imageTooBig, setImageTooBig] = useState(false);
+  const [randomizeColors, setRandomizeColors] = useState(false);
+  const [prompt, setPrompt] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const generatedImage = useSelector(
+    (state) => state.calendarStyling.generatedImage);
 
   const selectedColor = useSelector(
     (state) => state.calendarStyling.selectedColor
@@ -50,6 +60,13 @@ export default function CreateCalendar() {
   );
   const selectedHatchFontColor = useSelector(
     (state) => state.calendarStyling.selectedHatchFontColor
+  );
+  const selectedImage = useSelector(
+    (state) => state.calendarStyling.selectedImage
+  );
+
+  const uploadedImage = useSelector(
+    (state) => state.calendarStyling.uploadedImage
   );
 
   const colorShow = useSelector((state) => state.calendarStyling.colorShow);
@@ -81,6 +98,7 @@ export default function CreateCalendar() {
   };
 
   console.log("buttonRefs", buttonRefs);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -196,7 +214,9 @@ export default function CreateCalendar() {
     }
 
     reader.onloadend = () => {
+      const transparentHatchColor = selectedHatchColor + '00';
       dispatch(setUploadedImage(reader.result));
+      dispatch(setSelectedHatchColor(transparentHatchColor));
       dispatch(setSelectedImage(null));
       dispatch(setSelectedColor(null));
     };
@@ -206,6 +226,64 @@ export default function CreateCalendar() {
     }
   };
 
+  const getRandomColor = () => {
+    return "#" + Math.floor(Math.random() * 16777215).toString(16);
+  };
+
+  const handleRandomizeClick = () => {
+    setRandomizeColors(true);
+  };
+
+  useEffect(() => {
+    if (randomizeColors) {
+      let hatchColor = getRandomColor();
+      const transparentHatchColor = hatchColor + '00';
+      if (selectedImage || generatedImage || uploadedImage) {
+        transparentHatchColor;
+        dispatch(setSelectedHatchColor(transparentHatchColor));
+      }
+      if (!selectedImage && !generatedImage && !uploadedImage) {
+        dispatch(setSelectedColor(getRandomColor()));
+        dispatch(setSelectedHatchColor(getRandomColor()));
+      }
+      dispatch(setSelectedHatchFontColor(getRandomColor()));
+      setRandomizeColors(false);
+    }
+  }, [randomizeColors, dispatch, selectedImage, generatedImage, uploadedImage]);
+
+  const handleGenerateImage = async () => {
+    setLoading(true);
+    try {
+      const openai = new OpenAI({ apiKey: import.meta.env.VITE_OPENAI_API, dangerouslyAllowBrowser: true });
+      const response = await openai.images.generate({
+        model: 'dall-e-3',
+        prompt: prompt,
+        n: 1,
+        size: "1024x1024"
+      });
+      if (response && response.data && response.data.length > 0) {
+        const imageUrl = response.data[0].url;
+        const transparentHatchColor = selectedHatchColor + '00';
+        dispatch(setGeneratedImage(imageUrl));
+        dispatch(setSelectedHatchColor(transparentHatchColor));
+        if (generatedImage) {
+          dispatch(setSelectedColor(null));
+          dispatch(setSelectedImage(generatedImage));
+          dispatch(setImageShow(true));
+        }
+      } else {
+        console.error("No image URL found:", response);
+      }
+    } catch (error) {
+      console.error('Error generating image:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGenerateImageInput = (e) => {
+    setPrompt(e.target.value);
+  }
 
   return (
     <Row className="mainContent createCalendarContainer">
@@ -214,320 +292,338 @@ export default function CreateCalendar() {
       </Col>
       <Col xs={10}>
         <Container className="text-center">
-          <p className="header-crCAL">Create a Calendar</p>
-          <p className="para">Choose a title</p>
-          <Row>
-            <div>
-              <input
-                placeholder="Enter the title"
-                className="createTitleInput"
-                type="text"
-                onChange={handleInputValue}
-              />
-            </div>
-          </Row>
-          <p className="para ">Choose the number of hatches</p>
-          <Row>
-            <Form className="crCAL-form2">
-              {["24", "28", "30", "31"].map((option, index) => (
-                <Form.Check
-                  key={`radio-${index}`}
-                  inline
-                  label={option}
-                  name="group1"
-                  type="radio"
-                  id={`radio-${index}`}
-                  className="radioButton"
-                  onClick={() => handleHatchesNumber(option)}
+          <div className="createCalendarWrap">
+            <p className="header-crCAL">Create a Calendar</p>
+            <p className="para">Choose a title</p>
+            <Row>
+              <div>
+                <input
+                  placeholder="Enter the title"
+                  className="createTitleInput"
+                  type="text"
+                  onChange={handleInputValue}
                 />
-              ))}
-            </Form>
-          </Row>
-          <p className="para">Choose the color theme</p>
-          <Row className="justify-content-center">
-            <Col sm={4}>
-              <div>
-                <p className="colorOptionsTitle">Calendar background color:</p>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    position: "relative",
-                  }}
-                  className="colorOptionsWrap"
-                >
-                  <input
-                    className="colorOptionInput"
-                    type="text"
-                    placeholder={selectedColor}
-                  />
-                  <Button
-                    id="btn-1"
-                    className="arrowDownButton"
-                    onClick={handleBackgroundColorClick}
-                    ref={buttonRefs.backgroundColorButtonRef}
-                  >
-                    <ArrowDown />
-                  </Button>
-                  {colorShow && (
-                    <div
-                      style={{
-                        position: "absolute",
-                        zIndex: 1,
-                        top: "100%",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                      }}
-                      ref={buttonRefs.backgroundColorContainerRef}
-                      className="colorRef"
-                    >
-                      <SketchPicker
-                        color={selectedColor || "#FFFFFF"}
-                        onChange={handelColorChange}
-                      />
-                    </div>
-                  )}
-                </div>
               </div>
-            </Col>
-            <Col sm={4}>
-              <div>
-                <p className="colorOptionsTitle">Choose title Font:</p>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    position: "relative",
-                  }}
-                  className="colorOptionsWrap"
-                >
-                  <input
-                    className="colorOptionInput"
-                    type="text"
-                    placeholder={selectedTitleFont}
+            </Row>
+            <p className="para ">Choose the number of hatches</p>
+            <Row>
+              <Form className="crCAL-form2">
+                {["24", "28", "30", "31"].map((option, index) => (
+                  <Form.Check
+                    key={`radio-${index}`}
+                    inline
+                    label={option}
+                    name="group1"
+                    type="radio"
+                    id={`radio-${index}`}
+                    className="radioButton"
+                    onClick={() => handleHatchesNumber(option)}
                   />
-                  <Button
-                    id="btn-2"
-                    className="arrowDownButton"
-                    onClick={handleTitleFontSelect}
-                    ref={buttonRefs.titleFontButtonRef}
-                  >
-                    <ArrowDown />
-                  </Button>
-                  {titleFontShow && (
-                    <div
-                      style={{
-                        position: "absolute",
-                        zIndex: 1,
-                        top: "100%",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                      }}
-                      ref={buttonRefs.titleFontcontainerRef}
-                      className="titleFontRef"
-                    >
-                      <TitleFontPicker />
-                    </div>
-                  )}
-                </div>
-              </div>
-            </Col>
-            <Col sm={4}>
-              <div>
-                <p className="colorOptionsTitle">Choose Background Image:</p>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    position: "relative",
-                  }}
-                  className="colorOptionsWrap"
-                >
-                  <input
-                    className="colorOptionInput"
-                    type="text"
-                    placeholder="Upload Image"
-                  />
+                ))}
+              </Form>
+            </Row>
+            <p className="para">Choose the color theme</p>
+            <Row className="justify-content-center">
+              <Col sm={3}>
+                <div>
+                  <p className="colorOptionsTitle">Calendar background color:</p>
                   <div
                     style={{
-                      position: "absolute",
-                      right: "32%",
-                      width: "30px",
+                      display: "flex",
+                      justifyContent: "center",
+                      position: "relative",
+                    }}
+                    className="colorOptionsWrap"
+                  >
+                    <input
+                      className="colorOptionInput"
+                      type="text"
+                      placeholder={selectedColor}
+                    />
+                    <Button
+                      id="btn-1"
+                      className="arrowDownButton"
+                      onClick={handleBackgroundColorClick}
+                      ref={buttonRefs.backgroundColorButtonRef}
+                    >
+                      <ArrowDown />
+                    </Button>
+                    {colorShow && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          zIndex: 1,
+                          top: "100%",
+                          left: "50%",
+                          transform: "translateX(-50%)",
+                        }}
+                        ref={buttonRefs.backgroundColorContainerRef}
+                        className="colorRef"
+                      >
+                        <SketchPicker
+                          color={selectedColor || "#FFFFFF"}
+                          onChange={handelColorChange}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </Col>
+              <Col sm={3}>
+                <div>
+                  <p className="colorOptionsTitle">Choose title Font:</p>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      position: "relative",
+                    }}
+                    className="colorOptionsWrap"
+                  >
+                    <input
+                      className="colorOptionInput"
+                      type="text"
+                      placeholder={selectedTitleFont}
+                    />
+                    <Button
+                      id="btn-2"
+                      className="arrowDownButton"
+                      onClick={handleTitleFontSelect}
+                      ref={buttonRefs.titleFontButtonRef}
+                    >
+                      <ArrowDown />
+                    </Button>
+                    {titleFontShow && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          zIndex: 1,
+                          top: "100%",
+                          left: "50%",
+                          transform: "translateX(-50%)",
+                        }}
+                        ref={buttonRefs.titleFontcontainerRef}
+                        className="titleFontRef"
+                      >
+                        <TitleFontPicker />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </Col>
+              <Col sm={3}>
+                <div>
+                  <p className="colorOptionsTitle">Choose Background Image:</p>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      position: "relative",
+                    }}
+                    className="colorOptionsWrap"
+                  >
+                    <input
+                      className="colorOptionInput"
+                      type="text"
+                      placeholder="Upload Image"
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        right: "32%",
+                        width: "30px",
+                      }}
+                    >
+                      <label htmlFor="fileInput">
+                        <PiImageSquareThin className="uploadImageInput" />
+                      </label>
+                      <input
+                        id="fileInput"
+                        type="file"
+                        onChange={handeluploadedImage}
+                      />
+                    </div>
+                    <Button
+                      id="btn-3"
+                      className="arrowDownButton"
+                      onClick={handleImageClick}
+                      ref={buttonRefs.imageButtonRef}
+                    >
+                      <ArrowDown />
+                    </Button>
+
+                    {imageShow && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          zIndex: 1,
+                          top: "100%",
+                          left: "50%",
+                          transform: "translateX(-50%)",
+                        }}
+                        ref={buttonRefs.imagecontainerRef}
+                      >
+
+                        <ImagePicker />
+                      </div>
+                    )}
+
+                  </div>
+                </div>
+              </Col>
+            </Row>
+            <Row className="justify-content-center">
+              <Col sm={3}>
+                <div>
+                  <p className="colorOptionsTitle">
+                    Choose hatch background color:
+                  </p>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      position: "relative",
                     }}
                   >
-                    <label htmlFor="fileInput">
-                      <PiImageSquareThin />
-                    </label>
                     <input
-                      id="fileInput"
-                      type="file"
-                      onChange={handeluploadedImage}
+                      className="colorOptionInput"
+                      type="text"
+                      placeholder={selectedHatchColor}
                     />
+                    <Button
+                      id="btn-4"
+                      className="arrowDownButton"
+                      onClick={handleHatchColorSelect}
+                      ref={buttonRefs.hatchColorButtonRef}
+                    >
+                      <ArrowDown />
+                    </Button>
+
+                    {hatchColorShow && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          zIndex: 1,
+                          top: "100%",
+                          left: "50%",
+                          transform: "translateX(-50%)",
+                        }}
+                        ref={buttonRefs.hatchColorContainerRef}
+                      >
+                        <SketchPicker
+                          color={selectedHatchColor || "#FFFFFF"}
+                          onChange={handleHatchColorChange}
+                        />
+                      </div>
+                    )}
                   </div>
-                  <Button
-                    id="btn-3"
-                    className="arrowDownButton"
-                    onClick={handleImageClick}
-                    ref={buttonRefs.imageButtonRef}
-                  >
-                    <ArrowDown />
-                  </Button>
-
-                  {imageShow && (
-                    <div
-                      style={{
-                        position: "absolute",
-                        zIndex: 1,
-                        top: "100%",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                      }}
-                      ref={buttonRefs.imagecontainerRef}
-                    >
-
-                      <ImagePicker />
-                    </div>
-                  )}
-
                 </div>
-              </div>
-            </Col>
-          </Row>
-          <Row className="justify-content-center">
-            <Col sm={4}>
-              <div>
-                <p className="colorOptionsTitle">
-                  Choose hatch background color:
-                </p>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    position: "relative",
-                  }}
-                >
-                  <input
-                    className="colorOptionInput"
-                    type="text"
-                    placeholder={selectedHatchColor}
-                  />
-                  <Button
-                    id="btn-4"
-                    className="arrowDownButton"
-                    onClick={handleHatchColorSelect}
-                    ref={buttonRefs.hatchColorButtonRef}
+              </Col>
+              <Col sm={3}>
+                <div>
+                  <p className="colorOptionsTitle">Choose hatch Font:</p>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      position: "relative",
+                    }}
                   >
-                    <ArrowDown />
-                  </Button>
-
-                  {hatchColorShow && (
-                    <div
-                      style={{
-                        position: "absolute",
-                        zIndex: 1,
-                        top: "100%",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                      }}
-                      ref={buttonRefs.hatchColorContainerRef}
+                    <input
+                      className="colorOptionInput"
+                      type="text"
+                      placeholder={selectedFont}
+                    />
+                    <Button
+                      id="btn-5"
+                      className="arrowDownButton"
+                      onClick={handleFontSelect}
+                      ref={buttonRefs.hatchFontButtonRef}
                     >
-                      <SketchPicker
-                        color={selectedHatchColor || "#FFFFFF"}
-                        onChange={handleHatchColorChange}
-                      />
-                    </div>
-                  )}
+                      <ArrowDown />
+                    </Button>
+
+                    {fontShow && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          zIndex: 1,
+                          top: "100%",
+                          left: "50%",
+                          transform: "translateX(-50%)",
+                        }}
+                        ref={buttonRefs.hatchFontRef}
+                      >
+                        <FontPicker />
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Col>
-            <Col sm={4}>
-              <div>
-                <p className="colorOptionsTitle">Choose hatch Font:</p>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    position: "relative",
-                  }}
-                >
-                  <input
-                    className="colorOptionInput"
-                    type="text"
-                    placeholder={selectedFont}
-                  />
-                  <Button
-                    id="btn-5"
-                    className="arrowDownButton"
-                    onClick={handleFontSelect}
-                    ref={buttonRefs.hatchFontButtonRef}
+              </Col>
+              <Col sm={3}>
+                <div>
+                  <p className="colorOptionsTitle">Choose font color:</p>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      position: "relative",
+                    }}
                   >
-                    <ArrowDown />
-                  </Button>
-
-                  {fontShow && (
-                    <div
-                      style={{
-                        position: "absolute",
-                        zIndex: 1,
-                        top: "100%",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                      }}
-                      ref={buttonRefs.hatchFontRef}
+                    <input
+                      className="colorOptionInput"
+                      type="text"
+                      placeholder={selectedHatchFontColor}
+                    />
+                    <Button
+                      id="btn-6"
+                      className="arrowDownButton"
+                      onClick={handleHatchFontColorSelect}
+                      ref={buttonRefs.fontColorButtonRef}
                     >
-                      <FontPicker />
-                    </div>
-                  )}
-                </div>
-              </div>
-            </Col>
-            <Col sm={4}>
-              <div>
-                <p className="colorOptionsTitle">Choose font color:</p>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    position: "relative",
-                  }}
-                >
-                  <input
-                    className="colorOptionInput"
-                    type="text"
-                    placeholder={selectedHatchFontColor}
-                  />
-                  <Button
-                    id="btn-6"
-                    className="arrowDownButton"
-                    onClick={handleHatchFontColorSelect}
-                    ref={buttonRefs.fontColorButtonRef}
-                  >
-                    <ArrowDown />
-                  </Button>
+                      <ArrowDown />
+                    </Button>
 
-                  {hatchFontColorShow && (
-                    <div
-                      style={{
-                        position: "absolute",
-                        zIndex: 1,
-                        top: "100%",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                      }}
-                      ref={buttonRefs.fontColorContainerRef}
-                    >
-                      <SketchPicker
-                        color={selectedHatchFontColor || "#FFFFFF"}
-                        onChange={handleHatchFontColorChange}
-                      />
-                    </div>
-                  )}
+                    {hatchFontColorShow && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          zIndex: 1,
+                          top: "100%",
+                          left: "50%",
+                          transform: "translateX(-50%)",
+                        }}
+                        ref={buttonRefs.fontColorContainerRef}
+                      >
+                        <SketchPicker
+                          color={selectedHatchFontColor || "#FFFFFF"}
+                          onChange={handleHatchFontColorChange}
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Col>
-          </Row>
-          <Row className="justify-content-center">
+              </Col>
+            </Row>
             {imageTooBig && (<p className="uploadWarningText">The uploaded image is too big. Please choose a smaller image.</p>)}
+            <div className="randomImageWrapper">
+              <div className="randomImageContent">
+                <p className="para">Generate an image with AI</p>
+                <input
+                  className="generateImageInput"
+                  placeholder="Enter a topic to generate image"
+                  value={prompt}
+                  onChange={handleGenerateImageInput} ></input>
+                <button className="randomizeColorsButton" onClick={handleGenerateImage}>Generate</button>
+              </div>
+            </div>
+            {loading && <Spinner animation="border" variant="secondary" />}
+          </div>
+          <div className="randomImageContent">
+            <p className="para randomTitle">Choose Random Colors</p>
+            <button onClick={handleRandomizeClick} className="randomizeColorsButton randomizeIcon"><FaRandom /></button>
+          </div>
+          <Row className="justify-content-center">
             <Preview />
           </Row>
           <Link
@@ -541,6 +637,6 @@ export default function CreateCalendar() {
           </Link>
         </Container>
       </Col>
-    </Row>
+    </Row >
   );
 }
