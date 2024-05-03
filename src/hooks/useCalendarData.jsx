@@ -5,44 +5,44 @@ import { db, storage } from '../auth/firebase';
 import defaultScreenshot from '../assets/defaultScreenshot.png';
 
 const useCalendarData = () => {
+    const [loading, setLoading] = useState(true);
     const [calendars, setCalendars] = useState([]);
     const intersectionObserverRef = useRef(null);
 
     useEffect(() => {
         const fetchCalendars = async () => {
-            const calendarCollection = collection(db, 'calendars');
-            const calendarSnapshot = await getDocs(calendarCollection);
+            try {
+                const calendarCollection = collection(db, 'calendars');
+                const calendarSnapshot = await getDocs(calendarCollection);
 
-            const calendarData = [];
-            for (const doc of calendarSnapshot.docs) {
-                const data = doc.data();
-                const imageUrl = defaultScreenshot;
-                calendarData.push({ ...data, id: doc.id, imageUrl });
+                const calendarData = [];
+                for (const doc of calendarSnapshot.docs) {
+                    const data = doc.data();
+                    calendarData.push({ ...data, id: doc.id });
+                }
+
+                setCalendars(calendarData);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error fetching calendars:', error);
             }
-
-            setCalendars(calendarData);
         };
 
         fetchCalendars();
     }, []);
 
     useEffect(() => {
-        const observer = intersectionObserverRef.current;
-        if (observer) {
-            observer.disconnect();
-        }
-
         intersectionObserverRef.current = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         const calendarId = entry.target.getAttribute('data-calendar-id');
                         loadImage(calendarId);
-                        observer.unobserve(entry.target);
+                        intersectionObserverRef.current.unobserve(entry.target);
                     }
                 });
             },
-            { threshold: 0.5 }
+            { threshold: 0.1 }
         );
 
         return () => {
@@ -55,15 +55,13 @@ const useCalendarData = () => {
 
     const loadImage = async (calendarId) => {
         try {
-            if (!calendarId) {
-                console.error('Calendar ID is undefined');
+            const imageUrl = await getImageUrl(calendarId);
+            if (!imageUrl) {
                 return;
             }
-
-            const imageUrl = await getImageUrl(calendarId);
             setCalendars((prevCalendars) =>
                 prevCalendars.map((calendar) =>
-                    calendar.id === calendarId ? { ...calendar, imageUrl } : calendar
+                    calendar.id === calendarId ? { ...calendar, imageUrl, isLoading: false } : calendar
                 )
             );
         } catch (error) {
@@ -86,7 +84,7 @@ const useCalendarData = () => {
         }
     };
 
-    return { calendars, intersectionObserverRef };
+    return { loading, calendars, intersectionObserverRef };
 };
 
 export default useCalendarData;

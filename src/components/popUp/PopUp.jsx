@@ -8,7 +8,7 @@ const PopUp = ({ showInitially, handleClose }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setShowPopup(true);
-    }, 5000);
+    }, 15000);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -28,12 +28,12 @@ const PopUp = ({ showInitially, handleClose }) => {
   return (
     <div className="popUpOpen">
       <div className="popUpContent">
-        <h2 className="popUpTitle">Contact us!</h2>
+        <h2 className="popUpTitle">Want to get in touch?</h2>
         <Link to="/contact" className="popUpLink">
-          <p className="popUpContactLink">Send us a message</p>
+          <p className="popUpContactLink">Send us a message!</p>
         </Link>
         <button className="popUpButton" onClick={handleCloseClick}>
-          Close
+          No thanks!
         </button>
       </div>
     </div>

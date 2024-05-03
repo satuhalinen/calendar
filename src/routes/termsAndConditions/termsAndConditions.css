@@ -1,20 +1,40 @@
 .terms-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding: auto;
 }
 
 .terms-wrap {
-    padding: 20px 60px 40px 60px;
-    background-color: #f4ede7;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
+  padding: 20px 60px 40px 60px;
+  background-color: #f4ede7;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
 }
 
 .termsTitle {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 400;
-    margin: 2rem 0 4rem;
+  text-align: center;
+  position: relative;
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 2rem 0 3rem;
+}
+
+.termsTitle:after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 24%;
+  width: 50%;
+  height: 2px;
+  background-color: #ba6c2c;
+}
+
+.termscontent h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 2rem 0 1rem;
 }

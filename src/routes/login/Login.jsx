@@ -7,16 +7,56 @@ import {
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
-import { addDoc, getDoc, doc, collection } from "firebase/firestore";
+import { addDoc, getDoc, doc, collection, getDocs } from "firebase/firestore";
+import { Spinner } from "react-bootstrap";
 import "./login.css";
 
 export default function Login() {
   const [error, setError] = useState(null);
   const [inputError, setInputError] = useState(false);
   const navigate = useNavigate();
-  const [signInWithEmailAndPassword, user] =
+  const [signInWithEmailAndPassword] =
     useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser] = useSignInWithGoogle(auth);
+  const [loading, setLoading] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(null);
+
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        try {
+          setLoading(true);
+          const usersCollection = collection(db, "users");
+          const usersSnapshot = await getDocs(usersCollection);
+          const adminUsers = usersSnapshot.docs.filter(
+            (doc) => doc.data().isAdmin === true
+          );
+          const adminUserUids = adminUsers.map((doc) => doc.data().uid);
+          const userIsAdmin = adminUserUids.includes(user.uid);
+          setIsAdmin(userIsAdmin);
+          console.log("Is admin:", userIsAdmin);
+
+          if (userIsAdmin) {
+            console.log("Navigating to admin panel...");
+            navigate("/adminpanel");
+          } else {
+            console.log("Navigating to profile...");
+            navigate("/profile");
+          }
+        } catch (error) {
+          setLoading(false);
+          console.error("Error checking admin status:", error);
+        }
+      } else {
+        console.log("User data not available yet.");
+        setLoading(false);
+      }
+    });
+
+    return unsubscribe;
+  }, [navigate]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,7 +86,6 @@ export default function Login() {
 
     try {
       await signInWithEmailAndPassword(email, password);
-      navigate("/profile");
     } catch (error) {
       console.error("Error signing in with email and password:", error);
       if (
@@ -79,17 +118,10 @@ export default function Login() {
           email: gUser.email,
         });
       }
-      navigate("/profile");
     } catch (error) {
       console.error("Error signing in with Google:", error);
     }
   };
-
-  useEffect(() => {
-    if (user) {
-      navigate("/profile");
-    }
-  }, [user, navigate]);
 
   return (
     <div className="mainContent loginWrap">
@@ -119,9 +151,9 @@ export default function Login() {
                 id="password"
               />
             </div>
-            <Button type="submit" className="loginBtn">
+            <button type="submit" className="loginBtn">
               Log in
-            </Button>
+            </button>
           </form>
           <Button onClick={handleGoogleSignIn} className="gsi-material-button">
             <div className="gsi-material-button-state"></div>
@@ -156,6 +188,7 @@ export default function Login() {
               <span style={{ display: "none" }}>Sign in with Google</span>
             </div>
           </Button>
+          {loading && <div> <Spinner animation="border" variant="secondary" /></div>}
           {error && <p style={{ color: "red" }}>{error}</p>}
           <p className="noAccount">
             Don't have an account? <Link to="/register">Sign up</Link> now.

@@ -7,18 +7,27 @@ import { getDocs, query, collection, where } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 import { BsImage } from "react-icons/bs";
+import { fetchProfileImage } from "../../store/actions/actions";
+import {
+  selectProfileImageUrl,
+  updateProfileImageUrl,
+} from "../../store/profileImageSlice";
 import "./profile.css";
-import avatar from "../../assets/avatar.png";
 import defaultScreenshot from "../../assets/defaultScreenshot.png";
 import useCalendarData from "../../hooks/useCalendarData";
+import { useDispatch, useSelector } from "react-redux";
+import avatar from "../../assets/avatar.png";
 
 export default function Profile() {
   const [user] = useAuthState(auth);
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [photoUrl, setPhotoUrl] = useState(avatar);
-  const [userData, setUserData] = useState({ name: "", email: "" });
+  const [userData, setUserData] = useState({ fullname: "", email: "" });
   const { calendars, intersectionObserverRef } = useCalendarData();
+  const [docId, setDocId] = useState(null);
+
+  const dispatch = useDispatch();
+  const profileImageUrl = useSelector(selectProfileImageUrl);
 
   useEffect(() => {
     if (!user) return;
@@ -28,7 +37,9 @@ export default function Profile() {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         const userData = doc.data();
+        const docId = doc.id;
         setUserData(userData);
+        setDocId(docId);
       });
     };
 
@@ -36,10 +47,8 @@ export default function Profile() {
   }, [user]);
 
   useEffect(() => {
-    if (user?.photoURL) {
-      setPhotoUrl(user.photoURL);
-    }
-  }, [user]);
+    dispatch(fetchProfileImage(user.uid));
+  }, [dispatch, user.uid]);
 
   useEffect(() => {
     const handleClick = async () => {
@@ -61,7 +70,10 @@ export default function Profile() {
 
   const upload = async (file, currentUser, setLoading) => {
     const fileExtension = file.name.split(".").pop();
-    const fileRef = ref(storage, `${currentUser.uid}.${fileExtension}`);
+    const fileRef = ref(
+      storage,
+      `profileImg/${currentUser.uid}.${fileExtension}`
+    );
 
     setLoading(true);
     try {
@@ -69,7 +81,7 @@ export default function Profile() {
       const downloadURL = await getDownloadURL(fileRef);
       await updateProfile(currentUser, { photoURL: downloadURL });
       setLoading(false);
-      setPhotoUrl(downloadURL); // Update photoURL in component state
+      dispatch(updateProfileImageUrl(downloadURL));
       console.log("Image uploaded successfully");
     } catch (error) {
       setLoading(false);
@@ -89,17 +101,31 @@ export default function Profile() {
           <Row>
             <Col>
               <div className="profileImgContainer">
-                <Image className="profileImg" src={photoUrl} alt="avatar" />
+                <Image
+                  className="profileImg"
+                  src={profileImageUrl || avatar}
+                  alt="avatar"
+                />
                 <label className="inputImg">
-                  <input disabled={loading} type="file" onChange={handleChange} />
-                  <BsImage style={{ fontSize: '12px' }} />
+                  <input
+                    disabled={loading}
+                    type="file"
+                    onChange={handleChange}
+                  />
+                  <BsImage style={{ fontSize: "12px" }} />
                 </label>
               </div>
             </Col>
             <Col className="profileText">
               <p>Name: {userData.fullname}</p>
               <p>Email: {userData.email}</p>
-              <Link className="linkToAccount" to="/account-settings">
+              <Link
+                className="linkToAccount"
+                to={{
+                  pathname: "/account-settings",
+                }}
+                state={{ docID: docId }}
+              >
                 <p className="linkToAccount">Account Settings</p>
               </Link>
             </Col>
@@ -111,7 +137,8 @@ export default function Profile() {
         <Row className="favoriteCards">
           {calendars.slice(0, 4).map((calendar) => (
             <Col
-              xs={12} md={4}
+              xs={12}
+              md={4}
               key={calendar.id}
               className="calendarCard profileCalendar"
               data-calendar-id={calendar.id}
@@ -119,17 +146,25 @@ export default function Profile() {
                 calendarRef &&
                 intersectionObserverRef.current &&
                 intersectionObserverRef.current.observe(calendarRef)
-              }>
-              <NavLink to={`/calendar/${calendar.id}`} className="calendarLinkFavorite">
-                <img src={calendar.imageUrl || defaultScreenshot} alt="no img" className="defaultScreenshotFavorite" />
+              }
+            >
+              <NavLink
+                to={`/calendar/${calendar.id}`}
+                className="calendarLinkFavorite"
+              >
+                <img
+                  src={calendar.imageUrl || defaultScreenshot}
+                  alt="no img"
+                  className="defaultScreenshotFavorite"
+                />
                 <button className="useCalendarButton">Use Calendar</button>
               </NavLink>
             </Col>
           ))}
         </Row>
         <Row>
-          <Link className="linkToFavorites" to="/favorites">
-            See all of your favorites
+          <Link className="linkToMyCalendars" to="/my-calendars">
+            See all my calendars
           </Link>
         </Row>
       </Container>

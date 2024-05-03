@@ -8,8 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
-  gap: 20px;
+  margin-top: 20px;
 }
 
 .formGroup-container {
@@ -22,7 +21,7 @@
 
 #form-container {
   max-width: 513px;
-  height: 568px;
+  /* height: 568px; */
   background-color: #f4ede7;
   padding: 30px;
   border-radius: 10px;
@@ -30,12 +29,12 @@
 }
 
 .accsetCAL-h1 {
-  margin-bottom: 40px;
-  font-size: 30px;
+  margin-bottom: 20px;
+  font-size: 25px;
   font-weight: 500;
 }
 
-#input-field {
+.input-field {
   width: 18vw;
   padding: 0.7rem;
   margin: 5px;
@@ -44,11 +43,11 @@
   font-size: 0.8rem;
 }
 
-#input-field:hover {
+.input-field:hover {
   box-shadow: 0 0 5px rgba(143, 56, 15, 0.743);
 }
 
-#input-field:focus {
+.input-field:focus {
   outline: none;
   box-shadow: 0 0 5px rgba(143, 56, 15, 0.416);
 }

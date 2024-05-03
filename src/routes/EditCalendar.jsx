@@ -11,7 +11,6 @@ import {
   addDoc,
 } from "firebase/firestore";
 import { db } from "../auth/firebase";
-
 import { setAvailableAlternatives } from "../store/alternativesSlice";
 import "./editCalendar.css";
 import { useNavigate, NavLink } from "react-router-dom";
@@ -23,6 +22,14 @@ function EditCalendar() {
 
   const hatchColor = useSelector(
     (state) => state.calendarStyling.selectedHatchColor
+  );
+
+  const generatedImage = useSelector(
+    (state) => state.calendarStyling.generatedImage
+  );
+
+  const uploadedImage = useSelector(
+    (state) => state.calendarStyling.uploadedImage
   );
 
   const selectedImage = useSelector(
@@ -68,6 +75,7 @@ function EditCalendar() {
   }, []);
 
   const navigate = useNavigate();
+
   const saveHatchText = async () => {
     if (calendarContent !== undefined) {
       const docRef = await addDoc(collection(db, "calendars"), {
@@ -80,16 +88,21 @@ function EditCalendar() {
         calendarHatchesNumber: selectedHatchesNumber,
         calendarTitleFont: titleFont,
         calendarTitle: title,
+        calendarUploadedImage: uploadedImage,
+        calendarGeneratedImage: generatedImage,
         createdAt: serverTimestamp(),
       });
       const calendarId = docRef.id;
       navigate(`/calendar/${calendarId}`);
+      console.log("Document written with ID: ", docRef.id);
     }
   };
 
   const calendarContent = useSelector(
     (state) => state.alternatives.savedAlternatives
   );
+
+  const backgroundImage = selectedImage || uploadedImage || generatedImage;
 
   return (
     <>
@@ -99,7 +112,8 @@ function EditCalendar() {
           <Card
             style={{
               margin: "1.5% 0",
-              backgroundImage: `url(${selectedImage})`,
+              backgroundImage:
+                backgroundImage ? `url(${backgroundImage})` : 'none',
               backgroundColor: backgroundColor,
               backgroundSize: "cover",
               boxShadow: "0px 0px 5px 0px #00000059",

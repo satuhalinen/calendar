@@ -3,9 +3,18 @@ import html2canvas from "html2canvas";
 import Hatch from "../components/hatch/Hatch.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../auth/firebase";
-import { Row, Col, Card } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
-import happySymbol from "../assets/happy.svg";
+import {
+  FaCloud,
+  FaCloudRain,
+  FaCloudShowersHeavy,
+  FaCloudSun,
+  FaInfoCircle,
+  FaPooStorm,
+  FaSun,
+} from "react-icons/fa";
+
+import { Row, Card, ProgressBar } from "react-bootstrap";
+
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
 import {
   updateDoc,
@@ -21,6 +30,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { showCalendarText } from "../store/alternativesSlice.js";
 import {
   setSelectedImage,
+  setUploadedImage,
+  setGeneratedImage,
   setSelectedColor,
   setSelectedFont,
   setSelectedTitleFont,
@@ -32,22 +43,25 @@ import {
 } from "../store/calendarStylingSlice.js";
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import { useParams } from "react-router-dom";
+import InfoModal from "../components/infoModal/InfoModal.jsx";
+import { Button } from "react-bootstrap";
+import { saveToMyCalendar } from "../store/scoreSlice.js";
+import { setDoc } from "firebase/firestore";
 
 const Calendar = () => {
   const [user] = useAuthState(auth);
+
+  const [weatherIcon, setWeatherIcon] = useState(<FaCloudRain />);
   const toCaptureRef = useRef(null);
   const dispatch = useDispatch();
   const { id } = useParams();
   const [userData, setUserData] = useState({ name: "", email: "" });
+  const [showInfoModal, setShowInfoModal] = useState(false);
 
   const fetchContentById = async () => {
     if (!id) {
       console.log("ID is undefined", "id: ", id);
-
-      // Fetch all documents from the "calendars" collection
       const querySnapshot = await getDocs(collection(db, "calendars"));
-
-      // Print the IDs of all documents
       querySnapshot.forEach((doc) => {
         console.log("Calendar ID:", doc.id);
       });
@@ -71,6 +85,8 @@ const Calendar = () => {
         dispatch(setSelectedHatchFontColor(data.calendarHatchFontColor));
         dispatch(setSelectedHatchesNumber(data.calendarHatchesNumber));
         dispatch(setInputValue(data.calendarTitle));
+        dispatch(setUploadedImage(data.calendarUploadedImage));
+        dispatch(setGeneratedImage(data.calendarGeneratedImage));
       } else {
         console.log("No such document!");
       }
@@ -78,6 +94,18 @@ const Calendar = () => {
       console.log("Error fetching content", error);
     }
   };
+
+  const selectedHatchesNumber = useSelector(
+    (state) => state.calendarStyling.selectedHatchesNumber
+  );
+
+  const trueFalseObject = useSelector((state) => state.score?.hatches || {});
+
+  const length = Object.values(trueFalseObject).filter(
+    (hatch) => hatch.isChecked
+  ).length;
+
+  const progress = (length / selectedHatchesNumber) * 100;
 
   useEffect(() => {
     if (!user) return;
@@ -106,8 +134,12 @@ const Calendar = () => {
     (state) => state.calendarStyling.selectedImage
   );
 
-  const selectedHatchesNumber = useSelector(
-    (state) => state.calendarStyling.selectedHatchesNumber
+  const uploadedImage = useSelector(
+    (state) => state.calendarStyling.uploadedImage
+  );
+
+  const generatedImage = useSelector(
+    (state) => state.calendarStyling.generatedImage
   );
 
   const titleFont = useSelector(
@@ -117,20 +149,53 @@ const Calendar = () => {
   const title = useSelector((state) => state.calendarStyling.inputValue);
 
   useEffect(() => {
-    (async () => {
+    if (progress >= 100) {
+      setWeatherIcon(<FaSun className="sun-icon" />);
+    } else if (progress >= 80) {
+      setWeatherIcon(<FaCloudSun className="cloud-sun-icon" />);
+    } else if (progress >= 60) {
+      setWeatherIcon(<FaCloud className="cloud-icon" />);
+    } else if (progress >= 40) {
+      setWeatherIcon(<FaCloudRain className="cloud-rain-icon" />);
+    } else if (progress >= 20) {
+      setWeatherIcon(<FaCloudShowersHeavy className="cloud-heavy-icon" />);
+    } else {
+      setWeatherIcon(<FaPooStorm className="storm-icon" />);
+    }
+  }, [progress]);
+
+  useEffect(() => {
+    const fetchDataAndCaptureScreenshot = async () => {
       await fetchContentById();
-    })();
+      captureScreenshot();
+    };
+
+    fetchDataAndCaptureScreenshot();
   }, []);
 
-  const captureScreenshot = () => {
+  const captureScreenshot = async () => {
+    const calendarDocRef = doc(db, "calendars", id);
+    const calendarDocSnapshot = await getDoc(calendarDocRef);
+    const existingImageURL = calendarDocSnapshot.data().imageURL;
+
+    if (existingImageURL) {
+      console.log("Screenshot already exists");
+      return;
+    }
     if (!toCaptureRef.current) return;
+
+    const width = toCaptureRef.current.offsetWidth;
+
+    const marginWidth = width * 0.02;
 
     const canvasPromise = html2canvas(toCaptureRef.current, {
       useCORS: true,
+      width: width - 2 * marginWidth,
+      x: marginWidth,
     });
 
     canvasPromise.then(async (canvas) => {
-      const dataURL = canvas.toDataURL("image/png", 0.001);
+      const dataURL = canvas.toDataURL("image/png", 0.05);
       dispatch(saveImageURL(dataURL));
 
       try {
@@ -150,41 +215,82 @@ const Calendar = () => {
     });
   };
 
+  const handleOpenInfoModal = () => {
+    setShowInfoModal(true);
+  };
+
+  const handleCloseInfoModal = () => {
+    setShowInfoModal(false);
+  };
+
+
+  const backgroundImage = selectedImage || uploadedImage || generatedImage;
+
+  const saveMyCalendarsClick = async () => {
+    dispatch(saveToMyCalendar(true));
+    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    const querySnapshot = await getDocs(q);
+    const document = querySnapshot.docs[0];
+    const docId = document.id;
+    const calendarRef = doc(db, "users", docId, "myCalendars", id);
+    await setDoc(
+      calendarRef,
+      {
+        startedUsing: true,
+        hatches: trueFalseObject,
+      },
+      { merge: true }
+    );
+  };
+
+
   return (
     <>
       <SmallHeader />
       <div className="useCalendar">
-        <Row className="d-flex justify-content-between align-items-center">
-          <Col xs={3}>
-            <NavLink to="/admin-calendars" onClick={() => captureScreenshot()}>
-              <button className="backToAdminCalendars">
-                Back to Calendars
-              </button>
-            </NavLink>
-          </Col>
-          <Col xs={9}>
-            <Card className="gamification">
-              <Card.Body style={{ display: "flex", alignItems: "center" }}>
-                <Card.Title
-                  className="scoreTitle"
-                  style={{ marginRight: "30px" }}
-                >
-                  <strong>Name:</strong> {userData.fullname}
-                </Card.Title>
-                <Card.Title
-                  className="scoreTitle"
-                  style={{ marginRight: "10px" }}
-                >
-                  Score:
-                </Card.Title>
-                <Card.Img
-                  variant="top"
-                  src={happySymbol}
-                  style={{ width: "20px", marginBottom: "0.5rem" }}
+        <Row className="d-flex justify-content-center align-items-center">
+          <Card className="gamification">
+            <Card.Body
+              className="gameCardBody"
+              style={{ display: "flex", alignItems: "center" }}
+            >
+              <Button
+                style={{
+                  backgroundColor: "#425f5b",
+                  fontSize: "0.75rem",
+                  borderStyle: "none",
+                  padding: "0.5rem 0.3rem",
+                  width: "15vw",
+                }}
+                className="saveToMyCalendarsButton"
+                onClick={saveMyCalendarsClick}
+              >
+                Save to My Calendars
+              </Button>
+              <div className="userInfo">
+                <FaInfoCircle
+                  className="infoCircle"
+                  onClick={() => handleOpenInfoModal()}
                 />
-              </Card.Body>
-            </Card>
-          </Col>
+                <Card.Title className="userScoreTitle">
+                  <strong className="userNameTitle">Username:</strong>{" "}
+                  {userData.fullname}
+                </Card.Title>
+                <Card.Title className="progressTitle">
+                  <strong>Progress:</strong>
+                </Card.Title>
+              </div>
+              <ProgressBar
+                variant="red"
+                now={progress}
+                label={`${progress.toFixed()}%`}
+                className="progressBar"
+              />
+              {weatherIcon && (
+                <div className="weatherIconWrapper">{weatherIcon}</div>
+              )}
+            </Card.Body>
+          </Card>
         </Row>
         <div className="calendarSections" ref={toCaptureRef}>
           <Card
@@ -193,7 +299,8 @@ const Calendar = () => {
               border: "none",
               margin: "1.5% 2% 2%",
               backgroundColor: backgroundColor,
-              backgroundImage: `url(${selectedImage})`,
+              backgroundImage:
+                backgroundImage ? `url(${backgroundImage})` : 'none',
               backgroundSize: "cover",
             }}
           >
@@ -213,6 +320,7 @@ const Calendar = () => {
               ))}
             </div>
           </Card>
+          <InfoModal show={showInfoModal} handleClose={handleCloseInfoModal} />
         </div>
       </div>
     </>

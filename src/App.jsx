@@ -13,7 +13,7 @@ import CreateCalendar from "./routes/createCalendar/CreateCalendar";
 import CustomerMessages from "./routes/customerMessages/CustomerMessages";
 import EditCalendar from "./routes/EditCalendar";
 import ModifyOldCalendar from "./routes/modifyOldCalendar/ModifyOldCalendar";
-import Favorites from "./routes/favorites/Favorites";
+import MyCalendars from "./routes/myCalendars/MyCalendars";
 import Login from "./routes/login/Login";
 import Register from "./routes/register/Register";
 import Profile from "./routes/profile/Profile";
@@ -24,11 +24,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import ProtectedRoute from "./auth/ProtectedRoute";
-
 import ErrorPage from "./routes/errorPage/errorPage";
-
 import { ScrollToTop } from "react-router-scroll-to-top";
-
 
 function App() {
   return (
@@ -60,19 +57,16 @@ function App() {
                 element={<ProtectedRoute component={Calendar} />}
               />
               <Route
-
-
                 path="/calendar/:id"
-                element={<ProtectedRoute adminOnly component={Calendar} />}
+                element={<ProtectedRoute component={Calendar} />}
               />
               <Route
-
                 path="/calendars"
                 element={<ProtectedRoute component={Calendars} />}
               />
               <Route
-                path="/favorites"
-                element={<ProtectedRoute component={Favorites} />}
+                path="/my-calendars"
+                element={<ProtectedRoute component={MyCalendars} />}
               />
               <Route
                 path="/admin-calendars"
@@ -121,7 +115,6 @@ function App() {
                 <ProtectedRoute adminOnly component={ModifyOldCalendar} />
               }
             />
-
           </Routes>
         </Router>
       </LocalizationProvider>

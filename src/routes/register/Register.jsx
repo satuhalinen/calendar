@@ -1,4 +1,3 @@
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth, db } from "../../auth/firebase";
@@ -42,7 +41,7 @@ export default function Register() {
         uid: currentUser.uid,
         fullname: e.target.fullname.value,
         email: currentUser.email,
-        isAdmin: false
+        isAdmin: false,
       });
 
       navigate("/profile");
@@ -91,9 +90,9 @@ export default function Register() {
                 id="createpassword"
               />
             </div>
-            <Button type="submit" className="registerBtn">
+            <button type="submit" className="registerBtn">
               Register
-            </Button>
+            </button>
             {error && <p style={{ color: "red" }}>{error}</p>}
           </form>
           <p className="termsConditions">

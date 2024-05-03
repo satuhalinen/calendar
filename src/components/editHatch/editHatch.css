@@ -16,6 +16,24 @@
   border: none;
 }
 
+.randomizeButton {
+  background: #597773 !important;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.471);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+  color: #f9f5f3;
+  padding: 4px 0;
+  border-radius: 5px;
+  border: none;
+  font-size: 0.7rem;
+  margin: 0.3rem 0;
+  cursor: pointer;
+}
+
+.randomizeButton:hover {
+  box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237) !important;
+  background-color: #425f5b !important;
+}
+
 .dropdownItem {
   font-size: 0.8rem;
   transition: all 0.1s ease;
@@ -49,7 +67,7 @@
 
 #dropdown-alternative-button,
 #dropdown-topic-button {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   padding: 0.5rem;
   width: 100%;
   color: black !important;

@@ -2,11 +2,37 @@
     text-align: center;
 }
 
-.versionTitle {
+.versionTitle,
+.calendarCarouselTitle {
     font-size: 1.8rem;
     font-weight: 400;
-    margin: 2rem;
+    margin: 2rem 0 0 0rem;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.054);
+    text-align: center;
+}
+
+.versionTitle {
+    display: inline-block;
+    border-bottom: #ba6c2c 2px solid;
+    padding-bottom: 1.5rem;
+    width: 40%;
+    margin: 3rem auto 0rem;
+}
+
+.calendarCarouselTitle {
+    display: inline-block;
+    border-bottom: #ba6c2c 2px solid;
+    padding-bottom: 1.5rem;
+    width: 80%;
+    margin: 2rem auto 0rem;
+}
+
+.calendarCarouselTitleBottom {
+    display: inline-block;
+    border-top: #ba6c2c 2px solid;
+    padding-bottom: 1.5rem;
+    width: 80%;
+    margin: 0rem auto 0rem;
 }
 
 .versions {
@@ -14,15 +40,15 @@
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    margin: 3rem 8rem;
+    margin: 2rem 8rem;
 }
 
 .versionCard,
 .aboutUsCard {
-    margin: 1rem;
+    margin: 0.5rem;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.194);
-    background-color: #F4EDE7;
+    background-color: #f4ede7;
     height: auto;
     max-width: auto;
     transition: box-shadow 0.3s ease;
@@ -39,7 +65,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 3rem 8rem;
+    margin: 2rem 8rem;
 }
 
 .versionCardTitle,
@@ -87,12 +113,12 @@
     background-color: #ba6c2c;
     box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: white;
     border: none;
     border-radius: 10px;
-    padding: 1.1rem 2.5rem;
-    margin: 1rem;
+    padding: 1rem 2rem;
+    margin: 0rem 0 0.5rem 0;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -101,6 +127,14 @@
 .registerNow:hover {
     box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237);
     background-color: #a65919;
+}
+
+.calendarCarouselRow {
+    padding: 0rem 0rem 1rem 0rem;
+    margin: 2.5rem 8rem 1rem 8rem;
+    background-color: #F4EDE7;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.269);
 }
 
 @media (max-width: 768px) {
@@ -121,4 +155,23 @@
     .aboutUs {
         margin: 3rem;
     }
+
+    .calendarCarouselRow {
+        margin: 2.5rem 1rem 1rem 1rem;
+
+    }
+}
+
+.pLanding {
+    position: relative;
+}
+
+.pLanding:after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0%;
+    width: 100%;
+    height: 2px;
+    background-color: #ba6c2c;
 }

@@ -5,8 +5,33 @@
 }
 
 .flipped {
-  transform: rotateY(180deg);
-  filter: brightness(1.5) !important;
+  transform: rotateY(180deg) !important;
+}
+
+.hatchOpenedTitle {
+  font-size: 0.6rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.hatchImage {
+  max-width: 70px;
+  max-height: auto;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  object-fit: contain;
+  filter: saturate(0.3);
+}
+
+.checkMarkOpened {
+  font-size: 0.9rem;
+  color: #425f5b;
+}
+
+.noContentOpened {
+  margin-top: 3rem;
+  font-size: 0.8rem;
+  color: #425f5b;
 }
 
 .hatchModalTitle {
@@ -16,7 +41,6 @@
 
 .hatchModalButton {
   width: 20%;
-  /* background: #597773 !important; */
   box-shadow: 1px 1px 5px #27120478;
   color: #f9f5f3;
   padding: 10px;
@@ -30,7 +54,6 @@
 
 .hatchModalButton:hover {
   box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237) !important;
-  /* background-color: #425f5b !important; */
 }
 
 .hatchCardUsed {
@@ -38,7 +61,7 @@
   margin-bottom: 1rem;
   box-shadow: 0px 0px 5px 0px #0000005e;
   filter: saturate(0.8);
-  transition: all 0.3s ease;
+  transition: all 1s ease;
 }
 
 .hatchCardUsed:hover {
@@ -51,6 +74,82 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color: #F4EDE7 !important; */
   border: none;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.hatchModalImage {
+  max-width: 30vh;
+  border-radius: 5px;
+}
+
+.linkToHatchContent {
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.linkToHatchContent:hover {
+  text-decoration: underline;
+}
+
+.toggle-btn {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle-btn input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked+.slider {
+  background-color: #425f5b;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #3e474e;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }

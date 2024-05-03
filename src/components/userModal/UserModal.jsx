@@ -1,8 +1,9 @@
 import { Modal, Button } from "react-bootstrap";
 import { auth } from "../../auth/firebase";
-import "./userModule.css";
+import { sendPasswordResetEmail } from "firebase/auth";
+import "./userModal.css";
 
-function UserModule({ user, show, handleClose, handleDelete }) {
+function UserModal({ user, show, handleClose, handleDelete }) {
     if (!user) return null;
 
     const { id, fullname, email, isAdmin } = user;
@@ -18,7 +19,7 @@ function UserModule({ user, show, handleClose, handleDelete }) {
 
     const onResetPassword = async (email) => {
         try {
-            await auth.sendPasswordResetEmail(email);
+            await sendPasswordResetEmail(auth, email);
             console.log('Password reset email sent successfully.');
         } catch (error) {
             console.error('Error sending password reset email:', error);
@@ -51,4 +52,4 @@ function UserModule({ user, show, handleClose, handleDelete }) {
     );
 }
 
-export default UserModule;
+export default UserModal;

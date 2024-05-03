@@ -31,6 +31,17 @@ function EditHatch({ number }) {
 
   const hatchFont = useSelector((state) => state.calendarStyling.selectedFont);
 
+  const handleRandomize = () => {
+    const randomTopic = alternatives[Math.floor(Math.random() * alternatives.length)];
+    setSelectedTopic(randomTopic.id);
+
+    const randomIndex = Math.floor(Math.random() * randomTopic.content.length);
+    const randomAlternative = randomTopic.content[randomIndex];
+    setSelectedAlternative(randomAlternative);
+
+    saveAlternative(number, randomAlternative);
+  };
+
   return (
     <Card
       style={{
@@ -97,6 +108,7 @@ function EditHatch({ number }) {
             </Dropdown.Item>
           ))}
       </DropdownButton>
+      <button className="randomizeButton" onClick={handleRandomize}>Randomize</button>
     </Card>
   );
 }
