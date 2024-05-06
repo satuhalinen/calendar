@@ -14,7 +14,7 @@ import {
 } from "../../store/profileImageSlice";
 import "./profile.css";
 import defaultScreenshot from "../../assets/defaultScreenshot.png";
-import useMyCalendarData from "../../hooks/useCalendarData";
+import useMyCalendarData from "../../hooks/useMyCalendarData";
 import { useDispatch, useSelector } from "react-redux";
 import avatar from "../../assets/avatar.png";
 
@@ -91,83 +91,83 @@ export default function Profile() {
 
   return (
     <div className="mainContent">
-      <Container className="profile-container">
-        <Row className="profileInfo">
-          <Col>
-            <h3 className="h3Profile text-center">Profile</h3>
-          </Col>
-        </Row>
-        <Col className="profileContent">
-          <Row>
+      <div className="wholeProfileContainer">
+        <Container className="profile-container">
+          <Row className="profileInfo">
             <Col>
-              <div className="profileImgContainer">
-                <Image
-                  className="profileImg"
-                  src={profileImageUrl || avatar}
-                  alt="avatar"
-                />
-                <label className="inputImg">
-                  <input
-                    disabled={loading}
-                    type="file"
-                    onChange={handleChange}
-                  />
-                  <BsImage style={{ fontSize: "12px" }} />
-                </label>
-              </div>
-            </Col>
-            <Col className="profileText">
-              <p>Name: {userData.fullname}</p>
-              <p>Email: {userData.email}</p>
-              <Link
-                className="linkToAccount"
-                to={{
-                  pathname: "/account-settings",
-                }}
-                state={{ docID: docId }}
-              >
-                <p className="linkToAccount">Account Settings</p>
-              </Link>
+              <h3 className="h3Profile text-center">Profile</h3>
             </Col>
           </Row>
-        </Col>
-      </Container>
-      <h3 className="h3savedCalendars">Saved calendars</h3>
-      <Container>
-        <Row className="favoriteCards">
-          {calendars.slice(0, 4).map((calendar) => (
-            <Col
-              xs={12}
-              md={4}
-              key={calendar.id}
-              className="calendarCard profileCalendar"
-              data-calendar-id={calendar.id}
-              ref={(calendarRef) =>
-                calendarRef &&
-                intersectionObserverRef.current &&
-                intersectionObserverRef.current.observe(calendarRef)
-              }
-            >
-              <NavLink
-                to={`/calendar/${calendar.id}`}
-                className="calendarLinkFavorite"
+          <Col className="profileContent">
+            <Row>
+              <Col>
+                <div className="profileImgContainer">
+                  <Image
+                    className="profileImg"
+                    src={profileImageUrl || avatar}
+                    alt="avatar"
+                  />
+                  <label className="inputImg">
+                    <input
+                      disabled={loading}
+                      type="file"
+                      onChange={handleChange}
+                    />
+                    <BsImage style={{ fontSize: "12px" }} />
+                  </label>
+                </div>
+              </Col>
+              <Col className="profileText">
+                <p>Name: {userData.fullname}</p>
+                <p>Email: {userData.email}</p>
+                <Link
+                  className="linkToAccount"
+                  to={{
+                    pathname: "/account-settings",
+                  }}
+                  state={{ docID: docId }}
+                >
+                  <p className="linkToAccount">Account Settings</p>
+                </Link>
+              </Col>
+            </Row>
+          </Col>
+        </Container>
+        <h3 className="h3savedCalendars">Saved calendars</h3>
+        <Container>
+          <Row className="favoriteCards">
+            {calendars.slice(0, 4).map((calendar) => (
+              <Col
+                key={calendar.id}
+                className="calendarCard profileCalendar"
+                data-calendar-id={calendar.id}
+                ref={(calendarRef) =>
+                  calendarRef &&
+                  intersectionObserverRef.current &&
+                  intersectionObserverRef.current.observe(calendarRef)
+                }
               >
-                <img
-                  src={calendar.imageUrl || defaultScreenshot}
-                  alt="no img"
-                  className="defaultScreenshotFavorite"
-                />
-                <button className="useCalendarButton">Use Calendar</button>
-              </NavLink>
-            </Col>
-          ))}
-        </Row>
-        <Row>
-          <Link className="linkToMyCalendars" to="/my-calendars">
-            See all my calendars
-          </Link>
-        </Row>
-      </Container>
+                <NavLink
+                  to={`/calendar/${calendar.id}`}
+                  className="calendarLinkFavorite"
+                >
+                  <img
+                    src={calendar.imageUrl || defaultScreenshot}
+                    alt="no img"
+                    className="defaultScreenshotFavorite"
+                  />
+                  <button className="useMyCalendarButton">Use Calendar</button>
+                </NavLink>
+              </Col>
+            ))}
+          </Row>
+          <Row>
+            <Link className="linkToMyCalendars" to="/my-calendars">
+              See all my calendars
+            </Link>
+          </Row>
+        </Container>
+      </div>
     </div>
   );
 }
