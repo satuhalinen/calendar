@@ -265,12 +265,14 @@ export default function CreateCalendar() {
         const imageUrl = response.data[0].url;
         const transparentHatchColor = selectedHatchColor + '00';
         dispatch(setGeneratedImage(imageUrl));
-        dispatch(setSelectedHatchColor(transparentHatchColor));
-        if (generatedImage) {
-          dispatch(setSelectedColor(null));
-          dispatch(setSelectedImage(generatedImage));
-          dispatch(setImageShow(true));
+        if (selectedHatchColor && selectedHatchColor.endsWith("00")) {
+          dispatch(setSelectedHatchColor(selectedHatchColor));
+        } else {
+          dispatch(setSelectedHatchColor(transparentHatchColor));
         }
+        dispatch(setSelectedColor(null));
+        dispatch(setImageShow(true));
+        dispatch(setHatchColorShow());
       } else {
         console.error("No image URL found:", response);
       }
