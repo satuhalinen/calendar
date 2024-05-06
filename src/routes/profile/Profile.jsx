@@ -14,7 +14,7 @@ import {
 } from "../../store/profileImageSlice";
 import "./profile.css";
 import defaultScreenshot from "../../assets/defaultScreenshot.png";
-import useCalendarData from "../../hooks/useCalendarData";
+import useMyCalendarData from "../../hooks/useCalendarData";
 import { useDispatch, useSelector } from "react-redux";
 import avatar from "../../assets/avatar.png";
 
@@ -23,7 +23,7 @@ export default function Profile() {
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({ fullname: "", email: "" });
-  const { calendars, intersectionObserverRef } = useCalendarData();
+  const { calendars, intersectionObserverRef } = useMyCalendarData();
   const [docId, setDocId] = useState(null);
 
   const dispatch = useDispatch();
