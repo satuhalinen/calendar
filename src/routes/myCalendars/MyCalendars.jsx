@@ -5,7 +5,7 @@ import "./myCalendars.css";
 import useMyCalendarData from "../../hooks/useMyCalendarData";
 
 export default function MyCalendars() {
-  const { loading, calendars, intersectionObserverRef } = useMyCalendarData();
+  const { loading, myCalendars, intersectionObserverRef } = useMyCalendarData();
 
   return (
     <Row className="mainContent userCalendarsWrap">
@@ -15,7 +15,7 @@ export default function MyCalendars() {
           <Spinner animation="border" variant="secondary" />
         ) : (
           <div className="calendarGrid">
-            {calendars.map((calendar) => (
+            {myCalendars.map((calendar) => (
               <Card
                 key={calendar.id}
                 className="calendarCard d-flex flex-column justify-content-center align-items-center"

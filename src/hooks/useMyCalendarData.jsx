@@ -11,7 +11,7 @@ import { getDoc } from "firebase/firestore";
 
 const useMyCalendarData = () => {
   const [loading, setLoading] = useState(true);
-  const [calendars, setCalendars] = useState([]);
+  const [myCalendars, setMyCalendars] = useState([]);
   const intersectionObserverRef = useRef(null);
   const [user] = useAuthState(auth);
 
@@ -54,7 +54,7 @@ const useMyCalendarData = () => {
             console.log("Error getting document for ID " + id + ":", error);
           }
         }
-        setCalendars(calendarData);
+        setMyCalendars(calendarData);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching calendars:", error);
@@ -92,7 +92,7 @@ const useMyCalendarData = () => {
       if (!imageUrl) {
         return;
       }
-      setCalendars((prevCalendars) =>
+      setMyCalendars((prevCalendars) =>
         prevCalendars.map((calendar) =>
           calendar.id === calendarId
             ? { ...calendar, imageUrl, isLoading: false }
@@ -119,7 +119,7 @@ const useMyCalendarData = () => {
     }
   };
 
-  return { loading, calendars, intersectionObserverRef };
+  return { loading, myCalendars, intersectionObserverRef };
 };
 
 export default useMyCalendarData;
