@@ -93,17 +93,6 @@ function Hatch({ number, saveMyCalendarsClick }) {
   }, []);
 
   useEffect(() => {
-    const fetchScore = async () => {
-      const currentUser = auth.currentUser;
-      const calendarRef = doc(db, "calendars", id);
-      const docSnap = await getDoc(calendarRef);
-      const userData = docSnap.data().users[currentUser.uid];
-      dispatch(fetchScoreFromFirebase(userData));
-    };
-    fetchScore();
-  }, []);
-
-  useEffect(() => {
     dispatch(resetState());
   }, [dispatch]);
 
