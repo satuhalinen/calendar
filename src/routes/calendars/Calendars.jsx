@@ -5,11 +5,25 @@ import defaultScreenshot from "../../assets/defaultScreenshot.png";
 import "./Calendars.css";
 import useCalendarData from "../../hooks/useCalendarData";
 import useMyCalendarData from "../../hooks/useMyCalendarData";
+import { useDispatch } from "react-redux";
+import { saveToMyCalendar } from "../../store/scoreSlice";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
+import { db, auth } from "../../auth/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function Calendars() {
   const { loading, calendars, intersectionObserverRef } = useCalendarData();
   const myCalendarData = useMyCalendarData();
   const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
+  const [user] = useAuthState(auth);
   const myCalendars = myCalendarData ? myCalendarData.myCalendars : [];
   const searchHandler = (event) => {
     setSearch(event.target.value);
@@ -21,6 +35,17 @@ export default function Calendars() {
       (myCalendar) => myCalendar.id === calendar.id
     ),
   }));
+
+  const removeMyCalendarClick = async (id) => {
+    dispatch(saveToMyCalendar(false));
+    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    const querySnapshot = await getDocs(q);
+    const document = querySnapshot.docs[0];
+    const docId = document.id;
+    const calendarRef = doc(db, "users", docId, "myCalendars", id);
+    await deleteDoc(calendarRef);
+  };
+
   return (
     <Row className="mainContent userCalendarsWrap">
       <Col className="userCalendarsContainer">
@@ -54,28 +79,49 @@ export default function Calendars() {
                     intersectionObserverRef.current.observe(calendarRef)
                   }
                 >
-                  <NavLink
-                    to={`/calendar/${calendar.id}`}
-                    className="linkToOneCalendar"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <Card.Img
-                      className="calendarCardImg"
-                      src={calendar.imageUrl || defaultScreenshot}
-                    />
-                    <button
-                      className="useCalendarButton"
-                      style={{
-                        backgroundColor: "#BA6C2C",
-                        border: "none",
-                        color: "#F4EDE7",
-                      }}
+                  {calendar.isInMyCalendars ? (
+                    <div
+                      className="linkToOneCalendar"
+                      style={{ textDecoration: "none" }}
                     >
-                      {calendar.isInMyCalendars
-                        ? "Remove from my calendars"
-                        : "Use calendar"}
-                    </button>
-                  </NavLink>
+                      <Card.Img
+                        className="calendarCardImg"
+                        src={calendar.imageUrl || defaultScreenshot}
+                      />
+                      <button
+                        onClick={() => removeMyCalendarClick(calendar.id)}
+                        className="useCalendarButton"
+                        style={{
+                          backgroundColor: "#BA6C2C",
+                          border: "none",
+                          color: "#F4EDE7",
+                        }}
+                      >
+                        Remove from my calendars
+                      </button>
+                    </div>
+                  ) : (
+                    <NavLink
+                      to={`/calendar/${calendar.id}`}
+                      className="linkToOneCalendar"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Card.Img
+                        className="calendarCardImg"
+                        src={calendar.imageUrl || defaultScreenshot}
+                      />
+                      <button
+                        className="useCalendarButton"
+                        style={{
+                          backgroundColor: "#BA6C2C",
+                          border: "none",
+                          color: "#F4EDE7",
+                        }}
+                      >
+                        Use calendar
+                      </button>
+                    </NavLink>
+                  )}
                 </Card>
               ))}
           </div>
