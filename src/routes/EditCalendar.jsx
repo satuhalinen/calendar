@@ -76,6 +76,8 @@ function EditCalendar() {
 
   const navigate = useNavigate();
 
+  console.log("hatchColor", hatchColor);
+
   const saveHatchText = async () => {
     if (calendarContent !== undefined) {
       const docRef = await addDoc(collection(db, "calendars"), {
