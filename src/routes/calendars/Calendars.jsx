@@ -19,8 +19,9 @@ import { db, auth } from "../../auth/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function Calendars() {
+  const [refresh, setRefresh] = useState(false);
   const { loading, calendars, intersectionObserverRef } = useCalendarData();
-  const myCalendarData = useMyCalendarData();
+  const myCalendarData = useMyCalendarData(refresh);
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const [user] = useAuthState(auth);
@@ -44,6 +45,7 @@ export default function Calendars() {
     const docId = document.id;
     const calendarRef = doc(db, "users", docId, "myCalendars", id);
     await deleteDoc(calendarRef);
+    setRefresh(!refresh);
   };
 
   return (
