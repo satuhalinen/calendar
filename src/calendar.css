@@ -125,6 +125,11 @@
   box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237) !important;
 }
 
+.tooltip-1 {
+  font-size: 0.7rem;
+  margin: 0.5rem;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
