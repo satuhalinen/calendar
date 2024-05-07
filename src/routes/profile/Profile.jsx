@@ -104,7 +104,7 @@ export default function Profile() {
                 <Image
                   className="profileImg"
                   src={profileImageUrl || avatar}
-                  alt="avatar"
+                  alt="Users own profile image"
                 />
                 <label className="inputImg">
                   <input

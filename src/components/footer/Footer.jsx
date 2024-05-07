@@ -35,13 +35,25 @@ const Footer = () => {
                 <p className="socialMediaTitle">Social Media Links</p>
               </Nav.Item>
               <Nav.Item className="socialLinks">
-                <Nav.Link href="https://www.facebook.com/" target="_blank">
+                <Nav.Link
+                  href="https://www.facebook.com/"
+                  alt="Facebook"
+                  target="_blank"
+                >
                   <FaFacebookF />
                 </Nav.Link>
-                <Nav.Link href="https://www.instagram.com/" target="_blank">
+                <Nav.Link
+                  href="https://www.instagram.com/"
+                  alt="Instagram"
+                  target="_blank"
+                >
                   <FaInstagram />
                 </Nav.Link>
-                <Nav.Link href="https://www.twitter.com/" target="_blank">
+                <Nav.Link
+                  href="https://www.twitter.com/"
+                  alt="Twitter"
+                  target="_blank"
+                >
                   <FaTwitter />
                 </Nav.Link>
               </Nav.Item>
