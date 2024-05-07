@@ -1,13 +1,16 @@
 import { useState, useEffect, useRef } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
-import { db, storage } from "../auth/firebase";
+import { db, storage, auth } from "../auth/firebase";
 import defaultScreenshot from "../assets/defaultScreenshot.png";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../auth/firebase";
-import { query, where } from "firebase/firestore";
-import { doc } from "firebase/firestore";
-import { getDoc } from "firebase/firestore";
 
 const useMyCalendarData = (refresh) => {
   const [loading, setLoading] = useState(true);
