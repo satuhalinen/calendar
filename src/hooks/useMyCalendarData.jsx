@@ -9,7 +9,7 @@ import { query, where } from "firebase/firestore";
 import { doc } from "firebase/firestore";
 import { getDoc } from "firebase/firestore";
 
-const useMyCalendarData = () => {
+const useMyCalendarData = (removed) => {
   const [loading, setLoading] = useState(true);
   const [myCalendars, setMyCalendars] = useState([]);
   const intersectionObserverRef = useRef(null);
@@ -77,7 +77,7 @@ const useMyCalendarData = () => {
     };
 
     fetchCalendars();
-  }, []);
+  }, [removed]);
 
   useEffect(() => {
     intersectionObserverRef.current = new IntersectionObserver(

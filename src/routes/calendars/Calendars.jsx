@@ -4,23 +4,14 @@ import { useState } from "react";
 import defaultScreenshot from "../../assets/defaultScreenshot.png";
 import "./Calendars.css";
 import useCalendarData from "../../hooks/useCalendarData";
-import useMyCalendarData from "../../hooks/useMyCalendarData";
 
 export default function Calendars() {
   const { loading, calendars, intersectionObserverRef } = useCalendarData();
-  const myCalendarData = useMyCalendarData();
   const [search, setSearch] = useState("");
-  const myCalendars = myCalendarData ? myCalendarData.myCalendars : [];
   const searchHandler = (event) => {
     setSearch(event.target.value);
   };
 
-  const calendarsWithMyCalendarsInfo = calendars.map((calendar) => ({
-    ...calendar,
-    isInMyCalendars: myCalendars.some(
-      (myCalendar) => myCalendar.id === calendar.id
-    ),
-  }));
   return (
     <Row className="mainContent userCalendarsWrap">
       <Col className="userCalendarsContainer">
@@ -37,7 +28,7 @@ export default function Calendars() {
           <Spinner animation="border" variant="secondary" />
         ) : (
           <div className="calendarGrid">
-            {calendarsWithMyCalendarsInfo
+            {calendars
               .filter((calendarItem) =>
                 calendarItem.calendarTitle
                   .toLowerCase()
@@ -71,9 +62,7 @@ export default function Calendars() {
                         color: "#F4EDE7",
                       }}
                     >
-                      {calendar.isInMyCalendars
-                        ? "Remove from my calendars"
-                        : "Use calendar"}
+                      Use calendar
                     </button>
                   </NavLink>
                 </Card>
