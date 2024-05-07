@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Leftbar from "../../components/leftbar/Leftbar";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import "./createCalendar.css";
 import { SketchPicker } from "react-color";
 import TitleFontPicker from "../../components/titleFontPicker/TitleFontPicker";
@@ -13,9 +13,8 @@ import { FaRandom } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { PiImageSquareThin } from "react-icons/pi";
-import OpenAI from 'openai';
+import OpenAI from "openai";
 import Preview from "../../components/preview/Preview";
-import { Spinner } from "react-bootstrap";
 
 import {
   setGeneratedImage,
@@ -44,7 +43,8 @@ export default function CreateCalendar() {
   const [loading, setLoading] = useState(false);
 
   const generatedImage = useSelector(
-    (state) => state.calendarStyling.generatedImage);
+    (state) => state.calendarStyling.generatedImage
+  );
 
   const selectedColor = useSelector(
     (state) => state.calendarStyling.selectedColor
@@ -214,7 +214,7 @@ export default function CreateCalendar() {
     }
 
     reader.onloadend = () => {
-      const transparentHatchColor = selectedHatchColor + '00';
+      const transparentHatchColor = selectedHatchColor + "00";
       dispatch(setUploadedImage(reader.result));
       dispatch(setSelectedHatchColor(transparentHatchColor));
       dispatch(setSelectedImage(null));
@@ -237,7 +237,7 @@ export default function CreateCalendar() {
   useEffect(() => {
     if (randomizeColors) {
       let hatchColor = getRandomColor();
-      const transparentHatchColor = hatchColor + '00';
+      const transparentHatchColor = hatchColor + "00";
       if (selectedImage || generatedImage || uploadedImage) {
         transparentHatchColor;
         dispatch(setSelectedHatchColor(transparentHatchColor));
@@ -254,16 +254,19 @@ export default function CreateCalendar() {
   const handleGenerateImage = async () => {
     setLoading(true);
     try {
-      const openai = new OpenAI({ apiKey: import.meta.env.VITE_OPENAI_API, dangerouslyAllowBrowser: true });
+      const openai = new OpenAI({
+        apiKey: import.meta.env.VITE_OPENAI_API,
+        dangerouslyAllowBrowser: true,
+      });
       const response = await openai.images.generate({
-        model: 'dall-e-3',
+        model: "dall-e-3",
         prompt: prompt,
         n: 1,
-        size: "1024x1024"
+        size: "1024x1024",
       });
       if (response && response.data && response.data.length > 0) {
         const imageUrl = response.data[0].url;
-        const transparentHatchColor = selectedHatchColor + '00';
+        const transparentHatchColor = selectedHatchColor + "00";
         dispatch(setGeneratedImage(imageUrl));
         if (selectedHatchColor && selectedHatchColor.endsWith("00")) {
           dispatch(setSelectedHatchColor(selectedHatchColor));
@@ -277,7 +280,7 @@ export default function CreateCalendar() {
         console.error("No image URL found:", response);
       }
     } catch (error) {
-      console.error('Error generating image:', error);
+      console.error("Error generating image:", error);
     } finally {
       setLoading(false);
     }
@@ -285,7 +288,7 @@ export default function CreateCalendar() {
 
   const handleGenerateImageInput = (e) => {
     setPrompt(e.target.value);
-  }
+  };
 
   return (
     <Row className="mainContent createCalendarContainer">
@@ -328,7 +331,9 @@ export default function CreateCalendar() {
             <Row className="justify-content-center">
               <Col sm={3}>
                 <div>
-                  <p className="colorOptionsTitle">Calendar background color:</p>
+                  <p className="colorOptionsTitle">
+                    Calendar background color:
+                  </p>
                   <div
                     style={{
                       display: "flex",
@@ -465,11 +470,9 @@ export default function CreateCalendar() {
                         }}
                         ref={buttonRefs.imagecontainerRef}
                       >
-
                         <ImagePicker />
                       </div>
                     )}
-
                   </div>
                 </div>
               </Col>
@@ -607,7 +610,11 @@ export default function CreateCalendar() {
                 </div>
               </Col>
             </Row>
-            {imageTooBig && (<p className="uploadWarningText">The uploaded image is too big. Please choose a smaller image.</p>)}
+            {imageTooBig && (
+              <p className="uploadWarningText">
+                The uploaded image is too big. Please choose a smaller image.
+              </p>
+            )}
             <div className="randomImageWrapper">
               <div className="randomImageContent">
                 <p className="para">Generate an image with AI</p>
@@ -615,15 +622,26 @@ export default function CreateCalendar() {
                   className="generateImageInput"
                   placeholder="Enter a topic to generate image"
                   value={prompt}
-                  onChange={handleGenerateImageInput} ></input>
-                <button className="randomizeColorsButton" onClick={handleGenerateImage}>Generate</button>
+                  onChange={handleGenerateImageInput}
+                ></input>
+                <button
+                  className="randomizeColorsButton"
+                  onClick={handleGenerateImage}
+                >
+                  Generate
+                </button>
               </div>
             </div>
             {loading && <Spinner animation="border" variant="secondary" />}
           </div>
           <div className="randomImageContent">
             <p className="para randomTitle">Choose Random Colors</p>
-            <button onClick={handleRandomizeClick} className="randomizeColorsButton randomizeIcon"><FaRandom /></button>
+            <button
+              onClick={handleRandomizeClick}
+              className="randomizeColorsButton randomizeIcon"
+            >
+              <FaRandom />
+            </button>
           </div>
           <Row className="justify-content-center">
             <Preview />
@@ -639,6 +657,6 @@ export default function CreateCalendar() {
           </Link>
         </Container>
       </Col>
-    </Row >
+    </Row>
   );
 }
