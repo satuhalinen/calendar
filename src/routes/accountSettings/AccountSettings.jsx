@@ -225,13 +225,17 @@ export default function AccountSettings() {
             >
               Reset
             </Button>
-            <a
+            <Button
               href="#"
               className="text-danger accsetCAL-a"
               onClick={handelDelete}
+              style={{
+                backgroundColor: "transparent",
+                border: "none",
+              }}
             >
               Delete Account
-            </a>
+            </Button>
           </div>
         </Form>
       </Container>

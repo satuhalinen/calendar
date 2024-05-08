@@ -95,7 +95,38 @@ export default function Profile() {
         <Container className="profile-container">
           <Row className="profileInfo">
             <Col>
+
+              <div className="profileImgContainer">
+                <Image
+                  className="profileImg"
+                  src={profileImageUrl || avatar}
+                  alt="Users own profile image"
+                />
+                <label className="inputImg">
+                  <input
+                    disabled={loading}
+                    type="file"
+                    onChange={handleChange}
+                  />
+                  <BsImage style={{ fontSize: "12px" }} />
+                </label>
+              </div>
+            </Col>
+            <Col className="profileText">
+              <p>Name: {userData.fullname}</p>
+              <p>Email: {userData.email}</p>
+              <Link
+                className="linkToAccount"
+                to={{
+                  pathname: "/account-settings",
+                }}
+                state={{ docID: docId }}
+              >
+                <p className="linkToAccount">Account Settings</p>
+              </Link>
+
               <h3 className="h3Profile text-center">Profile</h3>
+
             </Col>
           </Row>
           <Col className="profileContent">
