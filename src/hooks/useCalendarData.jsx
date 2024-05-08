@@ -4,7 +4,7 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../auth/firebase";
 import defaultScreenshot from "../assets/defaultScreenshot.png";
 
-const useCalendarData = () => {
+const useCalendarData = (removed) => {
   const [loading, setLoading] = useState(true);
   const [calendars, setCalendars] = useState([]);
   const intersectionObserverRef = useRef(null);
@@ -43,7 +43,7 @@ const useCalendarData = () => {
     };
 
     fetchCalendars();
-  }, []);
+  }, [removed]);
 
   useEffect(() => {
     intersectionObserverRef.current = new IntersectionObserver(

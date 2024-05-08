@@ -7,16 +7,43 @@ import { useState } from "react";
 import "../adminCalendars/adminCalendars.css";
 import "../adminpanel/adminpanel.css";
 import Spinner from "react-bootstrap/Spinner";
-
 import { LuMinusCircle } from "react-icons/lu";
-
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../../auth/firebase";
+import { getDoc, getDocs, collection } from "firebase/firestore";
 
 export default function AdminCalendars() {
-  const { loading, calendars, intersectionObserverRef } = useCalendarData();
+  const [removed, setRemoved] = useState(false);
+  const { loading, calendars, intersectionObserverRef } =
+    useCalendarData(removed);
   const [search, setSearch] = useState("");
 
   const searchHandler = (event) => {
     setSearch(event.target.value);
+  };
+
+  const removeCalendarClick = async (calendarId) => {
+    const calendarRef = doc(db, "calendars", calendarId);
+    await deleteDoc(calendarRef);
+    setRemoved(!removed);
+    await removeMyCalendarFromAllUsers(calendarId);
+  };
+
+  const removeMyCalendarFromAllUsers = async (calendarId) => {
+    const usersSnap = await getDocs(collection(db, "users"));
+    usersSnap.forEach(async (userDoc) => {
+      const myCalendarRef = doc(
+        db,
+        "users",
+        userDoc.id,
+        "myCalendars",
+        calendarId
+      );
+      const myCalendarSnap = await getDoc(myCalendarRef);
+      if (myCalendarSnap.exists()) {
+        await deleteDoc(myCalendarRef);
+      }
+    });
   };
 
   return (
@@ -86,6 +113,7 @@ export default function AdminCalendars() {
                     </NavLink>
                     <button
                       className="useCalendarButton"
+                      onClick={() => removeCalendarClick(calendar.id)}
                       style={{
                         backgroundColor: "#BA6C2C",
                         border: "none",
