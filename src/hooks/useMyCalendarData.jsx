@@ -12,7 +12,7 @@ import { db, storage, auth } from "../auth/firebase";
 import defaultScreenshot from "../assets/defaultScreenshot.png";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-const useMyCalendarData = (refresh) => {
+const useMyCalendarData = (removed) => {
   const [loading, setLoading] = useState(true);
   const [myCalendars, setMyCalendars] = useState([]);
   const intersectionObserverRef = useRef(null);
@@ -80,7 +80,7 @@ const useMyCalendarData = (refresh) => {
     };
 
     fetchCalendars();
-  }, [refresh]);
+  }, [removed]);
 
   useEffect(() => {
     intersectionObserverRef.current = new IntersectionObserver(
