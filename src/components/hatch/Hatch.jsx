@@ -165,7 +165,7 @@ function Hatch({ number, saveMyCalendarsClick }) {
         startedUsing: true,
       });
     }
-    let newOpenState = isOpenedHatch ? isOpenedHatch : true;
+    let newOpenState = isOpenedHatch || true;
     if (!isOpenedHatch) {
       dispatch(setOpen({ hatchNumber: number, isOpened: newOpenState }));
     }
