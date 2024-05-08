@@ -9,9 +9,9 @@ import { query, where } from "firebase/firestore";
 import { doc } from "firebase/firestore";
 import { getDoc } from "firebase/firestore";
 
-const useMyCalendarData = () => {
+const useMyCalendarData = (removed) => {
   const [loading, setLoading] = useState(true);
-  const [calendars, setCalendars] = useState([]);
+  const [myCalendars, setMyCalendars] = useState([]);
   const intersectionObserverRef = useRef(null);
   const [user] = useAuthState(auth);
 
@@ -21,10 +21,10 @@ const useMyCalendarData = () => {
       const url = await getDownloadURL(storageRef);
       return url;
     } catch (error) {
-      if (error.code === 'storage/object-not-found') {
+      if (error.code === "storage/object-not-found") {
         console.error(`Image not found for ID: ${calendarId}`);
       } else {
-        console.error('Error fetching image URL:', error);
+        console.error("Error fetching image URL:", error);
       }
       return defaultScreenshot;
     }
@@ -69,7 +69,7 @@ const useMyCalendarData = () => {
             console.log("Error getting document for ID " + id + ":", error);
           }
         }
-        setCalendars(calendarData);
+        setMyCalendars(calendarData);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching calendars:", error);
@@ -77,18 +77,22 @@ const useMyCalendarData = () => {
     };
 
     fetchCalendars();
-  }, []);
+  }, [removed]);
 
   useEffect(() => {
     intersectionObserverRef.current = new IntersectionObserver(
       async (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            const calendarId = entry.target.getAttribute('data-calendar-id');
+            const calendarId = entry.target.getAttribute("data-calendar-id");
             const imageUrl = await loadImage(calendarId);
-            setCalendars(prevCalendars => prevCalendars.map(calendar =>
-              calendar.id === calendarId ? { ...calendar, imageUrl } : calendar
-            ));
+            setMyCalendars((prevCalendars) =>
+              prevCalendars.map((calendar) =>
+                calendar.id === calendarId
+                  ? { ...calendar, imageUrl }
+                  : calendar
+              )
+            );
             intersectionObserverRef.current.unobserve(entry.target);
           }
         }
@@ -104,7 +108,7 @@ const useMyCalendarData = () => {
     };
   }, []);
 
-  return { loading, calendars, intersectionObserverRef };
+  return { loading, myCalendars, intersectionObserverRef };
 };
 
 export default useMyCalendarData;

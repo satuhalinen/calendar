@@ -23,7 +23,7 @@ export default function Profile() {
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({ fullname: "", email: "" });
-  const { calendars, intersectionObserverRef } = useMyCalendarData();
+  const { myCalendars, intersectionObserverRef } = useMyCalendarData();
   const [docId, setDocId] = useState(null);
 
   const dispatch = useDispatch();
@@ -133,10 +133,10 @@ export default function Profile() {
             </Row>
           </Col>
         </Container>
-        <h3 className="h3savedCalendars">Saved calendars</h3>
+        <h3 className="h3savedCalendars">Some of my calendars</h3>
         <Container>
           <Row className="favoriteCards">
-            {calendars.slice(0, 4).map((calendar) => (
+            {myCalendars.slice(0, 4).map((calendar) => (
               <Col
                 key={calendar.id}
                 className="calendarCard profileCalendar"
