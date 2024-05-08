@@ -13,7 +13,7 @@ import {
   FaSun,
 } from "react-icons/fa";
 
-import { Row, Card, ProgressBar } from "react-bootstrap";
+import { Row, Card, ProgressBar, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
 import {
@@ -57,6 +57,7 @@ const Calendar = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState({ name: "", email: "" });
   const [showInfoModal, setShowInfoModal] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const fetchContentById = async () => {
     if (!id) {
@@ -243,6 +244,21 @@ const Calendar = () => {
     );
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      setShowTooltip(true);
+    }, 2000);
+  }, []);
+
+  const handleMouseEnter = () => {
+    setShowTooltip(true);
+  };
+
+  const handleMouseLeave = () => {
+    setTimeout(() => {
+      setShowTooltip(false)
+    }, 800);
+  };
 
   return (
     <>
@@ -254,19 +270,31 @@ const Calendar = () => {
               className="gameCardBody"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <Button
-                style={{
-                  backgroundColor: "#425f5b",
-                  fontSize: "0.75rem",
-                  borderStyle: "none",
-                  padding: "0.5rem 0.3rem",
-                  width: "15vw",
-                }}
-                className="saveToMyCalendarsButton"
-                onClick={saveMyCalendarsClick}
+              <OverlayTrigger
+                placement="bottom"
+                overlay={
+                  <Tooltip className="tooltip-1">
+                    Save the calendar to track your progress.
+                  </Tooltip>
+                }
+                show={showTooltip}
               >
-                Save to My Calendars
-              </Button>
+                <Button
+                  style={{
+                    backgroundColor: "#425f5b",
+                    fontSize: "0.75rem",
+                    borderStyle: "none",
+                    padding: "0.5rem 0.3rem",
+                    width: "15vw",
+                  }}
+                  className="saveToMyCalendarsButton"
+                  onClick={saveMyCalendarsClick}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  Save to My Calendars
+                </Button>
+              </OverlayTrigger>
               <div className="userInfo">
                 <FaInfoCircle
                   className="infoCircle"
