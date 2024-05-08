@@ -22,7 +22,7 @@ function SmallHeader() {
             width="auto"
             height="30"
             className="d-inline-block align-top"
-            alt="logo"
+            alt="VOCA logo"
           />
         </NavLink>
         <Nav className="me-auto">

@@ -17,7 +17,11 @@ const ImageCarousel = () => {
   return (
     <Carousel activeIndex={index} onSelect={handleSelect} variant="light">
       <Carousel.Item className="carouselItem" interval={3000}>
-        <Image className="d-block w-100" src={carousel1} alt="First slide" />
+        <Image
+          className="d-block w-100"
+          src={carousel1}
+          alt="Elderly man holding a small exercise ball in his hand while a nurse takes his pulse on his wrist, using her hand"
+        />
         <Carousel.Caption className="carouselCaption">
           <h3 className="carouselText">Quality time with the elderly</h3>
           <p className="carouselText">
@@ -26,7 +30,11 @@ const ImageCarousel = () => {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item className="carouselItem" interval={3000}>
-        <Image className="d-block w-100" src={carousel2} alt="Second slide" />
+        <Image
+          className="d-block w-100"
+          src={carousel2}
+          alt="A man wearing a red jacket with the red cross logo on its back"
+        />
         <Carousel.Caption className="carouselCaption">
           <h3 className="carouselText">Join the Red Cross</h3>
           <p className="carouselText">
@@ -36,7 +44,11 @@ const ImageCarousel = () => {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item className="carouselItem" interval={3000}>
-        <Image className="d-block w-100" src={carousel3} alt="Third slide" />
+        <Image
+          className="d-block w-100"
+          src={carousel3}
+          alt="A man and a woman unboxing food to distribute"
+        />
         <Carousel.Caption className="carouselCaption">
           <h3 className="carouselText">Volunteer at the Soup Kitchen</h3>
           <p className="carouselText">

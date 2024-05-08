@@ -116,7 +116,7 @@ export default function Header() {
               width="auto"
               height="70"
               className="d-inline-block align-top"
-              alt="logo"
+              alt="VOCA logo"
             />
           </NavLink>
         )}

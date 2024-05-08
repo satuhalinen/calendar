@@ -9,32 +9,36 @@ export default function About() {
     <Container className="mainContent about-container">
       <Col className="about-wrap">
         <Row>
-          <h1 className="aboutTitle">About us</h1>
+          <h1 tabIndex="0" className="aboutTitle">
+            About us
+          </h1>
         </Row>
         <Row>
           <Col>
             <Image
               src={fjellteam}
+              tabIndex="0"
               width="540"
               height="330"
               className="d-inline-block align-top"
-              alt="logo"
+              alt="Two people helping a third person scale a mountain, sun setting in the background"
             />
             <Image
               src={volunteer}
+              tabIndex="0"
               className="volunteer"
               width="570"
               height="370"
-              alt="logo"
+              alt="Cartoon style image of earth with a heart on it and people donating food and things to eachother"
             />
           </Col>
 
           <Col>
-            <h4 className="aboutH4">
+            <h4 tabIndex="0" className="aboutH4">
               VOCA - Spread kindness, one hatch at a time!
             </h4>
             <br />
-            <p className="aboutP">
+            <p tabIndex="0" className="aboutP">
               Here at VOCA we believe in the good of the world! We are a diverse
               team consisting of five passionate full-stack web-developer
               students dedicated to creating innovative solutions for social

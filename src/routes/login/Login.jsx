@@ -15,12 +15,10 @@ export default function Login() {
   const [error, setError] = useState(null);
   const [inputError, setInputError] = useState(false);
   const navigate = useNavigate();
-  const [signInWithEmailAndPassword] =
-    useSignInWithEmailAndPassword(auth);
+  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser] = useSignInWithGoogle(auth);
   const [loading, setLoading] = useState(false);
   const [isAdmin, setIsAdmin] = useState(null);
-
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -56,7 +54,6 @@ export default function Login() {
 
     return unsubscribe;
   }, [navigate]);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -161,6 +158,7 @@ export default function Login() {
               <div className="gsi-material-button-icon">
                 <svg
                   version="1.1"
+                  alt="Google logo"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 48 48"
                   xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -188,7 +186,12 @@ export default function Login() {
               <span style={{ display: "none" }}>Sign in with Google</span>
             </div>
           </Button>
-          {loading && <div> <Spinner animation="border" variant="secondary" /></div>}
+          {loading && (
+            <div>
+              {" "}
+              <Spinner animation="border" variant="secondary" />
+            </div>
+          )}
           {error && <p style={{ color: "red" }}>{error}</p>}
           <p className="noAccount">
             Don't have an account? <Link to="/register">Sign up</Link> now.
