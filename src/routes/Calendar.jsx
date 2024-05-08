@@ -13,7 +13,7 @@ import {
   FaSun,
 } from "react-icons/fa";
 
-import { Row, Card, ProgressBar } from "react-bootstrap";
+import { Row, Card, ProgressBar, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
 import {
@@ -56,7 +56,11 @@ const Calendar = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState({ name: "", email: "" });
   const [showInfoModal, setShowInfoModal] = useState(false);
+
   const [removed, setRemoved] = useState(false);
+
+  const [showTooltip, setShowTooltip] = useState(false);
+
 
   const fetchContentById = async () => {
     if (!id) {
@@ -254,6 +258,7 @@ const Calendar = () => {
     setRemoved(true);
   };
 
+
   const checkIfCalendarInMyCalendars = async () => {
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const querySnapshot = await getDocs(q);
@@ -268,6 +273,23 @@ const Calendar = () => {
     checkIfCalendarInMyCalendars();
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setShowTooltip(true);
+    }, 2000);
+  }, []);
+
+  const handleMouseEnter = () => {
+    setShowTooltip(true);
+  };
+
+  const handleMouseLeave = () => {
+    setTimeout(() => {
+      setShowTooltip(false)
+    }, 800);
+  };
+
+
   return (
     <>
       <SmallHeader />
@@ -278,7 +300,19 @@ const Calendar = () => {
               className="gameCardBody"
               style={{ display: "flex", alignItems: "center" }}
             >
+
               {removed ? (
+
+              <OverlayTrigger
+                placement="bottom"
+                overlay={
+                  <Tooltip className="tooltip-1">
+                    Save the calendar to track your progress.
+                  </Tooltip>
+                }
+                show={showTooltip}
+              >
+
                 <Button
                   style={{
                     backgroundColor: "#425f5b",
@@ -289,6 +323,7 @@ const Calendar = () => {
                   }}
                   className="saveToMyCalendarsButton"
                   onClick={saveMyCalendarsClick}
+
                 >
                   Save to My Calendars
                 </Button>
@@ -307,6 +342,14 @@ const Calendar = () => {
                   Remove from My Calendars
                 </Button>
               )}
+
+
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  Save to My Calendars
+                </Button>
+              </OverlayTrigger>
 
               <div className="userInfo">
                 <FaInfoCircle
