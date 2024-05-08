@@ -8,6 +8,9 @@ import "../adminCalendars/adminCalendars.css";
 import "../adminpanel/adminpanel.css";
 import Spinner from "react-bootstrap/Spinner";
 
+import { LuMinusCircle } from "react-icons/lu";
+
+
 export default function AdminCalendars() {
   const { loading, calendars, intersectionObserverRef } = useCalendarData();
   const [search, setSearch] = useState("");
@@ -68,12 +71,31 @@ export default function AdminCalendars() {
                       {calendar.title}
                     </Card.Title>
                   </Card.Body>
-                  <NavLink
-                    to={`/modify-old-calendar/${calendar.id}`}
-                    className="modifyButton btn btn-primary"
-                  >
-                    Modify
-                  </NavLink>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <NavLink
+                      to={`/calendar/${calendar.id}`}
+                      className="modifyButton btn btn-primary"
+                    >
+                      Use
+                    </NavLink>
+                    <NavLink
+                      to={`/modify-old-calendar/${calendar.id}`}
+                      className="modifyButton btn btn-primary"
+                    >
+                      Modify
+                    </NavLink>
+                    <button
+                      className="useCalendarButton"
+                      style={{
+                        backgroundColor: "#BA6C2C",
+                        border: "none",
+                        color: "#F4EDE7",
+                        height: "52%",
+                      }}
+                    >
+                      <LuMinusCircle />
+                    </button>
+                  </div>
                 </Card>
               ))}
           </div>
