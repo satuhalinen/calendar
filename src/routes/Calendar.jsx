@@ -13,7 +13,13 @@ import {
   FaSun,
 } from "react-icons/fa";
 
-import { Row, Card, ProgressBar, OverlayTrigger, Tooltip } from "react-bootstrap";
+import {
+  Row,
+  Card,
+  ProgressBar,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
 import {
@@ -60,7 +66,6 @@ const Calendar = () => {
   const [removed, setRemoved] = useState(false);
 
   const [showTooltip, setShowTooltip] = useState(false);
-
 
   const fetchContentById = async () => {
     if (!id) {
@@ -258,7 +263,6 @@ const Calendar = () => {
     setRemoved(true);
   };
 
-
   const checkIfCalendarInMyCalendars = async () => {
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const querySnapshot = await getDocs(q);
@@ -285,10 +289,9 @@ const Calendar = () => {
 
   const handleMouseLeave = () => {
     setTimeout(() => {
-      setShowTooltip(false)
+      setShowTooltip(false);
     }, 800);
   };
-
 
   return (
     <>
@@ -300,33 +303,32 @@ const Calendar = () => {
               className="gameCardBody"
               style={{ display: "flex", alignItems: "center" }}
             >
-
               {removed ? (
-
-              <OverlayTrigger
-                placement="bottom"
-                overlay={
-                  <Tooltip className="tooltip-1">
-                    Save the calendar to track your progress.
-                  </Tooltip>
-                }
-                show={showTooltip}
-              >
-
-                <Button
-                  style={{
-                    backgroundColor: "#425f5b",
-                    fontSize: "0.75rem",
-                    borderStyle: "none",
-                    padding: "0.5rem 0.3rem",
-                    width: "15vw",
-                  }}
-                  className="saveToMyCalendarsButton"
-                  onClick={saveMyCalendarsClick}
-
+                <OverlayTrigger
+                  placement="bottom"
+                  overlay={
+                    <Tooltip className="tooltip-1">
+                      Save the calendar to track your progress.
+                    </Tooltip>
+                  }
+                  show={showTooltip}
                 >
-                  Save to My Calendars
-                </Button>
+                  <Button
+                    style={{
+                      backgroundColor: "#425f5b",
+                      fontSize: "0.75rem",
+                      borderStyle: "none",
+                      padding: "0.5rem 0.3rem",
+                      width: "15vw",
+                    }}
+                    className="saveToMyCalendarsButton"
+                    onClick={saveMyCalendarsClick}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    Save to My Calendars
+                  </Button>
+                </OverlayTrigger>
               ) : (
                 <Button
                   style={{
@@ -342,14 +344,6 @@ const Calendar = () => {
                   Remove from My Calendars
                 </Button>
               )}
-
-
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  Save to My Calendars
-                </Button>
-              </OverlayTrigger>
 
               <div className="userInfo">
                 <FaInfoCircle
