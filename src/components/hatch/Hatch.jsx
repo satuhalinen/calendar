@@ -1,24 +1,35 @@
-import { Card } from "react-bootstrap";
-import { useState } from "react";
-import { Modal } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import {
+  Card,
+  Modal,
+  Button,
+  Container,
+  Row,
+  Col,
+  Image,
+} from "react-bootstrap";
+import { useState, useEffect } from "react";
 import "./hatch.css";
-import { useSelector } from "react-redux";
-import { Container, Row, Col, Image } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../../auth/firebase";
-import { auth } from "../../auth/firebase";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  doc,
+  updateDoc,
+  getDoc,
+  query,
+  collection,
+  where,
+  getDocs,
+} from "firebase/firestore";
+import { db, auth } from "../../auth/firebase";
 import { useParams } from "react-router-dom";
-import { setScore, fetchScoreFromFirebase } from "../../store/scoreSlice";
-import { useEffect } from "react";
-import { getDoc } from "firebase/firestore";
-import { setOpen } from "../../store/scoreSlice";
+import {
+  setScore,
+  fetchScoreFromFirebase,
+  resetState,
+  setOpen,
+  saveToMyCalendar,
+} from "../../store/scoreSlice";
 import { FaCheck } from "react-icons/fa";
-import { query, collection, where, getDocs } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { saveToMyCalendar } from "../../store/scoreSlice";
-import { resetState } from "../../store/scoreSlice";
 
 function Hatch({ number, saveMyCalendarsClick }) {
   const [show, setShow] = useState(false);
@@ -56,12 +67,9 @@ function Hatch({ number, saveMyCalendarsClick }) {
     (state) => state.calendarStyling.generatedImage
   );
 
-
-
   const backgroundImage = generatedImage || backgroundImg || uploadedImage;
 
   const hatchFont = useSelector((state) => state.calendarStyling.selectedFont);
-
 
   const calendarSave = useSelector(
     (state) => state.score?.startedUsing || false
@@ -84,25 +92,11 @@ function Hatch({ number, saveMyCalendarsClick }) {
     checkIfStartedUsing();
   }, []);
 
-
-  useEffect(() => {
-    const fetchScore = async () => {
-      const currentUser = auth.currentUser;
-      const calendarRef = doc(db, "calendars", id);
-      const docSnap = await getDoc(calendarRef);
-      const userData = docSnap.data().users[currentUser.uid];
-      dispatch(fetchScoreFromFirebase(userData));
-    };
-    fetchScore();
-
-  }, []);
-
   useEffect(() => {
     dispatch(resetState());
   }, [dispatch]);
 
   useEffect(() => {
-
     if (calendarSave) {
       const fetchScore = async () => {
         const q = query(collection(db, "users"), where("uid", "==", user.uid));
@@ -116,7 +110,6 @@ function Hatch({ number, saveMyCalendarsClick }) {
       };
       fetchScore();
     }
-
   }, [saveMyCalendarsClick, calendarSave]);
 
   const { id } = useParams();
@@ -172,7 +165,7 @@ function Hatch({ number, saveMyCalendarsClick }) {
         startedUsing: true,
       });
     }
-    let newOpenState = isOpenedHatch ? isOpenedHatch : true;
+    let newOpenState = isOpenedHatch || true;
     if (!isOpenedHatch) {
       dispatch(setOpen({ hatchNumber: number, isOpened: newOpenState }));
     }
@@ -192,11 +185,13 @@ function Hatch({ number, saveMyCalendarsClick }) {
           border: "none",
           width: "90%",
           height: "100%",
-          backgroundColor: backgroundImage && isOpenedHatch ? `#f9f5f3` : hatchColor,
+          backgroundColor:
+            backgroundImage && isOpenedHatch ? `#f9f5f3` : hatchColor,
           cursor: "pointer",
         }}
-        className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""} ${isOpenedHatch ? "opened" : ""
-          }`}
+        className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""} ${
+          isOpenedHatch ? "opened" : ""
+        }`}
       >
         <div
           className="hatch"
@@ -209,7 +204,10 @@ function Hatch({ number, saveMyCalendarsClick }) {
         </div>
         {isOpenedHatch && !hatchTextHatch[number] && (
           <div className="hatchModalContent">
-            <p className="noContentOpened" style={{ color: isFlipped ? hatchColor : hatchFontColor }}>
+            <p
+              className="noContentOpened"
+              style={{ color: isFlipped ? hatchColor : hatchFontColor }}
+            >
               No content
             </p>
           </div>
@@ -217,7 +215,11 @@ function Hatch({ number, saveMyCalendarsClick }) {
         {isOpenedHatch && hatchTextHatch[number] && (
           <div
             className="hatchModalContent"
-            style={{ display: isFlipped ? "none" : "", background: hatchColor, color: hatchFontColor }}
+            style={{
+              display: isFlipped ? "none" : "",
+              background: hatchColor,
+              color: hatchFontColor,
+            }}
           >
             <p className="hatchOpenedTitle">{hatchTextHatch[number].title}</p>
             <Image
@@ -233,7 +235,9 @@ function Hatch({ number, saveMyCalendarsClick }) {
         <Modal.Header
           className="hatchModalContent text-center"
           style={{
-            background: backgroundImage ? `url(${backgroundImage})` : hatchColor,
+            background: backgroundImage
+              ? `url(${backgroundImage})`
+              : hatchColor,
             backgroundSize: "cover",
           }}
         >
@@ -308,14 +312,19 @@ function Hatch({ number, saveMyCalendarsClick }) {
           style={{
             backgroundColor: "#FFFAF7",
             justifyContent: "center",
-            background: backgroundImage ? `url(${backgroundImage})` : hatchColor,
+            background: backgroundImage
+              ? `url(${backgroundImage})`
+              : hatchColor,
             backgroundSize: "cover",
           }}
         >
           <Button
             className="hatchModalButton"
             onClick={handleClose}
-            style={{ background: backgroundImage ? `#f9f5f3` : hatchColor, color: hatchFontColor }}
+            style={{
+              background: backgroundImage ? `#f9f5f3` : hatchColor,
+              color: hatchFontColor,
+            }}
           >
             Close
           </Button>

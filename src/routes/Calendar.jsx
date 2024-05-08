@@ -13,7 +13,7 @@ import {
   FaSun,
 } from "react-icons/fa";
 
-import { Row, Card, ProgressBar } from "react-bootstrap";
+import { Row, Card, ProgressBar, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
 import {
@@ -46,17 +46,21 @@ import { useParams } from "react-router-dom";
 import InfoModal from "../components/infoModal/InfoModal.jsx";
 import { Button } from "react-bootstrap";
 import { saveToMyCalendar } from "../store/scoreSlice.js";
-import { setDoc } from "firebase/firestore";
+import { setDoc, deleteDoc } from "firebase/firestore";
 
 const Calendar = () => {
   const [user] = useAuthState(auth);
-
   const [weatherIcon, setWeatherIcon] = useState(<FaCloudRain />);
   const toCaptureRef = useRef(null);
   const dispatch = useDispatch();
   const { id } = useParams();
   const [userData, setUserData] = useState({ name: "", email: "" });
   const [showInfoModal, setShowInfoModal] = useState(false);
+
+  const [removed, setRemoved] = useState(false);
+
+  const [showTooltip, setShowTooltip] = useState(false);
+
 
   const fetchContentById = async () => {
     if (!id) {
@@ -223,7 +227,6 @@ const Calendar = () => {
     setShowInfoModal(false);
   };
 
-
   const backgroundImage = selectedImage || uploadedImage || generatedImage;
 
   const saveMyCalendarsClick = async () => {
@@ -241,6 +244,49 @@ const Calendar = () => {
       },
       { merge: true }
     );
+    setRemoved(false);
+  };
+
+  const removeMyCalendarClick = async (id) => {
+    dispatch(saveToMyCalendar(false));
+    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    const querySnapshot = await getDocs(q);
+    const document = querySnapshot.docs[0];
+    const docId = document.id;
+    const calendarRef = doc(db, "users", docId, "myCalendars", id);
+    await deleteDoc(calendarRef);
+    setRemoved(true);
+  };
+
+
+  const checkIfCalendarInMyCalendars = async () => {
+    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    const querySnapshot = await getDocs(q);
+    const document = querySnapshot.docs[0];
+    const userId = document.id;
+    const calendarRef = doc(db, "users", userId, "myCalendars", id);
+    const calendarSnap = await getDoc(calendarRef);
+    setRemoved(!calendarSnap.exists());
+  };
+
+  useEffect(() => {
+    checkIfCalendarInMyCalendars();
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowTooltip(true);
+    }, 2000);
+  }, []);
+
+  const handleMouseEnter = () => {
+    setShowTooltip(true);
+  };
+
+  const handleMouseLeave = () => {
+    setTimeout(() => {
+      setShowTooltip(false)
+    }, 800);
   };
 
 
@@ -254,19 +300,57 @@ const Calendar = () => {
               className="gameCardBody"
               style={{ display: "flex", alignItems: "center" }}
             >
-              <Button
-                style={{
-                  backgroundColor: "#425f5b",
-                  fontSize: "0.75rem",
-                  borderStyle: "none",
-                  padding: "0.5rem 0.3rem",
-                  width: "15vw",
-                }}
-                className="saveToMyCalendarsButton"
-                onClick={saveMyCalendarsClick}
+
+              {removed ? (
+
+              <OverlayTrigger
+                placement="bottom"
+                overlay={
+                  <Tooltip className="tooltip-1">
+                    Save the calendar to track your progress.
+                  </Tooltip>
+                }
+                show={showTooltip}
               >
-                Save to My Calendars
-              </Button>
+
+                <Button
+                  style={{
+                    backgroundColor: "#425f5b",
+                    fontSize: "0.75rem",
+                    borderStyle: "none",
+                    padding: "0.5rem 0.3rem",
+                    width: "15vw",
+                  }}
+                  className="saveToMyCalendarsButton"
+                  onClick={saveMyCalendarsClick}
+
+                >
+                  Save to My Calendars
+                </Button>
+              ) : (
+                <Button
+                  style={{
+                    backgroundColor: "#425f5b",
+                    fontSize: "0.75rem",
+                    borderStyle: "none",
+                    padding: "0.5rem 0.3rem",
+                    width: "15vw",
+                  }}
+                  className="saveToMyCalendarsButton"
+                  onClick={() => removeMyCalendarClick(id)}
+                >
+                  Remove from My Calendars
+                </Button>
+              )}
+
+
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  Save to My Calendars
+                </Button>
+              </OverlayTrigger>
+
               <div className="userInfo">
                 <FaInfoCircle
                   className="infoCircle"
@@ -299,8 +383,9 @@ const Calendar = () => {
               border: "none",
               margin: "1.5% 2% 2%",
               backgroundColor: backgroundColor,
-              backgroundImage:
-                backgroundImage ? `url(${backgroundImage})` : 'none',
+              backgroundImage: backgroundImage
+                ? `url(${backgroundImage})`
+                : "none",
               backgroundSize: "cover",
             }}
           >

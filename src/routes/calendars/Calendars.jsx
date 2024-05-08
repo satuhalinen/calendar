@@ -8,10 +8,10 @@ import useCalendarData from "../../hooks/useCalendarData";
 export default function Calendars() {
   const { loading, calendars, intersectionObserverRef } = useCalendarData();
   const [search, setSearch] = useState("");
-
   const searchHandler = (event) => {
     setSearch(event.target.value);
   };
+
   return (
     <Row className="mainContent userCalendarsWrap">
       <Col className="userCalendarsContainer">

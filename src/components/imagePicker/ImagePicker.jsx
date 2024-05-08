@@ -26,11 +26,16 @@ const ImagePicker = () => {
 
   const handleImageClick = (imageUrl) => {
     const transparentHatch = selectedHatchColor + "00";
+    if (selectedHatchColor && selectedHatchColor.endsWith("00")) {
+      dispatch(setSelectedHatchColor(selectedHatchColor));
+    } else {
+      dispatch(setSelectedHatchColor(transparentHatch));
+    }
     dispatch(setSelectedImage(imageUrl));
     dispatch(setSelectedColor(null));
     dispatch(setUploadedImage(null));
-    dispatch(setSelectedHatchColor(transparentHatch))
   };
+
 
   return (
     <div>

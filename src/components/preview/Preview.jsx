@@ -30,9 +30,13 @@ export default function Preview() {
     (state) => state.calendarStyling.selectedHatchesNumber
   );
 
+  const generatedImage = useSelector(
+    (state) => state.calendarStyling.generatedImage
+  );
+
   const hatches = Array.from({ length: selectedHatchesNumber }, (_, index) => `${index + 1}`);
 
-  const backgroundImage = selectedImage || uploadedImage;
+  const backgroundImage = selectedImage || uploadedImage || generatedImage;
 
   return (
     <Container>
@@ -59,7 +63,7 @@ export default function Preview() {
             backgroundSize: "cover",
             backgroundPosition: "center",
             boxShadow: "0px 0px 5px 0px #0000005e",
-            width: "60vw",
+            width: "80vw",
             height: "auto",
           }}
         >
@@ -78,8 +82,8 @@ export default function Preview() {
           <Container
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))",
-              gridAutoRows: "100px",
+              gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))",
+              gridAutoRows: "120px",
               gap: "20px",
             }}
           >
