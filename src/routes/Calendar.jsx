@@ -62,6 +62,7 @@ const Calendar = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState({ name: "", email: "" });
   const [showInfoModal, setShowInfoModal] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(null);
 
   const [removed, setRemoved] = useState(false);
 
@@ -293,6 +294,29 @@ const Calendar = () => {
     }, 800);
   };
 
+  const checkAdmin = async () => {
+    try {
+      if (user) {
+        const usersCollection = collection(db, "users");
+        const usersSnapshot = await getDocs(usersCollection);
+        const adminUsers = usersSnapshot.docs.filter(
+          (doc) => doc.data().isAdmin === true
+        );
+        const adminUserUids = adminUsers.map((doc) => doc.data().uid);
+        setIsAdmin(adminUserUids.includes(user.uid));
+      } else {
+        console.error("User not found");
+        setIsAdmin(false);
+      }
+    } catch (error) {
+      console.error("Error checking admin status:", error);
+      setIsAdmin(false);
+    }
+  };
+  useEffect(() => {
+    checkAdmin();
+  }, []);
+
   return (
     <>
       <SmallHeader />
@@ -303,16 +327,34 @@ const Calendar = () => {
               className="gameCardBody"
               style={{ display: "flex", alignItems: "center" }}
             >
-              {removed ? (
-                <OverlayTrigger
-                  placement="bottom"
-                  overlay={
-                    <Tooltip className="tooltip-1">
-                      Save the calendar to track your progress.
-                    </Tooltip>
-                  }
-                  show={showTooltip}
-                >
+              {!isAdmin &&
+                (removed ? (
+                  <OverlayTrigger
+                    placement="bottom"
+                    overlay={
+                      <Tooltip className="tooltip-1">
+                        Save the calendar to track your progress.
+                      </Tooltip>
+                    }
+                    show={showTooltip}
+                  >
+                    <Button
+                      style={{
+                        backgroundColor: "#425f5b",
+                        fontSize: "0.75rem",
+                        borderStyle: "none",
+                        padding: "0.5rem 0.3rem",
+                        width: "15vw",
+                      }}
+                      className="saveToMyCalendarsButton"
+                      onClick={saveMyCalendarsClick}
+                      onMouseEnter={handleMouseEnter}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      Save to My Calendars
+                    </Button>
+                  </OverlayTrigger>
+                ) : (
                   <Button
                     style={{
                       backgroundColor: "#425f5b",
@@ -322,28 +364,11 @@ const Calendar = () => {
                       width: "15vw",
                     }}
                     className="saveToMyCalendarsButton"
-                    onClick={saveMyCalendarsClick}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
+                    onClick={() => removeMyCalendarClick(id)}
                   >
-                    Save to My Calendars
+                    Remove from My Calendars
                   </Button>
-                </OverlayTrigger>
-              ) : (
-                <Button
-                  style={{
-                    backgroundColor: "#425f5b",
-                    fontSize: "0.75rem",
-                    borderStyle: "none",
-                    padding: "0.5rem 0.3rem",
-                    width: "15vw",
-                  }}
-                  className="saveToMyCalendarsButton"
-                  onClick={() => removeMyCalendarClick(id)}
-                >
-                  Remove from My Calendars
-                </Button>
-              )}
+                ))}
 
               <div className="userInfo">
                 <FaInfoCircle
