@@ -3,7 +3,7 @@
 }
 
 .versionTitle,
-.calendarCarouselTitle {
+.calendarBannerTitle {
     font-size: 1.8rem;
     font-weight: 400;
     margin: 2rem 0 0 0rem;
@@ -13,25 +13,25 @@
 
 .versionTitle {
     display: inline-block;
-    border-bottom: #ba6c2c 2px solid;
+    border-bottom: #ba6c2cd2 2px solid;
     padding-bottom: 1.5rem;
     width: 40%;
     margin: 3rem auto 0rem;
 }
 
-.calendarCarouselTitle {
+.calendarBannerTitle {
     display: inline-block;
-    border-bottom: #ba6c2c 2px solid;
+    border-bottom: #ba6c2c8f 2px solid;
     padding-bottom: 1.5rem;
-    width: 80%;
+    width: 100%;
     margin: 2rem auto 0rem;
 }
 
 .calendarCarouselTitleBottom {
     display: inline-block;
-    border-top: #ba6c2c 2px solid;
+    border-top: #ba6c2c8f 2px solid;
     padding-bottom: 1.5rem;
-    width: 80%;
+    width: 100%;
     margin: 0rem auto 0rem;
 }
 
@@ -65,7 +65,8 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 2rem 8rem;
+    margin: 2rem 4rem;
+    min-width: fit-content;
 }
 
 .versionCardTitle,
@@ -125,16 +126,34 @@
     background-color: #a65919;
 }
 
-.calendarCarouselRow {
-    padding: 0rem 0rem 1rem 0rem;
-    margin: 2.5rem 3.5rem 1rem 3.5rem;
+.calendarBannerRow {
+    padding: 0 1rem;
+    margin: 2.5rem 0;
     background-color: #F4EDE7;
     border-radius: 5px;
 }
 
+.calendarImageBanner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.exampleCalendar {
+    margin: 1rem auto;
+    width: auto;
+    max-height: 40vh;
+    border-radius: 10px;
+}
+
 @media (max-width: 768px) {
-    .versionTitle {
-        font-size: 1.7rem;
+
+    .versionTitle,
+    .calendarBannerTitle {
+        font-size: 1.4rem;
     }
 
     .registerNow {
@@ -143,7 +162,13 @@
 
     .versionCardTitle,
     .aboutUsTitle {
-        font-size: 1.1rem;
+        font-size: 1rem;
+    }
+
+    .versionCardBody,
+    .expandedCard,
+    .aboutUsCard {
+        font-size: 0.9rem;
     }
 
     .versions,
@@ -151,7 +176,7 @@
         margin: 3rem;
     }
 
-    .calendarCarouselRow {
+    .calendarBannerRow {
         margin: 2.5rem 1rem 1rem 1rem;
 
     }
@@ -168,5 +193,5 @@
     left: 0%;
     width: 100%;
     height: 2px;
-    background-color: #ba6c2c;
+    background-color: #ba6c2c80;
 }

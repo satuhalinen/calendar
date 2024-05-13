@@ -3,8 +3,10 @@ import PopUp from "../../components/popUp/PopUp.jsx";
 import HeroBanner from "../../components/heroBanner/HeroBanner.jsx";
 import { Row, Col, Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../landingPage/landingPage.css";
 import { Link } from "react-router-dom";
+import exampleCalendar4 from "../../assets/exampleCalendar4.png";
+import exampleCalendar5 from "../../assets/exampleCalendar5.png";
+import exampleCalendar6 from "../../assets/exampleCalendar6.png";
 import "./landingPage.css";
 import ChatBot from "../../components/chatBot/ChatBot.jsx";
 
@@ -161,8 +163,13 @@ const LandingPage = () => {
           <button className="registerNow">Register now</button>
         </Link>
       </Col>
-      <Row className="calendarCarouselRow">
-        <h2 className="calendarCarouselTitle">Choose your own style</h2>
+      <Row className="calendarBannerRow">
+        <h2 className="calendarBannerTitle">Choose your own style</h2>
+        <Row className="calendarImageBanner">
+          <img src={exampleCalendar4} alt="exampleCalendar4" className="exampleCalendar" />
+          <img src={exampleCalendar5} alt="exampleCalendar5" className="exampleCalendar" />
+          <img src={exampleCalendar6} alt="exampleCalendar6" className="exampleCalendar" />
+        </Row>
         <p className="calendarCarouselTitleBottom"></p>
       </Row>
       <Col className="aboutUs">
