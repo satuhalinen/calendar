@@ -10,10 +10,8 @@
   background-color: #ba6c2c;
   color: white;
   padding: 10px;
-  border-right: 1px solid #d9c8bf;
   border-radius: 0 0 10px 10px;
   transform-origin: left top;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.197);
   cursor: pointer;
   z-index: 1000;
@@ -47,7 +45,7 @@
   padding: 0px 0px 30px 0px;
   margin-left: 0.5rem;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.383);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.383);
   cursor: pointer;
   z-index: 1000;
 }
@@ -60,7 +58,7 @@
   margin-bottom: 1.2rem;
   border-radius: 10px 10px 0 0;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.397);
-  background-color: #a65919;
+  background-color: #ba6c2c;
   color: white;
 
 }
@@ -71,7 +69,6 @@
 
 .popUpButton {
   background-color: #ba6c2c;
-  box-shadow: 1px 1px 5px rgba(74, 40, 17, 0.471);
   border: none;
   border-radius: 5px;
   color: white;
