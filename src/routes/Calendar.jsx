@@ -69,15 +69,6 @@ const Calendar = () => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const fetchContentById = async () => {
-    if (!id) {
-      console.log("ID is undefined", "id: ", id);
-      const querySnapshot = await getDocs(collection(db, "calendars"));
-      querySnapshot.forEach((doc) => {
-        console.log("Calendar ID:", doc.id);
-      });
-
-      return;
-    }
     try {
       const docRef = doc(db, "calendars", id);
       const docSnap = await getDoc(docRef);
@@ -126,6 +117,7 @@ const Calendar = () => {
       querySnapshot.forEach((doc) => {
         const userData = doc.data();
         setUserData(userData);
+        console.log("User data", userData);
       });
     };
 
