@@ -62,11 +62,11 @@ function App() {
               />
               <Route
                 path="/calendars"
-                element={<ProtectedRoute component={Calendars} />}
+                element={<ProtectedRoute userOnly component={Calendars} />}
               />
               <Route
                 path="/my-calendars"
-                element={<ProtectedRoute component={MyCalendars} />}
+                element={<ProtectedRoute userOnly component={MyCalendars} />}
               />
               <Route
                 path="/admin-calendars"

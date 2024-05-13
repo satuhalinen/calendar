@@ -4,13 +4,33 @@ import { useState } from "react";
 import defaultScreenshot from "../../assets/defaultScreenshot.png";
 import "./Calendars.css";
 import useCalendarData from "../../hooks/useCalendarData";
+import useMyCalendarData from "../../hooks/useMyCalendarData";
+import { CiStar } from "react-icons/ci";
+import { Tooltip } from "react-bootstrap";
+import { OverlayTrigger } from "react-bootstrap";
 
 export default function Calendars() {
   const { loading, calendars, intersectionObserverRef } = useCalendarData();
   const [search, setSearch] = useState("");
+  const myCalendarData = useMyCalendarData();
+  const myCalendars = myCalendarData ? myCalendarData.myCalendars : [];
+  console.log("myCalendars:", myCalendars);
   const searchHandler = (event) => {
     setSearch(event.target.value);
   };
+
+  const calendarsWithMyCalendarsInfo = calendars.map((calendar) => ({
+    ...calendar,
+    isInMyCalendars: myCalendars.some(
+      (myCalendar) => myCalendar.id === calendar.id
+    ),
+  }));
+
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      This calendar is in My Calendars.
+    </Tooltip>
+  );
 
   return (
     <Row className="mainContent userCalendarsWrap">
@@ -28,7 +48,7 @@ export default function Calendars() {
           <Spinner animation="border" variant="secondary" />
         ) : (
           <div className="calendarGrid">
-            {calendars
+            {calendarsWithMyCalendarsInfo
               .filter((calendarItem) =>
                 calendarItem.calendarTitle
                   .toLowerCase()
@@ -54,17 +74,44 @@ export default function Calendars() {
                       className="calendarCardImg"
                       src={calendar.imageUrl || defaultScreenshot}
                     />
-                    <button
-                      className="useCalendarButton"
-                      style={{
-                        backgroundColor: "#BA6C2C",
-                        border: "none",
-                        color: "#F4EDE7",
-                      }}
-                    >
-                      Use calendar
-                    </button>
                   </NavLink>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <NavLink
+                      to={`/calendar/${calendar.id}`}
+                      className="linkToOneCalendar"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <button
+                        className="useCalendarButton"
+                        style={{
+                          backgroundColor: "#BA6C2C",
+                          border: "none",
+                          color: "#F4EDE7",
+                        }}
+                      >
+                        Use calendar
+                      </button>
+                    </NavLink>
+                    {calendar.isInMyCalendars && (
+                      <OverlayTrigger
+                        placement="right"
+                        delay={{ show: 250, hide: 400 }}
+                        overlay={renderTooltip}
+                      >
+                        <button
+                          className="useCalendarButton"
+                          style={{
+                            backgroundColor: "#BA6C2C",
+                            border: "none",
+                            color: "#F4EDE7",
+                            height: "68%",
+                          }}
+                        >
+                          <CiStar />
+                        </button>
+                      </OverlayTrigger>
+                    )}
+                  </div>
                 </Card>
               ))}
           </div>
