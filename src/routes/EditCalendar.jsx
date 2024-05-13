@@ -64,7 +64,6 @@ function EditCalendar() {
       id: doc.id,
       ...doc.data(),
     }));
-
     dispatch(setAvailableAlternatives(data));
   };
 
@@ -114,8 +113,9 @@ function EditCalendar() {
           <Card
             style={{
               margin: "1.5% 0",
-              backgroundImage:
-                backgroundImage ? `url(${backgroundImage})` : 'none',
+              backgroundImage: backgroundImage
+                ? `url(${backgroundImage})`
+                : "none",
               backgroundColor: backgroundColor,
               backgroundSize: "cover",
               boxShadow: "0px 0px 5px 0px #00000059",

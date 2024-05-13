@@ -15,11 +15,9 @@ function EditHatch({ number }) {
 
   const dispatch = useDispatch();
 
-  function saveAlternative(number, alternative) {
-    dispatch(saveAlternatives({ number, alternative }));
+  function saveAlternative(number, alternative, topic) {
+    dispatch(saveAlternatives({ number, alternative, topic }));
   }
-
-  // hatch styling
 
   const backgroundColor = useSelector(
     (state) => state.calendarStyling.selectedHatchColor
@@ -32,7 +30,8 @@ function EditHatch({ number }) {
   const hatchFont = useSelector((state) => state.calendarStyling.selectedFont);
 
   const handleRandomize = () => {
-    const randomTopic = alternatives[Math.floor(Math.random() * alternatives.length)];
+    const randomTopic =
+      alternatives[Math.floor(Math.random() * alternatives.length)];
     setSelectedTopic(randomTopic.id);
 
     const randomIndex = Math.floor(Math.random() * randomTopic.content.length);
@@ -86,15 +85,15 @@ function EditHatch({ number }) {
         style={{ backgroundColor: backgroundColor }}
       >
         {alternatives
-          .filter((alternative) => alternative.id === selectedTopic)
-          .flatMap((alternative) => alternative.content)
+          .filter((topic) => topic.id === selectedTopic)
+          .flatMap((topic) => topic.content)
           .map((alternative, index) => (
             <Dropdown.Item
               key={index}
               as="button"
               onClick={() => {
                 setSelectedAlternative(alternative);
-                saveAlternative(number, alternative);
+                saveAlternative(number, alternative, selectedTopic);
               }}
               style={{
                 backgroundColor:
@@ -108,7 +107,9 @@ function EditHatch({ number }) {
             </Dropdown.Item>
           ))}
       </DropdownButton>
-      <button className="randomizeButton" onClick={handleRandomize}>Randomize</button>
+      <button className="randomizeButton" onClick={handleRandomize}>
+        Randomize
+      </button>
     </Card>
   );
 }
