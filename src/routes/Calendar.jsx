@@ -278,22 +278,6 @@ const Calendar = () => {
     checkIfCalendarInMyCalendars();
   }, []);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setShowTooltip(true);
-    }, 2000);
-  }, []);
-
-  const handleMouseEnter = () => {
-    setShowTooltip(true);
-  };
-
-  const handleMouseLeave = () => {
-    setTimeout(() => {
-      setShowTooltip(false);
-    }, 800);
-  };
-
   const checkAdmin = async () => {
     try {
       if (user) {
@@ -336,6 +320,7 @@ const Calendar = () => {
                         Save the calendar to track your progress.
                       </Tooltip>
                     }
+                    delay={{ show: 250, hide: 400 }}
                     show={showTooltip}
                   >
                     <Button
@@ -348,8 +333,6 @@ const Calendar = () => {
                       }}
                       className="saveToMyCalendarsButton"
                       onClick={saveMyCalendarsClick}
-                      onMouseEnter={handleMouseEnter}
-                      onMouseLeave={handleMouseLeave}
                     >
                       Save to My Calendars
                     </Button>

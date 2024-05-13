@@ -112,7 +112,7 @@ export default function AdminCalendars() {
                       Modify
                     </NavLink>
                     <button
-                      className="useCalendarButton"
+                      className="removeCalendarButton"
                       onClick={() => removeCalendarClick(calendar.id)}
                       style={{
                         backgroundColor: "#BA6C2C",
@@ -121,7 +121,7 @@ export default function AdminCalendars() {
                         height: "52%",
                       }}
                     >
-                      <LuMinusCircle />
+                      <LuMinusCircle className="removeCalendarIcon" />
                     </button>
                   </div>
                 </Card>

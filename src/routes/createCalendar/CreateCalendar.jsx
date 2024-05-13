@@ -31,6 +31,7 @@ import {
   setHatchColorShow,
   setHatchFontColorShow,
   setInputValue,
+  setGeneratedImageShow,
 } from "../../store/calendarStylingSlice";
 import { useEffect, useRef, useState } from "react";
 
@@ -170,6 +171,10 @@ export default function CreateCalendar() {
     dispatch(setImageShow());
   };
 
+  const handleGenerateImageClick = () => {
+    dispatch(setGeneratedImageShow());
+  };
+
   const handleHatchColorSelect = (color) => {
     dispatch(setHatchColorShow());
   };
@@ -274,8 +279,6 @@ export default function CreateCalendar() {
           dispatch(setSelectedHatchColor(transparentHatchColor));
         }
         dispatch(setSelectedColor(null));
-        dispatch(setImageShow(true));
-        dispatch(setHatchColorShow());
       } else {
         console.error("No image URL found:", response);
       }
@@ -283,6 +286,7 @@ export default function CreateCalendar() {
       console.error("Error generating image:", error);
     } finally {
       setLoading(false);
+      handleGenerateImageClick();
     }
   };
 
@@ -312,7 +316,7 @@ export default function CreateCalendar() {
             </Row>
             <p className="para ">Choose the number of hatches</p>
             <Row>
-              <Form className="crCAL-form2">
+              <Form className="crCAL-form2 radioButton">
                 {["24", "28", "30", "31"].map((option, index) => (
                   <Form.Check
                     key={`radio-${index}`}
@@ -632,16 +636,16 @@ export default function CreateCalendar() {
                 </button>
               </div>
             </div>
-            {loading && <Spinner animation="border" variant="secondary" />}
-          </div>
-          <div className="randomImageContent">
-            <p className="para randomTitle">Choose Random Colors</p>
-            <button
-              onClick={handleRandomizeClick}
-              className="randomizeColorsButton randomizeIcon"
-            >
-              <FaRandom />
-            </button>
+            {loading && <Spinner className="loadingSpinner" animation="border" variant="secondary" />}
+            <div className="randomImageContent">
+              <p className="para randomTitle">Choose Random Colors</p>
+              <button
+                onClick={handleRandomizeClick}
+                className="randomizeColorsButton randomizeIcon"
+              >
+                <FaRandom />
+              </button>
+            </div>
           </div>
           <Row className="justify-content-center">
             <Preview />

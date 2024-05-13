@@ -23,16 +23,8 @@
     display: inline-block;
     border-bottom: #ba6c2c8f 2px solid;
     padding-bottom: 1.5rem;
-    width: 100%;
+    width: 40%;
     margin: 2rem auto 0rem;
-}
-
-.calendarCarouselTitleBottom {
-    display: inline-block;
-    border-top: #ba6c2c8f 2px solid;
-    padding-bottom: 1.5rem;
-    width: 100%;
-    margin: 0rem auto 0rem;
 }
 
 .versions {
@@ -139,7 +131,7 @@
     align-items: center;
     margin: auto;
     border-radius: 5px;
-    padding: 1rem;
+    padding: 1rem 2rem;
 }
 
 .exampleCalendar {

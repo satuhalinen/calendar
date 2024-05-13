@@ -94,7 +94,7 @@ export default function Preview() {
                 style={{
                   backgroundColor: selectedHatchColor,
                   width: "100%",
-                  boxShadow: "0px 0px 5px 0px #0000005e",
+                  boxShadow: "0px 0px 2px 0px #0000005e",
                   borderRadius: "7px",
                 }}
               >
