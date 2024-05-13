@@ -5,7 +5,7 @@ import { Row, Col, Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../landingPage/landingPage.css";
 import { Link } from "react-router-dom";
-import CalendarCarousel from "../../components/calendarCarousel/CalendarCarousel.jsx";
+import "./landingPage.css";
 import ChatBot from "../../components/chatBot/ChatBot.jsx";
 
 const LandingPage = () => {
@@ -21,8 +21,8 @@ const LandingPage = () => {
   };
 
   const [expandedStates, setExpandedStates] = useState({
-    version1: false,
-    version2: false,
+    version1: true,
+    version2: true,
   });
 
   const handleExpand = (version) => {
@@ -163,7 +163,6 @@ const LandingPage = () => {
       </Col>
       <Row className="calendarCarouselRow">
         <h2 className="calendarCarouselTitle">Choose your own style</h2>
-        <CalendarCarousel />
         <p className="calendarCarouselTitleBottom"></p>
       </Row>
       <Col className="aboutUs">
