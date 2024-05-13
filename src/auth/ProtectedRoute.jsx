@@ -62,7 +62,7 @@ const ProtectedRoute = ({
   if (adminOnly && isAdmin !== true) {
     return <Navigate to="/" replace />;
   }
-  if (userOnly && isAdmin == true) {
+  if (userOnly && isAdmin) {
     return <Navigate to="/admin-calendars" replace />;
   }
 
