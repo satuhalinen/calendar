@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PopUp from "../../components/popUp/PopUp.jsx";
-import ImageCarousel from "../../components/imageCarousel/ImageCarousel.jsx";
+import HeroBanner from "../../components/heroBanner/HeroBanner.jsx";
 import { Row, Col, Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../landingPage/landingPage.css";
@@ -33,9 +33,9 @@ const LandingPage = () => {
   };
 
   return (
-    <Col className="mainContent landing-container">
+    <Col className="landing-container">
       <PopUp showInitially={!showPopup} handleClose={handleClosePopup} />
-      <ImageCarousel />
+      <HeroBanner />
       <Col className="versions-wrap">
         <h2 className="versionTitle">Create your own inspiring calendar</h2>
         <Row className="versions">
