@@ -47,17 +47,16 @@
 .aboutUsCard {
     margin: 0.5rem 0.5rem;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.194);
     background-color: #f4ede7;
     height: auto;
     max-width: auto;
-    transition: box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     min-width: 40vw;
+    border: none;
 }
 
 .aboutUsCard {
     width: 100%;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.081);
 }
 
 .aboutUs {
@@ -77,13 +76,11 @@
     color: white;
     margin: 0;
     padding: 1rem;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.506);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .versionCardBody {
     padding: 1rem;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.076);
 }
 
 .expandedCard {
@@ -112,8 +109,6 @@
 
 .registerNow {
     background-color: #ba6c2c;
-    box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
     font-size: 1rem;
     color: white;
     border: none;
@@ -135,7 +130,6 @@
     margin: 2.5rem 3.5rem 1rem 3.5rem;
     background-color: #F4EDE7;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.269);
 }
 
 @media (max-width: 768px) {
