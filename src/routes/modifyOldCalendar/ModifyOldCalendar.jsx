@@ -17,7 +17,7 @@ import {
   fetchFromFirebase,
   setAvailableAlternatives,
 } from "../../store/alternativesSlice";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function ModifyOldCalendar() {
   const { id } = useParams();
@@ -28,6 +28,14 @@ function ModifyOldCalendar() {
 
   const hatchColor = useSelector(
     (state) => state.calendarStyling.selectedHatchColor
+  );
+
+  const generatedImage = useSelector(
+    (state) => state.calendarStyling.generatedImage
+  );
+
+  const uploadedImage = useSelector(
+    (state) => state.calendarStyling.uploadedImage
   );
 
   const selectedImage = useSelector(
@@ -55,7 +63,7 @@ function ModifyOldCalendar() {
   const dispatch = useDispatch();
 
   const fetchAlternatives = async () => {
-    const colRef = collection(db, "topic");
+    const colRef = collection(db, "categories");
     const querySnapshot = await getDocs(colRef);
 
     const data = querySnapshot.docs.map((doc) => ({
@@ -72,26 +80,41 @@ function ModifyOldCalendar() {
     })();
   }, []);
 
+  const navigate = useNavigate();
+
   const saveHatchText = async () => {
     if (calendarContent !== undefined) {
-      await setDoc(doc(db, "calendars", id), {
-        content: calendarContent,
-        calendarBackgroundColor: backgroundColor,
-        calendarHatchColor: hatchColor,
-        calendarImage: selectedImage,
-        calendarFont: selectedFont,
-        calendarHatchFontColor: selectedHatchFontColor,
-        calendarHatchesNumber: selectedHatchesNumber,
-        calendarTitleFont: titleFont,
-        calendarTitle: title,
-        createdAt: serverTimestamp(),
-      });
+      const docRef = doc(db, "calendars", id);
+
+      await setDoc(
+        docRef,
+        {
+          content: calendarContent,
+          calendarBackgroundColor: backgroundColor,
+          calendarHatchColor: hatchColor,
+          calendarImage: selectedImage,
+          calendarFont: selectedFont,
+          calendarHatchFontColor: selectedHatchFontColor,
+          calendarHatchesNumber: selectedHatchesNumber,
+          calendarTitleFont: titleFont,
+          calendarTitle: title,
+          calendarUploadedImage: uploadedImage,
+          calendarGeneratedImage: generatedImage,
+          createdAt: serverTimestamp(),
+        },
+        { merge: true }
+      );
+
+      navigate(`/calendar/${id}`);
+      console.log("Document updated with ID: ", id);
     }
   };
 
   const calendarContent = useSelector(
     (state) => state.alternatives.savedAlternatives
   );
+
+  const backgroundImage = selectedImage || uploadedImage || generatedImage;
 
   const fetchAlternativesFromFirebase = async () => {
     const docRef = doc(db, "calendars", id);
@@ -118,7 +141,9 @@ function ModifyOldCalendar() {
           <Card
             style={{
               margin: "1.5% 0",
-              backgroundImage: `url(${selectedImage})`,
+              backgroundImage: backgroundImage
+                ? `url(${backgroundImage})`
+                : "none",
               backgroundColor: backgroundColor,
               backgroundSize: "cover",
               boxShadow: "0px 0px 5px 0px #00000059",
