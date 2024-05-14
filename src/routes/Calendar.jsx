@@ -247,7 +247,6 @@ const Calendar = () => {
       { merge: true }
     );
     setRemoved(false);
-    setCalendarSaved(true);
   };
 
   const removeMyCalendarClick = async (id) => {
