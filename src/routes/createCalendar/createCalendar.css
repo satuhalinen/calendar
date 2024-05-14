@@ -26,6 +26,7 @@
 
 .createTitleInput::placeholder {
   color: rgb(129, 127, 127);
+  text-align: center;
 }
 
 .colorOptionInput {
