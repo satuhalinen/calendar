@@ -15,11 +15,9 @@ function EditHatch({ number }) {
 
   const dispatch = useDispatch();
 
-  function saveAlternative(number, alternative) {
-    dispatch(saveAlternatives({ number, alternative }));
+  function saveAlternative(number, alternative, topic) {
+    dispatch(saveAlternatives({ number, alternative, topic }));
   }
-
-  // hatch styling
 
   const backgroundColor = useSelector(
     (state) => state.calendarStyling.selectedHatchColor
@@ -40,8 +38,12 @@ function EditHatch({ number }) {
     const randomAlternative = randomTopic.content[randomIndex];
     setSelectedAlternative(randomAlternative);
 
-    saveAlternative(number, randomAlternative);
+    saveAlternative(number, randomAlternative, randomTopic.id);
   };
+
+  const hatchTextHatch = useSelector(
+    (state) => state.alternatives.calendarText
+  );
 
   return (
     <Card
@@ -57,7 +59,11 @@ function EditHatch({ number }) {
       </div>
       <DropdownButton
         id="dropdown-topic-button"
-        title={selectedTopic ? selectedTopic : "Choose a topic"}
+        title={
+          hatchTextHatch[number]?.topic
+            ? hatchTextHatch[number].topic
+            : "Choose a topic"
+        }
         style={{ backgroundColor: backgroundColor }}
       >
         {["Adults", "Animals", "Children and teenagers", "Elderly"].map(
@@ -89,13 +95,13 @@ function EditHatch({ number }) {
         {alternatives
           .filter((alternative) => alternative.id === selectedTopic)
           .flatMap((alternative) => alternative.content)
-          .map((alternative, index) => (
+          .map((alternative, selectedTopic) => (
             <Dropdown.Item
-              key={index}
+              key={selectedTopic}
               as="button"
               onClick={() => {
                 setSelectedAlternative(alternative);
-                saveAlternative(number, alternative);
+                saveAlternative(number, alternative, selectedTopic);
               }}
               style={{
                 backgroundColor:
