@@ -64,13 +64,19 @@ const Calendar = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [userData, setUserData] = useState({ name: "", email: "" });
-  const [showInfoModal, setShowInfoModal] = useState(true);
+  const [showInfoModal, setShowInfoModal] = useState(false);
   const [isAdmin, setIsAdmin] = useState(null);
   const [removed, setRemoved] = useState(false);
   const [showRemoveModal, setShowRemoveModal] = useState(false);
   const [calendarToDelete, setCalendarToDelete] = useState(null);
 
   const profileImageUrl = useSelector(selectProfileImageUrl);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowInfoModal(true);
+    }, 2000);
+  }, []);
 
   const fetchContentById = async () => {
     try {
