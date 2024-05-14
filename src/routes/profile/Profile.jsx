@@ -129,7 +129,7 @@ export default function Profile() {
             </Row>
           </Col>
         </Container>
-        <h3 className="h3savedCalendars">Some of my calendars</h3>
+        <h3 className="h3savedCalendars">My calendars preview</h3>
         <Container>
           <Row className="favoriteCards">
             {myCalendars.slice(0, 3).map((calendar) => (
