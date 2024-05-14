@@ -89,7 +89,7 @@ export default function Calendars() {
                           color: "#F4EDE7",
                         }}
                       >
-                        Use calendar
+                        Preview
                       </button>
                     </NavLink>
                     {calendar.isInMyCalendars && (

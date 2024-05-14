@@ -9,7 +9,6 @@
   padding: 20px 60px 0px 60px;
   background-color: #f4ede7;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
 }
 
 .aboutTitle {
@@ -36,7 +35,7 @@
   left: 24%;
   width: 50%;
   height: 2px;
-  background-color: #ba6c2c;
+  background-color: #ba6c2cd2;
 }
 
 .aboutH4 {

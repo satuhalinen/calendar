@@ -3,7 +3,8 @@ import {
   setSelectedImage,
   setSelectedColor,
   setUploadedImage,
-  setSelectedHatchColor
+  setSelectedHatchColor,
+  setGeneratedImage
 } from "../../store/calendarStylingSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
@@ -32,10 +33,10 @@ const ImagePicker = () => {
       dispatch(setSelectedHatchColor(transparentHatch));
     }
     dispatch(setSelectedImage(imageUrl));
+    dispatch(setGeneratedImage(null));
     dispatch(setSelectedColor(null));
     dispatch(setUploadedImage(null));
   };
-
 
   return (
     <div>

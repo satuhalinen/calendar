@@ -16,12 +16,11 @@
 .createCalendarButton,
 .backToCreateCalendarButton {
     background-color: #ba6c2c;
-    box-shadow: 1px 1px 3px rgba(15, 7, 1, 0.471);
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
     font-size: 1rem;
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 0.5rem 2rem;
     margin: 5px;
     cursor: pointer;

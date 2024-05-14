@@ -226,7 +226,7 @@ export default function Adminpanel() {
               <Card.Header className="usersCardHeader">Users
                 <Link to="/user-management" className="manageUsersLink">Manage Users</Link></Card.Header>
               <div className="tableWrapper">
-                <Table className="usersTable" striped bordered hover responsive>
+                <Table className="usersTable" striped hover responsive>
                   <thead>
                     <tr>
                       <th>User ID</th>
@@ -256,7 +256,7 @@ export default function Adminpanel() {
               <Card.Header className="contactSubmissionsCardHeader">Customer Messages
                 <Link to="/customer-messages" className="manageUsersLink">See messages</Link></Card.Header>
               <div className="tableWrapper">
-                <Table className="contactSubmissionsTable" striped bordered hover responsive>
+                <Table className="contactSubmissionsTable" striped hover responsive>
                   <thead>
                     <tr>
                       <th>Name</th>

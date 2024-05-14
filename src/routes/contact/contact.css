@@ -14,8 +14,7 @@
     background-color: #f4ede7;
     border-radius: 10px;
     padding: 20px;
-    max-width: 33vw;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
+    width: 400px;
 }
 
 .contactForm {
@@ -49,7 +48,7 @@
 }
 
 .formInput {
-    width: 18vw;
+    width: 230px;
     padding: 0.7rem;
     margin: 5px;
     border-radius: 5px;
@@ -73,12 +72,11 @@
 
 .contactButton {
     background-color: #ba6c2c;
-    box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
     font-size: 1rem;
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 0.5rem 2rem;
     margin: 10px;
     cursor: pointer;

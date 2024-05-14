@@ -3,6 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink, useNavigate } from "react-router-dom";
 import smallLogo from "../../assets/smallLogo.png";
+import logo2 from "../../assets/logo2.png";
 import "./smallHeader.css";
 import { Image } from "react-bootstrap";
 
@@ -18,9 +19,9 @@ function SmallHeader() {
       <Container>
         <NavLink to="/" className="logo-link">
           <Image
-            src={smallLogo}
+            src={logo2}
             width="auto"
-            height="30"
+            height="50"
             className="d-inline-block align-top"
             alt="VOCA logo"
           />

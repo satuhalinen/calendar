@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f9f5f3;
 }
 
 .loginContainer {
@@ -15,7 +14,6 @@
   padding: 2rem;
   border-radius: 5px;
   text-align: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.194);
 }
 
 .loginFormGroup {
@@ -26,13 +24,14 @@
   display: block;
   font-size: 0.9rem;
   margin-bottom: 0.2rem;
-  margin-left: 3.4rem;
+  margin-left: 3.5rem;
   color: #000000;
   text-align: left;
 }
 
 .loginFormGroup input {
-  width: 16vw;
+  width: 100%;
+  max-width: 230px;
   padding: 0.7rem;
   margin: 5px;
   border-radius: 5px;
@@ -50,9 +49,9 @@
 }
 
 .loginBtn {
-  width: 30%;
+  width: 100%;
+  max-width: 120px;
   background: #ba6c2c;
-  box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
   color: #f9f5f3;
   padding: 10px;
