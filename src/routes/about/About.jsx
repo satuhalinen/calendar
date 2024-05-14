@@ -2,7 +2,7 @@ import { Col, Container, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./about.css";
 import fjellteam from "../../assets/fjellteam.png";
-import volunteer from "../../assets/volunteer.png";
+import avatar from "../../assets/avatar.png";
 
 export default function About() {
   return (
@@ -23,14 +23,17 @@ export default function About() {
               className="d-inline-block align-top"
               alt="Two people helping a third person scale a mountain, sun setting in the background"
             />
-            <Image
-              src={volunteer}
-              tabIndex="0"
-              className="volunteer"
-              width="570"
-              height="370"
-              alt="Cartoon style image of earth with a heart on it and people donating food and things to eachother"
-            />
+            <Container className="teamContainer">
+              <Row className="aboutUsTeam">
+                <Image className="teamImg" src={avatar}></Image>
+                <Image className="teamImg" src={avatar}></Image>
+                <Image className="teamImg" src={avatar}></Image>
+              </Row>
+              <Row className="aboutUsTeam1">
+                <Image className="teamImg" src={avatar}></Image>
+                <Image className="teamImg" src={avatar}></Image>
+              </Row>
+            </Container>
           </Col>
 
           <Col>
