@@ -326,7 +326,7 @@ const Calendar = () => {
                       className="saveToMyCalendarsButton"
                       onClick={saveMyCalendarsClick}
                     >
-                      Save to My Calendars
+                      Save Calendar
                     </Button>
                   </OverlayTrigger>
                 ) : (
@@ -341,7 +341,7 @@ const Calendar = () => {
                     className="saveToMyCalendarsButton"
                     onClick={() => removeMyCalendarClick(id)}
                   >
-                    Remove from My Calendars
+                    Remove Calendar
                   </Button>
                 ))}
 
