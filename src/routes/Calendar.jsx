@@ -35,6 +35,7 @@ import {
 } from "firebase/firestore";
 import { db, storage } from "../auth/firebase";
 import { useDispatch, useSelector } from "react-redux";
+import avatar from "../assets/avatar.png";
 import { showCalendarText } from "../store/alternativesSlice.js";
 import {
   setSelectedImage,
@@ -54,6 +55,7 @@ import { useParams } from "react-router-dom";
 import InfoModal from "../components/infoModal/InfoModal.jsx";
 import { saveToMyCalendar } from "../store/scoreSlice.js";
 import { setDoc, deleteDoc } from "firebase/firestore";
+import { selectProfileImageUrl } from "../store/profileImageSlice.js";
 
 const Calendar = () => {
   const [user] = useAuthState(auth);
@@ -67,6 +69,8 @@ const Calendar = () => {
   const [removed, setRemoved] = useState(false);
   const [showRemoveModal, setShowRemoveModal] = useState(false);
   const [calendarToDelete, setCalendarToDelete] = useState(null);
+
+  const profileImageUrl = useSelector(selectProfileImageUrl);
 
   const fetchContentById = async () => {
     try {
@@ -243,6 +247,7 @@ const Calendar = () => {
       { merge: true }
     );
     setRemoved(false);
+    setCalendarSaved(true);
   };
 
   const removeMyCalendarClick = async (id) => {
@@ -326,57 +331,6 @@ const Calendar = () => {
               className="gameCardBody"
               style={{ display: "flex", alignItems: "center" }}
             >
-              {!isAdmin &&
-                (removed ? (
-                  <OverlayTrigger
-                    placement="bottom"
-                    overlay={
-                      <Tooltip className="tooltip-1">
-                        Save the calendar to track your progress.
-                      </Tooltip>
-                    }
-                    delay={{ show: 250, hide: 400 }}
-                  >
-                    <Button
-                      style={{
-                        backgroundColor: "#425f5b",
-                        fontSize: "0.75rem",
-                        borderStyle: "none",
-                        padding: "0.7rem 0.3rem",
-                        width: "15vw",
-                      }}
-                      className="saveToMyCalendarsButton"
-                      onClick={saveMyCalendarsClick}
-                    >
-                      Save Calendar
-                    </Button>
-                  </OverlayTrigger>
-                ) : (
-                  <OverlayTrigger
-                    placement="bottom"
-                    overlay={
-                      <Tooltip className="tooltip-1">
-                        Remove the calendar from My Calendars.
-                      </Tooltip>
-                    }
-                    delay={{ show: 250, hide: 400 }}
-                  >
-                    <Button
-                      variant="danger"
-                      style={{
-                        fontSize: "0.75rem",
-                        borderStyle: "none",
-                        padding: "0.7rem 0.3rem",
-                        width: "20vw",
-                        filter: "saturate(0.8)"
-                      }}
-                      className="removeMyCalendarsButton"
-                      onClick={() => handleShowRemoveModal(id)}
-                    >
-                      Remove Calendar
-                    </Button>
-                  </OverlayTrigger>
-                ))}
               <div className="userInfo">
                 <OverlayTrigger
                   placement="bottom"
@@ -395,8 +349,11 @@ const Calendar = () => {
                   </div>
                 </OverlayTrigger>
                 <Card.Title className="userScoreTitle">
-                  <strong className="userNameTitle">Username:</strong>{" "}
-                  {userData.fullname}
+                  <img
+                    src={profileImageUrl || avatar}
+                    alt="profile"
+                    className="profileImageHeader"
+                  />
                 </Card.Title>
                 <Card.Title className="progressTitle">
                   <strong>Progress:</strong>
@@ -421,6 +378,57 @@ const Calendar = () => {
                   <div className="weatherIconWrapper">{weatherIcon}</div>
                 </OverlayTrigger>
               )}
+              {!isAdmin &&
+                (removed ? (
+                  <OverlayTrigger
+                    placement="bottom"
+                    overlay={
+                      <Tooltip className="tooltip-1">
+                        Save the calendar to track your progress.
+                      </Tooltip>
+                    }
+                    delay={{ show: 250, hide: 200 }}
+                  >
+                    <Button
+                      style={{
+                        backgroundColor: "#425f5b",
+                        fontSize: "0.75rem",
+                        borderStyle: "none",
+                        padding: "0.7rem 0.3rem",
+                        width: "15vw",
+                      }}
+                      className="saveToMyCalendarsButton"
+                      onClick={saveMyCalendarsClick}
+                    >
+                      Save Calendar
+                    </Button>
+                  </OverlayTrigger>
+                ) : (
+                  <OverlayTrigger
+                    placement="bottom"
+                    overlay={
+                      <Tooltip className="tooltip-1">
+                        Remove the calendar from My Calendars.
+                      </Tooltip>
+                    }
+                    delay={{ show: 250, hide: 200 }}
+                  >
+                    <Button
+                      variant="danger"
+                      style={{
+                        fontSize: "0.75rem",
+                        borderStyle: "none",
+                        padding: "0.7rem 0.3rem",
+                        width: "20vw",
+                        filter: "saturate(0.8)"
+                      }}
+                      className="removeMyCalendarsButton"
+                      onClick={() => handleShowRemoveModal(id)}
+                    >
+                      Remove Calendar
+                    </Button>
+                  </OverlayTrigger>
+                ))}
             </Card.Body>
           </Card>
         </Row>
