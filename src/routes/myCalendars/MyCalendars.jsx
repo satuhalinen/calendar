@@ -134,7 +134,7 @@ export default function MyCalendars() {
         </Modal.Body>
         <Modal.Footer className="removeModalFooter">
           <Button className="deleteRemoveModalButton" variant="danger" onClick={removeMyCalendarClick}>
-            Delete
+            Remove
           </Button>
           <Button className="removeModalButton" variant="secondary" onClick={handleCloseRemoveModal}>
             Cancel

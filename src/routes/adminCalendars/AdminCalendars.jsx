@@ -25,17 +25,16 @@ export default function AdminCalendars() {
   };
 
   const removeCalendarClick = async () => {
-    if (!calendarToDelete) {
-      return;
-    }
-    try {
-      const calendarRef = doc(db, "calendars", calendarToDelete);
-      await deleteDoc(calendarRef);
-      setRemoved(!removed);
-      await removeMyCalendarFromAllUsers(calendarToDelete);
-      handleCloseRemoveModal();
-    } catch (error) {
-      console.error('Error deleting calendar:', error);
+    if (calendarToDelete) {
+      try {
+        const calendarRef = doc(db, "calendars", calendarToDelete);
+        await deleteDoc(calendarRef);
+        setRemoved(!removed);
+        await removeMyCalendarFromAllUsers(calendarToDelete);
+        handleCloseRemoveModal();
+      } catch (error) {
+        console.error('Error deleting calendar:', error);
+      }
     }
   };
 
