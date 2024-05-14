@@ -105,7 +105,7 @@ function UserManagement() {
                         </Col>
                     </Row>
                     <div className="userManagementTableWrapper">
-                        <Table striped bordered hover responsive className="userManagementTable">
+                        <Table striped hover responsive className="userManagementTable">
                             <thead>
                                 <tr>
                                     <th>User ID</th>

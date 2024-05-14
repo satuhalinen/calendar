@@ -170,7 +170,6 @@ const LandingPage = () => {
           <img src={exampleCalendar5} alt="exampleCalendar5" className="exampleCalendar" />
           <img src={exampleCalendar6} alt="exampleCalendar6" className="exampleCalendar" />
         </Row>
-        <p className="calendarCarouselTitleBottom"></p>
       </Row>
       <Col className="aboutUs">
         <Card className="aboutUsCard">

@@ -15,7 +15,7 @@ export default function ChatBot({ showInitially, handleClose }) {
     useEffect(() => {
         const timeout = setTimeout(() => {
             setShowChatBot(true);
-        }, 10000);
+        }, 100000);
         return () => clearTimeout(timeout);
     }, []);
 
@@ -132,7 +132,7 @@ export default function ChatBot({ showInitially, handleClose }) {
                 aria-hidden="true"
                 onClick={() => setShowChatBot(true)}
             >
-                Open Chat
+                Chat
             </div>
         );
     }

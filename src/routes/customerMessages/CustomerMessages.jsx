@@ -104,7 +104,7 @@ export default function CustomerMessages() {
                 <Row>
                     <Col xs={12}>
                         <div className="customerMessagesTableWrapper">
-                            <Table className="customerMessagesTable" striped bordered hover responsive>
+                            <Table className="customerMessagesTable" striped hover responsive>
                                 <thead>
                                     <tr>
                                         <th>Name</th>

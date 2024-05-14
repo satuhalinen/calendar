@@ -8,6 +8,13 @@
   transform: rotateY(180deg) !important;
 }
 
+.opened {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .hatchOpenedTitle {
   font-size: 0.6rem;
   font-weight: 600;
@@ -29,7 +36,6 @@
 }
 
 .noContentOpened {
-  margin-top: 3rem;
   font-size: 0.8rem;
   color: #425f5b;
 }
@@ -41,7 +47,6 @@
 
 .hatchModalButton {
   width: 20%;
-  box-shadow: 1px 1px 5px #27120478;
   color: #f9f5f3;
   padding: 10px;
   border-radius: 5px;
