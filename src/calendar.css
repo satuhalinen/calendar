@@ -20,7 +20,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.218);
+  border: 0.5px solid #7a928e6e;
 }
 
 .useCalendarTitle {
@@ -98,8 +98,8 @@
   width: 95%;
   background: #fbf6f2;
   border-radius: 3px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.384);
   margin: 1rem 0;
+  border: 0.5px solid #7a928e6e;
 }
 
 .progressBar {
@@ -108,7 +108,7 @@
   background-color: white;
   border-radius: 3px;
   margin: 1rem 2rem 1.5rem 0.2rem;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.384);
+  border: 0.5px solid #7a928e6e;
 }
 
 .progressBar .progress-bar {
@@ -193,42 +193,42 @@
 }
 
 .sun-icon {
-  color: #cf931d;
+  color: #738f8b;
   font-size: 2rem;
   animation: spin 2s linear forwards;
   margin-bottom: 0.9rem;
 }
 
 .cloud-sun-icon {
-  color: #c1810a;
+  color: #617c78;
   font-size: 2rem;
   animation: float 2s forwards;
   margin-bottom: 0.9rem;
 }
 
 .cloud-icon {
-  color: #3f455c;
+  color: #425f5b;
   font-size: 2rem;
   animation: drift 2s forwards;
   margin-bottom: 0.9rem;
 }
 
 .cloud-rain-icon {
-  color: #43438b;
+  color: #3b5450;
   font-size: 2rem;
   animation: shake 0.5s forwards;
   margin-bottom: 0.7rem;
 }
 
 .cloud-heavy-icon {
-  color: #191952;
+  color: #324846;
   font-size: 2rem;
   animation: bounce 0.5s forwards;
   margin-bottom: 0.7rem;
 }
 
 .storm-icon {
-  color: #48335c;
+  color: #293d3c;
   font-size: 2rem;
   animation: storm 0.5s forwards;
   margin-bottom: 1.5rem;

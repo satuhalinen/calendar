@@ -5,8 +5,9 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
-  margin: 0 3rem;
+  margin: 0 auto;
+  max-width: 1000px;
+  border-radius: 5px;
 }
 
 .profile-container {
@@ -16,24 +17,14 @@
   justify-content: center;
   background-color: #fdf6f1;
   border-radius: 5px;
-  padding: 10px 20px;
-  margin-top: 0.2rem;
-  max-width: 38vw;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.213);
-}
-
-.profileInfo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
+  padding: 10px;
 }
 
 .h3Profile {
   font-size: 1.5rem;
   margin-bottom: 5px;
   background: none;
-  border-bottom: #ba6c2c 2px solid;
+  border-bottom: #ba6c2c8f 2px solid;
   padding: 0.5rem 3rem;
   width: auto;
 }
@@ -41,7 +32,7 @@
 .h3savedCalendars {
   font-size: 1.2rem;
   margin: 1.5rem 0 0.5rem;
-  border-bottom: 1.5px solid #ba6c2c;
+  border-bottom: 1.5px solid #ba6c2c8f;
   padding: 0 2rem 0.5rem 2rem;
   text-align: center;
 }
@@ -94,13 +85,11 @@
   align-items: center;
 }
 
-
 .profileCalendar {
+  position: relative;
   color: black;
-  height: 100%;
   width: 100%;
-  margin: 0.5rem 1rem;
-  padding-top: 0.5rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -109,23 +98,21 @@
   filter: saturate(0.9);
   border-radius: 5px;
   transition: all 0.3s ease;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.405) !important;
-  background-color: #cbd2d1 !important;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.405) !important;
+  background-color: #b0b9b8 !important;
 }
 
 .profileCalendar:hover {
-  transform: scale(1.02);
+  transform: scale(1.01);
   cursor: pointer;
 }
 
 .defaultScreenshotFavorite {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-height: 180px;
   border-radius: 10px;
   opacity: 0.9;
   transition: all 0.3s ease;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
 }
 
 .defaultScreenshotFavorite:hover {
@@ -140,24 +127,6 @@
   text-decoration: none !important;
 }
 
-.useCalendarButton {
-  background-color: #495956;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 0.5rem;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin: 0.5rem;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
-}
-
-.useCalendarButton:hover {
-  background-color: #212625;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.349);
-}
-
 .useMyCalendarButton {
   background-color: #495956;
   color: white;
@@ -168,7 +137,11 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin: 0.5rem;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.349);
+}
+
+.useCalendarButton:hover {
+  background-color: #212625;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.349);
 }
 
 .useMyCalendarButton:hover {
@@ -179,8 +152,9 @@
 .linkToMyCalendars {
   text-align: center;
   text-decoration: none !important;
-  color: #664135;
-  font-size: 0.9rem;
+  color: #a34a1a;
+  font-weight: 700;
+  font-size: 1rem;
 }
 
 .linkToMyCalendars:hover {
@@ -210,4 +184,30 @@
 
 input[type="file"] {
   display: none;
+}
+
+/* Smaller screens */
+@media screen and (max-width: 480px) {
+  .wholeProfileContainer {
+    padding: 10px;
+  }
+
+  .profileContent {
+    flex-direction: column;
+  }
+
+  .profileImg {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profileText {
+    margin: 1rem 0;
+    font-size: 0.8rem;
+  }
+
+  .favoriteCards {
+    max-width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 }

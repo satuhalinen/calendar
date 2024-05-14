@@ -6,6 +6,7 @@
     margin: 1rem 0;
     text-align: center;
     padding: 0 1.5rem 0 0;
+    height: 100%;
 }
 
 .userManagementTitle {
@@ -31,7 +32,7 @@
     border-radius: 5px;
     border: none;
     font-size: 0.8rem;
-    box-shadow: 0 0 2px rgba(170, 144, 132, 0.743);
+    border: 0.2px solid #bbbbbb;
 }
 
 .usersSearchInput:focus,
@@ -50,14 +51,17 @@
 .userManagementTable {
     width: 100%;
     cursor: pointer;
-    border-radius: 10px !important;
+    min-height: auto;
+    margin-bottom: 0;
 }
 
 .userManagementTableWrapper {
     margin-top: 1rem;
+    margin-bottom: 0;
     overflow-x: auto;
-    max-height: 47vh;
     border: 0.5px solid #7a928e;
+    max-height: 55vh;
+    margin-bottom: auto;
 }
 
 .userManagementTable th {
@@ -101,7 +105,6 @@
     cursor: pointer;
     font-size: 0.7rem;
     transition: background-color 0.3s ease;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.383);
 }
 
 .userDetailsButton:hover {

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Form, Button, Col, Container } from 'react-bootstrap';
 import { db, analytics } from '../../auth/firebase';
 import { setDoc, doc, collection } from 'firebase/firestore';
-import { logEvent } from 'firebase/analytics';
 import ChatBot from '../../components/chatBot/ChatBot';
 import './contact.css';
 
@@ -53,11 +52,6 @@ const ContactForm = () => {
             setMessageSent(true);
             setTimeout(() => setMessageSent(false), 5000);
 
-            logEvent(analytics, 'contact_form_submission', {
-                name: formData.name,
-                email: formData.email,
-                subject: formData.subject,
-            });
         } catch (error) {
             console.error('Error submitting form:', error);
             alert('An error occurred. Please try again later.');

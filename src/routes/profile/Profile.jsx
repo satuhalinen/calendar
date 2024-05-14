@@ -93,42 +93,7 @@ export default function Profile() {
     <div className="mainContent">
       <div className="wholeProfileContainer">
         <Container className="profile-container">
-          <Row className="profileInfo">
-            <Col>
-
-              <div className="profileImgContainer">
-                <Image
-                  className="profileImg"
-                  src={profileImageUrl || avatar}
-                  alt="Users own profile image"
-                />
-                <label className="inputImg">
-                  <input
-                    disabled={loading}
-                    type="file"
-                    onChange={handleChange}
-                  />
-                  <BsImage style={{ fontSize: "12px" }} />
-                </label>
-              </div>
-            </Col>
-            <Col className="profileText">
-              <p>Name: {userData.fullname}</p>
-              <p>Email: {userData.email}</p>
-              <Link
-                className="linkToAccount"
-                to={{
-                  pathname: "/account-settings",
-                }}
-                state={{ docID: docId }}
-              >
-                <p className="linkToAccount">Account Settings</p>
-              </Link>
-
-              <h3 className="h3Profile text-center">Profile</h3>
-
-            </Col>
-          </Row>
+          <h3 className="h3Profile text-center">Profile</h3>
           <Col className="profileContent">
             <Row>
               <Col>
@@ -164,10 +129,10 @@ export default function Profile() {
             </Row>
           </Col>
         </Container>
-        <h3 className="h3savedCalendars">Some of my calendars</h3>
+        <h3 className="h3savedCalendars">My calendars preview</h3>
         <Container>
           <Row className="favoriteCards">
-            {myCalendars.slice(0, 4).map((calendar) => (
+            {myCalendars.slice(0, 3).map((calendar) => (
               <Col
                 key={calendar.id}
                 className="calendarCard profileCalendar"

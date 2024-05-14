@@ -30,6 +30,7 @@ import {
 } from "../../store/scoreSlice";
 import { FaCheck } from "react-icons/fa";
 import { useAuthState } from "react-firebase-hooks/auth";
+import tinycolor from "tinycolor2";
 
 function Hatch({ number, saveMyCalendarsClick }) {
   const [show, setShow] = useState(false);
@@ -50,6 +51,8 @@ function Hatch({ number, saveMyCalendarsClick }) {
   const hatchColor = useSelector(
     (state) => state.calendarStyling.selectedHatchColor
   );
+
+  const backgroundColor = useSelector((state) => state.calendarStyling.selectedColor);
 
   const hatchFontColor = useSelector(
     (state) => state.calendarStyling.selectedHatchFontColor
@@ -74,6 +77,12 @@ function Hatch({ number, saveMyCalendarsClick }) {
   const calendarSave = useSelector(
     (state) => state.score?.startedUsing || false
   );
+
+  const hatchModalFontColor = backgroundImage
+    ? tinycolor(hatchFontColor).isLight()
+      ? "#000000"
+      : "#ffffff"
+    : hatchFontColor;
 
   const [user] = useAuthState(auth);
 
@@ -189,9 +198,8 @@ function Hatch({ number, saveMyCalendarsClick }) {
             backgroundImage && isOpenedHatch ? `#f9f5f3` : hatchColor,
           cursor: "pointer",
         }}
-        className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""} ${
-          isOpenedHatch ? "opened" : ""
-        }`}
+        className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""} ${isOpenedHatch ? "opened" : ""
+          }`}
       >
         <div
           className="hatch"
@@ -206,7 +214,7 @@ function Hatch({ number, saveMyCalendarsClick }) {
           <div className="hatchModalContent">
             <p
               className="noContentOpened"
-              style={{ color: isFlipped ? hatchColor : hatchFontColor }}
+              style={{ color: isFlipped ? hatchColor : hatchModalFontColor }}
             >
               No content
             </p>
@@ -218,7 +226,7 @@ function Hatch({ number, saveMyCalendarsClick }) {
             style={{
               display: isFlipped ? "none" : "",
               background: hatchColor,
-              color: hatchFontColor,
+              color: hatchModalFontColor,
             }}
           >
             <p className="hatchOpenedTitle">{hatchTextHatch[number].title}</p>
@@ -237,14 +245,14 @@ function Hatch({ number, saveMyCalendarsClick }) {
           style={{
             background: backgroundImage
               ? `url(${backgroundImage})`
-              : hatchColor,
+              : backgroundColor,
             backgroundSize: "cover",
           }}
         >
           <Modal.Title
             className="hatchModalTitle"
             style={{
-              color: hatchFontColor,
+              color: hatchModalFontColor,
             }}
           >
             {number}
@@ -258,12 +266,12 @@ function Hatch({ number, saveMyCalendarsClick }) {
           }}
         >
           <div className="hatchModalContent">
-            <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
+            <p style={{ fontFamily: hatchFont, color: hatchModalFontColor }}>
               {hatchTextHatch[number]
                 ? hatchTextHatch[number].title
                 : "No title"}
             </p>
-            <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
+            <p style={{ fontFamily: hatchFont, color: hatchModalFontColor }}>
               {hatchTextHatch[number]
                 ? hatchTextHatch[number].description
                 : "No description"}
@@ -282,7 +290,7 @@ function Hatch({ number, saveMyCalendarsClick }) {
               </Col>
             </Row>
           </Container>
-          <p style={{ fontFamily: hatchFont, color: hatchFontColor }}>
+          <p style={{ fontFamily: hatchFont, color: hatchModalFontColor }}>
             {hatchTextHatch[number] ? (
               <Button
                 className="linkToHatchContent"
@@ -290,7 +298,7 @@ function Hatch({ number, saveMyCalendarsClick }) {
                 href={hatchTextHatch[number].link}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: hatchFontColor }}
+                style={{ color: hatchModalFontColor }}
               >
                 {hatchTextHatch[number].link}
               </Button>
@@ -314,7 +322,7 @@ function Hatch({ number, saveMyCalendarsClick }) {
             justifyContent: "center",
             background: backgroundImage
               ? `url(${backgroundImage})`
-              : hatchColor,
+              : backgroundColor,
             backgroundSize: "cover",
           }}
         >
@@ -323,7 +331,7 @@ function Hatch({ number, saveMyCalendarsClick }) {
             onClick={handleClose}
             style={{
               background: backgroundImage ? `#f9f5f3` : hatchColor,
-              color: hatchFontColor,
+              color: hatchModalFontColor,
             }}
           >
             Close
