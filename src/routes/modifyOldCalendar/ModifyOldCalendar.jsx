@@ -1,4 +1,4 @@
-import EditHatch from "../../components/editHatch/EditHatch";
+import EditOldHatch from "../../components/EditOldHatch.jsx";
 import "../../calendar.css";
 import { Card, NavLink } from "react-bootstrap";
 import SmallHeader from "../../components/smallHeader/SmallHeader";
@@ -18,6 +18,19 @@ import {
   setAvailableAlternatives,
 } from "../../store/alternativesSlice";
 import { useParams, useNavigate } from "react-router-dom";
+import { showCalendarText } from "../../store/alternativesSlice.js";
+import {
+  setSelectedImage,
+  setUploadedImage,
+  setGeneratedImage,
+  setSelectedColor,
+  setSelectedFont,
+  setSelectedTitleFont,
+  setSelectedHatchColor,
+  setSelectedHatchFontColor,
+  setSelectedHatchesNumber,
+  setInputValue,
+} from "../../store/calendarStylingSlice.js";
 
 function ModifyOldCalendar() {
   const { id } = useParams();
@@ -133,6 +146,38 @@ function ModifyOldCalendar() {
     })();
   }, []);
 
+  const fetchContentById = async () => {
+    try {
+      const docRef = doc(db, "calendars", id);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        console.log("Data fetched", data);
+
+        dispatch(showCalendarText(data.content));
+        dispatch(setSelectedImage(data.calendarImage));
+        dispatch(setSelectedColor(data.calendarBackgroundColor));
+        dispatch(setSelectedFont(data.calendarFont));
+        dispatch(setSelectedTitleFont(data.calendarTitleFont));
+        dispatch(setSelectedHatchColor(data.calendarHatchColor));
+        dispatch(setSelectedHatchFontColor(data.calendarHatchFontColor));
+        dispatch(setSelectedHatchesNumber(data.calendarHatchesNumber));
+        dispatch(setInputValue(data.calendarTitle));
+        dispatch(setUploadedImage(data.calendarUploadedImage));
+        dispatch(setGeneratedImage(data.calendarGeneratedImage));
+      } else {
+        console.log("No such document!");
+      }
+    } catch (error) {
+      console.log("Error fetching content", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchContentById();
+  }, []);
+
   return (
     <>
       <SmallHeader />
@@ -163,7 +208,7 @@ function ModifyOldCalendar() {
             <div className="calendar">
               {Array.from({ length: selectedHatchesNumber || 31 }).map(
                 (_, i) => (
-                  <EditHatch key={i} number={i + 1} />
+                  <EditOldHatch key={i} number={i + 1} />
                 )
               )}
             </div>

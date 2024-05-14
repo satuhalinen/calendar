@@ -2,8 +2,8 @@ import { DropdownButton, Dropdown } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { saveAlternatives } from "../../store/alternativesSlice";
-import "./editHatch.css";
+import { saveAlternatives } from "../store/alternativesSlice";
+import "../components/editHatch/editHatch.css";
 
 function EditHatch({ number }) {
   const alternatives = useSelector(
@@ -15,9 +15,11 @@ function EditHatch({ number }) {
 
   const dispatch = useDispatch();
 
-  function saveAlternative(number, alternative, topic) {
-    dispatch(saveAlternatives({ number, alternative, topic }));
+  function saveAlternative(number, alternative) {
+    dispatch(saveAlternatives({ number, alternative }));
   }
+
+  // hatch styling
 
   const backgroundColor = useSelector(
     (state) => state.calendarStyling.selectedHatchColor
@@ -85,15 +87,15 @@ function EditHatch({ number }) {
         style={{ backgroundColor: backgroundColor }}
       >
         {alternatives
-          .filter((topic) => topic.id === selectedTopic)
-          .flatMap((topic) => topic.content)
+          .filter((alternative) => alternative.id === selectedTopic)
+          .flatMap((alternative) => alternative.content)
           .map((alternative, index) => (
             <Dropdown.Item
               key={index}
               as="button"
               onClick={() => {
                 setSelectedAlternative(alternative);
-                saveAlternative(number, alternative, selectedTopic);
+                saveAlternative(number, alternative);
               }}
               style={{
                 backgroundColor:

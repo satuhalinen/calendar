@@ -12,8 +12,8 @@ const alternativesSlice = createSlice({
       state.availableAlternatives = action.payload;
     },
     saveAlternatives: (state, action) => {
-      state.savedAlternatives[action.payload.number] =
-        action.payload.alternative;
+      const { number, alternative, topic } = action.payload;
+      state.savedAlternatives[number] = { ...alternative, topic };
     },
     showCalendarText: (state, action) => {
       state.calendarText = action.payload;
