@@ -64,7 +64,7 @@ const Calendar = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [userData, setUserData] = useState({ name: "", email: "" });
-  const [showInfoModal, setShowInfoModal] = useState(false);
+  const [showInfoModal, setShowInfoModal] = useState(true);
   const [isAdmin, setIsAdmin] = useState(null);
   const [removed, setRemoved] = useState(false);
   const [showRemoveModal, setShowRemoveModal] = useState(false);
