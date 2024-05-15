@@ -34,10 +34,70 @@ export default function About() {
                 <Image className="teamImg" src={ben}></Image>
                 <Image className="teamImg" src={pinja}></Image>
               </Row>
+              <div className="paragraphContainer">
+                <p className="paragraph">
+                  <strong>
+                    <span className="ourTeamSpan1" style={{ fontSize: "15px" }}>
+                      Satu Halinen
+                    </span>
+                  </strong>
+                  <br />
+                  <span className="ourTeamSpan2" style={{ fontSize: "15px" }}>
+                    Developer
+                  </span>
+                </p>
+                <p className="paragraph">
+                  <strong>
+                    <span className="ourTeamSpan3" style={{ fontSize: "15px" }}>
+                      Bendik Pettersen
+                    </span>
+                  </strong>
+                  <br />
+                  <span className="ourTeamSpan4" style={{ fontSize: "15px" }}>
+                    Developer
+                  </span>
+                </p>
+                <p className="paragraph">
+                  <strong>
+                    <span className="ourTeamSpan5" style={{ fontSize: "15px" }}>
+                      Pinja Alanne
+                    </span>
+                  </strong>
+                  <br />
+                  <span className="ourTeamSpan6" style={{ fontSize: "15px" }}>
+                    Developer
+                  </span>
+                </p>
+              </div>
+
               <Row className="aboutUsTeam1">
                 <Image className="teamImg" src={pushpa}></Image>
                 <Image className="teamImg" src={avatar}></Image>
               </Row>
+              <div className="paragraphContainer">
+                <p className="paragraph">
+                  <strong>
+                    <span className="ourTeamSpan7" style={{ fontSize: "15px" }}>
+                      Pushpa Gnyawali
+                    </span>
+                  </strong>
+                  <br />
+                  <span className="ourTeamSpan8" style={{ fontSize: "15px" }}>
+                    Developer
+                  </span>
+                </p>
+                <p className="paragraph">
+                  <strong>
+                    <span className="ourTeamSpan9" style={{ fontSize: "15px" }}>
+                      Hend Missonen
+                    </span>
+                  </strong>
+                  <br />
+                  <span className="ourTeamSpan10" style={{ fontSize: "15px" }}>
+                    Developer
+                  </span>
+                </p>
+              </div>
             </Container>
           </Col>
 

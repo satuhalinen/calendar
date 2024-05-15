@@ -53,25 +53,20 @@
 
 .aboutUsTeam {
   margin-top: 1.5rem;
-  margin-left: -0.7rem;
-  margin-right: -1.2rem;
   margin-bottom: 1rem;
+  margin-right: 2rem;
   max-width: 80vw;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
   justify-content: center;
   align-items: center;
 }
 
 .aboutUsTeam1 {
-  margin-top: 1rem;
-  margin-left: 6.5rem;
-  margin-right: -1.2rem;
+  margin-top: 0.1rem;
   margin-bottom: 1rem;
+  margin-right: 2.1rem;
   max-width: 80vw;
-  display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   align-items: center;
 }
@@ -79,12 +74,19 @@
 .teamImg {
   object-fit: cover;
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
+  width: 135px;
+  height: 135px;
   padding: 0rem;
 }
 
+.teamImg:hover {
+  transform: scale(1.2);
+  transition: transform 0.5s;
+  cursor: zoom-in;
+}
+
 .ourTeam {
+  position: relative;
   text-align: center;
   margin-right: 2.3rem;
   margin-top: 1rem;
@@ -93,9 +95,59 @@
 .ourTeam:after {
   content: "";
   position: absolute;
-  left: 9.3%;
-  bottom: 25px;
-  width: 37.2%;
+  left: 25%;
+  bottom: -10%;
+  width: 50%;
   height: 2px;
   background-color: #ba6c2cd2;
+}
+
+.paragraphContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.paragraph {
+  flex: 1;
+}
+
+.ourTeamSpan1 {
+  margin-left: 3.5rem;
+}
+
+.ourTeamSpan2 {
+  margin-left: 4rem;
+}
+
+.ourTeamSpan3 {
+  margin-left: 0.4rem;
+}
+
+.ourTeamSpan4 {
+  margin-left: 1.8rem;
+}
+
+.ourTeamSpan5 {
+  margin-left: -0.8rem;
+}
+
+.ourTeamSpan6 {
+  margin-left: -0.4rem;
+}
+
+.ourTeamSpan7 {
+  margin-left: 7.3rem;
+}
+
+.ourTeamSpan8 {
+  margin-left: 8.8rem;
+}
+
+.ourTeamSpan9 {
+  margin-left: -0.4rem;
+}
+
+.ourTeamSpan10 {
+  margin-left: 0.8rem;
 }
