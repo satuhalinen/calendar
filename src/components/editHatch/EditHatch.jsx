@@ -1,4 +1,4 @@
-import { DropdownButton, Dropdown } from "react-bootstrap";
+import { DropdownButton, Dropdown, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
@@ -44,7 +44,7 @@ function EditHatch({ number }) {
   return (
     <Card
       style={{
-        width: "90%",
+        width: "100%",
         height: "100%",
         backgroundColor: backgroundColor,
       }}
@@ -80,7 +80,7 @@ function EditHatch({ number }) {
         title={
           selectedAlternative
             ? selectedAlternative.title
-            : "Choose an alternative"
+            : "Choose an option"
         }
         style={{ backgroundColor: backgroundColor }}
       >
