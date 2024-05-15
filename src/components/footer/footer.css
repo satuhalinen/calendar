@@ -97,14 +97,18 @@
 }
 
 .termsAndContact {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: right;
 }
 
 .socialMedia {
-    display: block;
-    justify-content: center;
-    align-items: center;
+    display: flex;
+    justify-content: left;
+    align-items: left;
     flex-wrap: nowrap;
+
 }
 
 .nav-link,
