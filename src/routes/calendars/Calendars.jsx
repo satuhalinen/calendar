@@ -35,7 +35,7 @@ export default function Calendars() {
     <Row className="mainContent userCalendarsWrap">
       <Col className="userCalendarsContainer">
         <p className="calendarsTitle">Calendars</p>
-        <div className="search-input">
+        <div className="calendars-search-input">
           <input
             type="text"
             className="search-field"

@@ -27,22 +27,23 @@ export default function Header() {
     const navbarToggler = document.querySelector(".navbar-toggler");
     const navbarCollapse = document.querySelector(".navbar-collapse");
 
-    if (
-      navbarCollapse.classList.contains("show") &&
-      !navbarToggler.contains(event.target) &&
-      !navbarCollapse.contains(event.target)
-    ) {
-      navbarToggler.click();
+    if (navbarToggler && navbarCollapse) {
+      if (
+        navbarCollapse.classList.contains("show") &&
+        !navbarToggler.contains(event.target) &&
+        !navbarCollapse.contains(event.target)
+      ) {
+        navbarToggler.click();
+      }
     }
   };
 
   useEffect(() => {
-    if (location.pathname !== "/calendar") {
-      document.addEventListener("click", handleClickOutsideMenu);
-      return () => {
-        document.removeEventListener("click", handleClickOutsideMenu);
-      };
-    }
+    document.addEventListener("click", handleClickOutsideMenu);
+    return () => {
+      document.removeEventListener("click", handleClickOutsideMenu);
+    };
+
   }, []);
 
   useEffect(() => {
@@ -64,7 +65,9 @@ export default function Header() {
     "/about",
     "/terms-and-conditions",
     "/contact",
-    "/modify-old-calendar-styling",
+    "/modify-old-calendar",
+    `/modify-old-calendar/${id}`,
+    `/modify-old-calendar-styling/${id}`,
   ];
   const userHeaderRoutes = [
     "/",
@@ -88,8 +91,12 @@ export default function Header() {
     "/create-calendar",
     "/user-management",
     "/customer-messages",
-    "/modify-old-calendar-styling",
+    "/modify-old-calendar",
+    `/modify-old-calendar/${id}`,
+    `/modify-old-calendar-styling/${id}`,
   ];
+
+  console.log(location.pathname, "location.pathname");
 
   const isAdminRoute = adminHeaderColor.includes(location.pathname);
   const isUserRoute = userHeaderRoutes.includes(location.pathname);

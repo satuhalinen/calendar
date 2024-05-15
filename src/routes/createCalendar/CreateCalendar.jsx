@@ -171,17 +171,13 @@ export default function CreateCalendar() {
     dispatch(setImageShow());
   };
 
-
   const handleHatchColorSelect = (color) => {
-   dispatch(setHatchColorShow());
+    dispatch(setHatchColorShow());
   };
+
   const handleGenerateImageClick = () => {
     dispatch(setGeneratedImageShow());
   };
-
- 
-
- 
 
   const handleHatchFontColorSelect = () => {
     dispatch(setHatchFontColorShow());

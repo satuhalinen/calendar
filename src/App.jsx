@@ -102,7 +102,6 @@ function App() {
                 element={<ProtectedRoute adminOnly component={EditCalendar} />}
               />
             </Route>
-
             <Route path="*" element={<ErrorPage />} />
             <Route
               path="/modify-old-calendar"

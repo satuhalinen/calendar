@@ -49,7 +49,7 @@ function EditOldHatch({ number }) {
         height: "100%",
         backgroundColor: backgroundColor,
       }}
-      className="hatchCard"
+      className="editHatchCard"
     >
       <div className="hatch" style={{ color: hatchFontColor }}>
         {number}

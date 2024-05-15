@@ -223,6 +223,8 @@ input:checked+.slider:before {
 
   .slider.round:before {
     border-radius: 50%;
+    height: 13px;
+    width: 13px;
   }
 
   .toggle-btn input:checked+.slider:before {
