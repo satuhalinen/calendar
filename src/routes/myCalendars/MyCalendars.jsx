@@ -78,50 +78,52 @@ export default function MyCalendars() {
                   intersectionObserverRef.current.observe(calendarRef)
                 }
               >
-                <Card.Title className="calendarCardTitle">
-                  {calendar.calendarTitle}
-                </Card.Title>
-                <NavLink
-                  to={`/calendar/${calendar.id}`}
-                  className="linkToOneCalendar"
-                  style={{ textDecoration: "none" }}
-                >
-                  <Card.Img
-                    className="calendarCardImg"
-                    src={calendar.imageUrl || defaultScreenshot}
-                  />
-                </NavLink>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "row", marginBottom: "0.5rem" }}>
+                <Card.Body className="d-flex flex-column justify-content-center align-items-center adminCalendarBody">
+                  <Card.Title className="calendarCardTitle">
+                    {calendar.calendarTitle}
+                  </Card.Title>
                   <NavLink
                     to={`/calendar/${calendar.id}`}
                     className="linkToOneCalendar"
                     style={{ textDecoration: "none" }}
                   >
+                    <Card.Img
+                      className="calendarCardImg"
+                      src={calendar.imageUrl || defaultScreenshot}
+                    />
+                  </NavLink>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "row", marginBottom: "0.5rem" }}>
+                    <NavLink
+                      to={`/calendar/${calendar.id}`}
+                      className="linkToOneCalendar"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <button
+                        className="useMyCalendarButton"
+                        style={{
+                          backgroundColor: "#BA6C2C",
+                          border: "none",
+                          color: "#F4EDE7",
+                        }}
+                      >
+                        Use calendar
+                      </button>
+                    </NavLink>
+
                     <button
-                      className="useMyCalendarButton"
+                      onClick={() => handleShowRemoveModal(calendar.id)}
+                      className="removeMyCalendarButton"
                       style={{
                         backgroundColor: "#BA6C2C",
                         border: "none",
                         color: "#F4EDE7",
+                        height: "52%",
                       }}
                     >
-                      Use calendar
+                      <LuMinusCircle className="removeCalendarIcon" />
                     </button>
-                  </NavLink>
-
-                  <button
-                    onClick={() => handleShowRemoveModal(calendar.id)}
-                    className="removeMyCalendarButton"
-                    style={{
-                      backgroundColor: "#BA6C2C",
-                      border: "none",
-                      color: "#F4EDE7",
-                      height: "52%",
-                    }}
-                  >
-                    <LuMinusCircle className="removeCalendarIcon" />
-                  </button>
-                </div>
+                  </div>
+                </Card.Body>
               </Card>
             ))}
           </div>
