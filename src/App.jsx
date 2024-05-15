@@ -47,15 +47,11 @@ function App() {
               />
               <Route
                 path="/profile"
-                element={<ProtectedRoute component={Profile} />}
+                element={<ProtectedRoute userOnly component={Profile} />}
               />
               <Route
                 path="/account-settings"
                 element={<ProtectedRoute component={AccountSettings} />}
-              />
-              <Route
-                path="/calendar"
-                element={<ProtectedRoute component={Calendar} />}
               />
               <Route
                 path="/calendar/:id"
@@ -103,12 +99,6 @@ function App() {
               />
             </Route>
             <Route path="*" element={<ErrorPage />} />
-            <Route
-              path="/modify-old-calendar"
-              element={
-                <ProtectedRoute adminOnly component={ModifyOldCalendar} />
-              }
-            />
             <Route
               path="/modify-old-calendar/:id"
               element={
