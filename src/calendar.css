@@ -16,7 +16,7 @@
   background-color: #f4ede7;
   max-width: 80%;
   min-height: 30px;
-  margin: 3rem 0rem 0;
+  margin: 1.5rem 0rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -117,12 +117,23 @@
 
 .weatherIconWrapper {
   font-size: 2rem;
-  margin: 0 2rem 0 0.6rem;
+  margin: 0 1.5rem 0 0.2rem;
+}
+
+.saveToMyCalendarsButton,
+.removeMyCalendarsButton {
+  margin: 1rem;
 }
 
 .saveToMyCalendarsButton:hover {
   background-color: #324e4a !important;
   box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237) !important;
+}
+
+.calendarSavedText {
+  font-size: 0.8rem;
+  color: #425f5b;
+  margin: 0.2rem 2rem 0;
 }
 
 .tooltip-1 {
