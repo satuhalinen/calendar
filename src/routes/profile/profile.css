@@ -8,6 +8,7 @@
   margin: 0 auto;
   max-width: 1000px;
   border-radius: 5px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.475);
 }
 
 .profile-container {
@@ -18,6 +19,7 @@
   background-color: #fdf6f1;
   border-radius: 5px;
   padding: 10px;
+  border: 1px solid #eae0d7;
 }
 
 .h3Profile {
@@ -127,7 +129,7 @@
   text-decoration: none !important;
 }
 
-.useMyCalendarButton {
+.useMyCalendarButtonProfile {
   background-color: #495956;
   color: white;
   border: none;
@@ -139,12 +141,7 @@
   margin: 0.5rem;
 }
 
-.useCalendarButton:hover {
-  background-color: #212625;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.349);
-}
-
-.useMyCalendarButton:hover {
+.useMyCalendarButtonProfile:hover {
   background-color: #3d4745;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.349);
 }

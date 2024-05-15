@@ -152,7 +152,7 @@ export default function Profile() {
                     alt="no img"
                     className="defaultScreenshotFavorite"
                   />
-                  <button className="useMyCalendarButton">Use Calendar</button>
+                  <button className="useMyCalendarButtonProfile">Use Calendar</button>
                 </NavLink>
               </Col>
             ))}
