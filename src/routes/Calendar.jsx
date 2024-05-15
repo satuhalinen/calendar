@@ -19,6 +19,8 @@ import {
   ProgressBar,
   OverlayTrigger,
   Tooltip,
+  Modal,
+  Button,
 } from "react-bootstrap";
 
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
@@ -50,7 +52,6 @@ import {
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import { useParams } from "react-router-dom";
 import InfoModal from "../components/infoModal/InfoModal.jsx";
-import { Button } from "react-bootstrap";
 import { saveToMyCalendar } from "../store/scoreSlice.js";
 import { setDoc, deleteDoc } from "firebase/firestore";
 
@@ -63,10 +64,9 @@ const Calendar = () => {
   const [userData, setUserData] = useState({ name: "", email: "" });
   const [showInfoModal, setShowInfoModal] = useState(false);
   const [isAdmin, setIsAdmin] = useState(null);
-
   const [removed, setRemoved] = useState(false);
-
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [showRemoveModal, setShowRemoveModal] = useState(false);
+  const [calendarToDelete, setCalendarToDelete] = useState(null);
 
   const fetchContentById = async () => {
     try {
@@ -246,14 +246,26 @@ const Calendar = () => {
   };
 
   const removeMyCalendarClick = async (id) => {
-    dispatch(saveToMyCalendar(false));
-    const q = query(collection(db, "users"), where("uid", "==", user.uid));
-    const querySnapshot = await getDocs(q);
-    const document = querySnapshot.docs[0];
-    const docId = document.id;
-    const calendarRef = doc(db, "users", docId, "myCalendars", id);
-    await deleteDoc(calendarRef);
-    setRemoved(true);
+    if (calendarToDelete) {
+      dispatch(saveToMyCalendar(false));
+      const q = query(collection(db, "users"), where("uid", "==", user.uid));
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.empty) {
+        console.error('No user document found');
+        return;
+      }
+      const document = querySnapshot.docs[0];
+      const docId = document.id;
+      try {
+        const calendarRef = doc(db, "users", docId, "myCalendars", calendarToDelete);
+        await deleteDoc(calendarRef);
+        setRemoved(true);
+        handleCloseRemoveModal();
+      }
+      catch (error) {
+        console.error('Error deleting calendar:', error);
+      }
+    }
   };
 
   const checkIfCalendarInMyCalendars = async () => {
@@ -293,6 +305,17 @@ const Calendar = () => {
     checkAdmin();
   }, []);
 
+  const handleShowRemoveModal = (id) => {
+    setCalendarToDelete(id);
+    setShowRemoveModal(true);
+  };
+
+  const handleCloseRemoveModal = () => {
+    setShowRemoveModal(false);
+    setCalendarToDelete(null);
+  };
+
+
   return (
     <>
       <SmallHeader />
@@ -313,43 +336,64 @@ const Calendar = () => {
                       </Tooltip>
                     }
                     delay={{ show: 250, hide: 400 }}
-                    show={showTooltip}
                   >
                     <Button
                       style={{
                         backgroundColor: "#425f5b",
                         fontSize: "0.75rem",
                         borderStyle: "none",
-                        padding: "0.5rem 0.3rem",
+                        padding: "0.7rem 0.3rem",
                         width: "15vw",
                       }}
                       className="saveToMyCalendarsButton"
                       onClick={saveMyCalendarsClick}
                     >
-                      Save to My Calendars
+                      Save Calendar
                     </Button>
                   </OverlayTrigger>
                 ) : (
-                  <Button
-                    style={{
-                      backgroundColor: "#425f5b",
-                      fontSize: "0.75rem",
-                      borderStyle: "none",
-                      padding: "0.5rem 0.3rem",
-                      width: "15vw",
-                    }}
-                    className="saveToMyCalendarsButton"
-                    onClick={() => removeMyCalendarClick(id)}
+                  <OverlayTrigger
+                    placement="bottom"
+                    overlay={
+                      <Tooltip className="tooltip-1">
+                        Remove the calendar from My Calendars.
+                      </Tooltip>
+                    }
+                    delay={{ show: 250, hide: 400 }}
                   >
-                    Remove from My Calendars
-                  </Button>
+                    <Button
+                      variant="danger"
+                      style={{
+                        fontSize: "0.75rem",
+                        borderStyle: "none",
+                        padding: "0.7rem 0.3rem",
+                        width: "20vw",
+                        filter: "saturate(0.8)"
+                      }}
+                      className="removeMyCalendarsButton"
+                      onClick={() => handleShowRemoveModal(id)}
+                    >
+                      Remove Calendar
+                    </Button>
+                  </OverlayTrigger>
                 ))}
-
               <div className="userInfo">
-                <FaInfoCircle
-                  className="infoCircle"
-                  onClick={() => handleOpenInfoModal()}
-                />
+                <OverlayTrigger
+                  placement="bottom"
+                  overlay={
+                    <Tooltip className="tooltip-1">
+                      Click to see the instructions.
+                    </Tooltip>
+                  }
+                  delay={{ show: 250, hide: 400 }}
+                >
+                  <div>
+                    <FaInfoCircle
+                      className="infoCircle"
+                      onClick={() => handleOpenInfoModal()}
+                    />
+                  </div>
+                </OverlayTrigger>
                 <Card.Title className="userScoreTitle">
                   <strong className="userNameTitle">Username:</strong>{" "}
                   {userData.fullname}
@@ -365,7 +409,17 @@ const Calendar = () => {
                 className="progressBar"
               />
               {weatherIcon && (
-                <div className="weatherIconWrapper">{weatherIcon}</div>
+                <OverlayTrigger
+                  placement="bottom"
+                  overlay={
+                    <Tooltip className="tooltip-1">
+                      Follow the weather changing based on your progress.
+                    </Tooltip>
+                  }
+                  delay={{ show: 250, hide: 400 }}
+                >
+                  <div className="weatherIconWrapper">{weatherIcon}</div>
+                </OverlayTrigger>
               )}
             </Card.Body>
           </Card>
@@ -401,7 +455,24 @@ const Calendar = () => {
           </Card>
           <InfoModal show={showInfoModal} handleClose={handleCloseInfoModal} />
         </div>
-      </div>
+        <Modal className="removeModal" centered show={showRemoveModal} onHide={handleCloseRemoveModal}>
+          <Modal.Header className="removeModalHeader">
+            <Modal.Title className="removeModalTitle">Confirm Removal</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="removeModalBody">
+            <strong><p>Are you sure you want to remove this calendar?</p></strong>
+            <p>You will lose all your progress!</p>
+          </Modal.Body>
+          <Modal.Footer className="removeModalFooter">
+            <Button className="deleteRemoveModalButton" variant="danger" onClick={removeMyCalendarClick}>
+              Remove
+            </Button>
+            <Button className="removeModalButton" variant="secondary" onClick={handleCloseRemoveModal}>
+              Cancel
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div >
     </>
   );
 };
