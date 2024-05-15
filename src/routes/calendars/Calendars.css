@@ -37,12 +37,28 @@
 }
 
 .useCalendarButton {
+  background-color: #a25e2c;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
   margin: 0;
   cursor: pointer;
+  border: none;
+}
+
+.inMyCalendarsButton {
+  font-size: 1.2rem;
+  background-color: #eae0d7;
+  color: #60330d;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-bottom: 0.2rem;
+  cursor: pointer;
+  border: none;
 }
 
 .useCalendarButton:hover {
-  background-color: #9d5b25 !important;
+  background-color: #60330d !important;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.349);
 }
 

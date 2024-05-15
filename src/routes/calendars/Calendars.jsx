@@ -5,7 +5,7 @@ import defaultScreenshot from "../../assets/defaultScreenshot.png";
 import "./Calendars.css";
 import useCalendarData from "../../hooks/useCalendarData";
 import useMyCalendarData from "../../hooks/useMyCalendarData";
-import { CiStar } from "react-icons/ci";
+import { FaStar } from "react-icons/fa";
 import { Tooltip } from "react-bootstrap";
 import { OverlayTrigger } from "react-bootstrap";
 
@@ -99,15 +99,9 @@ export default function Calendars() {
                         overlay={renderTooltip}
                       >
                         <button
-                          className="useCalendarButton"
-                          style={{
-                            backgroundColor: "#BA6C2C",
-                            border: "none",
-                            color: "#F4EDE7",
-                            height: "68%",
-                          }}
+                          className="inMyCalendarsButton"
                         >
-                          <CiStar />
+                          <FaStar />
                         </button>
                       </OverlayTrigger>
                     )}
