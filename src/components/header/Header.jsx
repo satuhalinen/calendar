@@ -27,22 +27,24 @@ export default function Header() {
     const navbarToggler = document.querySelector(".navbar-toggler");
     const navbarCollapse = document.querySelector(".navbar-collapse");
 
-    if (
-      navbarCollapse.classList.contains("show") &&
-      !navbarToggler.contains(event.target) &&
-      !navbarCollapse.contains(event.target)
-    ) {
-      navbarToggler.click();
+    if (navbarToggler && navbarCollapse) {
+      if (
+        navbarCollapse.classList.contains("show") &&
+        !navbarToggler.contains(event.target) &&
+        !navbarCollapse.contains(event.target)
+      ) {
+        navbarToggler.click();
+      }
     }
   };
 
+
   useEffect(() => {
-    if (location.pathname !== "/calendar") {
-      document.addEventListener("click", handleClickOutsideMenu);
-      return () => {
-        document.removeEventListener("click", handleClickOutsideMenu);
-      };
-    }
+    document.addEventListener("click", handleClickOutsideMenu);
+    return () => {
+      document.removeEventListener("click", handleClickOutsideMenu);
+    };
+
   }, []);
 
   useEffect(() => {
