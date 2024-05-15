@@ -59,7 +59,6 @@ export default function ModifyOldCalendarStyling() {
         const data = docSnap.data();
         console.log("Data fetched", data);
 
-        //dispatch(showCalendarText(data.content));
         dispatch(setSelectedImage(data.calendarImage));
         dispatch(setSelectedColor(data.calendarBackgroundColor));
         dispatch(setSelectedFont(data.calendarFont));
@@ -345,7 +344,7 @@ export default function ModifyOldCalendarStyling() {
       <Col xs={10}>
         <Container className="text-center">
           <div className="createCalendarWrap">
-            <p className="header-crCAL">Create a Calendar</p>
+            <p className="header-crCAL">Modify a Calendar</p>
             <p className="para">Choose a title</p>
             <Row>
               <div>
