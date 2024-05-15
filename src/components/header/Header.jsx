@@ -37,10 +37,12 @@ export default function Header() {
   };
 
   useEffect(() => {
-    document.addEventListener("click", handleClickOutsideMenu);
-    return () => {
-      document.removeEventListener("click", handleClickOutsideMenu);
-    };
+    if (location.pathname === "/calendar") {
+      document.addEventListener("click", handleClickOutsideMenu);
+      return () => {
+        document.removeEventListener("click", handleClickOutsideMenu);
+      };
+    }
   }, []);
 
   useEffect(() => {
