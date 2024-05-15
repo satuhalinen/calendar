@@ -5,7 +5,7 @@
   margin-bottom: 1rem;
   text-align: center;
   padding: auto;
-  width: 60%;
+  width: 70%;
 }
 
 .terms-wrap {
@@ -32,6 +32,10 @@
   background-color: #ba6c2cd2;
 }
 
+.termscontent {
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
 .termscontent h2 {
   text-align: center;
   font-size: 1.5rem;

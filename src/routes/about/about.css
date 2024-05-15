@@ -50,3 +50,34 @@
 .d-inline-block {
   border-radius: 5px;
 }
+
+.aboutUsTeam {
+  margin-top: 1rem;
+  margin-left: -0.7rem;
+  margin-right: -1.2rem;
+  margin-bottom: 1rem;
+  max-width: 80vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutUsTeam1 {
+  margin-top: 1rem;
+  margin-left: 6.5rem;
+  margin-right: -1.2rem;
+  margin-bottom: 1rem;
+  max-width: 80vw;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+}
+
+.teamImg {
+  border-radius: 2%;
+  width: 150px;
+  padding: 0rem;
+}

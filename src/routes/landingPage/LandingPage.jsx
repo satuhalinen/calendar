@@ -71,10 +71,6 @@ const LandingPage = () => {
                 {expandedStates.version1 && (
                   <Col className="expandedCard">
                     <p className="pLanding">
-                      After registering, you can start putting together your own
-                      unique vision of an advent calendar.
-                    </p>
-                    <p className="pLanding">
                       We offer you the tools to customize multiple aspects of
                       your powerful calendar including the number of hatches,
                       colors & backgrounds, and the content behind each hatch.
@@ -86,11 +82,6 @@ const LandingPage = () => {
                     <p className="pLanding">
                       You can then choose from a plethora of different
                       charitable activities, of course unique to each hatch!.
-                    </p>
-                    <p className="pLanding">
-                      On a budget? Don't worry, there are plenty of options that
-                      lets you roll up your sleeves and contribute to the good
-                      of the world - no funds needed.
                     </p>
                     <p className="pLanding">
                       After creation, you can share your calendars with other
@@ -144,18 +135,11 @@ const LandingPage = () => {
                       society who needs it the most, animal or human - we don't
                       discriminate.
                     </p>
+
                     <p className="pLanding">
                       As a user you yourself will feel the joy that is giving,
-                      in your heart.
-                    </p>
-                    <p className="pLanding">
-                      Whether you want to create your own calendar, or simply
-                      browse and use calendars made by others, you have come to
-                      the right place.
-                    </p>
-                    <p className="pLanding">
-                      Register now, and start spreading kindness, one hatch at a
-                      time!
+                      in your heart. Register now, and start spreading kindness,
+                      one hatch at a time!
                     </p>
                     <Button
                       className="readMore"
@@ -186,9 +170,21 @@ const LandingPage = () => {
       <Row className="calendarBannerRow">
         <h2 className="calendarBannerTitle">Choose your own style</h2>
         <Row className="calendarImageBanner">
-          <img src={exampleCalendar4} alt="exampleCalendar4" className="exampleCalendar" />
-          <img src={exampleCalendar5} alt="exampleCalendar5" className="exampleCalendar" />
-          <img src={exampleCalendar6} alt="exampleCalendar6" className="exampleCalendar" />
+          <img
+            src={exampleCalendar4}
+            alt="exampleCalendar4"
+            className="exampleCalendar"
+          />
+          <img
+            src={exampleCalendar5}
+            alt="exampleCalendar5"
+            className="exampleCalendar"
+          />
+          <img
+            src={exampleCalendar6}
+            alt="exampleCalendar6"
+            className="exampleCalendar"
+          />
         </Row>
       </Row>
       <Col className="aboutUs">
@@ -208,7 +204,10 @@ const LandingPage = () => {
         </Card>
       </Col>
       <Row>
-        <ChatBot showInitially={!showChatBot} handleClose={handleCloseChatBot} />
+        <ChatBot
+          showInitially={!showChatBot}
+          handleClose={handleCloseChatBot}
+        />
       </Row>
     </Col>
   );
