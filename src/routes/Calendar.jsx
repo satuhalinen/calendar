@@ -25,7 +25,6 @@ import {
 
 import SmallHeader from "../components/smallHeader/SmallHeader.jsx";
 import {
-  updateDoc,
   doc,
   getDoc,
   query,
@@ -55,7 +54,11 @@ import { useParams } from "react-router-dom";
 import InfoModal from "../components/infoModal/InfoModal.jsx";
 import { saveToMyCalendar } from "../store/scoreSlice.js";
 import { setDoc, deleteDoc } from "firebase/firestore";
+
+import { useLocation } from "react-router-dom";
+
 import { selectProfileImageUrl } from "../store/profileImageSlice.js";
+
 
 const Calendar = () => {
   const [user] = useAuthState(auth);
@@ -185,7 +188,8 @@ const Calendar = () => {
     fetchDataAndCaptureScreenshot();
   }, []);
 
-  const captureScreenshot = async () => {
+  const checkIfScreenshot = async () => {
+    console.log("from elsewhere than modify-old-calendarista");
     const calendarDocRef = doc(db, "calendars", id);
     const calendarDocSnapshot = await getDoc(calendarDocRef);
     const existingImageURL = calendarDocSnapshot.data().imageURL;
@@ -194,6 +198,8 @@ const Calendar = () => {
       console.log("Screenshot already exists");
       return;
     }
+  };
+  const captureScreenshot = async () => {
     if (!toCaptureRef.current) return;
 
     const width = toCaptureRef.current.offsetWidth;
@@ -216,9 +222,13 @@ const Calendar = () => {
         const downloadURL = await getDownloadURL(storageRef);
 
         const calendarDocRef = doc(db, "calendars", id);
-        await updateDoc(calendarDocRef, {
-          imageURL: downloadURL,
-        });
+        await setDoc(
+          calendarDocRef,
+          {
+            imageURL: downloadURL,
+          },
+          { merge: true }
+        );
 
         console.log("Image URL saved to Firestore and Storage");
       } catch (error) {
@@ -315,6 +325,16 @@ const Calendar = () => {
     checkAdmin();
   }, []);
 
+
+  const location = useLocation();
+  const from = location.state?.from || false;
+
+  useEffect(() => {
+    if (from === false) {
+      checkIfScreenshot();
+    }
+  }, [from]);
+
   const handleShowRemoveModal = (id) => {
     setCalendarToDelete(id);
     setShowRemoveModal(true);
@@ -324,6 +344,7 @@ const Calendar = () => {
     setShowRemoveModal(false);
     setCalendarToDelete(null);
   };
+
 
 
   return (

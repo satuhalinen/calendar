@@ -37,6 +37,7 @@ function EditHatch({ number }) {
     const randomIndex = Math.floor(Math.random() * randomTopic.content.length);
     const randomAlternative = randomTopic.content[randomIndex];
     setSelectedAlternative(randomAlternative);
+
     saveAlternative(number, randomAlternative, randomTopic.id);
   };
 

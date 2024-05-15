@@ -14,7 +14,6 @@ export default function Calendars() {
   const [search, setSearch] = useState("");
   const myCalendarData = useMyCalendarData();
   const myCalendars = myCalendarData ? myCalendarData.myCalendars : [];
-  console.log("myCalendars:", myCalendars);
   const searchHandler = (event) => {
     setSearch(event.target.value);
   };

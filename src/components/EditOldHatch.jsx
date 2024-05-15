@@ -5,7 +5,7 @@ import { useState } from "react";
 import { saveAlternatives } from "../store/alternativesSlice";
 import "../components/editHatch/editHatch.css";
 
-function EditHatch({ number }) {
+function EditOldHatch({ number }) {
   const alternatives = useSelector(
     (state) => state.alternatives.availableAlternatives
   );
@@ -37,13 +37,10 @@ function EditHatch({ number }) {
     const randomIndex = Math.floor(Math.random() * randomTopic.content.length);
     const randomAlternative = randomTopic.content[randomIndex];
     setSelectedAlternative(randomAlternative);
-
     saveAlternative(number, randomAlternative, randomTopic.id);
   };
 
-  const hatchTextHatch = useSelector(
-    (state) => state.alternatives.calendarText
-  );
+  const content = useSelector((state) => state.alternatives.savedAlternatives);
 
   return (
     <Card
@@ -60,9 +57,7 @@ function EditHatch({ number }) {
       <DropdownButton
         id="dropdown-topic-button"
         title={
-          hatchTextHatch[number]?.topic
-            ? hatchTextHatch[number].topic
-            : "Choose a topic"
+          content[number]?.topic ? content[number].topic : "Choose a topic"
         }
         style={{ backgroundColor: backgroundColor }}
       >
@@ -76,18 +71,22 @@ function EditHatch({ number }) {
                   selectedTopic === topic ? "lightgrey" : "#F9F5F3",
               }}
               className="dropdownTopic"
-              onClick={() => setSelectedTopic(topic)}
+              onClick={() => {
+                setSelectedTopic(topic);
+                saveAlternative(number, {}, topic);
+              }}
             >
               {topic}
             </Dropdown.Item>
           )
         )}
       </DropdownButton>
+
       <DropdownButton
         id="dropdown-alternative-button"
         title={
-          selectedAlternative
-            ? selectedAlternative.title
+          content[number]?.title
+            ? content[number]?.title
             : "Choose an alternative"
         }
         style={{ backgroundColor: backgroundColor }}
@@ -95,9 +94,9 @@ function EditHatch({ number }) {
         {alternatives
           .filter((alternative) => alternative.id === selectedTopic)
           .flatMap((alternative) => alternative.content)
-          .map((alternative, selectedTopic) => (
+          .map((alternative, index) => (
             <Dropdown.Item
-              key={selectedTopic}
+              key={index}
               as="button"
               onClick={() => {
                 setSelectedAlternative(alternative);
@@ -115,10 +114,11 @@ function EditHatch({ number }) {
             </Dropdown.Item>
           ))}
       </DropdownButton>
+
       <button className="randomizeButton" onClick={handleRandomize}>
         Randomize
       </button>
     </Card>
   );
 }
-export default EditHatch;
+export default EditOldHatch;

@@ -26,6 +26,7 @@ import store from "./store/store";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import ErrorPage from "./routes/errorPage/errorPage";
 import { ScrollToTop } from "react-router-scroll-to-top";
+import ModifyOldCalendarStyling from "./routes/ModifyOldCalendarStyling";
 
 function App() {
   return (
@@ -113,6 +114,15 @@ function App() {
               path="/modify-old-calendar/:id"
               element={
                 <ProtectedRoute adminOnly component={ModifyOldCalendar} />
+              }
+            />
+            <Route
+              path="/modify-old-calendar-styling/:id"
+              element={
+                <ProtectedRoute
+                  adminOnly
+                  component={ModifyOldCalendarStyling}
+                />
               }
             />
           </Routes>
