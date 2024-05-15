@@ -24,7 +24,7 @@ export default function About() {
               tabIndex="0"
               width="540"
               height="330"
-              className="d-inline-block align-top"
+              className="sunsetImg"
               alt="Two people helping a third person scale a mountain, sun setting in the background"
             />
             <h3 className="ourTeam">Our team</h3>
@@ -125,8 +125,8 @@ export default function About() {
               kindness with us, we welcome you to join our community and create
               a calendar that fits your needs. <br />
               <br />
-              <b>Thank you</b> for being a part of our journey to make the world
-              a better place, one calendar at a time.{" "}
+              We <b>welcome you</b> to be a part of our journey to make the
+              world a better place, one calendar at a time.{" "}
               <Link to="/register">
                 <b>Join us</b>
               </Link>

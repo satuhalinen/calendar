@@ -6,6 +6,7 @@
 }
 
 .about-wrap {
+  position: relative;
   padding: 20px 60px 0px 60px;
   background-color: #f4ede7;
   border-radius: 10px;
@@ -14,9 +15,13 @@
 .aboutTitle {
   position: relative;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 400;
-  margin: 2rem 0 4rem;
+  margin: 2rem 18rem 4rem;
+}
+
+.aboutP {
+  font-size: 1.1rem;
 }
 
 .aboutP a {
@@ -32,8 +37,8 @@
   content: "";
   position: absolute;
   bottom: -20px;
-  left: 20%;
-  width: 60.5%;
+  left: 25%;
+  width: 50%;
   height: 2px;
   background-color: #ba6c2cd2;
 }
@@ -81,7 +86,7 @@
 
 .teamImg:hover {
   transform: scale(1.2);
-  transition: transform 0.5s;
+  transition: transform 0.3s;
   cursor: zoom-in;
 }
 
@@ -150,4 +155,8 @@
 
 .ourTeamSpan10 {
   margin-left: 0.8rem;
+}
+
+.sunsetImg {
+  margin-top: -8rem;
 }
