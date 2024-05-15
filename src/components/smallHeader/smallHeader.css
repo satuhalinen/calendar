@@ -1,10 +1,11 @@
 .lightHeader {
   background-color: #F4EDE7;
   box-shadow: 0 0 2px #00000059;
+
 }
 
 .lightHeader .smallHeaderLink {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   margin: 0 0.2rem 0 0.5rem;
   text-decoration: none;
   color: black;
