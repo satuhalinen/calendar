@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import "./about.css";
 import fjellteam from "../../assets/fjellteam.png";
 import avatar from "../../assets/avatar.png";
+import satu from "../../assets/Satu.jpeg";
+import ben from "../../assets/Ben.png";
+import pinja from "../../assets/Pinja.jpeg";
+import pushpa from "../../assets/Pushpa.jpg";
 
 export default function About() {
   return (
@@ -23,14 +27,15 @@ export default function About() {
               className="d-inline-block align-top"
               alt="Two people helping a third person scale a mountain, sun setting in the background"
             />
+            <h3 className="ourTeam">Our team</h3>
             <Container className="teamContainer">
               <Row className="aboutUsTeam">
-                <Image className="teamImg" src={avatar}></Image>
-                <Image className="teamImg" src={avatar}></Image>
-                <Image className="teamImg" src={avatar}></Image>
+                <Image className="teamImg" src={satu}></Image>
+                <Image className="teamImg" src={ben}></Image>
+                <Image className="teamImg" src={pinja}></Image>
               </Row>
               <Row className="aboutUsTeam1">
-                <Image className="teamImg" src={avatar}></Image>
+                <Image className="teamImg" src={pushpa}></Image>
                 <Image className="teamImg" src={avatar}></Image>
               </Row>
             </Container>
