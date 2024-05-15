@@ -198,7 +198,7 @@ function ModifyOldCalendar() {
             className="createCalendarButton"
             to="#"
           >
-            Create calendar
+            Save calendar
           </NavLink>
         </div>
       </div>
