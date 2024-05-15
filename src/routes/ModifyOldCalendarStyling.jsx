@@ -10,7 +10,7 @@ import FontPicker from "../components/fontPicker/FontPicker";
 import ImagePicker from "../components/imagePicker/ImagePicker";
 import { ArrowDown } from "react-bootstrap-icons";
 import { FaRandom } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { PiImageSquareThin } from "react-icons/pi";
 import OpenAI from "openai";
@@ -40,10 +40,10 @@ import { useEffect, useRef, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../auth/firebase";
 import { useParams } from "react-router-dom";
+import Header from "../components/header/Header";
 
 export default function ModifyOldCalendarStyling() {
   const dispatch = useDispatch();
-
   const [imageTooBig, setImageTooBig] = useState(false);
   const [randomizeColors, setRandomizeColors] = useState(false);
   const [prompt, setPrompt] = useState("");
@@ -338,6 +338,7 @@ export default function ModifyOldCalendarStyling() {
 
   return (
     <Row className="mainContent createCalendarContainer">
+      <Header />
       <Col xs={2} className="leftBarCol">
         <Leftbar />
       </Col>
@@ -694,7 +695,7 @@ export default function ModifyOldCalendarStyling() {
           <Row className="justify-content-center">
             <Preview />
           </Row>
-          <Link
+          <NavLink
             to={{
               pathname: `/modify-old-calendar/${id}`,
             }}
@@ -702,7 +703,7 @@ export default function ModifyOldCalendarStyling() {
             <Button variant="light" type="submit" className="crCAL-button">
               Next
             </Button>
-          </Link>
+          </NavLink>
         </Container>
       </Col>
     </Row>

@@ -6,7 +6,7 @@ export default function Root() {
 
   return (
     <>
-      {<Header />}
+      <Header />
       <main>
         <Outlet />
       </main>

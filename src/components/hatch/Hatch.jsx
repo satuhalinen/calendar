@@ -32,7 +32,6 @@ import {
 } from "../../store/scoreSlice";
 import { FaCheck } from "react-icons/fa";
 import { useAuthState } from "react-firebase-hooks/auth";
-import tinycolor from "tinycolor2";
 
 function Hatch({ number, saveMyCalendarsClick }) {
   const [show, setShow] = useState(false);
@@ -81,9 +80,7 @@ function Hatch({ number, saveMyCalendarsClick }) {
   );
 
   const hatchModalFontColor = backgroundImage
-    ? tinycolor(hatchFontColor).isLight()
-      ? "#000000"
-      : "#ffffff"
+    ? "#000000"
     : hatchFontColor;
 
   const [user] = useAuthState(auth);
@@ -254,7 +251,7 @@ function Hatch({ number, saveMyCalendarsClick }) {
           <Modal.Title
             className="hatchModalTitle"
             style={{
-              color: hatchModalFontColor,
+              color: hatchFontColor,
             }}
           >
             {number}
