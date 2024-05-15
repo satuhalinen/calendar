@@ -14,7 +14,7 @@ export default function About() {
       <Col className="about-wrap">
         <Row>
           <h1 tabIndex="0" className="aboutTitle">
-            About us
+            VOCA - Spread kindness, one hatch at a time!
           </h1>
         </Row>
         <Row>
@@ -42,10 +42,6 @@ export default function About() {
           </Col>
 
           <Col>
-            <h4 tabIndex="0" className="aboutH4">
-              VOCA - Spread kindness, one hatch at a time!
-            </h4>
-            <br />
             <p tabIndex="0" className="aboutP">
               Here at VOCA we believe in the good of the world! We are a diverse
               team consisting of five passionate full-stack web-developer
