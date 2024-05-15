@@ -4,6 +4,24 @@
     align-items: center;
     justify-content: center;
     margin: 1rem 0;
+    width: 100%;
+}
+
+.editCalendarSections {
+    width: 95%;
+}
+
+.editCalendarGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    column-gap: 10px;
+    row-gap: 20px;
+    justify-items: center;
+    align-items: center;
+    place-items: center;
+    width: 100%;
+    justify-content: center;
+    padding: 1.5rem 2rem;
 }
 
 .editCalendarTitle {
@@ -27,6 +45,13 @@
     text-decoration: none;
     transition: all 0.3s ease;
     font-size: 0.85rem;
+}
+
+.backToCreateCalendarButton {
+    display: flex;
+    margin-top: 1rem;
+    align-items: center;
+    justify-content: center;
 }
 
 .createCalendarButton:hover,

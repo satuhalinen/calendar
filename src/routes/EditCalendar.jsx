@@ -108,8 +108,8 @@ function EditCalendar() {
   return (
     <>
       <SmallHeader />
-      <div style={{ display: "grid" }} className="editCalendar">
-        <div className="calendarSections" style={{ display: "flex" }}>
+      <div className="editCalendar">
+        <div className="editCalendarSections">
           <Card
             style={{
               margin: "1.5% 0",
@@ -132,7 +132,7 @@ function EditCalendar() {
             >
               <p className="editCalendarTitle">{title}</p>
             </Card.Title>
-            <div className="calendar">
+            <div className="editCalendarGrid">
               {Array.from({ length: selectedHatchesNumber || 31 }).map(
                 (_, i) => (
                   <EditHatch key={i} number={i + 1} />
@@ -141,10 +141,10 @@ function EditCalendar() {
             </div>
           </Card>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
           <NavLink
             style={{
-              width: "7%",
+              width: "30%",
               margin: "0% 0% 2% 0%",
               backgroundColor: "#BA6C2C",
               color: "#FFFAF7",

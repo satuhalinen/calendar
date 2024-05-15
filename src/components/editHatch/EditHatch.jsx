@@ -43,11 +43,11 @@ function EditHatch({ number }) {
   return (
     <Card
       style={{
-        width: "100%",
-        height: "100%",
         backgroundColor: backgroundColor,
+        width: "90%",
+        height: "100%",
       }}
-      className="hatchCard"
+      className="editHatchCard"
     >
       <div className="hatch" style={{ color: hatchFontColor }}>
         {number}

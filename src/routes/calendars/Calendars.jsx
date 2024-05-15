@@ -65,50 +65,52 @@ export default function Calendars() {
                     intersectionObserverRef.current.observe(calendarRef)
                   }
                 >
-                  <Card.Title className="calendarCardTitle">
-                    {calendar.calendarTitle}
-                  </Card.Title>
-                  <NavLink
-                    to={`/calendar/${calendar.id}`}
-                    className="linkToOneCalendar"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <Card.Img
-                      className="calendarCardImg"
-                      src={calendar.imageUrl || defaultScreenshot}
-                    />
-                  </NavLink>
-                  <div style={{ display: "flex", alignItems: "center", marginBottom: "0.5rem" }}>
+                  <Card.Body className="d-flex flex-column justify-content-center align-items-center calendarBody">
+                    <Card.Title className="calendarCardTitle">
+                      {calendar.calendarTitle}
+                    </Card.Title>
                     <NavLink
                       to={`/calendar/${calendar.id}`}
                       className="linkToOneCalendar"
                       style={{ textDecoration: "none" }}
                     >
-                      <button
-                        className="useCalendarButton"
-                        style={{
-                          backgroundColor: "#BA6C2C",
-                          border: "none",
-                          color: "#F4EDE7",
-                        }}
-                      >
-                        Preview
-                      </button>
+                      <Card.Img
+                        className="calendarCardImg"
+                        src={calendar.imageUrl || defaultScreenshot}
+                      />
                     </NavLink>
-                    {calendar.isInMyCalendars && (
-                      <OverlayTrigger
-                        placement="bottom"
-                        delay={{ show: 250, hide: 400 }}
-                        overlay={renderTooltip}
+                    <div style={{ display: "flex", alignItems: "center", marginBottom: "0.5rem" }}>
+                      <NavLink
+                        to={`/calendar/${calendar.id}`}
+                        className="linkToOneCalendar"
+                        style={{ textDecoration: "none" }}
                       >
                         <button
-                          className="inMyCalendarsButton"
+                          className="useCalendarButton"
+                          style={{
+                            backgroundColor: "#BA6C2C",
+                            border: "none",
+                            color: "#F4EDE7",
+                          }}
                         >
-                          <FaStar />
+                          Preview
                         </button>
-                      </OverlayTrigger>
-                    )}
-                  </div>
+                      </NavLink>
+                      {calendar.isInMyCalendars && (
+                        <OverlayTrigger
+                          placement="bottom"
+                          delay={{ show: 250, hide: 400 }}
+                          overlay={renderTooltip}
+                        >
+                          <button
+                            className="inMyCalendarsButton"
+                          >
+                            <FaStar />
+                          </button>
+                        </OverlayTrigger>
+                      )}
+                    </div>
+                  </Card.Body>
                 </Card>
               ))}
           </div>

@@ -37,7 +37,7 @@ export default function Header() {
   };
 
   useEffect(() => {
-    if (location.pathname === "/calendar") {
+    if (location.pathname !== "/calendar") {
       document.addEventListener("click", handleClickOutsideMenu);
       return () => {
         document.removeEventListener("click", handleClickOutsideMenu);
