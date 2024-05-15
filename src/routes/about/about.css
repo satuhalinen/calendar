@@ -52,7 +52,7 @@
 }
 
 .aboutUsTeam {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   margin-left: -0.7rem;
   margin-right: -1.2rem;
   margin-bottom: 1rem;
@@ -77,7 +77,25 @@
 }
 
 .teamImg {
+  object-fit: cover;
   border-radius: 2%;
   width: 150px;
+  height: 150px;
   padding: 0rem;
+}
+
+.ourTeam {
+  text-align: center;
+  margin-right: 2.3rem;
+  margin-top: 1rem;
+}
+
+.ourTeam:after {
+  content: "";
+  position: absolute;
+  left: 9.3%;
+  bottom: 25px;
+  width: 37.2%;
+  height: 2px;
+  background-color: #ba6c2cd2;
 }
