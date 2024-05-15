@@ -18,19 +18,6 @@ import {
   setAvailableAlternatives,
 } from "../../store/alternativesSlice";
 import { useParams, useNavigate } from "react-router-dom";
-import { showCalendarText } from "../../store/alternativesSlice.js";
-import {
-  setSelectedImage,
-  setUploadedImage,
-  setGeneratedImage,
-  setSelectedColor,
-  setSelectedFont,
-  setSelectedTitleFont,
-  setSelectedHatchColor,
-  setSelectedHatchFontColor,
-  setSelectedHatchesNumber,
-  setInputValue,
-} from "../../store/calendarStylingSlice.js";
 
 function ModifyOldCalendar() {
   const { id } = useParams();
@@ -118,7 +105,7 @@ function ModifyOldCalendar() {
         { merge: true }
       );
 
-      navigate(`/calendar/${id}`);
+      navigate(`/calendar/${id}`, { state: { from: true } });
       console.log("Document updated with ID: ", id);
     }
   };
@@ -144,38 +131,6 @@ function ModifyOldCalendar() {
     (async () => {
       await fetchAlternativesFromFirebase();
     })();
-  }, []);
-
-  const fetchContentById = async () => {
-    try {
-      const docRef = doc(db, "calendars", id);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        console.log("Data fetched", data);
-
-        dispatch(showCalendarText(data.content));
-        dispatch(setSelectedImage(data.calendarImage));
-        dispatch(setSelectedColor(data.calendarBackgroundColor));
-        dispatch(setSelectedFont(data.calendarFont));
-        dispatch(setSelectedTitleFont(data.calendarTitleFont));
-        dispatch(setSelectedHatchColor(data.calendarHatchColor));
-        dispatch(setSelectedHatchFontColor(data.calendarHatchFontColor));
-        dispatch(setSelectedHatchesNumber(data.calendarHatchesNumber));
-        dispatch(setInputValue(data.calendarTitle));
-        dispatch(setUploadedImage(data.calendarUploadedImage));
-        dispatch(setGeneratedImage(data.calendarGeneratedImage));
-      } else {
-        console.log("No such document!");
-      }
-    } catch (error) {
-      console.log("Error fetching content", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchContentById();
   }, []);
 
   return (

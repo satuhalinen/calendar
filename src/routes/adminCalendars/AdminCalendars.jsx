@@ -106,7 +106,7 @@ export default function AdminCalendars() {
                       Use
                     </NavLink>
                     <NavLink
-                      to={`/modify-old-calendar/${calendar.id}`}
+                      to={`/modify-old-calendar-styling/${calendar.id}`}
                       className="modifyButton btn btn-primary"
                     >
                       Modify

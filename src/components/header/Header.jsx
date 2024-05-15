@@ -42,6 +42,7 @@ export default function Header() {
     "/about",
     "/terms-and-conditions",
     "/contact",
+    "/modify-old-calendar-styling",
   ];
   const userHeaderRoutes = [
     "/",
@@ -65,6 +66,7 @@ export default function Header() {
     "/create-calendar",
     "/user-management",
     "/customer-messages",
+    "/modify-old-calendar-styling",
   ];
 
   const isAdminRoute = adminHeaderColor.includes(location.pathname);
