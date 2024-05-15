@@ -59,7 +59,6 @@ import { useLocation } from "react-router-dom";
 
 import { selectProfileImageUrl } from "../store/profileImageSlice.js";
 
-
 const Calendar = () => {
   const [user] = useAuthState(auth);
   const [weatherIcon, setWeatherIcon] = useState(<FaCloudRain />);
@@ -179,64 +178,6 @@ const Calendar = () => {
     }
   }, [progress]);
 
-  useEffect(() => {
-    const fetchDataAndCaptureScreenshot = async () => {
-      await fetchContentById();
-      captureScreenshot();
-    };
-
-    fetchDataAndCaptureScreenshot();
-  }, []);
-
-  const checkIfScreenshot = async () => {
-    console.log("from elsewhere than modify-old-calendarista");
-    const calendarDocRef = doc(db, "calendars", id);
-    const calendarDocSnapshot = await getDoc(calendarDocRef);
-    const existingImageURL = calendarDocSnapshot.data().imageURL;
-
-    if (existingImageURL) {
-      console.log("Screenshot already exists");
-      return;
-    }
-  };
-  const captureScreenshot = async () => {
-    if (!toCaptureRef.current) return;
-
-    const width = toCaptureRef.current.offsetWidth;
-
-    const marginWidth = width * 0.02;
-
-    const canvasPromise = html2canvas(toCaptureRef.current, {
-      useCORS: true,
-      width: width - 2 * marginWidth,
-      x: marginWidth,
-    });
-
-    canvasPromise.then(async (canvas) => {
-      const dataURL = canvas.toDataURL("image/png", 0.05);
-      dispatch(saveImageURL(dataURL));
-
-      try {
-        const storageRef = ref(storage, `screenshots/${id}.png`);
-        await uploadString(storageRef, dataURL, "data_url");
-        const downloadURL = await getDownloadURL(storageRef);
-
-        const calendarDocRef = doc(db, "calendars", id);
-        await setDoc(
-          calendarDocRef,
-          {
-            imageURL: downloadURL,
-          },
-          { merge: true }
-        );
-
-        console.log("Image URL saved to Firestore and Storage");
-      } catch (error) {
-        console.error("Error saving image URL:", error);
-      }
-    });
-  };
-
   const handleOpenInfoModal = () => {
     setShowInfoModal(true);
   };
@@ -271,19 +212,24 @@ const Calendar = () => {
       const q = query(collection(db, "users"), where("uid", "==", user.uid));
       const querySnapshot = await getDocs(q);
       if (querySnapshot.empty) {
-        console.error('No user document found');
+        console.error("No user document found");
         return;
       }
       const document = querySnapshot.docs[0];
       const docId = document.id;
       try {
-        const calendarRef = doc(db, "users", docId, "myCalendars", calendarToDelete);
+        const calendarRef = doc(
+          db,
+          "users",
+          docId,
+          "myCalendars",
+          calendarToDelete
+        );
         await deleteDoc(calendarRef);
         setRemoved(true);
         handleCloseRemoveModal();
-      }
-      catch (error) {
-        console.error('Error deleting calendar:', error);
+      } catch (error) {
+        console.error("Error deleting calendar:", error);
       }
     }
   };
@@ -325,15 +271,67 @@ const Calendar = () => {
     checkAdmin();
   }, []);
 
-
   const location = useLocation();
   const from = location.state?.from || false;
 
   useEffect(() => {
+    const fetchDataAndCaptureScreenshot = async () => {
+      await fetchContentById();
+      captureScreenshot();
+    };
+
+    fetchDataAndCaptureScreenshot();
+  }, []);
+
+  const captureScreenshot = async () => {
     if (from === false) {
-      checkIfScreenshot();
+      console.log("from elsewhere than modify-old-calendarista");
+      const calendarDocRef = doc(db, "calendars", id);
+      const calendarDocSnapshot = await getDoc(calendarDocRef);
+      const existingImageURL = calendarDocSnapshot.data().imageURL;
+
+      if (existingImageURL) {
+        console.log("Screenshot already exists");
+        return;
+      }
     }
-  }, [from]);
+
+    if (!toCaptureRef.current) return;
+
+    const width = toCaptureRef.current.offsetWidth;
+
+    const marginWidth = width * 0.02;
+
+    const canvasPromise = html2canvas(toCaptureRef.current, {
+      useCORS: true,
+      width: width - 2 * marginWidth,
+      x: marginWidth,
+    });
+
+    canvasPromise.then(async (canvas) => {
+      const dataURL = canvas.toDataURL("image/png", 0.05);
+      dispatch(saveImageURL(dataURL));
+
+      try {
+        const storageRef = ref(storage, `screenshots/${id}.png`);
+        await uploadString(storageRef, dataURL, "data_url");
+        const downloadURL = await getDownloadURL(storageRef);
+
+        const calendarDocRef = doc(db, "calendars", id);
+        await setDoc(
+          calendarDocRef,
+          {
+            imageURL: downloadURL,
+          },
+          { merge: true }
+        );
+
+        console.log("Image URL saved to Firestore and Storage");
+      } catch (error) {
+        console.error("Error saving image URL:", error);
+      }
+    });
+  };
 
   const handleShowRemoveModal = (id) => {
     setCalendarToDelete(id);
@@ -344,8 +342,6 @@ const Calendar = () => {
     setShowRemoveModal(false);
     setCalendarToDelete(null);
   };
-
-
 
   return (
     <div>
@@ -439,9 +435,6 @@ const Calendar = () => {
                     }
                     delay={{ show: 250, hide: 200 }}
                   >
-
-                 
-
                     <Button
                       variant="danger"
                       style={{
@@ -449,7 +442,7 @@ const Calendar = () => {
                         borderStyle: "none",
                         padding: "0.7rem 0.3rem",
                         width: "20vw",
-                        filter: "saturate(0.8)"
+                        filter: "saturate(0.8)",
                       }}
                       className="removeMyCalendarsButton"
                       onClick={() => handleShowRemoveModal(id)}
@@ -457,7 +450,6 @@ const Calendar = () => {
                       Remove Calendar
                     </Button>
                   </OverlayTrigger>
-
                 ))}
             </Card.Body>
           </Card>
@@ -493,24 +485,41 @@ const Calendar = () => {
           </Card>
           <InfoModal show={showInfoModal} handleClose={handleCloseInfoModal} />
         </div>
-        <Modal className="removeModal" centered show={showRemoveModal} onHide={handleCloseRemoveModal}>
+        <Modal
+          className="removeModal"
+          centered
+          show={showRemoveModal}
+          onHide={handleCloseRemoveModal}
+        >
           <Modal.Header className="removeModalHeader">
-            <Modal.Title className="removeModalTitle">Confirm Removal</Modal.Title>
+            <Modal.Title className="removeModalTitle">
+              Confirm Removal
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body className="removeModalBody">
-            <strong><p>Are you sure you want to remove this calendar?</p></strong>
+            <strong>
+              <p>Are you sure you want to remove this calendar?</p>
+            </strong>
             <p>You will lose all your progress!</p>
           </Modal.Body>
           <Modal.Footer className="removeModalFooter">
-            <Button className="deleteRemoveModalButton" variant="danger" onClick={removeMyCalendarClick}>
+            <Button
+              className="deleteRemoveModalButton"
+              variant="danger"
+              onClick={removeMyCalendarClick}
+            >
               Remove
             </Button>
-            <Button className="removeModalButton" variant="secondary" onClick={handleCloseRemoveModal}>
+            <Button
+              className="removeModalButton"
+              variant="secondary"
+              onClick={handleCloseRemoveModal}
+            >
               Cancel
             </Button>
           </Modal.Footer>
         </Modal>
-      </div >
+      </div>
     </div>
   );
 };
