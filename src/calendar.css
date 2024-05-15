@@ -204,21 +204,21 @@
 }
 
 .sun-icon {
-  color: #738f8b;
+  color: #df9138;
   font-size: 2rem;
   animation: spin 2s linear forwards;
   margin-bottom: 0.9rem;
 }
 
 .cloud-sun-icon {
-  color: #617c78;
+  color: #ba6c2c;
   font-size: 2rem;
   animation: float 2s forwards;
   margin-bottom: 0.9rem;
 }
 
 .cloud-icon {
-  color: #425f5b;
+  color: #4e6562;
   font-size: 2rem;
   animation: drift 2s forwards;
   margin-bottom: 0.9rem;
