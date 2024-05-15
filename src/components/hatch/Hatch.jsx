@@ -6,6 +6,8 @@ import {
   Row,
   Col,
   Image,
+  OverlayTrigger,
+  Tooltip,
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import "./hatch.css";
@@ -306,14 +308,23 @@ function Hatch({ number, saveMyCalendarsClick }) {
               "No link"
             )}
           </p>
-          <label className="toggle-btn">
-            <input
-              type="checkbox"
-              checked={checkState}
-              onChange={handleClick}
-            />
-            <span className="slider round"></span>
-          </label>
+          <OverlayTrigger
+            placement="top"
+            overlay={
+              <Tooltip className="tooltip-1">
+                {checkState ? "Mark as undone" : "Mark as done"}
+              </Tooltip>
+            }
+          >
+            <label className="toggle-btn">
+              <input
+                type="checkbox"
+                checked={checkState}
+                onChange={handleClick}
+              />
+              <span className="slider round"></span>
+            </label>
+          </OverlayTrigger>
         </Modal.Body>
         <Modal.Footer
           className="hatchModalContent"

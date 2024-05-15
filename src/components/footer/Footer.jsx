@@ -1,6 +1,6 @@
 import { Container, Row, Col, Nav } from "react-bootstrap";
 import { NavLink, useLocation, useParams } from "react-router-dom";
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa"; // Import icons
+import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import "./footer.css";
 
 const Footer = () => {
@@ -28,12 +28,9 @@ const Footer = () => {
   return (
     <footer className={isAdminRoute ? "footerAdmin" : "footerDefault"}>
       <Container>
-        <Row>
-          <Col>
+        <Row className="align-items-center">
+          <Col md={4} className="text-center text-md-start">
             <Nav className="socialMedia">
-              <Nav.Item>
-                <p className="socialMediaTitle">Social Media Links</p>
-              </Nav.Item>
               <Nav.Item className="socialLinks">
                 <Nav.Link
                   href="https://www.facebook.com/"
@@ -59,10 +56,10 @@ const Footer = () => {
               </Nav.Item>
             </Nav>
           </Col>
-          <Col className="text-center">
-            <p className="copyright">Copyright</p>
+          <Col md={4} className="text-center">
+            <p className="copyright">© 2024 VOCA</p>
           </Col>
-          <Col className="termsLinks">
+          <Col md={4} className="text-center text-md-end">
             <Nav className="termsAndContact">
               <Nav.Item>
                 <Nav.Link as={NavLink} to="/terms-and-conditions">

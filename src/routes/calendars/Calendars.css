@@ -34,11 +34,28 @@
   gap: 30px;
   margin: 1rem;
   justify-items: center;
+  width: 100%;
 }
 
 .useCalendarButton {
+  background-color: #a25e2c;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
   margin: 0;
   cursor: pointer;
+  border: none;
+}
+
+.inMyCalendarsButton {
+  font-size: 1.2rem;
+  background-color: #eae0d7;
+  color: #60330d;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-bottom: 0.2rem;
+  cursor: pointer;
+  border: none;
 }
 
 .useCalendarButton:hover {
@@ -59,7 +76,9 @@
 .calendarCardImg {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  max-height: 200px;
+  min-width: 200px;
+  object-fit: initial;
 }
 
 .calendarCard {
@@ -81,10 +100,12 @@
 .search-input {
   position: relative;
   display: inline-block;
+  margin: 0;
+  ;
 }
 
 ::placeholder {
-  color: black;
+  color: #000000a7;
   opacity: 1;
 }
 

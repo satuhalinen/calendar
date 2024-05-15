@@ -143,6 +143,9 @@ export default function Profile() {
                   intersectionObserverRef.current.observe(calendarRef)
                 }
               >
+                <p className="calendarCardTitle">
+                  {calendar.calendarTitle}
+                </p>
                 <NavLink
                   to={`/calendar/${calendar.id}`}
                   className="calendarLinkFavorite"
@@ -152,7 +155,7 @@ export default function Profile() {
                     alt="no img"
                     className="defaultScreenshotFavorite"
                   />
-                  <button className="useMyCalendarButton">Use Calendar</button>
+                  <button className="useMyCalendarButtonProfile">Use Calendar</button>
                 </NavLink>
               </Col>
             ))}

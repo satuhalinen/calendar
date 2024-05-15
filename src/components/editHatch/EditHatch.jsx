@@ -44,11 +44,11 @@ function EditHatch({ number }) {
   return (
     <Card
       style={{
+        backgroundColor: backgroundColor,
         width: "90%",
         height: "100%",
-        backgroundColor: backgroundColor,
       }}
-      className="hatchCard"
+      className="editHatchCard"
     >
       <div className="hatch" style={{ color: hatchFontColor }}>
         {number}
@@ -80,7 +80,7 @@ function EditHatch({ number }) {
         title={
           selectedAlternative
             ? selectedAlternative.title
-            : "Choose an alternative"
+            : "Choose an option"
         }
         style={{ backgroundColor: backgroundColor }}
       >

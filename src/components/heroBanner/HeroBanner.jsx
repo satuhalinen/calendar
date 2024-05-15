@@ -5,8 +5,8 @@ import hero2 from "../../assets/hero2.jpg";
 
 const HeroBanner = () => {
   const handleScroll = () => {
-    const nextSection = document.querySelector(".versions-wrap");
-    const offset = 60;
+    const nextSection = document.querySelector(".calendarCreationExplanation");
+    const offset = 80;
     const targetPosition = nextSection.offsetTop - offset;
     window.scrollTo({
       top: targetPosition,

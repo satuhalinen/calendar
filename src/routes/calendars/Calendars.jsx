@@ -5,7 +5,7 @@ import defaultScreenshot from "../../assets/defaultScreenshot.png";
 import "./Calendars.css";
 import useCalendarData from "../../hooks/useCalendarData";
 import useMyCalendarData from "../../hooks/useMyCalendarData";
-import { CiStar } from "react-icons/ci";
+import { FaStar } from "react-icons/fa";
 import { Tooltip } from "react-bootstrap";
 import { OverlayTrigger } from "react-bootstrap";
 
@@ -26,7 +26,7 @@ export default function Calendars() {
   }));
 
   const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
+    <Tooltip className="tooltip-1" {...props}>
       This calendar is in My Calendars.
     </Tooltip>
   );
@@ -64,38 +64,25 @@ export default function Calendars() {
                     intersectionObserverRef.current.observe(calendarRef)
                   }
                 >
-                  <NavLink
-                    to={`/calendar/${calendar.id}`}
-                    className="linkToOneCalendar"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <Card.Img
-                      className="calendarCardImg"
-                      src={calendar.imageUrl || defaultScreenshot}
-                    />
-                  </NavLink>
-                  <div style={{ display: "flex", alignItems: "center" }}>
+                  <Card.Body className="d-flex flex-column justify-content-center align-items-center calendarBody">
+                    <Card.Title className="calendarCardTitle">
+                      {calendar.calendarTitle}
+                    </Card.Title>
                     <NavLink
                       to={`/calendar/${calendar.id}`}
                       className="linkToOneCalendar"
                       style={{ textDecoration: "none" }}
                     >
-                      <button
-                        className="useCalendarButton"
-                        style={{
-                          backgroundColor: "#BA6C2C",
-                          border: "none",
-                          color: "#F4EDE7",
-                        }}
-                      >
-                        Preview
-                      </button>
+                      <Card.Img
+                        className="calendarCardImg"
+                        src={calendar.imageUrl || defaultScreenshot}
+                      />
                     </NavLink>
-                    {calendar.isInMyCalendars && (
-                      <OverlayTrigger
-                        placement="right"
-                        delay={{ show: 250, hide: 400 }}
-                        overlay={renderTooltip}
+                    <div style={{ display: "flex", alignItems: "center", marginBottom: "0.5rem" }}>
+                      <NavLink
+                        to={`/calendar/${calendar.id}`}
+                        className="linkToOneCalendar"
+                        style={{ textDecoration: "none" }}
                       >
                         <button
                           className="useCalendarButton"
@@ -103,14 +90,26 @@ export default function Calendars() {
                             backgroundColor: "#BA6C2C",
                             border: "none",
                             color: "#F4EDE7",
-                            height: "68%",
                           }}
                         >
-                          <CiStar />
+                          Preview
                         </button>
-                      </OverlayTrigger>
-                    )}
-                  </div>
+                      </NavLink>
+                      {calendar.isInMyCalendars && (
+                        <OverlayTrigger
+                          placement="bottom"
+                          delay={{ show: 250, hide: 400 }}
+                          overlay={renderTooltip}
+                        >
+                          <button
+                            className="inMyCalendarsButton"
+                          >
+                            <FaStar />
+                          </button>
+                        </OverlayTrigger>
+                      )}
+                    </div>
+                  </Card.Body>
                 </Card>
               ))}
           </div>

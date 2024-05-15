@@ -18,7 +18,7 @@
     top: 60%;
     left: 30%;
     transform: translate(-50%, -50%);
-    background: rgba(141, 109, 89, 0.415);
+    background: rgba(122, 101, 89, 0.415);
     color: #f4f4f4 !important;
     padding: 30px;
     text-align: center;
@@ -31,7 +31,7 @@
 .heroImageArrowButton {
     position: absolute;
     bottom: 0.5%;
-    left: 50%;
+    left: 46%;
     padding: 10px 40px;
     border-radius: 50%;
     border: none;
@@ -81,7 +81,8 @@
 /* Styles for larger screens */
 @media (min-width: 1200px) {
     .heroTextHeader {
-        font-size: 50px;
+        font-size: 46px;
+        padding: 0 2rem;
     }
 
     .heroText {

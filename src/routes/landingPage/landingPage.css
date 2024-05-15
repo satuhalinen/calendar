@@ -21,9 +21,6 @@
 
 .calendarBannerTitle {
     display: inline-block;
-    border-bottom: #ba6c2c8f 2px solid;
-    padding-bottom: 1.5rem;
-    width: 40%;
     margin: 2rem auto 0rem;
 }
 
@@ -119,7 +116,7 @@
 }
 
 .calendarBannerRow {
-    padding: 0 1rem;
+    padding: 0 1rem 1rem 1rem;
     margin: 2.5rem 0;
     background-color: #F4EDE7;
     border-radius: 5px;
@@ -135,16 +132,57 @@
 }
 
 .exampleCalendar {
-    margin: 1rem auto;
+    margin: 1rem;
     width: auto;
-    max-height: 40vh;
+    max-height: 35vh;
     border-radius: 10px;
+    transition: all 0.7s ease;
+}
+
+.exampleCalendar:hover {
+    cursor: zoom-in;
+    scale: 1.05;
+}
+
+.calendarCreationExplanation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0rem 0 0;
+    background-color: #F4EDE7;
+    padding: 2rem 4rem;
+}
+
+.calendarCreationExplanation h2 {
+    font-size: 1.7rem;
+    margin-bottom: 2rem;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.step p {
+    margin-left: 1rem;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+}
+
+.step svg {
+    font-size: 5rem;
+    color: #425f5b;
 }
 
 @media (max-width: 768px) {
 
     .versionTitle,
-    .calendarBannerTitle {
+    .calendarBannerTitle,
+    .calendarCreationExplanation h2 {
         font-size: 1.4rem;
     }
 
