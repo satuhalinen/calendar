@@ -1,24 +1,24 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Leftbar from "../components/leftbar/Leftbar";
+import Leftbar from "../../components/leftbar/Leftbar";
 import { Button, Form, Spinner } from "react-bootstrap";
-import "./createCalendar/createCalendar.css";
+import "../createCalendar/createCalendar.css";
 import { SketchPicker } from "react-color";
-import TitleFontPicker from "../components/titleFontPicker/TitleFontPicker";
-import FontPicker from "../components/fontPicker/FontPicker";
-import ImagePicker from "../components/imagePicker/ImagePicker";
+import TitleFontPicker from "../../components/titleFontPicker/TitleFontPicker";
+import FontPicker from "../../components/fontPicker/FontPicker";
+import ImagePicker from "../../components/imagePicker/ImagePicker";
 import { ArrowDown } from "react-bootstrap-icons";
 import { FaRandom } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { PiImageSquareThin } from "react-icons/pi";
 import OpenAI from "openai";
-import Preview from "../components/preview/Preview";
+import Preview from "../../components/preview/Preview";
 import {
   setSelectedFont,
   setSelectedTitleFont,
-} from "../store/calendarStylingSlice";
+} from "../../store/calendarStylingSlice";
 
 import {
   setGeneratedImage,
@@ -35,12 +35,12 @@ import {
   setHatchColorShow,
   setHatchFontColorShow,
   setInputValue,
-} from "../store/calendarStylingSlice";
+} from "../../store/calendarStylingSlice";
 import { useEffect, useRef, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../auth/firebase";
+import { db } from "../../auth/firebase";
 import { useParams } from "react-router-dom";
-import Header from "../components/header/Header";
+import Header from "../../components/header/Header";
 
 export default function ModifyOldCalendarStyling() {
   const dispatch = useDispatch();
