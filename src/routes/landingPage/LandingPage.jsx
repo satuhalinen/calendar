@@ -9,6 +9,7 @@ import exampleCalendar5 from "../../assets/exampleCalendar5.png";
 import exampleCalendar6 from "../../assets/exampleCalendar6.png";
 import "./landingPage.css";
 import ChatBot from "../../components/chatBot/ChatBot.jsx";
+import { FaUserEdit, FaPalette, FaGift, FaHandsHelping } from "react-icons/fa";
 
 const LandingPage = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -38,6 +39,25 @@ const LandingPage = () => {
     <Col className="landing-container">
       <PopUp showInitially={!showPopup} handleClose={handleClosePopup} />
       <HeroBanner />
+      <Row className="calendarCreationExplanation">
+        <h2>How It Works</h2>
+        <Col className="step">
+          <FaUserEdit />
+          <p>Register and start creating your own unique vision of an advent calendar.</p>
+        </Col>
+        <Col className="step">
+          <FaPalette />
+          <p>Customize colors, backgrounds, and content behind each hatch.</p>
+        </Col>
+        <Col className="step">
+          <FaGift />
+          <p>Choose hatch categories and assign charitable activities to each hatch.</p>
+        </Col>
+        <Col className="step">
+          <FaHandsHelping />
+          <p>Share your calendars with other users and spread the joy of kindness.</p>
+        </Col>
+      </Row>
       <Col className="versions-wrap">
         <h2 className="versionTitle">Create your own inspiring calendar</h2>
         <Row className="versions">
