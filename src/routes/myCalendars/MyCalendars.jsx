@@ -78,6 +78,9 @@ export default function MyCalendars() {
                   intersectionObserverRef.current.observe(calendarRef)
                 }
               >
+                <Card.Title className="calendarCardTitle">
+                  {calendar.calendarTitle}
+                </Card.Title>
                 <NavLink
                   to={`/calendar/${calendar.id}`}
                   className="linkToOneCalendar"

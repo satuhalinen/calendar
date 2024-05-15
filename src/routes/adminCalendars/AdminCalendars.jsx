@@ -107,6 +107,9 @@ export default function AdminCalendars() {
                   }
                 >
                   <Card.Body className="d-flex flex-column justify-content-center align-items-center adminCalendarBody">
+                    <Card.Title className="calendarCardTitle">
+                      {calendar.calendarTitle}
+                    </Card.Title>
                     <NavLink
                       to={`/calendar/${calendar.id}`}
                       style={{ textDecoration: "none" }}
@@ -117,9 +120,6 @@ export default function AdminCalendars() {
                         className="calendarScreenShot"
                       />
                     </NavLink>
-                    <Card.Title style={{ color: "black" }}>
-                      {calendar.title}
-                    </Card.Title>
                   </Card.Body>
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <NavLink
