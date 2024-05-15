@@ -227,6 +227,8 @@
 }
 
 .uploadImageInput {
+  margin-left: 1rem;
+  margin-bottom: 0.1rem;
   font-size: 1.3rem;
   cursor: pointer;
 }
@@ -293,6 +295,7 @@
   width: 16px;
   height: 16px;
   border: 2px solid #ccc;
+  background-color: #fff;
   border-radius: 50%;
 }
 

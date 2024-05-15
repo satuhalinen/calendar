@@ -23,6 +23,26 @@ export default function Header() {
 
   const profileImageUrl = useSelector(selectProfileImageUrl);
 
+  const handleClickOutsideMenu = (event) => {
+    const navbarToggler = document.querySelector(".navbar-toggler");
+    const navbarCollapse = document.querySelector(".navbar-collapse");
+
+    if (
+      navbarCollapse.classList.contains("show") &&
+      !navbarToggler.contains(event.target) &&
+      !navbarCollapse.contains(event.target)
+    ) {
+      navbarToggler.click();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutsideMenu);
+    return () => {
+      document.removeEventListener("click", handleClickOutsideMenu);
+    };
+  }, []);
+
   useEffect(() => {
     if (user?.uid) {
       dispatch(fetchProfileImage(user.uid));
@@ -107,6 +127,7 @@ export default function Header() {
     <Navbar
       className={isAdminRoute ? "navBarAdmin" : "navBarDefault"}
       fixed="top"
+      expand="lg"
     >
       <Container>
         {imagesLoaded && (
@@ -120,90 +141,93 @@ export default function Header() {
             />
           </NavLink>
         )}
-        <Nav className="links">
-          {isUserRoute && (
-            <>
-              {user ? (
-                <>
-                  <Nav.Link as={NavLink} to="/profile" className="navLink">
-                    <img
-                      src={profileImageUrl || avatar}
-                      alt="profile"
-                      className="profileImageHeader"
-                    />
-                  </Nav.Link>
-                  <Nav.Link as={NavLink} to="/calendars" className="navLink">
-                    All Calendars
-                  </Nav.Link>
-                  <Nav.Link as={NavLink} to="/my-calendars" className="navLink">
-                    My Calendars
-                  </Nav.Link>
-                  <button onClick={logout} className="navLinkButton">
-                    Logout
-                  </button>
-                </>
-              ) : (
-                <>
-                  <Nav.Link as={NavLink} to="/" className="navLink">
-                    Home
-                  </Nav.Link>
-                  <Nav.Link as={NavLink} to="/login" className="navLink">
-                    Login
-                  </Nav.Link>
-                  <Nav.Link as={NavLink} to="/register" className="navLink">
-                    Register
-                  </Nav.Link>
-                </>
-              )}
-              <Nav.Link as={NavLink} to="/about" className="navLink">
-                About
-              </Nav.Link>
-            </>
-          )}
-          {isAuthenticatedUser && (
-            <>
-              <Nav.Link as={NavLink} to="/profile" className="navLink">
-                <img
-                  src={profileImageUrl || avatar}
-                  alt="profile"
-                  className="profileImageHeader"
-                />
-              </Nav.Link>
-              <Nav.Link as={NavLink} to="/calendars" className="navLink">
-                All Calendars
-              </Nav.Link>
-              <Nav.Link as={NavLink} to="/my-calendars" className="navLink">
-                My Calendars
-              </Nav.Link>
-              <Nav.Link
-                as={NavLink}
-                to="/"
-                onClick={logout}
-                className="navLink"
-              >
-                Logout
-              </Nav.Link>
-              <Nav.Link as={NavLink} to="/about" className="navLink">
-                About
-              </Nav.Link>
-            </>
-          )}
-          {isAuthenticatedAdmin && (
-            <>
-              <Nav.Link as={NavLink} to="/" className="navLink">
-                Home
-              </Nav.Link>
-              <Nav.Link
-                as={NavLink}
-                to="/"
-                onClick={logout}
-                className="navLink"
-              >
-                Logout
-              </Nav.Link>
-            </>
-          )}
-        </Nav>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto links">
+            {isUserRoute && (
+              <>
+                {user ? (
+                  <>
+                    <Nav.Link as={NavLink} to="/profile" className="navLink">
+                      <img
+                        src={profileImageUrl || avatar}
+                        alt="profile"
+                        className="profileImageHeader"
+                      />
+                    </Nav.Link>
+                    <Nav.Link as={NavLink} to="/calendars" className="navLink">
+                      All Calendars
+                    </Nav.Link>
+                    <Nav.Link as={NavLink} to="/my-calendars" className="navLink">
+                      My Calendars
+                    </Nav.Link>
+                    <button onClick={logout} className="navLinkButton">
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Nav.Link as={NavLink} to="/" className="navLink">
+                      Home
+                    </Nav.Link>
+                    <Nav.Link as={NavLink} to="/login" className="navLink">
+                      Login
+                    </Nav.Link>
+                    <Nav.Link as={NavLink} to="/register" className="navLink">
+                      Register
+                    </Nav.Link>
+                  </>
+                )}
+                <Nav.Link as={NavLink} to="/about" className="navLink">
+                  About
+                </Nav.Link>
+              </>
+            )}
+            {isAuthenticatedUser && (
+              <>
+                <Nav.Link as={NavLink} to="/profile" className="navLink">
+                  <img
+                    src={profileImageUrl || avatar}
+                    alt="profile"
+                    className="profileImageHeader"
+                  />
+                </Nav.Link>
+                <Nav.Link as={NavLink} to="/calendars" className="navLink">
+                  All Calendars
+                </Nav.Link>
+                <Nav.Link as={NavLink} to="/my-calendars" className="navLink">
+                  My Calendars
+                </Nav.Link>
+                <Nav.Link
+                  as={NavLink}
+                  to="/"
+                  onClick={logout}
+                  className="navLink"
+                >
+                  Logout
+                </Nav.Link>
+                <Nav.Link as={NavLink} to="/about" className="navLink">
+                  About
+                </Nav.Link>
+              </>
+            )}
+            {isAuthenticatedAdmin && (
+              <>
+                <Nav.Link as={NavLink} to="/" className="navLink">
+                  Home
+                </Nav.Link>
+                <Nav.Link
+                  as={NavLink}
+                  to="/"
+                  onClick={logout}
+                  className="navLink"
+                >
+                  Logout
+                </Nav.Link>
+              </>
+            )}
+          </Nav>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );

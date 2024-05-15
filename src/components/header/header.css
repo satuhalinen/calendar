@@ -14,6 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    width: 100%;
 }
 
 .navBarAdmin {
@@ -81,4 +82,64 @@
 
 .navLinkButton:hover {
     color: #f0b283;
+}
+
+/* Styles for the hamburger menu */
+.navbar-toggler {
+    border: none;
+    background: none;
+    color: inherit;
+    font-size: 1.5rem;
+}
+
+.navbar-toggler:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.navbar-toggler:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.navBarAdmin .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navBarDefault .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+@media (max-width: 991.98px) {
+
+    .navBarAdmin,
+    .navBarDefault {
+        justify-content: flex-start;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .navBarAdmin .links,
+    .navBarDefault .links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navBarAdmin .navbar-nav {
+        background-color: #597773;
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .navBarDefault .navbar-nav {
+        background-color: #F4EDE7;
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .navBarAdmin .navbar-nav .nav-item,
+    .navBarDefault .navbar-nav .nav-item {
+        width: 100%;
+        text-align: right;
+    }
 }
