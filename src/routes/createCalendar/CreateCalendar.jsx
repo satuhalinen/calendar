@@ -16,6 +16,7 @@ import { PiImageSquareThin } from "react-icons/pi";
 import OpenAI from "openai";
 import Preview from "../../components/preview/Preview";
 import { resetState } from "../../store/calendarStylingSlice";
+import { resetSavedAlternatives } from "../../store/alternativesSlice";
 
 import {
   setGeneratedImage,
@@ -297,6 +298,10 @@ export default function CreateCalendar() {
 
   useEffect(() => {
     dispatch(resetState());
+  }, []);
+
+  useEffect(() => {
+    dispatch(resetSavedAlternatives());
   }, []);
 
   return (
