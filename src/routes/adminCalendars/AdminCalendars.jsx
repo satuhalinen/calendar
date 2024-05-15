@@ -121,7 +121,7 @@ export default function AdminCalendars() {
                       />
                     </NavLink>
                   </Card.Body>
-                  <div style={{ display: "flex", alignItems: "center" }}>
+                  <div style={{ display: "flex", alignItems: "center", marginBottom: "0.5rem" }}>
                     <NavLink
                       to={`/calendar/${calendar.id}`}
                       className="modifyButton btn btn-primary"

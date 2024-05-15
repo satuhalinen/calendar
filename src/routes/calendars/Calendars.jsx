@@ -27,7 +27,7 @@ export default function Calendars() {
   }));
 
   const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
+    <Tooltip className="tooltip-1" {...props}>
       This calendar is in My Calendars.
     </Tooltip>
   );
@@ -78,7 +78,7 @@ export default function Calendars() {
                       src={calendar.imageUrl || defaultScreenshot}
                     />
                   </NavLink>
-                  <div style={{ display: "flex", alignItems: "center" }}>
+                  <div style={{ display: "flex", alignItems: "center", marginBottom: "0.5rem" }}>
                     <NavLink
                       to={`/calendar/${calendar.id}`}
                       className="linkToOneCalendar"

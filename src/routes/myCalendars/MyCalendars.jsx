@@ -91,7 +91,7 @@ export default function MyCalendars() {
                     src={calendar.imageUrl || defaultScreenshot}
                   />
                 </NavLink>
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "row" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "row", marginBottom: "0.5rem" }}>
                   <NavLink
                     to={`/calendar/${calendar.id}`}
                     className="linkToOneCalendar"
