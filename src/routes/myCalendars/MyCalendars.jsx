@@ -78,6 +78,9 @@ export default function MyCalendars() {
                   intersectionObserverRef.current.observe(calendarRef)
                 }
               >
+                <Card.Title className="calendarCardTitle">
+                  {calendar.calendarTitle}
+                </Card.Title>
                 <NavLink
                   to={`/calendar/${calendar.id}`}
                   className="linkToOneCalendar"
@@ -88,14 +91,14 @@ export default function MyCalendars() {
                     src={calendar.imageUrl || defaultScreenshot}
                   />
                 </NavLink>
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "row", marginBottom: "0.5rem" }}>
                   <NavLink
                     to={`/calendar/${calendar.id}`}
                     className="linkToOneCalendar"
                     style={{ textDecoration: "none" }}
                   >
                     <button
-                      className="useCalendarButton"
+                      className="useMyCalendarButton"
                       style={{
                         backgroundColor: "#BA6C2C",
                         border: "none",
@@ -108,7 +111,7 @@ export default function MyCalendars() {
 
                   <button
                     onClick={() => handleShowRemoveModal(calendar.id)}
-                    className="useCalendarButton"
+                    className="removeMyCalendarButton"
                     style={{
                       backgroundColor: "#BA6C2C",
                       border: "none",
@@ -116,7 +119,7 @@ export default function MyCalendars() {
                       height: "52%",
                     }}
                   >
-                    <LuMinusCircle />
+                    <LuMinusCircle className="removeCalendarIcon" />
                   </button>
                 </div>
               </Card>

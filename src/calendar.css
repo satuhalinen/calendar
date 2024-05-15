@@ -1,7 +1,6 @@
 .calendar {
   display: grid;
-  grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
-  grid-template-rows: 20vh 20vh 20vh 20vh 20vh;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   column-gap: 10px;
   row-gap: 20px;
   justify-items: center;
@@ -141,6 +140,79 @@
   margin: 0.5rem;
 }
 
+@media (max-width: 768px) {
+
+  .calendar {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+
+  .useCalendarTitle {
+    font-size: 1.5rem;
+  }
+
+  .gameCardBody {
+    flex-direction: column;
+  }
+
+  .userInfo {
+    flex-direction: column;
+  }
+
+  .progressTitle {
+    margin: 1rem 0 0;
+    font-size: 0.7rem;
+  }
+
+  .userScoreTitle {
+    margin: 0.5rem 0;
+  }
+
+  .userNameTitle {
+    margin: 0.5rem 0;
+  }
+
+  .backToAdminCalendars {
+    width: 80%;
+  }
+
+  .infoCircle {
+    margin: 0.5rem 0;
+  }
+
+  .gameCardBody {
+    margin: 1rem 0;
+  }
+
+  .gamification {
+    margin: 1rem 0;
+    width: 80%;
+  }
+
+  .progressBar {
+    margin: 1rem 0;
+    width: 70%;
+  }
+
+  .weatherIconWrapper {
+    margin: 0 0 0 0.2rem;
+  }
+
+  .saveToMyCalendarsButton,
+  .removeMyCalendarsButton {
+    margin: 0.5rem;
+    font-size: 0.6rem;
+  }
+
+  .calendarSavedText {
+    margin: 0.2rem 0;
+  }
+
+  .tooltip-1 {
+    margin: 0.5rem 0;
+  }
+
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -204,21 +276,21 @@
 }
 
 .sun-icon {
-  color: #738f8b;
+  color: #df9138;
   font-size: 2rem;
   animation: spin 2s linear forwards;
   margin-bottom: 0.9rem;
 }
 
 .cloud-sun-icon {
-  color: #617c78;
+  color: #ba6c2c;
   font-size: 2rem;
   animation: float 2s forwards;
   margin-bottom: 0.9rem;
 }
 
 .cloud-icon {
-  color: #425f5b;
+  color: #4e6562;
   font-size: 2rem;
   animation: drift 2s forwards;
   margin-bottom: 0.9rem;

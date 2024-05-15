@@ -67,6 +67,7 @@
   box-shadow: 0px 0px 5px 0px #0000005e;
   filter: saturate(0.8);
   transition: all 1s ease;
+  min-height: 160px;
 }
 
 .hatchCardUsed:hover {
@@ -157,4 +158,99 @@ input:checked+.slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .hatchCardUsed {
+    width: 100%;
+    min-height: 100px;
+  }
+
+  .hatchModalImage {
+    max-width: 50%;
+  }
+
+  .hatchModalButton {
+    width: 50%;
+  }
+
+  .hatchModalContent {
+    font-size: 0.8rem;
+  }
+
+  .hatchModalTitle {
+    font-size: 1.5rem;
+  }
+
+  .hatchOpenedTitle {
+    font-size: 0.5rem;
+  }
+
+  .hatchImage {
+    max-width: 50px;
+  }
+
+  .checkMarkOpened {
+    font-size: 0.7rem;
+  }
+
+  .noContentOpened {
+    font-size: 0.6rem;
+  }
+
+  .linkToHatchContent {
+    font-size: 0.6rem;
+  }
+
+  .toggle-btn {
+    width: 40px;
+    height: 20px;
+  }
+
+  .slider {
+    width: 40px;
+    height: 20px;
+  }
+
+  .slider:before {
+    width: 16px;
+    height: 16px;
+  }
+
+  .slider.round {
+    border-radius: 20px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .toggle-btn input:checked+.slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+  }
+
+  .toggle-btn input:checked+.slider {
+    background-color: #425f5b;
+  }
+
+  .toggle-btn input:focus+.slider {
+    box-shadow: 0 0 1px #3e474e;
+  }
+
+  .toggle-btn input:checked+.slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+  }
+
+  .slider.round {
+    border-radius: 20px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
 }

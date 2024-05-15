@@ -5,7 +5,7 @@ import defaultScreenshot from "../../assets/defaultScreenshot.png";
 import "./Calendars.css";
 import useCalendarData from "../../hooks/useCalendarData";
 import useMyCalendarData from "../../hooks/useMyCalendarData";
-import { CiStar } from "react-icons/ci";
+import { FaStar } from "react-icons/fa";
 import { Tooltip } from "react-bootstrap";
 import { OverlayTrigger } from "react-bootstrap";
 
@@ -27,7 +27,7 @@ export default function Calendars() {
   }));
 
   const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
+    <Tooltip className="tooltip-1" {...props}>
       This calendar is in My Calendars.
     </Tooltip>
   );
@@ -65,6 +65,9 @@ export default function Calendars() {
                     intersectionObserverRef.current.observe(calendarRef)
                   }
                 >
+                  <Card.Title className="calendarCardTitle">
+                    {calendar.calendarTitle}
+                  </Card.Title>
                   <NavLink
                     to={`/calendar/${calendar.id}`}
                     className="linkToOneCalendar"
@@ -75,7 +78,7 @@ export default function Calendars() {
                       src={calendar.imageUrl || defaultScreenshot}
                     />
                   </NavLink>
-                  <div style={{ display: "flex", alignItems: "center" }}>
+                  <div style={{ display: "flex", alignItems: "center", marginBottom: "0.5rem" }}>
                     <NavLink
                       to={`/calendar/${calendar.id}`}
                       className="linkToOneCalendar"
@@ -94,20 +97,14 @@ export default function Calendars() {
                     </NavLink>
                     {calendar.isInMyCalendars && (
                       <OverlayTrigger
-                        placement="right"
+                        placement="bottom"
                         delay={{ show: 250, hide: 400 }}
                         overlay={renderTooltip}
                       >
                         <button
-                          className="useCalendarButton"
-                          style={{
-                            backgroundColor: "#BA6C2C",
-                            border: "none",
-                            color: "#F4EDE7",
-                            height: "68%",
-                          }}
+                          className="inMyCalendarsButton"
                         >
-                          <CiStar />
+                          <FaStar />
                         </button>
                       </OverlayTrigger>
                     )}

@@ -43,7 +43,7 @@ function EditHatch({ number }) {
   return (
     <Card
       style={{
-        width: "90%",
+        width: "100%",
         height: "100%",
         backgroundColor: backgroundColor,
       }}
@@ -79,7 +79,7 @@ function EditHatch({ number }) {
         title={
           selectedAlternative
             ? selectedAlternative.title
-            : "Choose an alternative"
+            : "Choose an option"
         }
         style={{ backgroundColor: backgroundColor }}
       >

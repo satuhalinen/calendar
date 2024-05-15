@@ -327,7 +327,7 @@ const Calendar = () => {
 
 
   return (
-    <>
+    <div>
       <SmallHeader />
       <div className="useCalendar">
         <Row className="d-flex justify-content-center align-items-center">
@@ -400,7 +400,7 @@ const Calendar = () => {
                         fontSize: "0.75rem",
                         borderStyle: "none",
                         padding: "0.7rem 0.3rem",
-                        width: "15vw",
+                        width: "16vw",
                       }}
                       className="saveToMyCalendarsButton"
                       onClick={saveMyCalendarsClick}
@@ -490,7 +490,7 @@ const Calendar = () => {
           </Modal.Footer>
         </Modal>
       </div >
-    </>
+    </div>
   );
 };
 
