@@ -72,6 +72,12 @@ const Calendar = () => {
 
   const profileImageUrl = useSelector(selectProfileImageUrl);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setShowInfoModal(true);
+    }, 2000);
+  }, []);
+
   const fetchContentById = async () => {
     try {
       const docRef = doc(db, "calendars", id);
