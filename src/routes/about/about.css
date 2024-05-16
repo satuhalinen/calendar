@@ -6,6 +6,7 @@
 }
 
 .about-wrap {
+  position: relative;
   padding: 20px 60px 0px 60px;
   background-color: #f4ede7;
   border-radius: 10px;
@@ -14,9 +15,13 @@
 .aboutTitle {
   position: relative;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 400;
-  margin: 2rem 0 4rem;
+  margin: 2rem 18rem 6.1rem;
+}
+
+.aboutP {
+  font-size: 1.1rem;
 }
 
 .aboutP a {
@@ -32,7 +37,7 @@
   content: "";
   position: absolute;
   bottom: -20px;
-  left: 24%;
+  left: 25%;
   width: 50%;
   height: 2px;
   background-color: #ba6c2cd2;
@@ -53,38 +58,40 @@
 
 .aboutUsTeam {
   margin-top: 1.5rem;
-  margin-left: -0.7rem;
-  margin-right: -1.2rem;
   margin-bottom: 1rem;
+  margin-right: 2rem;
   max-width: 80vw;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
   justify-content: center;
   align-items: center;
 }
 
 .aboutUsTeam1 {
-  margin-top: 1rem;
-  margin-left: 6.5rem;
-  margin-right: -1.2rem;
+  margin-top: 0.1rem;
   margin-bottom: 1rem;
+  margin-right: 2.1rem;
   max-width: 80vw;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
   justify-content: center;
   align-items: center;
 }
 
 .teamImg {
   object-fit: cover;
-  border-radius: 2%;
-  width: 150px;
-  height: 150px;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
   padding: 0rem;
 }
 
+.teamImg:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s;
+  cursor: zoom-in;
+}
+
 .ourTeam {
+  position: relative;
   text-align: center;
   margin-right: 2.3rem;
   margin-top: 1rem;
@@ -93,9 +100,68 @@
 .ourTeam:after {
   content: "";
   position: absolute;
-  left: 9.3%;
-  bottom: 25px;
-  width: 37.2%;
+  left: 25%;
+  bottom: -10%;
+  width: 50%;
   height: 2px;
   background-color: #ba6c2cd2;
+}
+
+.paragraphContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.paragraph {
+  flex: 1;
+}
+
+.ourTeamSpan1 {
+  margin-left: 4rem;
+}
+
+.ourTeamSpan2 {
+  margin-left: 4.5rem;
+}
+
+.ourTeamSpan3 {
+  margin-left: 0.4rem;
+}
+
+.ourTeamSpan4 {
+  margin-left: 1.8rem;
+}
+
+.ourTeamSpan5 {
+  margin-left: -1.1rem;
+}
+
+.ourTeamSpan6 {
+  margin-left: -0.7rem;
+}
+
+.ourTeamSpan7 {
+  margin-left: 7.3rem;
+}
+
+.ourTeamSpan8 {
+  margin-left: 8.8rem;
+}
+
+.ourTeamSpan9 {
+  margin-left: -0.7rem;
+}
+
+.ourTeamSpan10 {
+  margin-left: 0.4rem;
+}
+
+.sunsetImg {
+  margin-top: -8rem;
+}
+
+.teamContainer {
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
 }
