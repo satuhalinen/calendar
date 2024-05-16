@@ -15,6 +15,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { PiImageSquareThin } from "react-icons/pi";
 import OpenAI from "openai";
 import Preview from "../../components/preview/Preview";
+import { resetSavedAlternatives } from "../../store/alternativesSlice";
 
 import {
   setGeneratedImage,
@@ -32,6 +33,7 @@ import {
   setHatchFontColorShow,
   setInputValue,
   setGeneratedImageShow,
+  resetState,
 } from "../../store/calendarStylingSlice";
 import { useEffect, useRef, useState } from "react";
 
@@ -171,7 +173,7 @@ export default function CreateCalendar() {
     dispatch(setImageShow());
   };
 
-  const handleHatchColorSelect = (color) => {
+  const handleHatchColorSelect = () => {
     dispatch(setHatchColorShow());
   };
 
@@ -293,6 +295,14 @@ export default function CreateCalendar() {
   const handleGenerateImageInput = (e) => {
     setPrompt(e.target.value);
   };
+
+  useEffect(() => {
+    dispatch(resetState());
+  }, []);
+
+  useEffect(() => {
+    dispatch(resetSavedAlternatives());
+  }, []);
 
   return (
     <Row className="mainContent createCalendarContainer">
@@ -636,7 +646,13 @@ export default function CreateCalendar() {
                 </button>
               </div>
             </div>
-            {loading && <Spinner className="loadingSpinner" animation="border" variant="secondary" />}
+            {loading && (
+              <Spinner
+                className="loadingSpinner"
+                animation="border"
+                variant="secondary"
+              />
+            )}
             <div className="randomImageContent">
               <p className="para randomTitle">Choose Random Colors</p>
               <button

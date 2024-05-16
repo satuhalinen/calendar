@@ -53,7 +53,9 @@ function Hatch({ number, saveMyCalendarsClick }) {
     (state) => state.calendarStyling.selectedHatchColor
   );
 
-  const backgroundColor = useSelector((state) => state.calendarStyling.selectedColor);
+  const backgroundColor = useSelector(
+    (state) => state.calendarStyling.selectedColor
+  );
 
   const hatchFontColor = useSelector(
     (state) => state.calendarStyling.selectedHatchFontColor
@@ -79,9 +81,7 @@ function Hatch({ number, saveMyCalendarsClick }) {
     (state) => state.score?.startedUsing || false
   );
 
-  const hatchModalFontColor = backgroundImage
-    ? "#000000"
-    : hatchFontColor;
+  const hatchModalFontColor = backgroundImage ? "#000000" : hatchFontColor;
 
   const [user] = useAuthState(auth);
 
@@ -169,13 +169,19 @@ function Hatch({ number, saveMyCalendarsClick }) {
       const document = querySnapshot.docs[0];
       const docId = document.id;
       const calendarRef = doc(db, "users", docId, "myCalendars", id);
-      await updateDoc(calendarRef, {
-        startedUsing: true,
-      });
-    }
-    let newOpenState = isOpenedHatch || true;
-    if (!isOpenedHatch) {
-      dispatch(setOpen({ hatchNumber: number, isOpened: newOpenState }));
+      let newOpenState = isOpenedHatch || true;
+      if (!isOpenedHatch) {
+        dispatch(setOpen({ hatchNumber: number, isOpened: newOpenState }));
+
+        await updateDoc(calendarRef, {
+          startedUsing: true,
+          [`hatches.${number}`]: {
+            isOpened: newOpenState,
+          },
+        });
+      }
+    } else {
+      dispatch(setOpen({ hatchNumber: number, isOpened: true }));
     }
   };
 
@@ -197,8 +203,9 @@ function Hatch({ number, saveMyCalendarsClick }) {
             backgroundImage && isOpenedHatch ? `#f9f5f3` : hatchColor,
           cursor: "pointer",
         }}
-        className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""} ${isOpenedHatch ? "opened" : ""
-          }`}
+        className={`hatchCardUsed flip-card ${isFlipped ? "flipped" : ""} ${
+          isOpenedHatch ? "opened" : ""
+        }`}
       >
         <div
           className="hatch"

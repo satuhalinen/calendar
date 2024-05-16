@@ -99,6 +99,7 @@ const calendarStylingSlice = createSlice({
     setInputValue: (state, action) => {
       state.inputValue = action.payload;
     },
+    resetState: () => initialState,
   },
 });
 
@@ -121,6 +122,7 @@ export const {
   setHatchFontColorShow,
   setInputValue,
   setGeneratedImageShow,
+  resetState,
 } = calendarStylingSlice.actions;
 
 export default calendarStylingSlice.reducer;

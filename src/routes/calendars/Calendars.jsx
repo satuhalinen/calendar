@@ -1,4 +1,11 @@
-import { Card, Row, Col, Spinner } from "react-bootstrap";
+import {
+  Card,
+  Row,
+  Col,
+  Spinner,
+  Tooltip,
+  OverlayTrigger,
+} from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import defaultScreenshot from "../../assets/defaultScreenshot.png";
@@ -6,8 +13,6 @@ import "./Calendars.css";
 import useCalendarData from "../../hooks/useCalendarData";
 import useMyCalendarData from "../../hooks/useMyCalendarData";
 import { FaStar } from "react-icons/fa";
-import { Tooltip } from "react-bootstrap";
-import { OverlayTrigger } from "react-bootstrap";
 
 export default function Calendars() {
   const { loading, calendars, intersectionObserverRef } = useCalendarData();
@@ -78,7 +83,13 @@ export default function Calendars() {
                         src={calendar.imageUrl || defaultScreenshot}
                       />
                     </NavLink>
-                    <div style={{ display: "flex", alignItems: "center", marginBottom: "0.5rem" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        marginBottom: "0.5rem",
+                      }}
+                    >
                       <NavLink
                         to={`/calendar/${calendar.id}`}
                         className="linkToOneCalendar"
@@ -101,9 +112,7 @@ export default function Calendars() {
                           delay={{ show: 250, hide: 400 }}
                           overlay={renderTooltip}
                         >
-                          <button
-                            className="inMyCalendarsButton"
-                          >
+                          <button className="inMyCalendarsButton">
                             <FaStar />
                           </button>
                         </OverlayTrigger>

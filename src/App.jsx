@@ -6,12 +6,12 @@ import About from "./routes/about/About";
 import AccountSettings from "./routes/accountSettings/AccountSettings";
 import AdminCalendars from "./routes/adminCalendars/AdminCalendars";
 import AdminPanel from "./routes/adminpanel/Adminpanel";
-import Calendar from "./routes/Calendar";
+import Calendar from "./routes/calendar/Calendar";
 import Calendars from "./routes/calendars/Calendars";
 import Contact from "./routes/contact/Contact";
 import CreateCalendar from "./routes/createCalendar/CreateCalendar";
 import CustomerMessages from "./routes/customerMessages/CustomerMessages";
-import EditCalendar from "./routes/EditCalendar";
+import EditCalendar from "./routes/editCalendar/EditCalendar";
 import ModifyOldCalendar from "./routes/modifyOldCalendar/ModifyOldCalendar";
 import MyCalendars from "./routes/myCalendars/MyCalendars";
 import Login from "./routes/login/Login";
@@ -26,7 +26,7 @@ import store from "./store/store";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import ErrorPage from "./routes/errorPage/errorPage";
 import { ScrollToTop } from "react-router-scroll-to-top";
-import ModifyOldCalendarStyling from "./routes/ModifyOldCalendarStyling";
+import ModifyOldCalendarStyling from "./routes/modifyOldCalendar/ModifyOldCalendarStyling";
 
 function App() {
   return (

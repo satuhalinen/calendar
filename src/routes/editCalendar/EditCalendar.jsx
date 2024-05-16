@@ -1,7 +1,7 @@
-import EditHatch from "../components/editHatch/EditHatch";
-import "../calendar.css";
+import EditHatch from "../../components/editHatch/EditHatch";
+import "../calendar/calendar.css";
 import { Card } from "react-bootstrap";
-import SmallHeader from "../components/smallHeader/SmallHeader";
+import SmallHeader from "../../components/smallHeader/SmallHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
@@ -10,8 +10,8 @@ import {
   serverTimestamp,
   addDoc,
 } from "firebase/firestore";
-import { db } from "../auth/firebase";
-import { setAvailableAlternatives } from "../store/alternativesSlice";
+import { db } from "../../auth/firebase";
+import { setAvailableAlternatives } from "../../store/alternativesSlice";
 import "./editCalendar.css";
 import { useNavigate, NavLink } from "react-router-dom";
 
