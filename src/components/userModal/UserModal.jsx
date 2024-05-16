@@ -20,7 +20,6 @@ function UserModal({ user, show, handleClose, handleDelete }) {
     const onResetPassword = async (email) => {
         try {
             await sendPasswordResetEmail(auth, email);
-            console.log('Password reset email sent successfully.');
         } catch (error) {
             console.error('Error sending password reset email:', error);
         }

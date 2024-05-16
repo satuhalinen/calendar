@@ -6,12 +6,12 @@ import About from "./routes/about/About";
 import AccountSettings from "./routes/accountSettings/AccountSettings";
 import AdminCalendars from "./routes/adminCalendars/AdminCalendars";
 import AdminPanel from "./routes/adminpanel/Adminpanel";
-import Calendar from "./routes/Calendar";
+import Calendar from "./routes/calendar/Calendar";
 import Calendars from "./routes/calendars/Calendars";
 import Contact from "./routes/contact/Contact";
 import CreateCalendar from "./routes/createCalendar/CreateCalendar";
 import CustomerMessages from "./routes/customerMessages/CustomerMessages";
-import EditCalendar from "./routes/EditCalendar";
+import EditCalendar from "./routes/editCalendar/EditCalendar";
 import ModifyOldCalendar from "./routes/modifyOldCalendar/ModifyOldCalendar";
 import MyCalendars from "./routes/myCalendars/MyCalendars";
 import Login from "./routes/login/Login";
@@ -26,6 +26,7 @@ import store from "./store/store";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import ErrorPage from "./routes/errorPage/errorPage";
 import { ScrollToTop } from "react-router-scroll-to-top";
+import ModifyOldCalendarStyling from "./routes/modifyOldCalendar/ModifyOldCalendarStyling";
 
 function App() {
   return (
@@ -46,15 +47,11 @@ function App() {
               />
               <Route
                 path="/profile"
-                element={<ProtectedRoute component={Profile} />}
+                element={<ProtectedRoute userOnly component={Profile} />}
               />
               <Route
                 path="/account-settings"
                 element={<ProtectedRoute component={AccountSettings} />}
-              />
-              <Route
-                path="/calendar"
-                element={<ProtectedRoute component={Calendar} />}
               />
               <Route
                 path="/calendar/:id"
@@ -62,11 +59,11 @@ function App() {
               />
               <Route
                 path="/calendars"
-                element={<ProtectedRoute component={Calendars} />}
+                element={<ProtectedRoute userOnly component={Calendars} />}
               />
               <Route
                 path="/my-calendars"
-                element={<ProtectedRoute component={MyCalendars} />}
+                element={<ProtectedRoute userOnly component={MyCalendars} />}
               />
               <Route
                 path="/admin-calendars"
@@ -101,18 +98,20 @@ function App() {
                 element={<ProtectedRoute adminOnly component={EditCalendar} />}
               />
             </Route>
-
             <Route path="*" element={<ErrorPage />} />
             <Route
-              path="/modify-old-calendar"
+              path="/modify-old-calendar/:id"
               element={
                 <ProtectedRoute adminOnly component={ModifyOldCalendar} />
               }
             />
             <Route
-              path="/modify-old-calendar/:id"
+              path="/modify-old-calendar-styling/:id"
               element={
-                <ProtectedRoute adminOnly component={ModifyOldCalendar} />
+                <ProtectedRoute
+                  adminOnly
+                  component={ModifyOldCalendarStyling}
+                />
               }
             />
           </Routes>

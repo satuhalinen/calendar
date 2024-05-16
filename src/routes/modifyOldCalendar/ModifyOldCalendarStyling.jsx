@@ -3,19 +3,22 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Leftbar from "../../components/leftbar/Leftbar";
 import { Button, Form, Spinner } from "react-bootstrap";
-import "./createCalendar.css";
+import "../createCalendar/createCalendar.css";
 import { SketchPicker } from "react-color";
 import TitleFontPicker from "../../components/titleFontPicker/TitleFontPicker";
 import FontPicker from "../../components/fontPicker/FontPicker";
 import ImagePicker from "../../components/imagePicker/ImagePicker";
 import { ArrowDown } from "react-bootstrap-icons";
 import { FaRandom } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { PiImageSquareThin } from "react-icons/pi";
 import OpenAI from "openai";
 import Preview from "../../components/preview/Preview";
-import { resetSavedAlternatives } from "../../store/alternativesSlice";
+import {
+  setSelectedFont,
+  setSelectedTitleFont,
+} from "../../store/calendarStylingSlice";
 
 import {
   setGeneratedImage,
@@ -32,18 +35,52 @@ import {
   setHatchColorShow,
   setHatchFontColorShow,
   setInputValue,
-  setGeneratedImageShow,
-  resetState,
 } from "../../store/calendarStylingSlice";
 import { useEffect, useRef, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../auth/firebase";
+import { useParams } from "react-router-dom";
+import Header from "../../components/header/Header";
+import { resetSavedAlternatives } from "../../store/alternativesSlice";
+import Footer from "../../components/footer/Footer";
 
-export default function CreateCalendar() {
+export default function ModifyOldCalendarStyling() {
   const dispatch = useDispatch();
-
   const [imageTooBig, setImageTooBig] = useState(false);
   const [randomizeColors, setRandomizeColors] = useState(false);
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
+  const { id } = useParams();
+
+  const fetchContentById = async () => {
+    try {
+      const docRef = doc(db, "calendars", id);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+
+        dispatch(setSelectedImage(data.calendarImage));
+        dispatch(setSelectedColor(data.calendarBackgroundColor));
+        dispatch(setSelectedFont(data.calendarFont));
+        dispatch(setSelectedTitleFont(data.calendarTitleFont));
+        dispatch(setSelectedHatchColor(data.calendarHatchColor));
+        dispatch(setSelectedHatchFontColor(data.calendarHatchFontColor));
+        dispatch(setSelectedHatchesNumber(data.calendarHatchesNumber));
+        dispatch(setInputValue(data.calendarTitle));
+        dispatch(setUploadedImage(data.calendarUploadedImage));
+        dispatch(setGeneratedImage(data.calendarGeneratedImage));
+      } else {
+        console.error("No such document!");
+      }
+    } catch (error) {
+      console.error("Error fetching calendar data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchContentById();
+  }, []);
 
   const generatedImage = useSelector(
     (state) => state.calendarStyling.generatedImage
@@ -83,6 +120,12 @@ export default function CreateCalendar() {
   );
   const hatchFontColorShow = useSelector(
     (state) => state.calendarStyling.hatchFontColorShow
+  );
+
+  const title = useSelector((state) => state.calendarStyling.inputValue);
+
+  const hatchNumber = useSelector(
+    (state) => state.calendarStyling.selectedHatchesNumber
   );
 
   const buttonRefs = {
@@ -173,10 +216,6 @@ export default function CreateCalendar() {
 
   const handleHatchColorSelect = () => {
     dispatch(setHatchColorShow());
-  };
-
-  const handleGenerateImageClick = () => {
-    dispatch(setGeneratedImageShow());
   };
 
   const handleHatchFontColorSelect = () => {
@@ -279,6 +318,8 @@ export default function CreateCalendar() {
           dispatch(setSelectedHatchColor(transparentHatchColor));
         }
         dispatch(setSelectedColor(null));
+        dispatch(setImageShow(true));
+        dispatch(setHatchColorShow());
       } else {
         console.error("No image URL found:", response);
       }
@@ -286,7 +327,6 @@ export default function CreateCalendar() {
       console.error("Error generating image:", error);
     } finally {
       setLoading(false);
-      handleGenerateImageClick();
     }
   };
 
@@ -295,22 +335,19 @@ export default function CreateCalendar() {
   };
 
   useEffect(() => {
-    dispatch(resetState());
-  }, []);
-
-  useEffect(() => {
     dispatch(resetSavedAlternatives());
   }, []);
 
   return (
     <Row className="mainContent createCalendarContainer">
+      <Header />
       <Col xs={2} className="leftBarCol">
         <Leftbar />
       </Col>
       <Col xs={10}>
         <Container className="text-center">
           <div className="createCalendarWrap">
-            <p className="header-crCAL">Create a Calendar</p>
+            <p className="header-crCAL">Modify a Calendar</p>
             <p className="para">Choose a title</p>
             <Row>
               <div>
@@ -318,13 +355,14 @@ export default function CreateCalendar() {
                   placeholder="Enter the title"
                   className="createTitleInput"
                   type="text"
+                  value={title}
                   onChange={handleInputValue}
                 />
               </div>
             </Row>
             <p className="para ">Choose the number of hatches</p>
             <Row>
-              <Form className="crCAL-form2 radioButton">
+              <Form className="crCAL-form2">
                 {["24", "28", "30", "31"].map((option, index) => (
                   <Form.Check
                     key={`radio-${index}`}
@@ -334,7 +372,8 @@ export default function CreateCalendar() {
                     type="radio"
                     id={`radio-${index}`}
                     className="radioButton"
-                    onClick={() => handleHatchesNumber(option)}
+                    checked={hatchNumber === option}
+                    onChange={() => handleHatchesNumber(option)}
                   />
                 ))}
               </Form>
@@ -644,37 +683,32 @@ export default function CreateCalendar() {
                 </button>
               </div>
             </div>
-            {loading && (
-              <Spinner
-                className="loadingSpinner"
-                animation="border"
-                variant="secondary"
-              />
-            )}
-            <div className="randomImageContent">
-              <p className="para randomTitle">Choose Random Colors</p>
-              <button
-                onClick={handleRandomizeClick}
-                className="randomizeColorsButton randomizeIcon"
-              >
-                <FaRandom />
-              </button>
-            </div>
+            {loading && <Spinner animation="border" variant="secondary" />}
+          </div>
+          <div className="randomImageContent">
+            <p className="para randomTitle">Choose Random Colors</p>
+            <button
+              onClick={handleRandomizeClick}
+              className="randomizeColorsButton randomizeIcon"
+            >
+              <FaRandom />
+            </button>
           </div>
           <Row className="justify-content-center">
             <Preview />
           </Row>
-          <Link
+          <NavLink
             to={{
-              pathname: "/edit-calendar",
+              pathname: `/modify-old-calendar/${id}`,
             }}
           >
             <Button variant="light" type="submit" className="crCAL-button">
               Next
             </Button>
-          </Link>
+          </NavLink>
         </Container>
       </Col>
+      <Footer />
     </Row>
   );
 }

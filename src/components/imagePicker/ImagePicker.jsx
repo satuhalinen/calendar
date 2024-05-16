@@ -3,19 +3,21 @@ import {
   setSelectedImage,
   setSelectedColor,
   setUploadedImage,
-  setSelectedHatchColor
+  setSelectedHatchColor,
+  setGeneratedImage
 } from "../../store/calendarStylingSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 
 const ImagePicker = () => {
   const images = [
-    " https://images.pexels.com/photos/1451040/pexels-photo-1451040.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    "https://images.pexels.com/photos/10916301/pexels-photo-10916301.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    "https://images.pexels.com/photos/998067/pexels-photo-998067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    "https://images.pexels.com/photos/6897427/pexels-photo-6897427.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    "https://images.pexels.com/photos/1280169/pexels-photo-1280169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    "https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "https://images.pexels.com/photos/461049/pexels-photo-461049.jpeg",
+    "https://images.pexels.com/photos/3013675/pexels-photo-3013675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "https://images.pexels.com/photos/7474089/pexels-photo-7474089.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "https://images.pexels.com/photos/9543745/pexels-photo-9543745.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "https://images.pexels.com/photos/7656992/pexels-photo-7656992.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "https://images.pexels.com/photos/6647037/pexels-photo-6647037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    "https://images.pexels.com/photos/2887566/pexels-photo-2887566.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   ];
 
   const dispatch = useDispatch();
@@ -26,10 +28,15 @@ const ImagePicker = () => {
 
   const handleImageClick = (imageUrl) => {
     const transparentHatch = selectedHatchColor + "00";
+    if (selectedHatchColor && selectedHatchColor.endsWith("00")) {
+      dispatch(setSelectedHatchColor(selectedHatchColor));
+    } else {
+      dispatch(setSelectedHatchColor(transparentHatch));
+    }
     dispatch(setSelectedImage(imageUrl));
+    dispatch(setGeneratedImage(null));
     dispatch(setSelectedColor(null));
     dispatch(setUploadedImage(null));
-    dispatch(setSelectedHatchColor(transparentHatch))
   };
 
   return (

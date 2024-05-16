@@ -1,16 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./popUp.css";
 import { Link } from "react-router-dom";
 
 const PopUp = ({ showInitially, handleClose }) => {
   const [showPopup, setShowPopup] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setShowPopup(true);
-    }, 15000);
-    return () => clearTimeout(timeout);
-  }, []);
 
   const handleCloseClick = () => {
     setShowPopup(false);

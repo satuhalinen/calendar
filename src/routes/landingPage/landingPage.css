@@ -3,7 +3,7 @@
 }
 
 .versionTitle,
-.calendarCarouselTitle {
+.calendarBannerTitle {
     font-size: 1.8rem;
     font-weight: 400;
     margin: 2rem 0 0 0rem;
@@ -13,26 +13,15 @@
 
 .versionTitle {
     display: inline-block;
-    border-bottom: #ba6c2c 2px solid;
+    border-bottom: #ba6c2cd2 2px solid;
     padding-bottom: 1.5rem;
     width: 40%;
     margin: 3rem auto 0rem;
 }
 
-.calendarCarouselTitle {
+.calendarBannerTitle {
     display: inline-block;
-    border-bottom: #ba6c2c 2px solid;
-    padding-bottom: 1.5rem;
-    width: 80%;
     margin: 2rem auto 0rem;
-}
-
-.calendarCarouselTitleBottom {
-    display: inline-block;
-    border-top: #ba6c2c 2px solid;
-    padding-bottom: 1.5rem;
-    width: 80%;
-    margin: 0rem auto 0rem;
 }
 
 .versions {
@@ -40,23 +29,23 @@
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    margin: 2rem 8rem;
+    margin: 2rem 3rem;
 }
 
 .versionCard,
 .aboutUsCard {
-    margin: 0.5rem;
+    margin: 0.5rem 0.5rem;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.194);
     background-color: #f4ede7;
     height: auto;
     max-width: auto;
-    transition: box-shadow 0.3s ease;
+    transition: all 0.3s ease;
+    min-width: 40vw;
+    border: none;
 }
 
 .aboutUsCard {
     width: 100%;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.081);
 }
 
 .aboutUs {
@@ -65,7 +54,8 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 2rem 8rem;
+    margin: 2rem 4rem;
+    min-width: fit-content;
 }
 
 .versionCardTitle,
@@ -76,13 +66,11 @@
     color: white;
     margin: 0;
     padding: 1rem;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.506);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .versionCardBody {
     padding: 1rem;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.076);
 }
 
 .expandedCard {
@@ -111,8 +99,6 @@
 
 .registerNow {
     background-color: #ba6c2c;
-    box-shadow: 1px 1px 5px rgba(39, 18, 4, 0.471);
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
     font-size: 1rem;
     color: white;
     border: none;
@@ -129,17 +115,75 @@
     background-color: #a65919;
 }
 
-.calendarCarouselRow {
-    padding: 0rem 0rem 1rem 0rem;
-    margin: 2.5rem 8rem 1rem 8rem;
+.calendarBannerRow {
+    padding: 0 1rem 1rem 1rem;
+    margin: 2.5rem 0;
     background-color: #F4EDE7;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.269);
+}
+
+.calendarImageBanner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border-radius: 5px;
+    padding: 1rem 2rem;
+}
+
+.exampleCalendar {
+    margin: 1rem;
+    width: auto;
+    max-height: 35vh;
+    border-radius: 10px;
+    transition: all 0.7s ease;
+}
+
+.exampleCalendar:hover {
+    cursor: zoom-in;
+    scale: 1.05;
+}
+
+.calendarCreationExplanation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0rem 0 0;
+    background-color: #F4EDE7;
+    padding: 2rem 4rem;
+}
+
+.calendarCreationExplanation h2 {
+    font-size: 1.7rem;
+    margin-bottom: 2rem;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.step p {
+    margin-left: 1rem;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+}
+
+.step svg {
+    font-size: 5rem;
+    color: #425f5b;
 }
 
 @media (max-width: 768px) {
-    .versionTitle {
-        font-size: 1.7rem;
+
+    .versionTitle,
+    .calendarBannerTitle,
+    .calendarCreationExplanation h2 {
+        font-size: 1.4rem;
     }
 
     .registerNow {
@@ -148,7 +192,13 @@
 
     .versionCardTitle,
     .aboutUsTitle {
-        font-size: 1.1rem;
+        font-size: 1rem;
+    }
+
+    .versionCardBody,
+    .expandedCard,
+    .aboutUsCard {
+        font-size: 0.9rem;
     }
 
     .versions,
@@ -156,7 +206,7 @@
         margin: 3rem;
     }
 
-    .calendarCarouselRow {
+    .calendarBannerRow {
         margin: 2.5rem 1rem 1rem 1rem;
 
     }
@@ -173,5 +223,5 @@
     left: 0%;
     width: 100%;
     height: 2px;
-    background-color: #ba6c2c;
+    background-color: #ba6c2c80;
 }

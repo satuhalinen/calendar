@@ -6,18 +6,23 @@
 }
 
 .about-wrap {
+  position: relative;
   padding: 20px 60px 0px 60px;
   background-color: #f4ede7;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
 }
 
 .aboutTitle {
   position: relative;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 400;
-  margin: 2rem 0 4rem;
+  margin: 2rem 18rem 6.1rem;
+}
+
+.aboutP {
+  font-size: 1.1rem;
+  margin-top: -3rem;
 }
 
 .aboutP a {
@@ -33,10 +38,10 @@
   content: "";
   position: absolute;
   bottom: -20px;
-  left: 24%;
+  left: 25%;
   width: 50%;
   height: 2px;
-  background-color: #ba6c2c;
+  background-color: #ba6c2cd2;
 }
 
 .aboutH4 {
@@ -50,4 +55,114 @@
 
 .d-inline-block {
   border-radius: 5px;
+}
+
+.aboutUsTeam {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  margin-right: 2rem;
+  max-width: 80vw;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutUsTeam1 {
+  margin-top: 0.1rem;
+  margin-bottom: 1rem;
+  margin-right: 2.1rem;
+  max-width: 80vw;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.teamImg {
+  object-fit: cover;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  padding: 0rem;
+}
+
+.teamImg:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s;
+  cursor: zoom-in;
+}
+
+.ourTeam {
+  position: relative;
+  text-align: center;
+  margin-right: 2.3rem;
+  margin-top: 1rem;
+}
+
+.ourTeam:after {
+  content: "";
+  position: absolute;
+  left: 25%;
+  bottom: -10%;
+  width: 50%;
+  height: 2px;
+  background-color: #ba6c2cd2;
+}
+
+.paragraphContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.paragraph {
+  flex: 1;
+}
+
+.ourTeamSpan1 {
+  margin-left: 3.8rem;
+}
+
+.ourTeamSpan2 {
+  margin-left: 4.3rem;
+}
+
+.ourTeamSpan3 {
+  margin-left: 0.4rem;
+}
+
+.ourTeamSpan4 {
+  margin-left: 1.8rem;
+}
+
+.ourTeamSpan5 {
+  margin-left: -1.1rem;
+}
+
+.ourTeamSpan6 {
+  margin-left: -0.7rem;
+}
+
+.ourTeamSpan7 {
+  margin-left: 7.3rem;
+}
+
+.ourTeamSpan8 {
+  margin-left: 8.8rem;
+}
+
+.ourTeamSpan9 {
+  margin-left: -0.7rem;
+}
+
+.ourTeamSpan10 {
+  margin-left: 0.4rem;
+}
+
+.sunsetImg {
+  margin-top: -8rem;
+}
+
+.teamContainer {
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
 }

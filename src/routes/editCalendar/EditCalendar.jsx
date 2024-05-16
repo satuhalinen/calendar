@@ -1,7 +1,7 @@
-import EditHatch from "../components/editHatch/EditHatch";
-import "../calendar.css";
+import EditHatch from "../../components/editHatch/EditHatch";
+import "../calendar/calendar.css";
 import { Card } from "react-bootstrap";
-import SmallHeader from "../components/smallHeader/SmallHeader";
+import SmallHeader from "../../components/smallHeader/SmallHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
@@ -10,8 +10,8 @@ import {
   serverTimestamp,
   addDoc,
 } from "firebase/firestore";
-import { db } from "../auth/firebase";
-import { setAvailableAlternatives } from "../store/alternativesSlice";
+import { db } from "../../auth/firebase";
+import { setAvailableAlternatives } from "../../store/alternativesSlice";
 import "./editCalendar.css";
 import { useNavigate, NavLink } from "react-router-dom";
 
@@ -64,7 +64,6 @@ function EditCalendar() {
       id: doc.id,
       ...doc.data(),
     }));
-
     dispatch(setAvailableAlternatives(data));
   };
 
@@ -94,7 +93,6 @@ function EditCalendar() {
       });
       const calendarId = docRef.id;
       navigate(`/calendar/${calendarId}`);
-      console.log("Document written with ID: ", docRef.id);
     }
   };
 
@@ -107,13 +105,14 @@ function EditCalendar() {
   return (
     <>
       <SmallHeader />
-      <div style={{ display: "grid" }} className="editCalendar">
-        <div className="calendarSections" style={{ display: "flex" }}>
+      <div className="editCalendar">
+        <div className="editCalendarSections">
           <Card
             style={{
               margin: "1.5% 0",
-              backgroundImage:
-                backgroundImage ? `url(${backgroundImage})` : 'none',
+              backgroundImage: backgroundImage
+                ? `url(${backgroundImage})`
+                : "none",
               backgroundColor: backgroundColor,
               backgroundSize: "cover",
               boxShadow: "0px 0px 5px 0px #00000059",
@@ -130,7 +129,7 @@ function EditCalendar() {
             >
               <p className="editCalendarTitle">{title}</p>
             </Card.Title>
-            <div className="calendar">
+            <div className="editCalendarGrid">
               {Array.from({ length: selectedHatchesNumber || 31 }).map(
                 (_, i) => (
                   <EditHatch key={i} number={i + 1} />
@@ -139,10 +138,10 @@ function EditCalendar() {
             </div>
           </Card>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
           <NavLink
             style={{
-              width: "7%",
+              width: "30%",
               margin: "0% 0% 2% 0%",
               backgroundColor: "#BA6C2C",
               color: "#FFFAF7",

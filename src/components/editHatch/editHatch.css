@@ -4,9 +4,8 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.035);
 }
 
-.hatchCard {
+.editHatchCard {
   font-size: 0.8rem;
-  width: 100%;
   font-weight: 400;
   color: white;
   border-radius: 10px;
@@ -14,11 +13,14 @@
   padding: 10px;
   transition: all 0.3s ease;
   border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 160px;
 }
 
 .randomizeButton {
   background: #597773 !important;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.471);
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
   color: #f9f5f3;
   padding: 4px 0;
@@ -83,4 +85,38 @@
 #dropdown-alternative-button:hover,
 #dropdown-topic-button:hover {
   background-color: #d5d1cd !important;
+}
+
+@media (min-width: 1600px) {
+  .editHatchCard {
+    width: 100%;
+    min-height: 240px;
+  }
+
+  .randomizeButton {
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+
+  .dropdownItem {
+    font-size: 1rem;
+  }
+
+  .dropdownTopic {
+    font-size: 1rem;
+  }
+
+  .dropdownButton {
+    margin-top: 20px;
+  }
+
+  .dropdownItem {
+    padding: 10px 20px;
+  }
+
+  #dropdown-alternative-button,
+  #dropdown-topic-button {
+    font-size: 1rem;
+    padding: 1rem;
+  }
 }

@@ -1,7 +1,6 @@
-import EditHatch from "../../components/editHatch/EditHatch";
-import "../../calendar.css";
-import { Card, NavLink } from "react-bootstrap";
-import SmallHeader from "../../components/smallHeader/SmallHeader";
+import EditOldHatch from "../../components/EditOldHatch.jsx";
+import "../../routes/calendar/calendar.css";
+import { Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
@@ -17,17 +16,26 @@ import {
   fetchFromFirebase,
   setAvailableAlternatives,
 } from "../../store/alternativesSlice";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, NavLink } from "react-router-dom";
+import SmallHeader from "../../components/smallHeader/SmallHeader.jsx";
+import Footer from "../../components/footer/Footer.jsx";
 
 function ModifyOldCalendar() {
   const { id } = useParams();
-  console.log(id);
   const backgroundColor = useSelector(
     (state) => state.calendarStyling.selectedColor
   );
 
   const hatchColor = useSelector(
     (state) => state.calendarStyling.selectedHatchColor
+  );
+
+  const generatedImage = useSelector(
+    (state) => state.calendarStyling.generatedImage
+  );
+
+  const uploadedImage = useSelector(
+    (state) => state.calendarStyling.uploadedImage
   );
 
   const selectedImage = useSelector(
@@ -55,7 +63,7 @@ function ModifyOldCalendar() {
   const dispatch = useDispatch();
 
   const fetchAlternatives = async () => {
-    const colRef = collection(db, "topic");
+    const colRef = collection(db, "categories");
     const querySnapshot = await getDocs(colRef);
 
     const data = querySnapshot.docs.map((doc) => ({
@@ -72,26 +80,40 @@ function ModifyOldCalendar() {
     })();
   }, []);
 
+  const navigate = useNavigate();
+
   const saveHatchText = async () => {
     if (calendarContent !== undefined) {
-      await setDoc(doc(db, "calendars", id), {
-        content: calendarContent,
-        calendarBackgroundColor: backgroundColor,
-        calendarHatchColor: hatchColor,
-        calendarImage: selectedImage,
-        calendarFont: selectedFont,
-        calendarHatchFontColor: selectedHatchFontColor,
-        calendarHatchesNumber: selectedHatchesNumber,
-        calendarTitleFont: titleFont,
-        calendarTitle: title,
-        createdAt: serverTimestamp(),
-      });
+      const docRef = doc(db, "calendars", id);
+
+      await setDoc(
+        docRef,
+        {
+          content: calendarContent,
+          calendarBackgroundColor: backgroundColor,
+          calendarHatchColor: hatchColor,
+          calendarImage: selectedImage,
+          calendarFont: selectedFont,
+          calendarHatchFontColor: selectedHatchFontColor,
+          calendarHatchesNumber: selectedHatchesNumber,
+          calendarTitleFont: titleFont,
+          calendarTitle: title,
+          calendarUploadedImage: uploadedImage,
+          calendarGeneratedImage: generatedImage,
+          createdAt: serverTimestamp(),
+        },
+        { merge: true }
+      );
+
+      navigate(`/calendar/${id}`, { state: { from: true } });
     }
   };
 
   const calendarContent = useSelector(
     (state) => state.alternatives.savedAlternatives
   );
+
+  const backgroundImage = selectedImage || uploadedImage || generatedImage;
 
   const fetchAlternativesFromFirebase = async () => {
     const docRef = doc(db, "calendars", id);
@@ -113,12 +135,14 @@ function ModifyOldCalendar() {
   return (
     <>
       <SmallHeader />
-      <div style={{ display: "grid" }} className="editCalendar">
-        <div className="calendarSections" style={{ display: "flex" }}>
+      <div className="editCalendar">
+        <div className="editCalendarSections">
           <Card
             style={{
               margin: "1.5% 0",
-              backgroundImage: `url(${selectedImage})`,
+              backgroundImage: backgroundImage
+                ? `url(${backgroundImage})`
+                : "none",
               backgroundColor: backgroundColor,
               backgroundSize: "cover",
               boxShadow: "0px 0px 5px 0px #00000059",
@@ -135,19 +159,20 @@ function ModifyOldCalendar() {
             >
               <p className="editCalendarTitle">{title}</p>
             </Card.Title>
-            <div className="calendar">
+            <div className="editCalendarGrid">
               {Array.from({ length: selectedHatchesNumber || 31 }).map(
                 (_, i) => (
-                  <EditHatch key={i} number={i + 1} />
+                  <EditOldHatch key={i} number={i + 1} />
                 )
               )}
             </div>
           </Card>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
           <NavLink
+            to={`/modify-old-calendar-styling/${id}`}
             style={{
-              width: "7%",
+              width: "30%",
               margin: "0% 0% 2% 0%",
               backgroundColor: "#BA6C2C",
               color: "#FFFAF7",
@@ -155,7 +180,6 @@ function ModifyOldCalendar() {
               textDecoration: "none",
             }}
             className="backToCreateCalendarButton"
-            to="/create-calendar"
           >
             Back
           </NavLink>
@@ -173,10 +197,11 @@ function ModifyOldCalendar() {
             className="createCalendarButton"
             to="#"
           >
-            Create calendar
+            Save calendar
           </NavLink>
         </div>
-      </div>
+      </div >
+      <Footer />
     </>
   );
 }

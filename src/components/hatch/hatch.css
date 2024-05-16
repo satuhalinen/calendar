@@ -8,6 +8,13 @@
   transform: rotateY(180deg) !important;
 }
 
+.opened {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .hatchOpenedTitle {
   font-size: 0.6rem;
   font-weight: 600;
@@ -29,7 +36,6 @@
 }
 
 .noContentOpened {
-  margin-top: 3rem;
   font-size: 0.8rem;
   color: #425f5b;
 }
@@ -41,7 +47,6 @@
 
 .hatchModalButton {
   width: 20%;
-  box-shadow: 1px 1px 5px #27120478;
   color: #f9f5f3;
   padding: 10px;
   border-radius: 5px;
@@ -62,6 +67,7 @@
   box-shadow: 0px 0px 5px 0px #0000005e;
   filter: saturate(0.8);
   transition: all 1s ease;
+  min-height: 160px;
 }
 
 .hatchCardUsed:hover {
@@ -152,4 +158,111 @@ input:checked+.slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .hatchCardUsed {
+    width: 100%;
+    min-height: 100px;
+  }
+
+  .hatchModalImage {
+    max-width: 50%;
+  }
+
+  .hatchModalButton {
+    width: 50%;
+  }
+
+  .hatchModalContent {
+    font-size: 0.8rem;
+  }
+
+  .hatchModalTitle {
+    font-size: 1.5rem;
+  }
+
+  .hatchOpenedTitle {
+    font-size: 0.5rem;
+  }
+
+  .hatchImage {
+    max-width: 50px;
+  }
+
+  .checkMarkOpened {
+    font-size: 0.7rem;
+  }
+
+  .noContentOpened {
+    font-size: 0.6rem;
+  }
+
+  .linkToHatchContent {
+    font-size: 0.6rem;
+  }
+
+  .toggle-btn {
+    width: 40px;
+    height: 20px;
+  }
+
+  .slider {
+    width: 40px;
+    height: 20px;
+  }
+
+  .slider:before {
+    width: 16px;
+    height: 16px;
+  }
+
+  .toggle-btn input:checked+.slider:before {
+    transform: translateX(20px);
+  }
+
+  .toggle-btn input:checked+.slider {
+    background-color: #425f5b;
+  }
+
+  .toggle-btn input:focus+.slider {
+    box-shadow: 0 0 1px #3e474e;
+  }
+}
+
+@media (min-width: 1600px) {
+  .hatchCardUsed {
+    width: 100%;
+    min-height: 240px;
+  }
+
+  .hatchModalTitle {
+    font-size: 2.5rem;
+  }
+
+  .hatchModalButton {
+    font-size: 1rem;
+    width: 35%;
+  }
+
+  .hatchModalContent {
+    font-size: 1rem;
+  }
+
+  .hatchOpenedTitle {
+    font-size: 0.8rem;
+  }
+
+  .hatchImage {
+    max-width: 120px;
+  }
+
+  .checkMarkOpened,
+  .noContentOpened {
+    font-size: 1.2rem;
+  }
+
+  .linkToHatchContent {
+    font-size: 0.8rem;
+  }
 }

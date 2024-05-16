@@ -1,7 +1,6 @@
 .calendar {
   display: grid;
-  grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
-  grid-template-rows: 20vh 20vh 20vh 20vh 20vh;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   column-gap: 10px;
   row-gap: 20px;
   justify-items: center;
@@ -16,11 +15,11 @@
   background-color: #f4ede7;
   max-width: 80%;
   min-height: 30px;
-  margin: 3rem 0rem 0;
+  margin: 1.5rem 0rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.218);
+  border: 0.5px solid #7a928e6e;
 }
 
 .useCalendarTitle {
@@ -80,7 +79,7 @@
 }
 
 .infoCircle {
-  font-size: 2.2rem;
+  font-size: 1.5rem;
   margin: 0 2rem;
   color: #425f5b;
   cursor: pointer;
@@ -98,8 +97,8 @@
   width: 95%;
   background: #fbf6f2;
   border-radius: 3px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.384);
   margin: 1rem 0;
+  border: 0.5px solid #7a928e6e;
 }
 
 .progressBar {
@@ -108,7 +107,7 @@
   background-color: white;
   border-radius: 3px;
   margin: 1rem 2rem 1.5rem 0.2rem;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.384);
+  border: 0.5px solid #7a928e6e;
 }
 
 .progressBar .progress-bar {
@@ -117,13 +116,134 @@
 
 .weatherIconWrapper {
   font-size: 2rem;
-  margin: 0 2rem 0 0.6rem;
+  margin: 0 1.5rem 0 0.2rem;
+}
+
+.saveToMyCalendarsButton,
+.removeMyCalendarsButton {
+  margin: 1rem;
 }
 
 .saveToMyCalendarsButton:hover {
   background-color: #324e4a !important;
   box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237) !important;
 }
+
+.calendarSavedText {
+  font-size: 0.8rem;
+  color: #425f5b;
+  margin: 0.2rem 2rem 0;
+}
+
+.tooltip-1 {
+  font-size: 0.7rem;
+  margin: 0.5rem;
+}
+
+@media (max-width: 768px) {
+
+  .calendar {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+
+  .useCalendarTitle {
+    font-size: 1.5rem;
+  }
+
+  .gameCardBody {
+    flex-direction: column;
+  }
+
+  .userInfo {
+    flex-direction: column;
+  }
+
+  .progressTitle {
+    margin: 1rem 0 0;
+    font-size: 0.7rem;
+  }
+
+  .userScoreTitle {
+    margin: 0.5rem 0;
+  }
+
+  .userNameTitle {
+    margin: 0.5rem 0;
+  }
+
+  .backToAdminCalendars {
+    width: 80%;
+  }
+
+  .infoCircle {
+    margin: 0.5rem 0;
+  }
+
+  .gameCardBody {
+    margin: 1rem 0;
+  }
+
+  .gamification {
+    margin: 1rem 0;
+    width: 80%;
+  }
+
+  .progressBar {
+    margin: 1rem 0;
+    width: 70%;
+  }
+
+  .weatherIconWrapper {
+    margin: 0 0 0 0.2rem;
+  }
+
+  .saveToMyCalendarsButton,
+  .removeMyCalendarsButton {
+    margin: 0.5rem;
+    font-size: 0.6rem;
+  }
+
+  .calendarSavedText {
+    margin: 0.2rem 0;
+  }
+
+  .tooltip-1 {
+    margin: 0.5rem 0;
+  }
+
+}
+
+@media (min-width: 1600px) {
+  .calendar {
+    grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+    column-gap: 30px;
+    row-gap: 40px;
+    padding: 3rem 4rem;
+  }
+
+  .useCalendarTitle {
+    font-size: 3rem;
+  }
+
+  .gameCardBody {
+    margin: 3rem 0;
+  }
+
+  .progressBar {
+    height: 35px;
+  }
+
+  .weatherIconWrapper {
+    font-size: 3rem;
+  }
+
+  .saveToMyCalendarsButton,
+  .removeMyCalendarsButton {
+    padding: 1.2rem 0.7rem;
+    font-size: 1.2rem;
+  }
+}
+
 
 @keyframes spin {
   0% {
@@ -188,42 +308,42 @@
 }
 
 .sun-icon {
-  color: #cf931d;
+  color: #df9138;
   font-size: 2rem;
   animation: spin 2s linear forwards;
   margin-bottom: 0.9rem;
 }
 
 .cloud-sun-icon {
-  color: #c1810a;
+  color: #ba6c2c;
   font-size: 2rem;
   animation: float 2s forwards;
   margin-bottom: 0.9rem;
 }
 
 .cloud-icon {
-  color: #3f455c;
+  color: #4e6562;
   font-size: 2rem;
   animation: drift 2s forwards;
   margin-bottom: 0.9rem;
 }
 
 .cloud-rain-icon {
-  color: #43438b;
+  color: #3b5450;
   font-size: 2rem;
   animation: shake 0.5s forwards;
   margin-bottom: 0.7rem;
 }
 
 .cloud-heavy-icon {
-  color: #191952;
+  color: #324846;
   font-size: 2rem;
   animation: bounce 0.5s forwards;
   margin-bottom: 0.7rem;
 }
 
 .storm-icon {
-  color: #48335c;
+  color: #293d3c;
   font-size: 2rem;
   animation: storm 0.5s forwards;
   margin-bottom: 1.5rem;

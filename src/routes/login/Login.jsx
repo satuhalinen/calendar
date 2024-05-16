@@ -15,12 +15,10 @@ export default function Login() {
   const [error, setError] = useState(null);
   const [inputError, setInputError] = useState(false);
   const navigate = useNavigate();
-  const [signInWithEmailAndPassword] =
-    useSignInWithEmailAndPassword(auth);
+  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser] = useSignInWithGoogle(auth);
   const [loading, setLoading] = useState(false);
   const [isAdmin, setIsAdmin] = useState(null);
-
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -35,13 +33,10 @@ export default function Login() {
           const adminUserUids = adminUsers.map((doc) => doc.data().uid);
           const userIsAdmin = adminUserUids.includes(user.uid);
           setIsAdmin(userIsAdmin);
-          console.log("Is admin:", userIsAdmin);
 
           if (userIsAdmin) {
-            console.log("Navigating to admin panel...");
             navigate("/adminpanel");
           } else {
-            console.log("Navigating to profile...");
             navigate("/profile");
           }
         } catch (error) {
@@ -49,14 +44,12 @@ export default function Login() {
           console.error("Error checking admin status:", error);
         }
       } else {
-        console.log("User data not available yet.");
         setLoading(false);
       }
     });
 
     return unsubscribe;
   }, [navigate]);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -161,6 +154,7 @@ export default function Login() {
               <div className="gsi-material-button-icon">
                 <svg
                   version="1.1"
+                  alt="Google logo"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 48 48"
                   xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -188,7 +182,12 @@ export default function Login() {
               <span style={{ display: "none" }}>Sign in with Google</span>
             </div>
           </Button>
-          {loading && <div> <Spinner animation="border" variant="secondary" /></div>}
+          {loading && (
+            <div>
+              {" "}
+              <Spinner animation="border" variant="secondary" />
+            </div>
+          )}
           {error && <p style={{ color: "red" }}>{error}</p>}
           <p className="noAccount">
             Don't have an account? <Link to="/register">Sign up</Link> now.

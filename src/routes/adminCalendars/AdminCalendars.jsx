@@ -1,4 +1,4 @@
-import { Card, Col, Row } from "react-bootstrap";
+import { Card, Col, Row, Modal, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import Leftbar from "../../components/leftbar/Leftbar";
 import defaultScreenshot from "../../assets/defaultScreenshot.png";
@@ -7,14 +7,71 @@ import { useState } from "react";
 import "../adminCalendars/adminCalendars.css";
 import "../adminpanel/adminpanel.css";
 import Spinner from "react-bootstrap/Spinner";
-//import { useState } from "react";
+import { LuMinusCircle } from "react-icons/lu";
+import { db } from "../../auth/firebase";
+import {
+  getDoc,
+  getDocs,
+  collection,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 
 export default function AdminCalendars() {
-  const { loading, calendars, intersectionObserverRef } = useCalendarData();
+  const [removed, setRemoved] = useState(false);
+  const [showRemoveModal, setShowRemoveModal] = useState(false);
+  const [calendarToDelete, setCalendarToDelete] = useState(null);
+  const { loading, calendars, intersectionObserverRef } =
+    useCalendarData(removed);
   const [search, setSearch] = useState("");
 
   const searchHandler = (event) => {
     setSearch(event.target.value);
+  };
+
+  const removeCalendarClick = async () => {
+    if (calendarToDelete) {
+      try {
+        const calendarRef = doc(db, "calendars", calendarToDelete);
+        await deleteDoc(calendarRef);
+        setRemoved(!removed);
+        await removeMyCalendarFromAllUsers(calendarToDelete);
+        handleCloseRemoveModal();
+      } catch (error) {
+        console.error("Error deleting calendar:", error);
+      }
+    }
+  };
+
+  const removeMyCalendarFromAllUsers = async (calendarId) => {
+    const usersSnap = await getDocs(collection(db, "users"));
+    usersSnap.forEach(async (userDoc) => {
+      const myCalendarRef = doc(
+        db,
+        "users",
+        userDoc.id,
+        "myCalendars",
+        calendarId
+      );
+      try {
+        const myCalendarSnap = await getDoc(myCalendarRef);
+        if (myCalendarSnap.exists()) {
+          await deleteDoc(myCalendarRef);
+        }
+      } catch (error) {
+        console.error("Error deleting calendar:", error);
+      }
+    });
+  };
+
+  const handleShowRemoveModal = (id) => {
+    setCalendarToDelete(id);
+    setShowRemoveModal(true);
+  };
+
+  const handleCloseRemoveModal = () => {
+    setShowRemoveModal(false);
+    setCalendarToDelete(null);
   };
 
   return (
@@ -55,6 +112,9 @@ export default function AdminCalendars() {
                   }
                 >
                   <Card.Body className="d-flex flex-column justify-content-center align-items-center adminCalendarBody">
+                    <Card.Title className="calendarCardTitle">
+                      {calendar.calendarTitle}
+                    </Card.Title>
                     <NavLink
                       to={`/calendar/${calendar.id}`}
                       style={{ textDecoration: "none" }}
@@ -65,21 +125,78 @@ export default function AdminCalendars() {
                         className="calendarScreenShot"
                       />
                     </NavLink>
-                    <Card.Title style={{ color: "black" }}>
-                      {calendar.title}
-                    </Card.Title>
                   </Card.Body>
-                  <NavLink
-                    to={`/modify-old-calendar/${calendar.id}`}
-                    className="modifyButton btn btn-primary"
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      marginBottom: "0.5rem",
+                    }}
                   >
-                    Modify
-                  </NavLink>
+                    <NavLink
+                      to={`/calendar/${calendar.id}`}
+                      className="modifyButton btn btn-secondary"
+                    >
+                      Use
+                    </NavLink>
+                    <NavLink
+                      to={`/modify-old-calendar-styling/${calendar.id}`}
+                      className="modifyButton btn btn-secondary"
+                    >
+                      Modify
+                    </NavLink>
+                    <button
+                      className="removeCalendarButton"
+                      onClick={() => handleShowRemoveModal(calendar.id)}
+                      style={{
+                        backgroundColor: "#BA6C2C",
+                        border: "none",
+                        color: "#F4EDE7",
+                        height: "52%",
+                      }}
+                    >
+                      <LuMinusCircle className="removeCalendarIcon" />
+                    </button>
+                  </div>
                 </Card>
               ))}
           </div>
         )}
       </Col>
+      <Modal
+        className="removeModal"
+        centered
+        show={showRemoveModal}
+        onHide={handleCloseRemoveModal}
+      >
+        <Modal.Header className="removeModalHeader">
+          <Modal.Title className="removeModalTitle">
+            Confirm Deletion
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="removeModalBody">
+          <strong>
+            <p>Are you sure you want to delete this calendar?</p>
+          </strong>
+          <p>Deleting this calendar will permanently remove all data. </p>
+        </Modal.Body>
+        <Modal.Footer className="removeModalFooter">
+          <Button
+            className="deleteRemoveModalButton"
+            variant="danger"
+            onClick={removeCalendarClick}
+          >
+            Delete
+          </Button>
+          <Button
+            className="removeModalButton"
+            variant="secondary"
+            onClick={handleCloseRemoveModal}
+          >
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Row>
   );
 }

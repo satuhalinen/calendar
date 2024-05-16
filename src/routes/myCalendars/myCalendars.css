@@ -5,8 +5,6 @@
 .userCalendarsContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   margin: 1rem 2rem;
 }
 
@@ -25,12 +23,37 @@
   justify-items: center;
 }
 
-.useCalendarButton {
-  margin: 0;
+.useMyCalendarButton {
+  width: 100%;
+  background: #ba6c2c;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+  color: #f9f5f3;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 0.8rem;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.useCalendarButton:hover {
+.useMyCalendarButton:hover {
+  background-color: #9d5b25 !important;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.349);
+}
+
+.removeMyCalendarButton {
+  background: #ba6c2c;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+  color: #f9f5f3;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.removeMyCalendarButton:hover {
   background-color: #9d5b25 !important;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.349);
 }
@@ -65,4 +88,68 @@
   transform: scale(1.02);
   filter: saturate(1);
   cursor: pointer;
+}
+
+.removeModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.removeModalHeader {
+  padding: 15px 20px;
+  background-color: #597773;
+  color: white;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.removeModalTitle {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+.removeModalBody {
+  padding: 20px 40px;
+  background-color: #F4EDE7;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  font-size: 0.85rem;
+}
+
+.removeModalFooter {
+  display: block;
+  padding: 5px;
+  background-color: #F4EDE7;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.removeModalButton,
+.deleteRemoveModalButton {
+  width: 20%;
+  background: #ba6c2c;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.302);
+  color: #f9f5f3;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 0.8rem;
+  margin: 0.5rem;
+}
+
+.resetPasswordButton {
+  width: 30%;
+}
+
+.removeModalButton:hover {
+  cursor: pointer;
+  box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237);
+  background-color: #a65919;
 }

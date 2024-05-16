@@ -25,7 +25,6 @@ export const storage = getStorage();
 export const logout = () => {
     signOut(auth)
         .then(() => {
-            console.log("User signed out successfully");
         })
         .catch((error) => {
             console.error("Logout error:", error);

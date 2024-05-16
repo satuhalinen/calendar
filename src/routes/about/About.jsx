@@ -2,39 +2,106 @@ import { Col, Container, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./about.css";
 import fjellteam from "../../assets/fjellteam.png";
-import volunteer from "../../assets/volunteer.png";
+import avatar from "../../assets/avatar.png";
+import satu from "../../assets/Satu.jpeg";
+import ben from "../../assets/Ben.png";
+import pinja from "../../assets/Pinja.jpeg";
+import pushpa from "../../assets/Pushpa.jpg";
 
 export default function About() {
   return (
     <Container className="mainContent about-container">
       <Col className="about-wrap">
         <Row>
-          <h1 className="aboutTitle">About us</h1>
+          <h1 tabIndex="0" className="aboutTitle">
+            VOCA - Spread kindness, one hatch at a time!
+          </h1>
         </Row>
         <Row>
           <Col>
             <Image
               src={fjellteam}
-              width="540"
-              height="330"
-              className="d-inline-block align-top"
-              alt="logo"
+              tabIndex="0"
+              width="530"
+              height="320"
+              className="sunsetImg"
+              alt="Two people helping a third person scale a mountain, sun setting in the background"
             />
-            <Image
-              src={volunteer}
-              className="volunteer"
-              width="570"
-              height="370"
-              alt="logo"
-            />
-          </Col>
+            <h3 className="ourTeam">Our team</h3>
+            <Container className="teamContainer">
+              <Row className="aboutUsTeam">
+                <Image className="teamImg" src={satu}></Image>
+                <Image className="teamImg" src={ben}></Image>
+                <Image className="teamImg" src={pinja}></Image>
+              </Row>
+              <div className="paragraphContainer">
+                <p className="paragraph">
+                  <strong>
+                    <span className="ourTeamSpan1" style={{ fontSize: "15px" }}>
+                      Satu Halinen
+                    </span>
+                  </strong>
+                  <br />
+                  <span className="ourTeamSpan2" style={{ fontSize: "15px" }}>
+                    Developer
+                  </span>
+                </p>
+                <p className="paragraph">
+                  <strong>
+                    <span className="ourTeamSpan3" style={{ fontSize: "15px" }}>
+                      Bendik Pettersen
+                    </span>
+                  </strong>
+                  <br />
+                  <span className="ourTeamSpan4" style={{ fontSize: "15px" }}>
+                    Developer
+                  </span>
+                </p>
+                <p className="paragraph">
+                  <strong>
+                    <span className="ourTeamSpan5" style={{ fontSize: "15px" }}>
+                      Pinja Alanne
+                    </span>
+                  </strong>
+                  <br />
+                  <span className="ourTeamSpan6" style={{ fontSize: "15px" }}>
+                    Developer
+                  </span>
+                </p>
+              </div>
 
+              <Row className="aboutUsTeam1">
+                <Image className="teamImg" src={pushpa}></Image>
+                <Image className="teamImg" src={avatar}></Image>
+              </Row>
+              <div className="paragraphContainer">
+                <p className="paragraph">
+                  <strong>
+                    <span className="ourTeamSpan7" style={{ fontSize: "15px" }}>
+                      Pushpa Gnyawali
+                    </span>
+                  </strong>
+                  <br />
+                  <span className="ourTeamSpan8" style={{ fontSize: "15px" }}>
+                    Developer
+                  </span>
+                </p>
+                <p className="paragraph">
+                  <strong>
+                    <span className="ourTeamSpan9" style={{ fontSize: "15px" }}>
+                      Hend Missonen
+                    </span>
+                  </strong>
+                  <br />
+                  <span className="ourTeamSpan10" style={{ fontSize: "15px" }}>
+                    Developer
+                  </span>
+                </p>
+              </div>
+            </Container>
+          </Col>
           <Col>
-            <h4 className="aboutH4">
-              VOCA - Spread kindness, one hatch at a time!
-            </h4>
-            <br />
-            <p className="aboutP">
+            <p tabIndex="0" className="aboutP">
               Here at VOCA we believe in the good of the world! We are a diverse
               team consisting of five passionate full-stack web-developer
               students dedicated to creating innovative solutions for social
@@ -50,15 +117,17 @@ export default function About() {
               customizable, allowing users to tailor the content to specific
               categories such as children, animals, or the elderly, and select
               between different ways of helping, like through donations or
-              hands-on assistance. <br />
+              hands-on assistance. If you have been thinking about doing more
+              for your community, but been unsure were to start, we've got you
+              covered! <br />
               <br />
               Whether you want a calendar for personal or gift purposes, or
               you're representing a business or organization looking to spread
-              kindness with us, we welcome you to join our community and create
-              a calendar that fits your needs. <br />
+              kindness with us, we invite you to join our lovely community and
+              create a calendar that fits all your charity needs. <br />
               <br />
-              <b>Thank you</b> for being a part of our journey to make the world
-              a better place, one calendar at a time.{" "}
+              We <b>welcome you</b> to be a part of our journey to make the
+              world a better place, one calendar at a time.{" "}
               <Link to="/register">
                 <b>Join us</b>
               </Link>

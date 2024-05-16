@@ -1,6 +1,6 @@
 import { Container, Row, Col, Nav } from "react-bootstrap";
 import { NavLink, useLocation, useParams } from "react-router-dom";
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa"; // Import icons
+import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import "./footer.css";
 
 const Footer = () => {
@@ -15,6 +15,8 @@ const Footer = () => {
     "/edit-calendar",
     "/calendar",
     `/calendar/${id}`,
+    `/modify-old-calendar-styling/${id}`,
+    `/modify-old-calendar/${id}`,
     "/user-management",
     "/customer-messages",
     "/login",
@@ -28,29 +30,38 @@ const Footer = () => {
   return (
     <footer className={isAdminRoute ? "footerAdmin" : "footerDefault"}>
       <Container>
-        <Row>
-          <Col>
+        <Row className="align-items-center">
+          <Col md={4} className="text-center text-md-start">
             <Nav className="socialMedia">
-              <Nav.Item>
-                <p className="socialMediaTitle">Social Media Links</p>
-              </Nav.Item>
               <Nav.Item className="socialLinks">
-                <Nav.Link href="https://www.facebook.com/" target="_blank">
+                <Nav.Link
+                  href="https://www.facebook.com/"
+                  alt="Facebook"
+                  target="_blank"
+                >
                   <FaFacebookF />
                 </Nav.Link>
-                <Nav.Link href="https://www.instagram.com/" target="_blank">
+                <Nav.Link
+                  href="https://www.instagram.com/"
+                  alt="Instagram"
+                  target="_blank"
+                >
                   <FaInstagram />
                 </Nav.Link>
-                <Nav.Link href="https://www.twitter.com/" target="_blank">
+                <Nav.Link
+                  href="https://www.twitter.com/"
+                  alt="Twitter"
+                  target="_blank"
+                >
                   <FaTwitter />
                 </Nav.Link>
               </Nav.Item>
             </Nav>
           </Col>
-          <Col className="text-center">
-            <p className="copyright">Copyright</p>
+          <Col md={4} className="text-center">
+            <p className="copyright">© 2024 VOCA</p>
           </Col>
-          <Col className="termsLinks">
+          <Col md={4} className="text-center text-md-end">
             <Nav className="termsAndContact">
               <Nav.Item>
                 <Nav.Link as={NavLink} to="/terms-and-conditions">

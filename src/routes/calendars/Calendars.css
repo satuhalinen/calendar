@@ -34,11 +34,28 @@
   gap: 30px;
   margin: 1rem;
   justify-items: center;
+  width: 100%;
 }
 
 .useCalendarButton {
+  background-color: #a25e2c;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
   margin: 0;
   cursor: pointer;
+  border: none;
+}
+
+.inMyCalendarsButton {
+  font-size: 1.2rem;
+  background-color: #eae0d7;
+  color: #60330d;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-bottom: 0.2rem;
+  cursor: pointer;
+  border: none;
 }
 
 .useCalendarButton:hover {
@@ -59,7 +76,9 @@
 .calendarCardImg {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  max-height: 200px;
+  min-width: 200px;
+  object-fit: initial;
 }
 
 .calendarCard {
@@ -78,13 +97,14 @@
   cursor: pointer;
 }
 
-.search-input {
+.calendars-search-input {
   position: relative;
   display: inline-block;
+  margin: 0;
 }
 
 ::placeholder {
-  color: black;
+  color: #000000a7;
   opacity: 1;
 }
 
@@ -130,4 +150,12 @@
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>');
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+@media screen and (max-width: 768px) {
+
+  .search-field {
+    width: 30vw;
+  }
+
 }

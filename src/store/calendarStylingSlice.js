@@ -26,7 +26,6 @@ const calendarStylingSlice = createSlice({
   reducers: {
     setGeneratedImage: (state, action) => {
       state.generatedImage = action.payload;
-      state.selectedImage = action.payload;
     },
     setUploadedImage: (state, action) => {
       state.uploadedImage = action.payload;
@@ -79,6 +78,12 @@ const calendarStylingSlice = createSlice({
         imageShow: !state.imageShow,
       };
     },
+    setGeneratedImageShow: (state) => {
+      return {
+        ...state,
+        generatedImageShow: !state.generatedImageShow,
+      };
+    },
     setHatchColorShow: (state) => {
       return {
         ...state,
@@ -91,10 +96,10 @@ const calendarStylingSlice = createSlice({
         hatchFontColorShow: !state.hatchFontColorShow,
       };
     },
-
     setInputValue: (state, action) => {
       state.inputValue = action.payload;
     },
+    resetState: () => initialState,
   },
 });
 
@@ -116,6 +121,8 @@ export const {
   setHatchColorShow,
   setHatchFontColorShow,
   setInputValue,
+  setGeneratedImageShow,
+  resetState,
 } = calendarStylingSlice.actions;
 
 export default calendarStylingSlice.reducer;
