@@ -160,7 +160,7 @@ function ModifyOldCalendar() {
                         >
                             <p className="editCalendarTitle">{title}</p>
                         </Card.Title>
-                        <div className="calendar">
+                        <div className="editCalendarGrid">
                             {Array.from({ length: selectedHatchesNumber || 31 }).map(
                                 (_, i) => (
                                     <EditOldHatch key={i} number={i + 1} />
@@ -188,12 +188,14 @@ function ModifyOldCalendar() {
                     <NavLink
                         onClick={saveHatchText}
                         style={{
+                            width: "100%",
                             justifySelf: "center",
                             backgroundColor: "#BA6C2C",
                             color: "#FFFAF7",
                             border: "none",
                             margin: "0% 0% 2% 0%",
                             textDecoration: "none",
+
                         }}
                         className="createCalendarButton"
                         to="#"

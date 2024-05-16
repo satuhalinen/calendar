@@ -86,3 +86,38 @@
 #dropdown-topic-button:hover {
   background-color: #d5d1cd !important;
 }
+
+/* Styles for Large Screens */
+@media (min-width: 1600px) {
+  .editHatchCard {
+    width: 100%;
+    min-height: 240px;
+  }
+
+  .randomizeButton {
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+
+  .dropdownItem {
+    font-size: 1rem;
+  }
+
+  .dropdownTopic {
+    font-size: 1rem;
+  }
+
+  .dropdownButton {
+    margin-top: 20px;
+  }
+
+  .dropdownItem {
+    padding: 10px 20px;
+  }
+
+  #dropdown-alternative-button,
+  #dropdown-topic-button {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+}

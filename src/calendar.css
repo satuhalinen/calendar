@@ -140,6 +140,7 @@
   margin: 0.5rem;
 }
 
+/* Styles for small screens */
 @media (max-width: 768px) {
 
   .calendar {
@@ -212,6 +213,39 @@
   }
 
 }
+
+/* Styles for large screens */
+@media (min-width: 1600px) {
+  .calendar {
+    grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+    column-gap: 30px;
+    row-gap: 40px;
+    padding: 3rem 4rem;
+  }
+
+  .useCalendarTitle {
+    font-size: 3rem;
+  }
+
+  .gameCardBody {
+    margin: 3rem 0;
+  }
+
+  .progressBar {
+    height: 35px;
+  }
+
+  .weatherIconWrapper {
+    font-size: 3rem;
+  }
+
+  .saveToMyCalendarsButton,
+  .removeMyCalendarsButton {
+    padding: 1.2rem 0.7rem;
+    font-size: 1.2rem;
+  }
+}
+
 
 @keyframes spin {
   0% {
