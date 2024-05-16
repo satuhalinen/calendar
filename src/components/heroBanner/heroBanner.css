@@ -78,7 +78,6 @@
     opacity: 1;
 }
 
-/* Styles for larger screens */
 @media (min-width: 1200px) {
     .heroTextHeader {
         font-size: 46px;
@@ -94,7 +93,6 @@
     }
 }
 
-/* Styles for medium-sized screens */
 @media (min-width: 768px) and (max-width: 1199px) {
     .heroTextHeader {
         font-size: 35px;
@@ -109,7 +107,6 @@
     }
 }
 
-/* Styles for smaller screens */
 @media (max-width: 767px) {
     .heroTextHeader {
         font-size: 25px;

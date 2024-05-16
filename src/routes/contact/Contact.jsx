@@ -14,8 +14,6 @@ const ContactForm = () => {
         message: ''
     });
     const [messageSent, setMessageSent] = useState(false);
-    console.log("db", db);
-    console.log("formData", formData);
 
     const handleCloseChatBot = () => {
         setShowChatBot(false);

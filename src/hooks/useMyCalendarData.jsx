@@ -66,10 +66,10 @@ const useMyCalendarData = (removed) => {
 
               calendarData.push({ ...calendar, id: id });
             } else {
-              console.log("No such document for ID " + id + "!");
+              console.error("No such document!");
             }
           } catch (error) {
-            console.log("Error getting document for ID " + id + ":", error);
+            console.error("Error fetching calendar data:", error);
           }
         }
         setMyCalendars(calendarData);

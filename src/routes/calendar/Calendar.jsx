@@ -84,7 +84,6 @@ const Calendar = () => {
 
       if (docSnap.exists()) {
         const data = docSnap.data();
-        console.log("Data fetched", data);
 
         dispatch(showCalendarText(data.content));
         dispatch(setSelectedImage(data.calendarImage));
@@ -98,10 +97,10 @@ const Calendar = () => {
         dispatch(setUploadedImage(data.calendarUploadedImage));
         dispatch(setGeneratedImage(data.calendarGeneratedImage));
       } else {
-        console.log("No such document!");
+        console.error("No such document!");
       }
     } catch (error) {
-      console.log("Error fetching content", error);
+      console.error("Error fetching calendar data:", error);
     }
   };
 
@@ -126,7 +125,6 @@ const Calendar = () => {
       querySnapshot.forEach((doc) => {
         const userData = doc.data();
         setUserData(userData);
-        console.log("User data", userData);
       });
     };
 
@@ -282,13 +280,11 @@ const Calendar = () => {
 
   const captureScreenshot = async () => {
     if (from === false) {
-      console.log("from elsewhere than modify-old-calendarista");
       const calendarDocRef = doc(db, "calendars", id);
       const calendarDocSnapshot = await getDoc(calendarDocRef);
       const existingImageURL = calendarDocSnapshot.data().imageURL;
 
       if (existingImageURL) {
-        console.log("Screenshot already exists");
         return;
       }
     }
@@ -323,7 +319,6 @@ const Calendar = () => {
           { merge: true }
         );
 
-        console.log("Image URL saved to Firestore and Storage");
       } catch (error) {
         console.error("Error saving image URL:", error);
       }

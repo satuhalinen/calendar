@@ -160,7 +160,6 @@ input:checked+.slider:before {
   border-radius: 50%;
 }
 
-/* Styles for Small Screens */
 @media (max-width: 768px) {
   .hatchCardUsed {
     width: 100%;
@@ -231,7 +230,6 @@ input:checked+.slider:before {
   }
 }
 
-/* Styles for Large Screens */
 @media (min-width: 1600px) {
   .hatchCardUsed {
     width: 100%;

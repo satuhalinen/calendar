@@ -86,7 +86,7 @@ const LandingPage = () => {
                     <p className="pLanding">
                       After creation, you can share your calendars with other
                       users for them to use, thus spreading the joy of kindness
-                      around! Are you ready to make your calendar a reality?
+                      around!
                       Join us!
                     </p>
                     <Button

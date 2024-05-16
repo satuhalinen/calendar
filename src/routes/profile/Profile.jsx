@@ -82,7 +82,6 @@ export default function Profile() {
       await updateProfile(currentUser, { photoURL: downloadURL });
       setLoading(false);
       dispatch(updateProfileImageUrl(downloadURL));
-      console.log("Image uploaded successfully");
     } catch (error) {
       setLoading(false);
       console.error("Error uploading image:", error);
