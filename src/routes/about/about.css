@@ -17,7 +17,7 @@
   text-align: center;
   font-size: 1.6rem;
   font-weight: 400;
-  margin: 2rem 18rem 4rem;
+  margin: 2rem 18rem 6.1rem;
 }
 
 .aboutP {
@@ -61,7 +61,7 @@
   margin-bottom: 1rem;
   margin-right: 2rem;
   max-width: 80vw;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
   align-items: center;
 }
@@ -71,7 +71,7 @@
   margin-bottom: 1rem;
   margin-right: 2.1rem;
   max-width: 80vw;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
   align-items: center;
 }
@@ -79,8 +79,8 @@
 .teamImg {
   object-fit: cover;
   border-radius: 50%;
-  width: 135px;
-  height: 135px;
+  width: 120px;
+  height: 120px;
   padding: 0rem;
 }
 
@@ -118,11 +118,11 @@
 }
 
 .ourTeamSpan1 {
-  margin-left: 3.5rem;
+  margin-left: 4rem;
 }
 
 .ourTeamSpan2 {
-  margin-left: 4rem;
+  margin-left: 4.5rem;
 }
 
 .ourTeamSpan3 {
@@ -134,11 +134,11 @@
 }
 
 .ourTeamSpan5 {
-  margin-left: -0.8rem;
+  margin-left: -1.1rem;
 }
 
 .ourTeamSpan6 {
-  margin-left: -0.4rem;
+  margin-left: -0.7rem;
 }
 
 .ourTeamSpan7 {
@@ -150,13 +150,18 @@
 }
 
 .ourTeamSpan9 {
-  margin-left: -0.4rem;
+  margin-left: -0.7rem;
 }
 
 .ourTeamSpan10 {
-  margin-left: 0.8rem;
+  margin-left: 0.4rem;
 }
 
 .sunsetImg {
   margin-top: -8rem;
+}
+
+.teamContainer {
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
 }

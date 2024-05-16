@@ -22,8 +22,8 @@ export default function About() {
             <Image
               src={fjellteam}
               tabIndex="0"
-              width="540"
-              height="330"
+              width="530"
+              height="320"
               className="sunsetImg"
               alt="Two people helping a third person scale a mountain, sun setting in the background"
             />
