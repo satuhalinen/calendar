@@ -49,8 +49,6 @@ export default function Header() {
     checkAdmin();
   }, [isAdmin, user, setIsAdmin]);
 
-  console.log("isAdmin", isAdmin);
-
   const handleClickOutsideMenu = (event) => {
     const navbarToggler = document.querySelector(".navbar-toggler");
     const navbarCollapse = document.querySelector(".navbar-collapse");
