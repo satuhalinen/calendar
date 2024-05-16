@@ -100,8 +100,6 @@ export default function CreateCalendar() {
     fontColorButtonRef: useRef(null),
   };
 
-  console.log("buttonRefs", buttonRefs);
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (

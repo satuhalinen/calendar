@@ -183,7 +183,6 @@ input[type="file"] {
   display: none;
 }
 
-/* Smaller screens */
 @media screen and (max-width: 480px) {
   .wholeProfileContainer {
     padding: 10px;

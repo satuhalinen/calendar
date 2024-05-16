@@ -40,8 +40,6 @@ const ProtectedRoute = ({
     }
   }, [user, loading]);
 
-  console.log("isAdmin:", isAdmin);
-
   if (loading || isAdmin === null) {
     return (
       <Spinner

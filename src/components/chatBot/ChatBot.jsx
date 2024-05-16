@@ -100,7 +100,6 @@ export default function ChatBot({ showInitially, handleClose }) {
             })
                 .then((data) => data.json())
                 .then((data) => {
-                    console.log(data);
                     const res = data.choices[0].message.content;
                     setMessages((prevMessages) => [
                         ...prevMessages,

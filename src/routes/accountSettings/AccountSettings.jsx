@@ -51,7 +51,6 @@ export default function AccountSettings() {
     }
   }, [alertMessage]);
 
-  //update email, password and username function
   const user = auth.currentUser;
   const handleReset = async (e) => {
     e.preventDefault();
@@ -89,7 +88,7 @@ export default function AccountSettings() {
       }
     }
   };
-  //delete account function
+
   const handelDelete = async (e) => {
     e.preventDefault();
     try {

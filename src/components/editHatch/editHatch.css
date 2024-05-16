@@ -87,7 +87,6 @@
   background-color: #d5d1cd !important;
 }
 
-/* Styles for Large Screens */
 @media (min-width: 1600px) {
   .editHatchCard {
     width: 100%;

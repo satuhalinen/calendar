@@ -75,8 +75,6 @@ function EditCalendar() {
 
   const navigate = useNavigate();
 
-  console.log("hatchColor", hatchColor);
-
   const saveHatchText = async () => {
     if (calendarContent !== undefined) {
       const docRef = await addDoc(collection(db, "calendars"), {
@@ -95,7 +93,6 @@ function EditCalendar() {
       });
       const calendarId = docRef.id;
       navigate(`/calendar/${calendarId}`);
-      console.log("Document written with ID: ", docRef.id);
     }
   };
 

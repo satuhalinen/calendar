@@ -35,7 +35,6 @@ export default function Adminpanel() {
     });
 
     await batch.commit();
-    console.log('Data added to Firebase successfully!');
   };
 
   const fetchCalendarCount = async () => {

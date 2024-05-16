@@ -61,7 +61,6 @@
     color: white;
 }
 
-/* Styles for Large Screens */
 @media (min-width: 1600px) {
     .editCalendarGrid {
         grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));

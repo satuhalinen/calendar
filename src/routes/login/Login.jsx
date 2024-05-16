@@ -33,13 +33,10 @@ export default function Login() {
           const adminUserUids = adminUsers.map((doc) => doc.data().uid);
           const userIsAdmin = adminUserUids.includes(user.uid);
           setIsAdmin(userIsAdmin);
-          console.log("Is admin:", userIsAdmin);
 
           if (userIsAdmin) {
-            console.log("Navigating to admin panel...");
             navigate("/adminpanel");
           } else {
-            console.log("Navigating to profile...");
             navigate("/profile");
           }
         } catch (error) {
@@ -47,7 +44,6 @@ export default function Login() {
           console.error("Error checking admin status:", error);
         }
       } else {
-        console.log("User data not available yet.");
         setLoading(false);
       }
     });

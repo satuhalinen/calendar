@@ -22,7 +22,6 @@ import Footer from "../../components/footer/Footer.jsx";
 
 function ModifyOldCalendar() {
   const { id } = useParams();
-  console.log(id);
   const backgroundColor = useSelector(
     (state) => state.calendarStyling.selectedColor
   );
@@ -107,7 +106,6 @@ function ModifyOldCalendar() {
       );
 
       navigate(`/calendar/${id}`, { state: { from: true } });
-      console.log("Document updated with ID: ", id);
     }
   };
 

@@ -59,7 +59,6 @@ export default function ModifyOldCalendarStyling() {
 
       if (docSnap.exists()) {
         const data = docSnap.data();
-        console.log("Data fetched", data);
 
         dispatch(setSelectedImage(data.calendarImage));
         dispatch(setSelectedColor(data.calendarBackgroundColor));
@@ -72,10 +71,10 @@ export default function ModifyOldCalendarStyling() {
         dispatch(setUploadedImage(data.calendarUploadedImage));
         dispatch(setGeneratedImage(data.calendarGeneratedImage));
       } else {
-        console.log("No such document!");
+        console.error("No such document!");
       }
     } catch (error) {
-      console.log("Error fetching content", error);
+      console.error("Error fetching calendar data:", error);
     }
   };
 
@@ -143,8 +142,6 @@ export default function ModifyOldCalendarStyling() {
     fontColorContainerRef: useRef(null),
     fontColorButtonRef: useRef(null),
   };
-
-  console.log("buttonRefs", buttonRefs);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
