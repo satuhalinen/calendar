@@ -40,7 +40,7 @@
     border: none;
     border-radius: 5px;
     padding: 0.5rem 2rem;
-    margin: 5px;
+    margin: 5px 10px !important;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -59,4 +59,21 @@
     box-shadow: inset 1px 1px 5px rgba(60, 24, 16, 0.237) !important;
     background-color: #a65919 !important;
     color: white;
+}
+
+/* Styles for Large Screens */
+@media (min-width: 1600px) {
+    .editCalendarGrid {
+        grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+    }
+
+    .editCalendarTitle {
+        font-size: 3rem;
+    }
+
+    .createCalendarButton,
+    .backToCreateCalendarButton {
+        font-size: 1.2rem;
+        padding: 0.7rem 2.5rem;
+    }
 }

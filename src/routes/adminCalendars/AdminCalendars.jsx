@@ -135,13 +135,13 @@ export default function AdminCalendars() {
                   >
                     <NavLink
                       to={`/calendar/${calendar.id}`}
-                      className="modifyButton btn btn-primary"
+                      className="modifyButton btn btn-secondary"
                     >
                       Use
                     </NavLink>
                     <NavLink
                       to={`/modify-old-calendar-styling/${calendar.id}`}
-                      className="modifyButton btn btn-primary"
+                      className="modifyButton btn btn-secondary"
                     >
                       Modify
                     </NavLink>

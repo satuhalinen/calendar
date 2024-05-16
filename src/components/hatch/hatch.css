@@ -160,6 +160,7 @@ input:checked+.slider:before {
   border-radius: 50%;
 }
 
+/* Styles for Small Screens */
 @media (max-width: 768px) {
   .hatchCardUsed {
     width: 100%;
@@ -217,19 +218,7 @@ input:checked+.slider:before {
     height: 16px;
   }
 
-  .slider.round {
-    border-radius: 20px;
-  }
-
-  .slider.round:before {
-    border-radius: 50%;
-    height: 13px;
-    width: 13px;
-  }
-
   .toggle-btn input:checked+.slider:before {
-    -webkit-transform: translateX(20px);
-    -ms-transform: translateX(20px);
     transform: translateX(20px);
   }
 
@@ -240,19 +229,42 @@ input:checked+.slider:before {
   .toggle-btn input:focus+.slider {
     box-shadow: 0 0 1px #3e474e;
   }
+}
 
-  .toggle-btn input:checked+.slider:before {
-    -webkit-transform: translateX(20px);
-    -ms-transform: translateX(20px);
-    transform: translateX(20px);
+/* Styles for Large Screens */
+@media (min-width: 1600px) {
+  .hatchCardUsed {
+    width: 100%;
+    min-height: 240px;
   }
 
-  .slider.round {
-    border-radius: 20px;
+  .hatchModalTitle {
+    font-size: 2.5rem;
   }
 
-  .slider.round:before {
-    border-radius: 50%;
+  .hatchModalButton {
+    font-size: 1rem;
+    width: 35%;
   }
 
+  .hatchModalContent {
+    font-size: 1rem;
+  }
+
+  .hatchOpenedTitle {
+    font-size: 0.8rem;
+  }
+
+  .hatchImage {
+    max-width: 120px;
+  }
+
+  .checkMarkOpened,
+  .noContentOpened {
+    font-size: 1.2rem;
+  }
+
+  .linkToHatchContent {
+    font-size: 0.8rem;
+  }
 }
