@@ -100,7 +100,6 @@ export default function About() {
               </div>
             </Container>
           </Col>
-
           <Col>
             <p tabIndex="0" className="aboutP">
               Here at VOCA we believe in the good of the world! We are a diverse
@@ -118,12 +117,14 @@ export default function About() {
               customizable, allowing users to tailor the content to specific
               categories such as children, animals, or the elderly, and select
               between different ways of helping, like through donations or
-              hands-on assistance. <br />
+              hands-on assistance. If you have been thinking about doing more
+              for your community, but been unsure were to start, we've got you
+              covered! <br />
               <br />
               Whether you want a calendar for personal or gift purposes, or
               you're representing a business or organization looking to spread
-              kindness with us, we welcome you to join our community and create
-              a calendar that fits your needs. <br />
+              kindness with us, we invite you to join our lovely community and
+              create a calendar that fits all your charity needs. <br />
               <br />
               We <b>welcome you</b> to be a part of our journey to make the
               world a better place, one calendar at a time.{" "}
