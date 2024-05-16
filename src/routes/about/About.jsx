@@ -14,7 +14,7 @@ export default function About() {
       <Col className="about-wrap">
         <Row>
           <h1 tabIndex="0" className="aboutTitle">
-            About us
+            VOCA - Spread kindness, one hatch at a time!
           </h1>
         </Row>
         <Row>
@@ -22,9 +22,9 @@ export default function About() {
             <Image
               src={fjellteam}
               tabIndex="0"
-              width="540"
-              height="330"
-              className="d-inline-block align-top"
+              width="530"
+              height="320"
+              className="sunsetImg"
               alt="Two people helping a third person scale a mountain, sun setting in the background"
             />
             <h3 className="ourTeam">Our team</h3>
@@ -34,18 +34,74 @@ export default function About() {
                 <Image className="teamImg" src={ben}></Image>
                 <Image className="teamImg" src={pinja}></Image>
               </Row>
+              <div className="paragraphContainer">
+                <p className="paragraph">
+                  <strong>
+                    <span className="ourTeamSpan1" style={{ fontSize: "15px" }}>
+                      Satu Halinen
+                    </span>
+                  </strong>
+                  <br />
+                  <span className="ourTeamSpan2" style={{ fontSize: "15px" }}>
+                    Developer
+                  </span>
+                </p>
+                <p className="paragraph">
+                  <strong>
+                    <span className="ourTeamSpan3" style={{ fontSize: "15px" }}>
+                      Bendik Pettersen
+                    </span>
+                  </strong>
+                  <br />
+                  <span className="ourTeamSpan4" style={{ fontSize: "15px" }}>
+                    Developer
+                  </span>
+                </p>
+                <p className="paragraph">
+                  <strong>
+                    <span className="ourTeamSpan5" style={{ fontSize: "15px" }}>
+                      Pinja Alanne
+                    </span>
+                  </strong>
+                  <br />
+                  <span className="ourTeamSpan6" style={{ fontSize: "15px" }}>
+                    Developer
+                  </span>
+                </p>
+              </div>
+
               <Row className="aboutUsTeam1">
                 <Image className="teamImg" src={pushpa}></Image>
                 <Image className="teamImg" src={avatar}></Image>
               </Row>
+              <div className="paragraphContainer">
+                <p className="paragraph">
+                  <strong>
+                    <span className="ourTeamSpan7" style={{ fontSize: "15px" }}>
+                      Pushpa Gnyawali
+                    </span>
+                  </strong>
+                  <br />
+                  <span className="ourTeamSpan8" style={{ fontSize: "15px" }}>
+                    Developer
+                  </span>
+                </p>
+                <p className="paragraph">
+                  <strong>
+                    <span className="ourTeamSpan9" style={{ fontSize: "15px" }}>
+                      Hend Missonen
+                    </span>
+                  </strong>
+                  <br />
+                  <span className="ourTeamSpan10" style={{ fontSize: "15px" }}>
+                    Developer
+                  </span>
+                </p>
+              </div>
             </Container>
           </Col>
 
           <Col>
-            <h4 tabIndex="0" className="aboutH4">
-              VOCA - Spread kindness, one hatch at a time!
-            </h4>
-            <br />
             <p tabIndex="0" className="aboutP">
               Here at VOCA we believe in the good of the world! We are a diverse
               team consisting of five passionate full-stack web-developer
@@ -69,8 +125,8 @@ export default function About() {
               kindness with us, we welcome you to join our community and create
               a calendar that fits your needs. <br />
               <br />
-              <b>Thank you</b> for being a part of our journey to make the world
-              a better place, one calendar at a time.{" "}
+              We <b>welcome you</b> to be a part of our journey to make the
+              world a better place, one calendar at a time.{" "}
               <Link to="/register">
                 <b>Join us</b>
               </Link>
