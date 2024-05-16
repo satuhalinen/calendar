@@ -42,6 +42,7 @@ import { db } from "../../auth/firebase";
 import { useParams } from "react-router-dom";
 import Header from "../../components/header/Header";
 import { resetSavedAlternatives } from "../../store/alternativesSlice";
+import Footer from "../../components/footer/Footer";
 
 export default function ModifyOldCalendarStyling() {
   const dispatch = useDispatch();
@@ -710,6 +711,7 @@ export default function ModifyOldCalendarStyling() {
           </NavLink>
         </Container>
       </Col>
+      <Footer />
     </Row>
   );
 }

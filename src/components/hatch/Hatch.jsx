@@ -180,6 +180,8 @@ function Hatch({ number, saveMyCalendarsClick }) {
           },
         });
       }
+    } else {
+      dispatch(setOpen({ hatchNumber: number, isOpened: true }));
     }
   };
 

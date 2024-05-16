@@ -18,6 +18,7 @@ import {
 } from "../../store/alternativesSlice";
 import { useParams, useNavigate, NavLink } from "react-router-dom";
 import SmallHeader from "../../components/smallHeader/SmallHeader.jsx";
+import Footer from "../../components/footer/Footer.jsx";
 
 function ModifyOldCalendar() {
   const { id } = useParams();
@@ -202,6 +203,7 @@ function ModifyOldCalendar() {
           </NavLink>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

@@ -15,6 +15,8 @@ const Footer = () => {
     "/edit-calendar",
     "/calendar",
     `/calendar/${id}`,
+    `/modify-old-calendar-styling/${id}`,
+    `/modify-old-calendar/${id}`,
     "/user-management",
     "/customer-messages",
     "/login",
