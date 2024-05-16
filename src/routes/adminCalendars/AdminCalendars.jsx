@@ -8,9 +8,14 @@ import "../adminCalendars/adminCalendars.css";
 import "../adminpanel/adminpanel.css";
 import Spinner from "react-bootstrap/Spinner";
 import { LuMinusCircle } from "react-icons/lu";
-import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../auth/firebase";
-import { getDoc, getDocs, collection } from "firebase/firestore";
+import {
+  getDoc,
+  getDocs,
+  collection,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 
 export default function AdminCalendars() {
   const [removed, setRemoved] = useState(false);
@@ -33,7 +38,7 @@ export default function AdminCalendars() {
         await removeMyCalendarFromAllUsers(calendarToDelete);
         handleCloseRemoveModal();
       } catch (error) {
-        console.error('Error deleting calendar:', error);
+        console.error("Error deleting calendar:", error);
       }
     }
   };
@@ -54,7 +59,7 @@ export default function AdminCalendars() {
           await deleteDoc(myCalendarRef);
         }
       } catch (error) {
-        console.error('Error deleting calendar:', error);
+        console.error("Error deleting calendar:", error);
       }
     });
   };
@@ -121,7 +126,13 @@ export default function AdminCalendars() {
                       />
                     </NavLink>
                   </Card.Body>
-                  <div style={{ display: "flex", alignItems: "center", marginBottom: "0.5rem" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
                     <NavLink
                       to={`/calendar/${calendar.id}`}
                       className="modifyButton btn btn-primary"
@@ -159,7 +170,9 @@ export default function AdminCalendars() {
         onHide={handleCloseRemoveModal}
       >
         <Modal.Header className="removeModalHeader">
-          <Modal.Title className="removeModalTitle">Confirm Deletion</Modal.Title>
+          <Modal.Title className="removeModalTitle">
+            Confirm Deletion
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body className="removeModalBody">
           <strong>

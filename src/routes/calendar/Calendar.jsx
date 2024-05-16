@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import html2canvas from "html2canvas";
 import Hatch from "../../components/hatch/Hatch.jsx";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../auth/firebase.js";
+import { auth, db, storage } from "../../auth/firebase.js";
 import {
   FaCloud,
   FaCloudRain,
@@ -31,8 +31,9 @@ import {
   where,
   collection,
   getDocs,
+  setDoc,
+  deleteDoc,
 } from "firebase/firestore";
-import { db, storage } from "../../auth/firebase.js";
 import { useDispatch, useSelector } from "react-redux";
 import avatar from "../../assets/avatar.png";
 import { showCalendarText } from "../../store/alternativesSlice.js";
@@ -50,13 +51,9 @@ import {
   saveImageURL,
 } from "../../store/calendarStylingSlice.js";
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import InfoModal from "../../components/infoModal/InfoModal.jsx";
 import { saveToMyCalendar } from "../../store/scoreSlice.js";
-import { setDoc, deleteDoc } from "firebase/firestore";
-
-import { useLocation } from "react-router-dom";
-
 import { selectProfileImageUrl } from "../../store/profileImageSlice.js";
 
 const Calendar = () => {
@@ -206,7 +203,7 @@ const Calendar = () => {
     setRemoved(false);
   };
 
-  const removeMyCalendarClick = async (id) => {
+  const removeMyCalendarClick = async () => {
     if (calendarToDelete) {
       dispatch(saveToMyCalendar(false));
       const q = query(collection(db, "users"), where("uid", "==", user.uid));

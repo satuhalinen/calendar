@@ -1,5 +1,4 @@
-import { DropdownButton, Dropdown } from "react-bootstrap";
-import { Card } from "react-bootstrap";
+import { DropdownButton, Dropdown, Card } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { saveAlternatives } from "../../store/alternativesSlice";
@@ -78,9 +77,7 @@ function EditHatch({ number }) {
       <DropdownButton
         id="dropdown-alternative-button"
         title={
-          selectedAlternative
-            ? selectedAlternative.title
-            : "Choose an option"
+          selectedAlternative ? selectedAlternative.title : "Choose an option"
         }
         style={{ backgroundColor: backgroundColor }}
       >

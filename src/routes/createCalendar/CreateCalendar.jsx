@@ -15,7 +15,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { PiImageSquareThin } from "react-icons/pi";
 import OpenAI from "openai";
 import Preview from "../../components/preview/Preview";
-import { resetState } from "../../store/calendarStylingSlice";
 import { resetSavedAlternatives } from "../../store/alternativesSlice";
 
 import {
@@ -34,6 +33,7 @@ import {
   setHatchFontColorShow,
   setInputValue,
   setGeneratedImageShow,
+  resetState,
 } from "../../store/calendarStylingSlice";
 import { useEffect, useRef, useState } from "react";
 
